@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "9C7AD3D81DF11751008968FC"
-               BuildableName = "IcEngTest_iOS.app"
-               BlueprintName = "IcEngTest_iOS"
+               BuildableName = "IcEngTestApp.app"
+               BlueprintName = "IcEngTestApp"
                ReferencedContainer = "container:IcEngLib.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -33,8 +33,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9C7AD3D81DF11751008968FC"
-            BuildableName = "IcEngTest_iOS.app"
-            BlueprintName = "IcEngTest_iOS"
+            BuildableName = "IcEngTestApp.app"
+            BlueprintName = "IcEngTestApp"
             ReferencedContainer = "container:IcEngLib.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -56,8 +56,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9C7AD3D81DF11751008968FC"
-            BuildableName = "IcEngTest_iOS.app"
-            BlueprintName = "IcEngTest_iOS"
+            BuildableName = "IcEngTestApp.app"
+            BlueprintName = "IcEngTestApp"
             ReferencedContainer = "container:IcEngLib.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -75,8 +75,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9C7AD3D81DF11751008968FC"
-            BuildableName = "IcEngTest_iOS.app"
-            BlueprintName = "IcEngTest_iOS"
+            BuildableName = "IcEngTestApp.app"
+            BlueprintName = "IcEngTestApp"
             ReferencedContainer = "container:IcEngLib.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
