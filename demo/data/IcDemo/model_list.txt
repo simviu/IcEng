@@ -1,0 +1,2 @@
+models/ju87/ju87.obj
+
