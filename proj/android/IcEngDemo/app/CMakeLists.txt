@@ -2,10 +2,10 @@ cmake_minimum_required(VERSION 3.4.1)
 
 # now build app's shared lib
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall")
-set(ICENGROOT    "${CMAKE_CURRENT_SOURCE_DIR}/../../../..")
-set(ICENGLIB     "${ICENGROOT}/IcEngLib")
-set(ICENGBUILD   "${ICENGROOT}/IcEngBuild")
-set(ICENGDEMO    "${ICENGROOT}/IcEngDemo")
+set(ICENGROOT    "${CMAKE_CURRENT_SOURCE_DIR}/../../../../..")
+set(ICENGLIB     "${ICENGROOT}/IcEng")
+set(ICENGBUILD   "${ICENGROOT}/IcEng/IcEngBuild")
+set(ICENGDEMO    "${ICENGROOT}/IcEng/demo")
 set(ICENGBUILD_BIN 	"${ICENGBUILD}/android/lib/${CMAKE_BUILD_TYPE}/${ANDROID_ABI}")
 
 add_definitions (-D_HAS_EXCEPTIONS=1)

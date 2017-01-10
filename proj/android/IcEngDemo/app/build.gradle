@@ -6,7 +6,7 @@ android {
     repositories {
         jcenter()
         flatDir {
-            dirs "$projectDir/../../../../IcEngBuild/android/lib/aar"
+            dirs "$projectDir/../../../../../IcEng/IcEngBuild/android/aar"
         }
     }
 
@@ -37,17 +37,17 @@ android {
 
     task copyIcShader(type: Copy){
         println("Run task : copyIcShader()")
-        from "$projectDir/../../../../IcEngLib/IcShader"
+        from "$projectDir/../../../../../IcEng/IcShader"
         into "$projectDir/src/main/assets/IcShader"
     }
     task copyData(type: Copy){
         println("Run task : copyData() ")
-        from "$projectDir/../../../../IcEngDemo/data/IcDemo"
+        from "$projectDir/../../../../../IcEng/demo/data/IcDemo"
         into 'src/main/assets/IcDemo/'
     }
     task copyIcEngLib(type: Copy){
         println("Run task : copyIcEngLib() ")
-        from "$projectDir/../../../../IcEngBuild/android/lib/debug/"
+        from "$projectDir/../../../../../IcEng/IcEngBuild/android/lib/debug/"
         into 'src/main/jniLibs'
     }
 
