@@ -6,61 +6,31 @@
 	objectVersion = 46;
 	objects = {
 
-/* Begin PBXAggregateTarget section */
-		9C74509C1E07833200F0FF53 /* All */ = {
-			isa = PBXAggregateTarget;
-			buildConfigurationList = 9C74509D1E07833200F0FF53 /* Build configuration list for PBXAggregateTarget "All" */;
-			buildPhases = (
-			);
-			dependencies = (
-				9C7450A11E07833900F0FF53 /* PBXTargetDependency */,
-				9C7450A31E07833B00F0FF53 /* PBXTargetDependency */,
-			);
-			name = All;
-			productName = All;
-		};
-/* End PBXAggregateTarget section */
-
 /* Begin PBXBuildFile section */
-		9CE97E831DCB5B6E00B26CC6 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CE97E821DCB5B6E00B26CC6 /* GLKit.framework */; };
 		9CEC54B81DCB3A3E00A9E864 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CEC54B71DCB3A3E00A9E864 /* main.m */; };
 		9CEC54BB1DCB3A3E00A9E864 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CEC54BA1DCB3A3E00A9E864 /* AppDelegate.m */; };
 		9CEC54BE1DCB3A3E00A9E864 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CEC54BD1DCB3A3E00A9E864 /* ViewController.m */; };
 		9CEC54C11DCB3A3E00A9E864 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CEC54BF1DCB3A3E00A9E864 /* Main.storyboard */; };
 		9CEC54C31DCB3A3E00A9E864 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CEC54C21DCB3A3E00A9E864 /* Assets.xcassets */; };
 		9CEC54C61DCB3A3E00A9E864 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CEC54C41DCB3A3E00A9E864 /* LaunchScreen.storyboard */; };
-		9CEC56D21DCB3E8500A9E864 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CEC56D11DCB3E8500A9E864 /* GLUT.framework */; };
-		9CEC56D41DCB3E8B00A9E864 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CEC56D31DCB3E8B00A9E864 /* OpenGL.framework */; };
-		9CEC56D61DCB3F5D00A9E864 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CEC56D51DCB3F5D00A9E864 /* Foundation.framework */; };
+		9CF607441E249107008A662C /* IcShader in Resources */ = {isa = PBXBuildFile; fileRef = 9CF607431E249107008A662C /* IcShader */; };
+		9CF607461E24911D008A662C /* IcDemo in Resources */ = {isa = PBXBuildFile; fileRef = 9CF607451E24911D008A662C /* IcDemo */; };
+		9CF607BE1E249217008A662C /* DemoAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF607A41E249217008A662C /* DemoAnimation.cpp */; };
+		9CF607BF1E249217008A662C /* DemoBasic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF607A61E249217008A662C /* DemoBasic.cpp */; };
+		9CF607C01E249217008A662C /* DemoLights.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF607A81E249217008A662C /* DemoLights.cpp */; };
+		9CF607C11E249217008A662C /* DemoModelCreate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF607AA1E249217008A662C /* DemoModelCreate.cpp */; };
+		9CF607C21E249217008A662C /* DemoModels.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF607AC1E249217008A662C /* DemoModels.cpp */; };
+		9CF607C31E249217008A662C /* DemoNestedTrans.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF607AE1E249217008A662C /* DemoNestedTrans.cpp */; };
+		9CF607C41E249217008A662C /* DemoScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF607B01E249217008A662C /* DemoScene.cpp */; };
+		9CF607C51E249217008A662C /* DemoTransform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF607B21E249217008A662C /* DemoTransform.cpp */; };
+		9CF607C61E249217008A662C /* DemoWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF607B41E249217008A662C /* DemoWindow.cpp */; };
+		9CF607C71E249217008A662C /* DemoViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9CF607B81E249217008A662C /* DemoViewController.mm */; };
+		9CF607C81E249217008A662C /* IcDemoTableVCon.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9CF607BA1E249217008A662C /* IcDemoTableVCon.mm */; };
+		9CF607C91E249217008A662C /* IcDemoTableVCon.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CF607BB1E249217008A662C /* IcDemoTableVCon.xib */; };
+		9CF607CC1E2492C7008A662C /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CF607CB1E2492C7008A662C /* GLKit.framework */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		9C7450A01E07833900F0FF53 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9CAE528B1DCB26F4003F7B38 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 9CAE52921DCB26F4003F7B38;
-			remoteInfo = IcEngDemo;
-		};
-		9C7450A21E07833B00F0FF53 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9CAE528B1DCB26F4003F7B38 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 9CEC54B31DCB3A3E00A9E864;
-			remoteInfo = IcEngDemoIOS;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXCopyFilesBuildPhase section */
-		9CAE52911DCB26F4003F7B38 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 12;
-			dstPath = "";
-			dstSubfolderSpec = 16;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		9CE97E841DCB5BB400B26CC6 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -73,9 +43,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		9CAE52931DCB26F4003F7B38 /* IcEngDemo */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = IcEngDemo; sourceTree = BUILT_PRODUCTS_DIR; };
-		9CE97E7E1DCB5B4200B26CC6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.1.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		9CE97E821DCB5B6E00B26CC6 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.1.sdk/System/Library/Frameworks/GLKit.framework; sourceTree = DEVELOPER_DIR; };
 		9CEC54B41DCB3A3E00A9E864 /* IcEngDemoIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IcEngDemoIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CEC54B71DCB3A3E00A9E864 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		9CEC54B91DCB3A3E00A9E864 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -86,27 +53,41 @@
 		9CEC54C21DCB3A3E00A9E864 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9CEC54C51DCB3A3E00A9E864 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9CEC54C71DCB3A3E00A9E864 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9CEC56D11DCB3E8500A9E864 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
-		9CEC56D31DCB3E8B00A9E864 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		9CEC56D51DCB3F5D00A9E864 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		9CF607431E249107008A662C /* IcShader */ = {isa = PBXFileReference; lastKnownFileType = folder; name = IcShader; path = ../../../IcShader; sourceTree = "<group>"; };
+		9CF607451E24911D008A662C /* IcDemo */ = {isa = PBXFileReference; lastKnownFileType = folder; name = IcDemo; path = ../../../demo/data/IcDemo; sourceTree = "<group>"; };
+		9CF607A41E249217008A662C /* DemoAnimation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DemoAnimation.cpp; sourceTree = "<group>"; };
+		9CF607A51E249217008A662C /* DemoAnimation.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DemoAnimation.hpp; sourceTree = "<group>"; };
+		9CF607A61E249217008A662C /* DemoBasic.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DemoBasic.cpp; sourceTree = "<group>"; };
+		9CF607A71E249217008A662C /* DemoBasic.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DemoBasic.hpp; sourceTree = "<group>"; };
+		9CF607A81E249217008A662C /* DemoLights.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DemoLights.cpp; sourceTree = "<group>"; };
+		9CF607A91E249217008A662C /* DemoLights.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DemoLights.hpp; sourceTree = "<group>"; };
+		9CF607AA1E249217008A662C /* DemoModelCreate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DemoModelCreate.cpp; sourceTree = "<group>"; };
+		9CF607AB1E249217008A662C /* DemoModelCreate.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DemoModelCreate.hpp; sourceTree = "<group>"; };
+		9CF607AC1E249217008A662C /* DemoModels.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DemoModels.cpp; sourceTree = "<group>"; };
+		9CF607AD1E249217008A662C /* DemoModels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoModels.h; sourceTree = "<group>"; };
+		9CF607AE1E249217008A662C /* DemoNestedTrans.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DemoNestedTrans.cpp; sourceTree = "<group>"; };
+		9CF607AF1E249217008A662C /* DemoNestedTrans.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DemoNestedTrans.hpp; sourceTree = "<group>"; };
+		9CF607B01E249217008A662C /* DemoScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DemoScene.cpp; sourceTree = "<group>"; };
+		9CF607B11E249217008A662C /* DemoScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoScene.h; sourceTree = "<group>"; };
+		9CF607B21E249217008A662C /* DemoTransform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DemoTransform.cpp; sourceTree = "<group>"; };
+		9CF607B31E249217008A662C /* DemoTransform.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DemoTransform.hpp; sourceTree = "<group>"; };
+		9CF607B41E249217008A662C /* DemoWindow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DemoWindow.cpp; sourceTree = "<group>"; };
+		9CF607B51E249217008A662C /* DemoWindow.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DemoWindow.hpp; sourceTree = "<group>"; };
+		9CF607B71E249217008A662C /* DemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoViewController.h; sourceTree = "<group>"; };
+		9CF607B81E249217008A662C /* DemoViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DemoViewController.mm; sourceTree = "<group>"; };
+		9CF607B91E249217008A662C /* IcDemoTableVCon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IcDemoTableVCon.h; sourceTree = "<group>"; };
+		9CF607BA1E249217008A662C /* IcDemoTableVCon.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = IcDemoTableVCon.mm; sourceTree = "<group>"; };
+		9CF607BB1E249217008A662C /* IcDemoTableVCon.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IcDemoTableVCon.xib; sourceTree = "<group>"; };
+		9CF607CB1E2492C7008A662C /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.2.sdk/System/Library/Frameworks/GLKit.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		9CAE52901DCB26F4003F7B38 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9CEC56D61DCB3F5D00A9E864 /* Foundation.framework in Frameworks */,
-				9CEC56D41DCB3E8B00A9E864 /* OpenGL.framework in Frameworks */,
-				9CEC56D21DCB3E8500A9E864 /* GLUT.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		9CEC54B11DCB3A3E00A9E864 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9CE97E831DCB5B6E00B26CC6 /* GLKit.framework in Frameworks */,
+				9CF607CC1E2492C7008A662C /* GLKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -116,6 +97,7 @@
 		9CAE528A1DCB26F4003F7B38 = {
 			isa = PBXGroup;
 			children = (
+				9CF607A31E249217008A662C /* src */,
 				9CEC56D91DCB3FB600A9E864 /* Resource */,
 				9CEC54B51DCB3A3E00A9E864 /* IcEngDemoIOS */,
 				9CAE52941DCB26F4003F7B38 /* Products */,
@@ -126,7 +108,6 @@
 		9CAE52941DCB26F4003F7B38 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9CAE52931DCB26F4003F7B38 /* IcEngDemo */,
 				9CEC54B41DCB3A3E00A9E864 /* IcEngDemoIOS.app */,
 			);
 			name = Products;
@@ -159,11 +140,8 @@
 		9CEC56CD1DCB3C7E00A9E864 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				9CE97E821DCB5B6E00B26CC6 /* GLKit.framework */,
-				9CE97E7E1DCB5B4200B26CC6 /* Foundation.framework */,
+				9CF607CB1E2492C7008A662C /* GLKit.framework */,
 				9CEC56D51DCB3F5D00A9E864 /* Foundation.framework */,
-				9CEC56D31DCB3E8B00A9E864 /* OpenGL.framework */,
-				9CEC56D11DCB3E8500A9E864 /* GLUT.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -171,30 +149,54 @@
 		9CEC56D91DCB3FB600A9E864 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				9CF607451E24911D008A662C /* IcDemo */,
+				9CF607431E249107008A662C /* IcShader */,
 			);
 			name = Resource;
+			sourceTree = "<group>";
+		};
+		9CF607A31E249217008A662C /* src */ = {
+			isa = PBXGroup;
+			children = (
+				9CF607A41E249217008A662C /* DemoAnimation.cpp */,
+				9CF607A51E249217008A662C /* DemoAnimation.hpp */,
+				9CF607A61E249217008A662C /* DemoBasic.cpp */,
+				9CF607A71E249217008A662C /* DemoBasic.hpp */,
+				9CF607A81E249217008A662C /* DemoLights.cpp */,
+				9CF607A91E249217008A662C /* DemoLights.hpp */,
+				9CF607AA1E249217008A662C /* DemoModelCreate.cpp */,
+				9CF607AB1E249217008A662C /* DemoModelCreate.hpp */,
+				9CF607AC1E249217008A662C /* DemoModels.cpp */,
+				9CF607AD1E249217008A662C /* DemoModels.h */,
+				9CF607AE1E249217008A662C /* DemoNestedTrans.cpp */,
+				9CF607AF1E249217008A662C /* DemoNestedTrans.hpp */,
+				9CF607B01E249217008A662C /* DemoScene.cpp */,
+				9CF607B11E249217008A662C /* DemoScene.h */,
+				9CF607B21E249217008A662C /* DemoTransform.cpp */,
+				9CF607B31E249217008A662C /* DemoTransform.hpp */,
+				9CF607B41E249217008A662C /* DemoWindow.cpp */,
+				9CF607B51E249217008A662C /* DemoWindow.hpp */,
+				9CF607B61E249217008A662C /* iOS */,
+			);
+			name = src;
+			path = ../../../demo/src;
+			sourceTree = "<group>";
+		};
+		9CF607B61E249217008A662C /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				9CF607B71E249217008A662C /* DemoViewController.h */,
+				9CF607B81E249217008A662C /* DemoViewController.mm */,
+				9CF607B91E249217008A662C /* IcDemoTableVCon.h */,
+				9CF607BA1E249217008A662C /* IcDemoTableVCon.mm */,
+				9CF607BB1E249217008A662C /* IcDemoTableVCon.xib */,
+			);
+			path = iOS;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		9CAE52921DCB26F4003F7B38 /* IcEngDemo */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 9CAE529A1DCB26F4003F7B38 /* Build configuration list for PBXNativeTarget "IcEngDemo" */;
-			buildPhases = (
-				9CAE528F1DCB26F4003F7B38 /* Sources */,
-				9CAE52901DCB26F4003F7B38 /* Frameworks */,
-				9CAE52911DCB26F4003F7B38 /* CopyFiles */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = IcEngDemo;
-			productName = IcEngDemo;
-			productReference = 9CAE52931DCB26F4003F7B38 /* IcEngDemo */;
-			productType = "com.apple.product-type.tool";
-		};
 		9CEC54B31DCB3A3E00A9E864 /* IcEngDemoIOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9CEC54CA1DCB3A3E00A9E864 /* Build configuration list for PBXNativeTarget "IcEngDemoIOS" */;
@@ -222,16 +224,6 @@
 				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "Simviu Technology Inc.";
 				TargetAttributes = {
-					9C74509C1E07833200F0FF53 = {
-						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = XG76D5W2B7;
-						ProvisioningStyle = Automatic;
-					};
-					9CAE52921DCB26F4003F7B38 = {
-						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = XG76D5W2B7;
-						ProvisioningStyle = Automatic;
-					};
 					9CEC54B31DCB3A3E00A9E864 = {
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = XG76D5W2B7;
@@ -252,9 +244,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				9CAE52921DCB26F4003F7B38 /* IcEngDemo */,
 				9CEC54B31DCB3A3E00A9E864 /* IcEngDemoIOS */,
-				9C74509C1E07833200F0FF53 /* All */,
 			);
 		};
 /* End PBXProject section */
@@ -264,46 +254,40 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9CF607461E24911D008A662C /* IcDemo in Resources */,
 				9CEC54C61DCB3A3E00A9E864 /* LaunchScreen.storyboard in Resources */,
 				9CEC54C31DCB3A3E00A9E864 /* Assets.xcassets in Resources */,
 				9CEC54C11DCB3A3E00A9E864 /* Main.storyboard in Resources */,
+				9CF607441E249107008A662C /* IcShader in Resources */,
+				9CF607C91E249217008A662C /* IcDemoTableVCon.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		9CAE528F1DCB26F4003F7B38 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		9CEC54B01DCB3A3E00A9E864 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9CF607C21E249217008A662C /* DemoModels.cpp in Sources */,
 				9CEC54BE1DCB3A3E00A9E864 /* ViewController.m in Sources */,
 				9CEC54BB1DCB3A3E00A9E864 /* AppDelegate.m in Sources */,
 				9CEC54B81DCB3A3E00A9E864 /* main.m in Sources */,
+				9CF607C61E249217008A662C /* DemoWindow.cpp in Sources */,
+				9CF607C71E249217008A662C /* DemoViewController.mm in Sources */,
+				9CF607C01E249217008A662C /* DemoLights.cpp in Sources */,
+				9CF607C51E249217008A662C /* DemoTransform.cpp in Sources */,
+				9CF607C41E249217008A662C /* DemoScene.cpp in Sources */,
+				9CF607C31E249217008A662C /* DemoNestedTrans.cpp in Sources */,
+				9CF607BE1E249217008A662C /* DemoAnimation.cpp in Sources */,
+				9CF607C11E249217008A662C /* DemoModelCreate.cpp in Sources */,
+				9CF607BF1E249217008A662C /* DemoBasic.cpp in Sources */,
+				9CF607C81E249217008A662C /* IcDemoTableVCon.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		9C7450A11E07833900F0FF53 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 9CAE52921DCB26F4003F7B38 /* IcEngDemo */;
-			targetProxy = 9C7450A01E07833900F0FF53 /* PBXContainerItemProxy */;
-		};
-		9C7450A31E07833B00F0FF53 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 9CEC54B31DCB3A3E00A9E864 /* IcEngDemoIOS */;
-			targetProxy = 9C7450A21E07833B00F0FF53 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		9CEC54BF1DCB3A3E00A9E864 /* Main.storyboard */ = {
@@ -325,22 +309,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		9C74509E1E07833200F0FF53 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				DEVELOPMENT_TEAM = XG76D5W2B7;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		9C74509F1E07833200F0FF53 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				DEVELOPMENT_TEAM = XG76D5W2B7;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
 		9CAE52981DCB26F4003F7B38 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -381,14 +349,14 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = ../../../IcEngLib/inc;
-				LIBRARY_SEARCH_PATHS = ../../../IcEngBuild/apple/lib/Debug;
+				HEADER_SEARCH_PATHS = ../../../../IcEng/inc;
+				LIBRARY_SEARCH_PATHS = ../../../IcEngBuild/ios/lib/Debug;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				OBJROOT = ../../../IcEngBuild/apple/tmp;
+				OBJROOT = ../../../IcEngBuild/ios/tmp;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
-				SYMROOT = ../../../IcEngBuild/apple/bin;
+				SYMROOT = ../../../IcEngBuild/ios/bin;
 			};
 			name = Debug;
 		};
@@ -426,33 +394,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = ../../../IcEngLib/inc;
-				LIBRARY_SEARCH_PATHS = ../../../IcEngBuild/apple/lib/Release;
+				HEADER_SEARCH_PATHS = ../../../../IcEng/inc;
+				LIBRARY_SEARCH_PATHS = ../../../IcEngBuild/ios/lib/Release;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				OBJROOT = ../../../IcEngBuild/apple/tmp;
+				OBJROOT = ../../../IcEngBuild/ios/tmp;
 				SDKROOT = macosx;
-				SYMROOT = ../../../IcEngBuild/apple/bin;
-			};
-			name = Release;
-		};
-		9CAE529B1DCB26F4003F7B38 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				DEVELOPMENT_TEAM = XG76D5W2B7;
-				LIBRARY_SEARCH_PATHS = ../../../IcEngBuild/apple/lib/Debug;
-				OTHER_LDFLAGS = "-lIcEngLib";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		9CAE529C1DCB26F4003F7B38 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				DEVELOPMENT_TEAM = XG76D5W2B7;
-				LIBRARY_SEARCH_PATHS = ../../../IcEngBuild/apple/lib/Release;
-				OTHER_LDFLAGS = "-lIcEngLib";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				SYMROOT = ../../../IcEngBuild/ios/bin;
 			};
 			name = Release;
 		};
@@ -465,7 +413,7 @@
 				INFOPLIST_FILE = IcEngDemoIOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = ../../../IcEngBuild/apple/lib/Debug;
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-lIcEngLib_iOS";
 				PRODUCT_BUNDLE_IDENTIFIER = com.simviu.iceng.icengdemo.IcEngDemoIOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -483,7 +431,7 @@
 				INFOPLIST_FILE = IcEngDemoIOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = ../../../IcEngBuild/apple/lib/Release;
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-lIcEngLib_iOS";
 				PRODUCT_BUNDLE_IDENTIFIER = com.simviu.iceng.icengdemo.IcEngDemoIOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -496,29 +444,11 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9C74509D1E07833200F0FF53 /* Build configuration list for PBXAggregateTarget "All" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				9C74509E1E07833200F0FF53 /* Debug */,
-				9C74509F1E07833200F0FF53 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		9CAE528E1DCB26F4003F7B38 /* Build configuration list for PBXProject "IcEngDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9CAE52981DCB26F4003F7B38 /* Debug */,
 				9CAE52991DCB26F4003F7B38 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		9CAE529A1DCB26F4003F7B38 /* Build configuration list for PBXNativeTarget "IcEngDemo" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				9CAE529B1DCB26F4003F7B38 /* Debug */,
-				9CAE529C1DCB26F4003F7B38 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
