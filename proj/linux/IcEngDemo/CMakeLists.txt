@@ -37,9 +37,9 @@ endif(NOT OPENGL_FOUND)
 # Include Files
 #########################################################
 
-set(ICENGDEMO "${CMAKE_CURRENT_SOURCE_DIR}/../../../IcEngDemo")
-set(ICENGLIB   "${CMAKE_CURRENT_SOURCE_DIR}/../../../IcEngLib")
-set(ICENGBUILD "${CMAKE_CURRENT_SOURCE_DIR}/../../../IcEngBuild")
+set(ICENGDEMO "${CMAKE_CURRENT_SOURCE_DIR}/../../../../IcEng/demo")
+set(ICENGLIB   "${CMAKE_CURRENT_SOURCE_DIR}/../../../../IcEng")
+set(ICENGBUILD "${CMAKE_CURRENT_SOURCE_DIR}/../../../../IcEng/IcEngBuild")
 set(ICENGBUILD_LIB 	"${ICENGBUILD}/linux/lib/${CMAKE_BUILD_TYPE}")
 set(BUILD_EXE_DIR "${ICENGBUILD}/linux/bin/${CMAKE_BUILD_TYPE}")
 
