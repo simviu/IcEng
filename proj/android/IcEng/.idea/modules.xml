@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/IcEng.iml" filepath="$PROJECT_DIR$/IcEng.iml" />
+      <module fileurl="file://$PROJECT_DIR$/IcEngLib/IcEngLib.iml" filepath="$PROJECT_DIR$/IcEngLib/IcEngLib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/IcEngNative/IcEngNative.iml" filepath="$PROJECT_DIR$/IcEngNative/IcEngNative.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/exportlib/exportlib.iml" filepath="$PROJECT_DIR$/exportlib/exportlib.iml" />
+    </modules>
+  </component>
+</project>
