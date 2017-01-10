@@ -19,33 +19,33 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{386841C0-1790-46E1-B07A-76793AEEF1E7}</ProjectGuid>
+    <ProjectGuid>{2B90262D-B993-400A-B108-A1F45CA7154C}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>IcEngLib</RootNamespace>
+    <RootNamespace>IcEngTest</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -70,24 +70,24 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>../../../../IcEng/IcEngBuild/windows/lib/$(Platform)/$(Configuration)</OutDir>
-    <IntDir>../../../../IcEng/IcEngBuild/windows/tmp/$(ProductName)/$(Platform)/$(Configuration)</IntDir>
-    <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib\um\x86</LibraryPath>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>../../../../IcEng/IcEngBuild/windows/lib/$(Platform)/$(Configuration)</OutDir>
-    <IntDir>../../../../IcEng/IcEngBuild/windows/tmp/$(ProductName)/$(Platform)/$(Configuration)</IntDir>
-    <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib\um\x86</LibraryPath>
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>..\..\..\..\IcEng\IcEngBuild\windows\bin\$(Platform)\$(Configuration)</OutDir>
+    <IntDir>..\..\..\..\IcEng\IcEngBuild\windows\tmp\$(ProductName)\$(Platform)\$(Configuration)</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>../../../../IcEng/IcEngBuild/windows/lib/$(Platform)/$(Configuration)</OutDir>
-    <IntDir>../../../../IcEng/IcEngBuild/windows/tmp/$(ProductName)/$(Platform)/$(Configuration)</IntDir>
-    <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib\um\x64</LibraryPath>
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>..\..\..\..\IcEng\IcEngBuild\windows\bin\$(Platform)\$(Configuration)</OutDir>
+    <IntDir>..\..\..\..\IcEng\IcEngBuild\windows\tmp\$(ProductName)\$(Platform)\$(Configuration)</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>..\..\..\..\IcEng\IcEngBuild\windows\bin\$(Platform)\$(Configuration)</OutDir>
+    <IntDir>..\..\..\..\IcEng\IcEngBuild\windows\tmp\$(ProductName)\$(Platform)\$(Configuration)</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>../../../../IcEng/IcEngBuild/windows/lib/$(Platform)/$(Configuration)</OutDir>
-    <IntDir>../../../../IcEng/IcEngBuild/windows/tmp/$(ProductName)/$(Platform)/$(Configuration)</IntDir>
-    <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib\um\x64</LibraryPath>
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>..\..\..\..\IcEng\IcEngBuild\windows\bin\$(Platform)\$(Configuration)</OutDir>
+    <IntDir>..\..\..\..\IcEng\IcEngBuild\windows\tmp\$(ProductName)\$(Platform)\$(Configuration)</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -95,16 +95,19 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>../../../../IcEng/inc/core;../../../../IcEng/inc;../../../../IcEng/IcEngBuild/dep/glWinLib/inc/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../../../../IcEng/IcEngBuild/windows/dep/glWinLib/inc;../../../../IcEng/inc/core;../../../../IcEng/inc</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
-    </Link>
-    <Lib>
-      <AdditionalDependencies>glew32s.lib;freeglut.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>../../../../IcEng/IcEngBuild/windows/dep/glWinLib/lib/$(Platform);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-    </Lib>
+      <AdditionalDependencies>glew32s.lib;freeglut.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <PostBuildEvent>
+      <Command>xcopy /Y /R /E /C /I /F  ..\..\..\..\IcEng\IcEngBuild\windows\dep\glWinLib\dll\$(Platform)\*.dll  $(OutDir)
+xcopy /Y /R /E /C /I /F  ..\..\..\..\IcEng\IcShader  $(OutDir)\IcShader\</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -112,16 +115,19 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>../../../../IcEng/inc/core;../../../../IcEng/inc;../../../../IcEng/IcEngBuild/dep/glWinLib/inc/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../../../../IcEng/IcEngBuild/windows/dep/glWinLib/inc;../../../../IcEng/inc/core;../../../../IcEng/inc</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
-    </Link>
-    <Lib>
-      <AdditionalDependencies>glew32s.lib;freeglut.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>../../../../IcEng/IcEngBuild/windows/dep/glWinLib/lib/$(Platform);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-    </Lib>
+      <AdditionalDependencies>glew32s.lib;freeglut.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <PostBuildEvent>
+      <Command>xcopy /Y /R /E /C /I /F  ..\..\..\..\IcEng\IcEngBuild\windows\dep\glWinLib\dll\$(Platform)\*.dll  $(OutDir)
+xcopy /Y /R /E /C /I /F  ..\..\..\..\IcEng\IcShader  $(OutDir)\IcShader\</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -131,18 +137,21 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>../../../../IcEng/inc/core;../../../../IcEng/inc;../../../../IcEng/IcEngBuild/dep/glWinLib/inc/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../../../../IcEng/IcEngBuild/windows/dep/glWinLib/inc;../../../../IcEng/inc/core;../../../../IcEng/inc</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-    </Link>
-    <Lib>
-      <AdditionalDependencies>glew32s.lib;freeglut.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>../../../../IcEng/IcEngBuild/windows/dep/glWinLib/lib/$(Platform);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-    </Lib>
+      <AdditionalDependencies>glew32s.lib;freeglut.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <PostBuildEvent>
+      <Command>xcopy /Y /R /E /C /I /F  ..\..\..\..\IcEng\IcEngBuild\windows\dep\glWinLib\dll\$(Platform)\*.dll  $(OutDir)
+xcopy /Y /R /E /C /I /F  ..\..\..\..\IcEng\IcShader  $(OutDir)\IcShader\</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -152,18 +161,21 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>../../../../IcEng/inc/core;../../../../IcEng/inc;../../../../IcEng/IcEngBuild/dep/glWinLib/inc/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../../../../IcEng/IcEngBuild/windows/dep/glWinLib/inc;../../../../IcEng/inc/core;../../../../IcEng/inc</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-    </Link>
-    <Lib>
-      <AdditionalDependencies>glew32s.lib;freeglut.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>../../../../IcEng/IcEngBuild/windows/dep/glWinLib/lib/$(Platform);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-    </Lib>
+      <AdditionalDependencies>glew32s.lib;freeglut.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <PostBuildEvent>
+      <Command>xcopy /Y /R /E /C /I /F  ..\..\..\..\IcEng\IcEngBuild\windows\dep\glWinLib\dll\$(Platform)\*.dll  $(OutDir)
+xcopy /Y /R /E /C /I /F  ..\..\..\..\IcEng\IcShader  $(OutDir)\IcShader\</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -177,6 +189,33 @@
     <ClCompile Include="..\..\..\src\ctl\ctlTest_img.cpp" />
     <ClCompile Include="..\..\..\src\ctl\ctlUtil.cpp" />
     <ClCompile Include="..\..\..\src\ctl\lodepng.cpp" />
+    <ClCompile Include="..\..\..\src\Ic3d\Ic3d.cpp" />
+    <ClCompile Include="..\..\..\src\Ic3d\IcCamera.cpp" />
+    <ClCompile Include="..\..\..\src\Ic3d\IcLight.cpp" />
+    <ClCompile Include="..\..\..\src\Ic3d\IcMaterial.cpp" />
+    <ClCompile Include="..\..\..\src\Ic3d\IcMesh.cpp" />
+    <ClCompile Include="..\..\..\src\Ic3d\IcMeshDataCreate.cpp" />
+    <ClCompile Include="..\..\..\src\Ic3d\IcMeshDataSubMsh.cpp" />
+    <ClCompile Include="..\..\..\src\Ic3d\IcModel.cpp" />
+    <ClCompile Include="..\..\..\src\Ic3d\IcModelLoaderObj.cpp" />
+    <ClCompile Include="..\..\..\src\Ic3d\IcObject.cpp" />
+    <ClCompile Include="..\..\..\src\Ic3d\IcScene.cpp" />
+    <ClCompile Include="..\..\..\src\Ic3d\IcTexture.cpp" />
+    <ClCompile Include="..\..\..\src\Ic3d\IcUtil.cpp" />
+    <ClCompile Include="..\..\..\src\IcRenderEng\IcRenderAdp.cpp" />
+    <ClCompile Include="..\..\..\src\IcRenderEng\IcRenderAdpStd.cpp" />
+    <ClCompile Include="..\..\..\src\IcRenderEng\IcRenderAdpStd_Mesh.cpp" />
+    <ClCompile Include="..\..\..\src\IcRenderEng\IcRenderAdpStd_Tex.cpp" />
+    <ClCompile Include="..\..\..\src\IcRenderEng\IcRenderAdpStd_TexPVR.cpp" />
+    <ClCompile Include="..\..\..\src\IcRenderEng\IcRenderEng.cpp" />
+    <ClCompile Include="..\..\..\src\IcRenderEng\IcRenderEngText.cpp" />
+    <ClCompile Include="..\..\..\src\IcRenderEng\IcShader.cpp" />
+    <ClCompile Include="..\..\..\src\IcWindow\IcWindow.cpp" />
+    <ClCompile Include="..\..\..\src\IcWindow\IcWinMng.cpp" />
+    <ClCompile Include="..\..\..\src\IcWindow\pc\IcWindowPC.cpp" />
+    <ClCompile Include="..\..\..\src\IcWindow\pc\IcWinMngGlut.cpp" />
+    <ClCompile Include="..\..\..\src\test\IcTestWindow.cpp" />
+    <ClCompile Include="..\..\..\src\test\main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
