@@ -22,9 +22,6 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		9C6143F01E2DF13A00ABF9DB /* IcViewControllerVr.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9C6143EE1E2DF13A00ABF9DB /* IcViewControllerVr.mm */; };
-		9C6143F11E2DF13A00ABF9DB /* IcViewControllerVr.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9C6143EE1E2DF13A00ABF9DB /* IcViewControllerVr.mm */; };
-		9C6143F21E2DF13A00ABF9DB /* IcViewControllerVr.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C6143EF1E2DF13A00ABF9DB /* IcViewControllerVr.xib */; };
 		9C7AD3DD1DF11751008968FC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7AD3DC1DF11751008968FC /* main.m */; };
 		9C7AD3E01DF11751008968FC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7AD3DF1DF11751008968FC /* AppDelegate.m */; };
 		9C7AD3E31DF11751008968FC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7AD3E21DF11751008968FC /* ViewController.m */; };
@@ -119,9 +116,6 @@
 
 /* Begin PBXFileReference section */
 		9C53F6CD1DCB18F8006EAF17 /* libIcEngLib_iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIcEngLib_iOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		9C6143ED1E2DF13A00ABF9DB /* IcViewControllerVr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IcViewControllerVr.h; sourceTree = "<group>"; };
-		9C6143EE1E2DF13A00ABF9DB /* IcViewControllerVr.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = IcViewControllerVr.mm; sourceTree = "<group>"; };
-		9C6143EF1E2DF13A00ABF9DB /* IcViewControllerVr.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IcViewControllerVr.xib; sourceTree = "<group>"; };
 		9C7AD3D91DF11751008968FC /* IcEngTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IcEngTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C7AD3DC1DF11751008968FC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		9C7AD3DE1DF11751008968FC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -217,16 +211,6 @@
 				9C7AD3D91DF11751008968FC /* IcEngTestApp.app */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		9C6143EC1E2DF13A00ABF9DB /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-				9C6143ED1E2DF13A00ABF9DB /* IcViewControllerVr.h */,
-				9C6143EE1E2DF13A00ABF9DB /* IcViewControllerVr.mm */,
-				9C6143EF1E2DF13A00ABF9DB /* IcViewControllerVr.xib */,
-			);
-			path = iOS;
 			sourceTree = "<group>";
 		};
 		9C7AD3DA1DF11751008968FC /* IcEngTestApp */ = {
@@ -336,7 +320,6 @@
 		9CF606DD1E248B8F008A662C /* IcVR */ = {
 			isa = PBXGroup;
 			children = (
-				9C6143EC1E2DF13A00ABF9DB /* iOS */,
 				9CF606DE1E248B8F008A662C /* IcWindowVr.cpp */,
 			);
 			path = IcVR;
@@ -472,7 +455,6 @@
 				9C7AD3F41DF118B0008968FC /* TestViewController.xib in Resources */,
 				9C7AD3E81DF11751008968FC /* Assets.xcassets in Resources */,
 				9C7AD3E61DF11751008968FC /* Main.storyboard in Resources */,
-				9C6143F21E2DF13A00ABF9DB /* IcViewControllerVr.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -503,7 +485,6 @@
 				9CF606FF1E248B8F008A662C /* Ic3d.cpp in Sources */,
 				9CF607361E248B8F008A662C /* IcWinMngIOS.cpp in Sources */,
 				9CF606F71E248B8F008A662C /* ctlTest.cpp in Sources */,
-				9C6143F01E2DF13A00ABF9DB /* IcViewControllerVr.mm in Sources */,
 				9CF607251E248B8F008A662C /* IcRenderEngText.cpp in Sources */,
 				9CF607271E248B8F008A662C /* IcShader.cpp in Sources */,
 				9CF607171E248B8F008A662C /* IcUtil.cpp in Sources */,
@@ -546,7 +527,6 @@
 				9CF606FC1E248B8F008A662C /* ctlUtil.cpp in Sources */,
 				9CF6070A1E248B8F008A662C /* IcMeshDataCreate.cpp in Sources */,
 				9CF607041E248B8F008A662C /* IcLight.cpp in Sources */,
-				9C6143F11E2DF13A00ABF9DB /* IcViewControllerVr.mm in Sources */,
 				9CF607221E248B8F008A662C /* IcRenderAdpStd_TexPVR.cpp in Sources */,
 				9CF6071E1E248B8F008A662C /* IcRenderAdpStd_Mesh.cpp in Sources */,
 				9C7AD3E31DF11751008968FC /* ViewController.m in Sources */,

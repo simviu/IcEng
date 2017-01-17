@@ -418,7 +418,6 @@ namespace Ic3d {
     public:
         virtual void onInit() override;
         virtual void onWindowSize(const ctl::TSize& size) override;
-        void setCamRot(const Ic3d::TQuat& camRot);
         struct TCfg
         {
             std::string m_sPathRes;
@@ -426,7 +425,10 @@ namespace Ic3d {
         static TCfg m_cfg;
         void setRootObj(ctl::Sp<Ic3d::IcObject> p);
         ctl::Sp<IcObject> getRootObj(){ return m_pRootObj; };
+        void onCamAttitude(float pitch, float roll, float yaw);
+        
     protected:
+        void setCamRot(const Ic3d::TQuat& camRot);
         //--------------------------
         //  VR Camera
         //--------------------------
