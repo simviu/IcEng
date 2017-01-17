@@ -468,8 +468,10 @@ namespace Ic3d {
         void onFrameStart();
         void onFrameEnd();
         bool hasInit() const { return m_hasInit; };
+        bool isEnabled()const{ return m_isEnabled; };
     protected:
         bool    m_hasInit = false;
+        bool    m_isEnabled = false;
 	};
 	
 }//namespace Ic3d

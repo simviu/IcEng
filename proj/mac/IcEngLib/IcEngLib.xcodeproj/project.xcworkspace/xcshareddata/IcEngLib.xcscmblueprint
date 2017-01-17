@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "4B7986939C29E2D282F2BDB87A19D308905A12A1",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "02F14A5701BB7C3E4E8F5AFFD600F95AE676056F" : 9223372036854775807,
+    "4B7986939C29E2D282F2BDB87A19D308905A12A1" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "8B189FC9-448C-4178-AC37-FB1F52959F20",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "02F14A5701BB7C3E4E8F5AFFD600F95AE676056F" : "",
+    "4B7986939C29E2D282F2BDB87A19D308905A12A1" : "IcEng\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "IcEngLib",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "proj\/mac\/IcEngLib\/IcEngLib.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "\/Volumes\/MacTrans\/Repo\/SkyDev",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "02F14A5701BB7C3E4E8F5AFFD600F95AE676056F"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "\/Volumes\/MacTrans\/Repo\/IcEng",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "4B7986939C29E2D282F2BDB87A19D308905A12A1"
+    }
+  ]
+}

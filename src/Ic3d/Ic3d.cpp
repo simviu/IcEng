@@ -34,6 +34,8 @@ namespace Ic3d
 		auto pEng = IcRenderEng::getInstance();
 		bool isOK = pEng->initEng(m_cfg.m_sPath_shader);
         m_hasInit = true;
+        if(isOK)
+            m_isEnabled = true;
         return isOK;
 	}
     //--------------------------------------------------------------
