@@ -425,7 +425,7 @@ namespace Ic3d {
         };
         static TCfg m_cfg;
         void setRootObj(ctl::Sp<Ic3d::IcObject> p);
-        
+        ctl::Sp<IcObject> getRootObj(){ return m_pRootObj; };
     protected:
         //--------------------------
         //  VR Camera
@@ -440,12 +440,13 @@ namespace Ic3d {
         protected:
             bool    m_isLeft = false;
             TCamSp  m_pCam = nullptr;
-            ctl::Sp<Ic3d::IcObject> m_pDbgObj = nullptr;
-        };
+            ctl::Sp<IcObject> m_pDbgObj = nullptr;
+       };
         
         //---- Camera Mng
         VrCamMng    m_camMng[2];
-        
+        ctl::Sp<IcObject> m_pRootObj = ctl::makeSp<IcObject>();
+       
         
     };
  

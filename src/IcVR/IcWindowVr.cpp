@@ -38,8 +38,9 @@ namespace Ic3d {
     //---------------------------------------
     //  IcWindowVr::setRootObj
     //---------------------------------------
-    void IcWindowVr::setRootObj(ctl::Sp<Ic3d::IcObject> pObj)
+    void IcWindowVr::setRootObj(Sp<IcObject> pObj)
     {
+        m_pRootObj = pObj;
         if(m_scnAry.size()<2) return;   // TODO: assert
         for(int i=0;i<2;i++)
         {
@@ -95,6 +96,7 @@ namespace Ic3d {
             m_camMng[i].onInit((i==0), pCam);
             addScene(pScn);
         }
+        setRootObj(m_pRootObj);
     }
  
     //---------------------------------------
