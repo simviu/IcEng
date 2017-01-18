@@ -113,23 +113,21 @@ namespace Ic3d {
     void IcWindowVr::onCamAttitude(float pitch, float roll, float yaw)
     {
         const Ic3d::TQuat K_rotPre(0,0,0,1);
-  //    auto ori = [UIDevice currentDevice].orientation;
-        
-    //  Ic3d::TVec3 e1 = { e.r, -e.p, e.y  };
         Ic3d::TVec3 e1 = { roll, -pitch, yaw  };
         Ic3d::TQuat qInv(TVec3(deg2rad(-90),0,0));
-        
         Ic3d::TQuat q(e1);
         q = qInv * q;
         setCamRot(q);
-        /*
-        if(ori == UIDeviceOrientationLandscapeRight)
-            m_camRot = q;
-            else    m_camRot = q;
-         */
-        
     }
-    
+    //---------------------------------------
+    //  IcWindowVr::onMouseMove
+    //---------------------------------------
+    void IcWindowVr::onMouseMove(int x, int y)
+    {
+        IcWindow::onMouseMove(x, y);
+        //---- Use mouse simulate camera attitude
+    }
+   
     
     //---------------------------------------
     //  IcWindowVr::onWindowSize

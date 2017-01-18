@@ -390,9 +390,9 @@ namespace Ic3d {
         //-----------------
         // PC input
         //-----------------
-        enum class TE_MouseButton{L,M,R};
+        enum class TE_MouseButton{L,M,R,NONE};
         virtual void onKeyboard(unsigned char key); // TODO: int
-        virtual void onMouseClick(TE_MouseButton btn, int x, int y){};
+        virtual void onMouseClick(TE_MouseButton btn, bool isUp, int x, int y){};
         virtual void onMouseMove(int x, int y){};
         //-----------------
         // Configuration
@@ -430,8 +430,10 @@ namespace Ic3d {
         static TCfg m_cfg;
         void setRootObj(ctl::Sp<Ic3d::IcObject> p);
         ctl::Sp<IcObject> getRootObj(){ return m_pRootObj; };
-        void onCamAttitude(float pitch, float roll, float yaw);
         
+        //---- Can be override
+        virtual void onCamAttitude(float pitch, float roll, float yaw);
+        virtual void onMouseMove(int x, int y) override;
     protected:
         void setCamRot(const Ic3d::TQuat& camRot);
         //--------------------------
@@ -444,6 +446,7 @@ namespace Ic3d {
             void updateCam(const Ic3d::TVec3& camPos,
                            const Ic3d::TQuat& camRot);
             ctl::Sp<Ic3d::IcObject> getDbgObj(){ return m_pDbgObj; };
+            //---- Use mouse simulate camera move
         protected:
             bool    m_isLeft = false;
             TCamSp  m_pCam = nullptr;
@@ -453,7 +456,7 @@ namespace Ic3d {
         //---- Camera Mng
         VrCamMng    m_camMng[2];
         ctl::Sp<IcObject> m_pRootObj = ctl::makeSp<IcObject>();
-       
+        
         
     };
  

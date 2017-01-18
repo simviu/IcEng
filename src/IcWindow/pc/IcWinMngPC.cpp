@@ -106,16 +106,26 @@ namespace Ic3d
             unsigned long m_time = 0;
         };
         //--------------------------
-        //  functions
+        //  getCurWinSlot
         //--------------------------
-        ctl::Sp<TWinSlot> getCurWinSlot()
+        Sp<TWinSlot> getCurWinSlot()
         {
             int wid = glutGetWindow();
             auto p = m_winSlotAry.find(wid);
             if(p==m_winSlotAry.end()) return nullptr;
             return p->second;
         } ;
-       
+        //--------------------------
+        //  getCurWin
+        //--------------------------
+        Sp<IcWindow> getCurWin()
+        {
+            int wid = glutGetWindow();
+            auto p = m_winSlotAry.find(wid);
+            if(p==m_winSlotAry.end()) return nullptr;
+            return (p->second)->getIcWin();
+        } ;
+      
 
         //--------------------------
         //  getScreen
@@ -138,7 +148,7 @@ namespace Ic3d
         //--------------------------
         //  callBk Display
         //--------------------------
-        void cbk_disp()
+        void cbk_display()
         {
             auto pSlot = getCurWinSlot();
             if(pSlot==nullptr) return;
@@ -155,7 +165,7 @@ namespace Ic3d
         //--------------------------
         //  callBk reshape
         //--------------------------
-        void cbk_rshp(GLint w, GLint h)
+        void cbk_reshape(GLint w, GLint h)
         {
             //---- Check init glew
             GlewHelper::checkInitGlew();
@@ -176,11 +186,9 @@ namespace Ic3d
         //--------------------------
         //  callBk on keyboard
         //--------------------------
-        void cbk_keyb(unsigned char key, int x, int y)
+        void cbk_keyboard(unsigned char key, int x, int y)
         {
-            auto pSlot = getCurWinSlot();
-            if(pSlot==nullptr) return;
-            auto pIcWin = pSlot->getIcWin();
+            auto pIcWin = getCurWin();
             if(pIcWin==nullptr) return;
             pIcWin->onKeyboard(key);
             
@@ -194,6 +202,31 @@ namespace Ic3d
                 default:break;
             }
         };
+        //--------------------------
+        //  callBk on mouseMove
+        //--------------------------
+        void cbk_mouseMove(int x, int y)
+        {
+            auto pIcWin = getCurWin();
+            if(pIcWin==nullptr) return;
+            pIcWin->onMouseMove(x, y);
+        }
+        //--------------------------
+        //  callBk on mouseClick
+        //--------------------------
+        void cbk_mouseClick(int glutButton, int state, int x, int y)
+        {
+            auto pIcWin = getCurWin();
+            if(pIcWin==nullptr) return;
+            //---- translate to IcWindow Mouse Button
+            typedef IcWindow::TE_MouseButton TE_type;
+            TE_type type =
+                (glutButton==GLUT_LEFT_BUTTON)  ?TE_type::L :
+                (glutButton==GLUT_RIGHT_BUTTON) ?TE_type::R :
+                (glutButton==GLUT_MIDDLE_BUTTON)?TE_type::M :
+                TE_type::NONE;
+            pIcWin->onMouseClick(type, (state==GLUT_UP), x, y);
+        }
         
         //--------------------------
         //  checkInitGlut
@@ -246,10 +279,12 @@ namespace Ic3d
             glutInitWindowSize(wsz.w, wsz.h);
             int wid = glutCreateWindow(sTitle.c_str());
             glutSetWindowTitle(sTitle.c_str());
-            glutDisplayFunc     (cbk_disp);
-            glutReshapeFunc     (cbk_rshp);
-            glutKeyboardFunc    (cbk_keyb);
-            
+            glutDisplayFunc     (cbk_display);
+            glutReshapeFunc     (cbk_reshape);
+            glutKeyboardFunc    (cbk_keyboard);
+            glutMouseFunc          (cbk_mouseClick);
+            glutPassiveMotionFunc   (cbk_mouseMove);
+           
             auto pWin = makeSp<TWinSlot>(pIcWin);
             addWindow(pWin, wid);
             return pIcWin;
@@ -257,43 +292,7 @@ namespace Ic3d
         };
         
     };
-    /*
-//    static CGlutHelper l_glutHelper;
-    //--------------------------
-    //  Call Back Func Array
-    //--------------------------
-     // TODO: Maybe call back on C++ member function is doable.
-    namespace TGlutCallBk{
-        CGlutHelper& glt = l_glutHelper;
-        //-----------------
-        // CallBk display()
-        //-----------------
-        static void cbk_disp()
-        {  glt.cbk_disp(); }
-        //-----------------
-        // CallBk reshape()
-        //-----------------
-        static void cbk_rshp(int w, int h)
-        { glt.cbk_rshp(w, h); }
-        //-----------------
-        // CallBk keyboard()
-        //-----------------
-        static void cbk_keyb(unsigned char k, int x, int y)
-        { glt.cbk_keyb(k,x,y); }
-       
-    };
-     */
-    //--------------------------
-    //  CGlutHelper::createWindow
-    //--------------------------
-    /*
-    Sp<IcWindow> CGlutHelper::createGlutWin(ctl::Sp<IcWindow> pIcWin,
-                                            const std::string sTitle,
-                                            const ctl::TRect& rect)
-    {
-        
-     };
-   */
+
     //----------------------------
     //  IcWinMngGlut
     //----------------------------

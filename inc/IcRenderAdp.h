@@ -32,7 +32,15 @@ namespace Ic3d
 	typedef glm::mat3	TMat3;
 	typedef glm::mat4	TMat4;
 	typedef glm::vec4	TColor;
-	
+    //-----------------------------------------------
+    //	TEuler
+    //-----------------------------------------------
+	struct TEuler
+    {
+        float p = 0;    // pitch
+        float r = 0;    // row
+        float y = 0;    // yaw
+    };
 	
     //-----------------------------------------------
     //	TMaterial
