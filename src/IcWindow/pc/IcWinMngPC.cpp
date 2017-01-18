@@ -73,8 +73,15 @@ namespace Ic3d
     //----------------------------
     //  Glut Helper
     //----------------------------
-    struct CGlutHelper
+    namespace GlutHelper
     {
+        struct TWinSlot;
+        //--------------------------
+        //  static var
+        //--------------------------
+        bool m_hasInit = false;
+        bool m_valid = false;
+        std::map<int, ctl::Sp<TWinSlot>> m_winSlotAry;
         //--------------------------
         //  TWinSlot
         //--------------------------
@@ -99,6 +106,18 @@ namespace Ic3d
             unsigned long m_time = 0;
         };
         //--------------------------
+        //  functions
+        //--------------------------
+        ctl::Sp<TWinSlot> getCurWinSlot()
+        {
+            int wid = glutGetWindow();
+            auto p = m_winSlotAry.find(wid);
+            if(p==m_winSlotAry.end()) return nullptr;
+            return p->second;
+        } ;
+       
+
+        //--------------------------
         //  getScreen
         //--------------------------
         ctl::TSize getScreenSize()
@@ -107,6 +126,15 @@ namespace Ic3d
             auto h = glutGet(GLUT_SCREEN_HEIGHT);
             return TSize(w,h);
         };
+        //------------------------
+        //  onQuit
+        //------------------------
+        void onQuit()
+        {
+            m_winSlotAry.clear();
+            exit(0);
+        };
+
         //--------------------------
         //  callBk Display
         //--------------------------
@@ -202,34 +230,35 @@ namespace Ic3d
             
         //---- Statically matain glut windows
         size_t getWindowNum() { return m_winSlotAry.size(); };
-        ctl::Sp<TWinSlot> getCurWinSlot()
-        {
-            int wid = glutGetWindow();
-            auto p = m_winSlotAry.find(wid);
-            if(p==m_winSlotAry.end()) return nullptr;
-            return p->second;
-        } ;
+        void addWindow(ctl::Sp<TWinSlot> pSlot, int wid)
+        { m_winSlotAry[wid] = pSlot; };
+        
+        //------------------------
+        //  createGlutWin
+        //------------------------
         ctl::Sp<IcWindow> createGlutWin(ctl::Sp<IcWindow> pIcWin,
                                         const std::string sTitle,
-                                        const ctl::TRect& rect);
-        void addWindow(ctl::Sp<TWinSlot> pSlot, int wid)
-            { m_winSlotAry[wid] = pSlot; };
-
-        //------------------------
-        //  onQuit
-        //------------------------
-        void onQuit()
+                                        const ctl::TRect& rect)
         {
-            m_winSlotAry.clear();
-            exit(0);
+            auto pos = rect.pos0;
+            auto wsz = rect.getSize();
+            glutInitWindowPosition(pos.x, pos.y);
+            glutInitWindowSize(wsz.w, wsz.h);
+            int wid = glutCreateWindow(sTitle.c_str());
+            glutSetWindowTitle(sTitle.c_str());
+            glutDisplayFunc     (cbk_disp);
+            glutReshapeFunc     (cbk_rshp);
+            glutKeyboardFunc    (cbk_keyb);
+            
+            auto pWin = makeSp<TWinSlot>(pIcWin);
+            addWindow(pWin, wid);
+            return pIcWin;
+            
         };
-    private:
-        bool m_hasInit = false;
-        bool m_valid = false;
-        std::map<int, ctl::Sp<TWinSlot>> m_winSlotAry;
-       
+        
     };
-    static CGlutHelper l_glutHelper;
+    /*
+//    static CGlutHelper l_glutHelper;
     //--------------------------
     //  Call Back Func Array
     //--------------------------
@@ -253,29 +282,18 @@ namespace Ic3d
         { glt.cbk_keyb(k,x,y); }
        
     };
+     */
     //--------------------------
     //  CGlutHelper::createWindow
     //--------------------------
+    /*
     Sp<IcWindow> CGlutHelper::createGlutWin(ctl::Sp<IcWindow> pIcWin,
                                             const std::string sTitle,
                                             const ctl::TRect& rect)
     {
         
-        auto pos = rect.pos0;
-        auto wsz = rect.getSize();
-        glutInitWindowPosition(pos.x, pos.y);
-        glutInitWindowSize(wsz.w, wsz.h);
-        int wid = glutCreateWindow(sTitle.c_str());
-        glutSetWindowTitle(sTitle.c_str());
-        glutDisplayFunc     (TGlutCallBk::cbk_disp);
-        glutReshapeFunc     (TGlutCallBk::cbk_rshp);
-        glutKeyboardFunc    (TGlutCallBk::cbk_keyb);
-
-        auto pWin = makeSp<TWinSlot>(pIcWin);
-        addWindow(pWin, wid);
-        return pIcWin;
-    };
-   
+     };
+   */
     //----------------------------
     //  IcWinMngGlut
     //----------------------------
@@ -298,14 +316,14 @@ namespace Ic3d
     //-------------------------------------------
     bool IcWinMngGlut::initMng(int argc, char *argv[])
     {
-        bool isOK =  l_glutHelper.onInit(argc, argv);
-        m_screenSize = l_glutHelper.getScreenSize();
+        bool isOK =  GlutHelper::onInit(argc, argv);
+        m_screenSize = GlutHelper::getScreenSize();
         
         //---- Create Window after glut init
         for(auto pWin : m_winAry.getAry())
         {
             ctl::TRect rect(TPos(0,0), m_screenSize);
-            l_glutHelper.createGlutWin(pWin, "", rect);
+            GlutHelper::createGlutWin(pWin, "", rect);
         }
         
         return isOK;
