@@ -387,8 +387,13 @@ namespace Ic3d {
         virtual void onScreenSize(const ctl::TSize& size);
         void addScene(ctl::Sp<IcScene> pScn);
         void removeAllScene();
-        virtual void onKeyboard(unsigned char key); // Available only on PC
-        
+        //-----------------
+        // PC input
+        //-----------------
+        enum class TE_MouseButton{L,M,R};
+        virtual void onKeyboard(unsigned char key); // TODO: int
+        virtual void onMouseClick(TE_MouseButton btn, int x, int y){};
+        virtual void onMouseMove(int x, int y){};
         //-----------------
         // Configuration
         //-----------------
