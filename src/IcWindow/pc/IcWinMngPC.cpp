@@ -25,6 +25,50 @@ namespace Ic3d
     //---- Glut Key
     typedef unsigned char TKey;
     const static TKey K_key_ESC = 27;
+    //----------------------------
+    //  GlewHelper
+    //----------------------------
+    namespace GlewHelper
+    {
+        static bool m_hasInit = false;
+        static bool m_valid = true;
+        //------------------------
+        //  Init Glew
+        //------------------------
+        bool checkInitGlew()
+        {
+            if(m_hasInit) return m_valid;
+#if __APPLE__
+#else
+            logInfo("Init Glew");
+            auto err = glewInit();
+            if (GLEW_OK != err)
+            {
+                // failed to initialize GLEW!
+                ctl::logErr("Failed to init glew :" +
+                            string((char*)glewGetErrorString(err)));
+                m_valid = false;
+                return false;
+            }
+            logInfo("Glew Init OK");
+            string sVer((char*)glewGetString(GLEW_VERSION));
+            ctl::logInfo("Using GLEW Version: "+sVer);
+            
+            if(GLEW_VERSION_1_3)
+                logInfo("OpenGL 1.3 Supported");
+            else
+            {
+                logErr("OpenGL 1.3 Not supported");
+                m_valid = false;
+                return false;
+            }
+            m_hasInit = true;
+#endif
+            return m_valid;
+       };
+      
+        
+    };
    
     //----------------------------
     //  Glut Helper
@@ -32,53 +76,27 @@ namespace Ic3d
     struct CGlutHelper
     {
         //--------------------------
-        //  TWin
+        //  TWinSlot
         //--------------------------
-        struct TWin
+        struct TWinSlot
         {
-            TWin(ctl::Sp<IcWindow> pIcWin)
-            :m_pIcWin(pIcWin)
+            TWinSlot(ctl::Sp<IcWindow> pIcWin)
+            :m_pIcWin(pIcWin) { };
+            //----- Update DeltaT
+            float updateDeltaT()
             {
-            };
-            //---- onDrawFrame()
-            void onDrawFrame()
-            {
-                if(m_pIcWin==nullptr) return;
-                
                 unsigned long tCur = glutGet(GLUT_ELAPSED_TIME);
                 unsigned long dtI = tCur - m_time;
                 float deltaT = K_initDeltaT;
                 if(m_time!=0) deltaT = (float)dtI/1000.0f;
-                m_pIcWin->onDrawUpdate(deltaT);
                 m_time = tCur;
-                // in double buffer mode so we swap to avoid a flicker
-                glutSwapBuffers();
-                
-                // instruct event system to call 'drawfunc' again
-                glutPostRedisplay();
+                return deltaT;
             };
-            //---- onReshape()
-            void onReshape(int w, int h)
-            {
-                if(m_pIcWin==nullptr) return;
-                if(!m_hasInit)
-				{
-	                m_pIcWin->onInit();				
-	                m_hasInit = true;	
-				}
-
-                m_pIcWin->onWindowSize(TSize(w,h));
-            };
-            //---- onKeyboard()
-            void onKeyboard(unsigned char k)
-            {
-                if(m_pIcWin==nullptr) return;
-                m_pIcWin->onKeyboard(k);
-            };
+            Sp<IcWindow> getIcWin() { return m_pIcWin; };
+            bool m_hasInit = false;
         protected:
             ctl::Sp<IcWindow> m_pIcWin = nullptr;
             unsigned long m_time = 0;
-            bool m_hasInit = false;
         };
         //--------------------------
         //  getScreen
@@ -92,34 +110,50 @@ namespace Ic3d
         //--------------------------
         //  callBk Display
         //--------------------------
-        void cbk_disp(int wid)
+        void cbk_disp()
         {
-            auto pWin = findWindow(wid);
-            if(pWin!=nullptr) pWin->onDrawFrame();
+            auto pWin = getCurWinSlot();
+            if(pWin==nullptr) return;
+            float deltaT = pWin->updateDeltaT();
+            auto pIcWin = pWin->getIcWin();
+            if(pIcWin==nullptr) return;
+            pIcWin->onDrawUpdate(deltaT);
+            // in double buffer mode so we swap to avoid a flicker
+            glutSwapBuffers();
+            
+            // instruct event system to call 'drawfunc' again
+            glutPostRedisplay();
         };
         //--------------------------
         //  callBk reshape
         //--------------------------
-        void cbk_rshp(int wid, GLint w, GLint h)
+        void cbk_rshp(GLint w, GLint h)
         {
-	    //---- Check init glew
-	    if(!m_hasGlewInit)
-	    {
-		initGlew();
-		m_hasGlewInit = true;
-	    }
+            //---- Check init glew
+            GlewHelper::checkInitGlew();
+ 
             //---- Reshape Window
-            auto pWin = findWindow(wid);
+            auto pWin = getCurWinSlot();
             if(pWin==nullptr) return;
-            pWin->onReshape(w,h);
+            auto pIcWin = pWin->getIcWin();
+            if(pIcWin==nullptr) return;
+            if(!pWin->m_hasInit)
+            {
+                pIcWin->onInit();
+                pWin->m_hasInit = true;
+            }
+            
+            pIcWin->onWindowSize(TSize(w,h));
         };
         //--------------------------
         //  callBk on keyboard
         //--------------------------
-        void cbk_keyb(int wid, unsigned char key, int x, int y)
+        void cbk_keyb(unsigned char key, int x, int y)
         {
-            auto pWin = findWindow(wid);
-            if(pWin!=nullptr) pWin->onKeyboard(key);
+            auto pWin = getCurWinSlot();
+            auto pIcWin = pWin->getIcWin();
+            if(pIcWin==nullptr) return;
+            pIcWin->onKeyboard(key);
             
             const auto& cfg = IcWinMng::getInstance()->m_cfg;
             switch(key)
@@ -139,7 +173,7 @@ namespace Ic3d
 		{
             		logInfo("Init Glut");
 
-			if (m_hasGlutInit) return m_valid;
+			if (m_hasInit) return m_valid;
 			m_valid = true;
 
 			//------------------------
@@ -165,67 +199,33 @@ namespace Ic3d
 			return m_valid;
 		};
             
-        //------------------------
-        //  Init Glew
-        //------------------------
-		bool initGlew()
-		{
-#if __APPLE__
-#else
-            logInfo("Init Glew");
-            auto err = glewInit();
-            if (GLEW_OK != err)
-            {
-                // failed to initialize GLEW!
-                ctl::logErr("Failed to init glew :" +
-                            string((char*)glewGetErrorString(err)));
-                m_valid = false;
-                return false;
-            }
-            logInfo("Glew Init OK");
-            string sVer((char*)glewGetString(GLEW_VERSION));
-            ctl::logInfo("Using GLEW Version: "+sVer);
-            
-            if(GLEW_VERSION_1_3)
-                logInfo("OpenGL 1.3 Supported");
-            else
-            {
-                logErr("OpenGL 1.3 Not supported");
-                m_valid = false;
-                return false;
-            }
-#endif
-            m_hasGlutInit = true;
-            return m_valid;
-        };
-        
         //---- Statically matain glut windows
-        size_t getWindowNum() { return m_winSet.size(); };
-        ctl::Sp<TWin> findWindow(int winId)
+        size_t getWindowNum() { return m_winSlotAry.size(); };
+        ctl::Sp<TWinSlot> getCurWinSlot()
         {
-            auto p = m_winSet.find(winId);
-            if(p==m_winSet.end()) return nullptr;
+            int wid = glutGetWindow();
+            auto p = m_winSlotAry.find(wid);
+            if(p==m_winSlotAry.end()) return nullptr;
             return p->second;
         } ;
         ctl::Sp<IcWindow> createGlutWin(ctl::Sp<IcWindow> pIcWin,
                                         const std::string sTitle,
                                         const ctl::TRect& rect);
-        void addWindow(ctl::Sp<TWin> pWin, int wid)
-            { m_winSet[wid] = pWin; };
+        void addWindow(ctl::Sp<TWinSlot> pSlot, int wid)
+            { m_winSlotAry[wid] = pSlot; };
 
         //------------------------
         //  onQuit
         //------------------------
         void onQuit()
         {
-            m_winSet.clear();
+            m_winSlotAry.clear();
             exit(0);
         };
     private:
-        bool m_hasGlutInit = false;
-	bool m_hasGlewInit = false;
+        bool m_hasInit = false;
         bool m_valid = false;
-        std::map<int, ctl::Sp<TWin>> m_winSet;
+        std::map<int, ctl::Sp<TWinSlot>> m_winSlotAry;
        
     };
     static CGlutHelper l_glutHelper;
@@ -239,17 +239,17 @@ namespace Ic3d
         // CallBk display()
         //-----------------
         static void cbk_disp()
-        { int wid = glutGetWindow(); glt.cbk_disp(wid); }
+        {  glt.cbk_disp(); }
         //-----------------
         // CallBk reshape()
         //-----------------
         static void cbk_rshp(int w, int h)
-        { int wid = glutGetWindow(); glt.cbk_rshp(wid, w, h); }
+        { glt.cbk_rshp(w, h); }
         //-----------------
         // CallBk keyboard()
         //-----------------
         static void cbk_keyb(unsigned char k, int x, int y)
-        { int wid = glutGetWindow(); glt.cbk_keyb(wid, k,x,y); }
+        { glt.cbk_keyb(k,x,y); }
        
     };
     //--------------------------
@@ -270,7 +270,7 @@ namespace Ic3d
         glutReshapeFunc     (TGlutCallBk::cbk_rshp);
         glutKeyboardFunc    (TGlutCallBk::cbk_keyb);
 
-        auto pWin = makeSp<TWin>(pIcWin);
+        auto pWin = makeSp<TWinSlot>(pIcWin);
         addWindow(pWin, wid);
         return pIcWin;
     };
