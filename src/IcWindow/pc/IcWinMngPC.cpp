@@ -112,10 +112,10 @@ namespace Ic3d
         //--------------------------
         void cbk_disp()
         {
-            auto pWin = getCurWinSlot();
-            if(pWin==nullptr) return;
-            float deltaT = pWin->updateDeltaT();
-            auto pIcWin = pWin->getIcWin();
+            auto pSlot = getCurWinSlot();
+            if(pSlot==nullptr) return;
+            float deltaT = pSlot->updateDeltaT();
+            auto pIcWin = pSlot->getIcWin();
             if(pIcWin==nullptr) return;
             pIcWin->onDrawUpdate(deltaT);
             // in double buffer mode so we swap to avoid a flicker
@@ -133,14 +133,14 @@ namespace Ic3d
             GlewHelper::checkInitGlew();
  
             //---- Reshape Window
-            auto pWin = getCurWinSlot();
-            if(pWin==nullptr) return;
-            auto pIcWin = pWin->getIcWin();
+            auto pSlot = getCurWinSlot();
+            if(pSlot==nullptr) return;
+            auto pIcWin = pSlot->getIcWin();
             if(pIcWin==nullptr) return;
-            if(!pWin->m_hasInit)
+            if(!pSlot->m_hasInit)
             {
                 pIcWin->onInit();
-                pWin->m_hasInit = true;
+                pSlot->m_hasInit = true;
             }
             
             pIcWin->onWindowSize(TSize(w,h));
@@ -150,8 +150,9 @@ namespace Ic3d
         //--------------------------
         void cbk_keyb(unsigned char key, int x, int y)
         {
-            auto pWin = getCurWinSlot();
-            auto pIcWin = pWin->getIcWin();
+            auto pSlot = getCurWinSlot();
+            if(pSlot==nullptr) return;
+            auto pIcWin = pSlot->getIcWin();
             if(pIcWin==nullptr) return;
             pIcWin->onKeyboard(key);
             
