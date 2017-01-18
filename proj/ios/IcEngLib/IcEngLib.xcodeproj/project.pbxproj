@@ -115,6 +115,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9C36EB361E2F15FA00F1DB3D /* ctl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ctl.h; path = ../../../inc/ctl.h; sourceTree = "<group>"; };
+		9C36EB371E2F15FA00F1DB3D /* Ic3d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Ic3d.h; path = ../../../inc/Ic3d.h; sourceTree = "<group>"; };
+		9C36EB381E2F15FA00F1DB3D /* IcRenderAdp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IcRenderAdp.h; path = ../../../inc/IcRenderAdp.h; sourceTree = "<group>"; };
+		9C36EB3A1E2F161D00F1DB3D /* IcEngJNI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IcEngJNI.h; path = ../../../inc/core/IcEngJNI.h; sourceTree = "<group>"; };
+		9C36EB3B1E2F161D00F1DB3D /* IcRenderAdpStd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IcRenderAdpStd.h; path = ../../../inc/core/IcRenderAdpStd.h; sourceTree = "<group>"; };
+		9C36EB3C1E2F161D00F1DB3D /* IcRenderEng.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IcRenderEng.h; path = ../../../inc/core/IcRenderEng.h; sourceTree = "<group>"; };
+		9C36EB3D1E2F161D00F1DB3D /* IcTestWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IcTestWindow.h; path = ../../../inc/core/IcTestWindow.h; sourceTree = "<group>"; };
+		9C36EB3E1E2F161D00F1DB3D /* IcViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IcViewController.h; path = ../../../inc/core/IcViewController.h; sourceTree = "<group>"; };
+		9C36EB3F1E2F161D00F1DB3D /* lodepng.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lodepng.h; path = ../../../inc/core/lodepng.h; sourceTree = "<group>"; };
+		9C36EB401E2F161D00F1DB3D /* OpenGLinc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OpenGLinc.h; path = ../../../inc/core/OpenGLinc.h; sourceTree = "<group>"; };
 		9C53F6CD1DCB18F8006EAF17 /* libIcEngLib_iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIcEngLib_iOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C7AD3D91DF11751008968FC /* IcEngTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IcEngTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C7AD3DC1DF11751008968FC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -193,9 +203,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9C36EB351E2F157A00F1DB3D /* inc */ = {
+			isa = PBXGroup;
+			children = (
+				9C36EB391E2F160A00F1DB3D /* core */,
+				9C36EB361E2F15FA00F1DB3D /* ctl.h */,
+				9C36EB371E2F15FA00F1DB3D /* Ic3d.h */,
+				9C36EB381E2F15FA00F1DB3D /* IcRenderAdp.h */,
+			);
+			name = inc;
+			sourceTree = "<group>";
+		};
+		9C36EB391E2F160A00F1DB3D /* core */ = {
+			isa = PBXGroup;
+			children = (
+				9C36EB3A1E2F161D00F1DB3D /* IcEngJNI.h */,
+				9C36EB3B1E2F161D00F1DB3D /* IcRenderAdpStd.h */,
+				9C36EB3C1E2F161D00F1DB3D /* IcRenderEng.h */,
+				9C36EB3D1E2F161D00F1DB3D /* IcTestWindow.h */,
+				9C36EB3E1E2F161D00F1DB3D /* IcViewController.h */,
+				9C36EB3F1E2F161D00F1DB3D /* lodepng.h */,
+				9C36EB401E2F161D00F1DB3D /* OpenGLinc.h */,
+			);
+			name = core;
+			sourceTree = "<group>";
+		};
 		9C53F6B21DCB14FB006EAF17 = {
 			isa = PBXGroup;
 			children = (
+				9C36EB351E2F157A00F1DB3D /* inc */,
 				9CF607401E248C45008A662C /* Resource */,
 				9CF606BC1E248B8F008A662C /* src */,
 				9C7AD3DA1DF11751008968FC /* IcEngTestApp */,
