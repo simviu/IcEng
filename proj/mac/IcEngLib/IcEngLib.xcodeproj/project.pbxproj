@@ -245,7 +245,6 @@
 		9CF606881E248125008A662C /* vec4.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9CF605EE1E248125008A662C /* vec4.hpp */; };
 		9CF606891E248125008A662C /* vector_relational.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9CF605EF1E248125008A662C /* vector_relational.hpp */; };
 		9CF6068A1E248125008A662C /* Ic3d.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF605F01E248125008A662C /* Ic3d.h */; };
-		9CF6068B1E248125008A662C /* IcEngJNI.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF605F11E248125008A662C /* IcEngJNI.h */; };
 		9CF6068C1E248125008A662C /* IcRenderAdp.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF605F21E248125008A662C /* IcRenderAdp.h */; };
 		9CF6068D1E248125008A662C /* IcViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF605F31E248125008A662C /* IcViewController.h */; };
 		9CF606901E248286008A662C /* IcShader in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9CF6068F1E24827A008A662C /* IcShader */; };
@@ -283,6 +282,7 @@
 
 /* Begin PBXFileReference section */
 		9C53F6BB1DCB14FB006EAF17 /* libIcEngLib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIcEngLib.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C7DB66B1E3065B0008079A4 /* IcSceneVr.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IcSceneVr.h; sourceTree = "<group>"; };
 		9C8CC3AE1DEE8115002583F2 /* IcEngTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = IcEngTest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C8CC3EC1DEE862D002583F2 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
 		9CAE4F1F1DCB201B003F7B38 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
@@ -581,7 +581,6 @@
 		9CF605EE1E248125008A662C /* vec4.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = vec4.hpp; sourceTree = "<group>"; };
 		9CF605EF1E248125008A662C /* vector_relational.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = vector_relational.hpp; sourceTree = "<group>"; };
 		9CF605F01E248125008A662C /* Ic3d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ic3d.h; sourceTree = "<group>"; };
-		9CF605F11E248125008A662C /* IcEngJNI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IcEngJNI.h; sourceTree = "<group>"; };
 		9CF605F21E248125008A662C /* IcRenderAdp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IcRenderAdp.h; sourceTree = "<group>"; };
 		9CF605F31E248125008A662C /* IcViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IcViewController.h; sourceTree = "<group>"; };
 		9CF6068F1E24827A008A662C /* IcShader */ = {isa = PBXFileReference; lastKnownFileType = folder; name = IcShader; path = ../../../IcShader; sourceTree = "<group>"; };
@@ -743,7 +742,6 @@
 				9CF604EE1E248125008A662C /* ctl.h */,
 				9CF604EF1E248125008A662C /* glm */,
 				9CF605F01E248125008A662C /* Ic3d.h */,
-				9CF605F11E248125008A662C /* IcEngJNI.h */,
 				9CF605F21E248125008A662C /* IcRenderAdp.h */,
 				9CF605F31E248125008A662C /* IcViewController.h */,
 			);
@@ -759,6 +757,7 @@
 				9CF604EB1E248125008A662C /* IcTestWindow.h */,
 				9CF604EC1E248125008A662C /* lodepng.h */,
 				9CF604ED1E248125008A662C /* OpenGLinc.h */,
+				9C7DB66B1E3065B0008079A4 /* IcSceneVr.h */,
 			);
 			path = core;
 			sourceTree = "<group>";
@@ -1098,7 +1097,6 @@
 				9CF606291E248125008A662C /* ext.hpp in Headers */,
 				9CF606041E248125008A662C /* func_integer.hpp in Headers */,
 				9CF606181E248125008A662C /* type_int.hpp in Headers */,
-				9CF6068B1E248125008A662C /* IcEngJNI.h in Headers */,
 				9CF6063F1E248125008A662C /* associated_min_max.hpp in Headers */,
 				9CF606051E248125008A662C /* func_matrix.hpp in Headers */,
 				9CF606391E248125008A662C /* reciprocal.hpp in Headers */,

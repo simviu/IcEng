@@ -437,6 +437,17 @@ namespace Ic3d {
     protected:
         void setCamRot(const Ic3d::TQuat& camRot);
         //--------------------------
+        //  VrScene
+        //--------------------------
+        // Implementation in cpp
+        class VrScene : public IcScene
+        {
+        public:
+            virtual void updateCam(const Ic3d::TVec3& camPos,
+                                   const Ic3d::TQuat& camRot){};
+            
+        };
+        //--------------------------
         //  VR Camera
         //--------------------------
         struct VrCamMng
