@@ -407,12 +407,12 @@ namespace Ic3d {
         //-----------------
         // For PC, not mobile
         static int runCmd(int argc, char **argv, ctl::Sp<IcWindow> pWin);
-        
+        ctl::SpAry<IcScene>& getScnAry(){ return m_scnAry; };
     protected:
         ctl::TSize          m_winSize;
         ctl::SpAry<IcScene> m_scnAry;
         std::mutex          m_mtx_draw;
-	bool	m_isDrawing = false;
+        bool	m_isDrawing = false;
         
     };
     //--------------------------
@@ -421,6 +421,7 @@ namespace Ic3d {
     class IcWindowVr : public Ic3d::IcWindow
     {
     public:
+        IcWindowVr();
         virtual void onInit() override;
         virtual void onWindowSize(const ctl::TSize& size) override;
         struct TCfg
@@ -434,41 +435,24 @@ namespace Ic3d {
         //---- Can be override
         virtual void onCamAttitude(float pitch, float roll, float yaw);
         virtual void onMouseMove(int x, int y) override;
-    protected:
-        void setCamRot(const Ic3d::TQuat& camRot);
         //--------------------------
-        //  VrScene
+        //  IcSceneVr
         //--------------------------
-        // Implementation in cpp
-        class VrScene : public IcScene
+        // Be implemented in cpp
+        class IcSceneVr_IF : public IcScene
         {
         public:
+            IcSceneVr_IF(bool isLeft): m_isLeft(isLeft){};
             virtual void updateCam(const Ic3d::TVec3& camPos,
                                    const Ic3d::TQuat& camRot){};
-            
-        };
-        //--------------------------
-        //  VR Camera
-        //--------------------------
-        struct VrCamMng
-        {
-            typedef ctl::Sp<Ic3d::IcCamera> TCamSp;
-            void onInit(bool isLeft, TCamSp pCams);
-            void updateCam(const Ic3d::TVec3& camPos,
-                           const Ic3d::TQuat& camRot);
-            ctl::Sp<Ic3d::IcObject> getDbgObj(){ return m_pDbgObj; };
-            //---- Use mouse simulate camera move
         protected:
-            bool    m_isLeft = false;
-            TCamSp  m_pCam = nullptr;
-            ctl::Sp<IcObject> m_pDbgObj = nullptr;
-       };
-        
-        //---- Camera Mng
-        VrCamMng    m_camMng[2];
+            bool m_isLeft = false;
+        };
+    protected:
+        void setCamRot(const Ic3d::TQuat& camRot);
         ctl::Sp<IcObject> m_pRootObj = ctl::makeSp<IcObject>();
-        
-        
+        //---- VR scene left/right
+        ctl::Sp<IcSceneVr_IF> m_vrScn[2]{nullptr, nullptr};
     };
  
     

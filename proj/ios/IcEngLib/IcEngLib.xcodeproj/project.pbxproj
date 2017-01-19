@@ -30,6 +30,8 @@
 		9C7AD3EB1DF11751008968FC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C7AD3E91DF11751008968FC /* LaunchScreen.storyboard */; };
 		9C7AD3F31DF118B0008968FC /* TestViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9C7AD3F11DF118B0008968FC /* TestViewController.mm */; };
 		9C7AD3F41DF118B0008968FC /* TestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C7AD3F21DF118B0008968FC /* TestViewController.xib */; };
+		9C7DB6711E306F7C008079A4 /* IcSceneVr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C7DB6701E306F7C008079A4 /* IcSceneVr.cpp */; };
+		9C7DB6721E306F84008079A4 /* IcSceneVr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C7DB6701E306F7C008079A4 /* IcSceneVr.cpp */; };
 		9CF606EF1E248B8F008A662C /* ctlBinBuf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF606BE1E248B8F008A662C /* ctlBinBuf.cpp */; };
 		9CF606F01E248B8F008A662C /* ctlBinBuf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF606BE1E248B8F008A662C /* ctlBinBuf.cpp */; };
 		9CF606F11E248B8F008A662C /* ctlImg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF606BF1E248B8F008A662C /* ctlImg.cpp */; };
@@ -139,6 +141,8 @@
 		9C7AD3F01DF118B0008968FC /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
 		9C7AD3F11DF118B0008968FC /* TestViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestViewController.mm; sourceTree = "<group>"; };
 		9C7AD3F21DF118B0008968FC /* TestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestViewController.xib; sourceTree = "<group>"; };
+		9C7DB66F1E306F6F008079A4 /* IcSceneVr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IcSceneVr.h; path = ../../../inc/core/IcSceneVr.h; sourceTree = "<group>"; };
+		9C7DB6701E306F7C008079A4 /* IcSceneVr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcSceneVr.cpp; sourceTree = "<group>"; };
 		9C8CC3EA1DEE860E002583F2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9C8CC3EC1DEE862D002583F2 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
 		9C8CC3EE1DEE86A2002583F2 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
@@ -218,6 +222,7 @@
 		9C36EB391E2F160A00F1DB3D /* core */ = {
 			isa = PBXGroup;
 			children = (
+				9C7DB66F1E306F6F008079A4 /* IcSceneVr.h */,
 				9C36EB3A1E2F161D00F1DB3D /* IcEngJNI.h */,
 				9C36EB3B1E2F161D00F1DB3D /* IcRenderAdpStd.h */,
 				9C36EB3C1E2F161D00F1DB3D /* IcRenderEng.h */,
@@ -356,6 +361,7 @@
 		9CF606DD1E248B8F008A662C /* IcVR */ = {
 			isa = PBXGroup;
 			children = (
+				9C7DB6701E306F7C008079A4 /* IcSceneVr.cpp */,
 				9CF606DE1E248B8F008A662C /* IcWindowVr.cpp */,
 			);
 			path = IcVR;
@@ -521,6 +527,7 @@
 				9CF606FF1E248B8F008A662C /* Ic3d.cpp in Sources */,
 				9CF607361E248B8F008A662C /* IcWinMngIOS.cpp in Sources */,
 				9CF606F71E248B8F008A662C /* ctlTest.cpp in Sources */,
+				9C7DB6711E306F7C008079A4 /* IcSceneVr.cpp in Sources */,
 				9CF607251E248B8F008A662C /* IcRenderEngText.cpp in Sources */,
 				9CF607271E248B8F008A662C /* IcShader.cpp in Sources */,
 				9CF607171E248B8F008A662C /* IcUtil.cpp in Sources */,
@@ -591,6 +598,7 @@
 				9CF607161E248B8F008A662C /* IcTexture.cpp in Sources */,
 				9CF607371E248B8F008A662C /* IcWinMngIOS.cpp in Sources */,
 				9CF606FE1E248B8F008A662C /* lodepng.cpp in Sources */,
+				9C7DB6721E306F84008079A4 /* IcSceneVr.cpp in Sources */,
 				9CF6073D1E248B8F008A662C /* IcTestWindow.cpp in Sources */,
 				9CF607241E248B8F008A662C /* IcRenderEng.cpp in Sources */,
 				9CF606F61E248B8F008A662C /* ctlStr.cpp in Sources */,
