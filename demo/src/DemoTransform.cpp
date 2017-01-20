@@ -10,6 +10,7 @@
 
 
 using namespace Ic3d;
+using namespace ctl;
 
 //----------------------------------------------
 //  DemoTransform::onInit
@@ -37,7 +38,7 @@ void DemoTransform::onInit()
     //---- Play around with transform
     pObj0->setPos(TVec3(-2, -3, -5));
     
-    TVec3 angleEuler1(deg2rad(10), deg2rad(30), deg2rad(15));
+    TVec3 angleEuler1(ctl::deg2rad(10), deg2rad(30), deg2rad(15));
     pObj1->setPos(TVec3(3, -1, -15));
     pObj1->setQuat(TQuat(angleEuler1));
     

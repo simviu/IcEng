@@ -2,3 +2,5 @@ IcEngBuild/
 proj/windows/IcEngLib/.vs/
 proj/windows/IcEngLib/IcEngLib.VC.db
 proj/windows/IcEngLib/IcEngTest.vcxproj.user
+proj/windows/IcEngDemo/.vs/IcEngDemo/v14/.suo
+proj/windows/IcEngDemo/IcEngDemo.VC.db

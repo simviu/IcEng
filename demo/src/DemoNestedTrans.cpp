@@ -10,6 +10,7 @@
 
 
 using namespace Ic3d;
+using namespace ctl;
 
 //----------------------------------------------
 //  DemoNestedTrans::onInit

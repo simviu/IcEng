@@ -32,7 +32,19 @@ namespace Ic3d
 	typedef glm::mat3	TMat3;
 	typedef glm::mat4	TMat4;
 	typedef glm::vec4	TColor;
-	
+    //-----------------------------------------------
+    //	TEuler
+    //-----------------------------------------------
+	struct TEuler
+    {
+        TEuler(){};
+        TEuler(float pi, float ri, float yi):
+        p(pi), r(ri), y(yi){};
+        float p = 0;    // pitch
+        float r = 0;    // roll
+        float y = 0;    // yaw
+        TQuat toQuat()const{ return TQuat(TVec3(p,y,r));};
+    };
 	
     //-----------------------------------------------
     //	TMaterial
@@ -90,12 +102,20 @@ namespace Ic3d
             // 0---1
             // | / |
             // 2---3
-            void triangulate(TFaceIdx& trn0, TFaceIdx& trn1) const
+            void triangulate(TFaceIdx& trn0, TFaceIdx& trn1,
+                             bool isWindingCCR) const
             {
-                std::vector<int> idx[2] = {{ 0,2,1}, { 1,2,3}};
+                const std::vector<int> idxCCR[2] = {{ 0,2,1}, { 1,2,3}};
+                const std::vector<int> idxCR[2] =  {{ 0,1,2}, { 1,3,2}};
+                const auto& idx = isWindingCCR?idxCCR:idxCR;
+
                 int j=0;          // j=0,1,2 for triangle
-                j = 0; for(const auto k : idx[0]) trn0.m_verts[j++]= m_verts[k];
-                j = 0; for(const auto k : idx[1]) trn1.m_verts[j++]= m_verts[k];
+                j = 0;
+                for(const auto k : idx[0])
+                    trn0.m_verts[j++]= m_verts[k];
+                j = 0;
+                for(const auto k : idx[1])
+                    trn1.m_verts[j++]= m_verts[k];
             };
             
 		};
@@ -103,9 +123,11 @@ namespace Ic3d
 		void addNorm(const TVec3& n){ m_normals.add(n); };
 		void addTexCo(const TVec2& t){ m_texCords.add(t); };
 		void addTrian(const TFaceIdx& f){ m_faces.add(f); };
-        void addQuad(const TFaceIdx& f){
-            TFaceIdx trn[2];  f.triangulate(trn[0], trn[1]);
-            addTrian(trn[0]); addTrian(trn[1]);
+        void addQuad(const TFaceIdx& f, bool isWindingCCR){
+            TFaceIdx trn[2];
+            f.triangulate(trn[0], trn[1], isWindingCCR);
+            addTrian(trn[0]);
+            addTrian(trn[1]);
         }
 		ctl::SafeAry<TVec3>		m_verts;
 		ctl::SafeAry<TVec2>		m_texCords;

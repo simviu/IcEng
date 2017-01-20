@@ -71,23 +71,23 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>..\..\..\IcEngBuild\windows\bin\$(Platform)\$(Configuration)</OutDir>
-    <IntDir>../../../IcEngBuild/windows/tmp/$(Platform)/$(Configuration)/</IntDir>
+    <OutDir>..\..\..\..\IcEng\IcEngBuild\windows\bin\$(Platform)\$(Configuration)</OutDir>
+    <IntDir>..\..\..\..\IcEng\IcEngBuild\windows\tmp\$(TargetName)\$(Platform)\$(Configuration)</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>..\..\..\IcEngBuild\windows\bin\$(Platform)\$(Configuration)</OutDir>
-    <IntDir>../../../IcEngBuild/windows/tmp/$(Platform)/$(Configuration)/</IntDir>
+    <OutDir>..\..\..\..\IcEng\IcEngBuild\windows\bin\$(Platform)\$(Configuration)</OutDir>
+    <IntDir>..\..\..\..\IcEng\IcEngBuild\windows\tmp\$(TargetName)\$(Platform)\$(Configuration)</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>..\..\..\IcEngBuild\windows\bin\$(Platform)\$(Configuration)</OutDir>
-    <IntDir>../../../IcEngBuild/windows/tmp/$(Platform)/$(Configuration)/</IntDir>
+    <OutDir>..\..\..\..\IcEng\IcEngBuild\windows\bin\$(Platform)\$(Configuration)</OutDir>
+    <IntDir>..\..\..\..\IcEng\IcEngBuild\windows\tmp\$(TargetName)\$(Platform)\$(Configuration)</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>..\..\..\IcEngBuild\windows\bin\$(Platform)\$(Configuration)</OutDir>
-    <IntDir>../../../IcEngBuild/windows/tmp/$(Platform)/$(Configuration)/</IntDir>
+    <OutDir>..\..\..\..\IcEng\IcEngBuild\windows\bin\$(Platform)\$(Configuration)</OutDir>
+    <IntDir>..\..\..\..\IcEng\IcEngBuild\windows\tmp\$(TargetName)\$(Platform)\$(Configuration)</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -96,18 +96,18 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>../../../IcEngDemo/src;../../../IcEngLib/inc</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../../IcEng/demo/src;../../../../IcEng/inc</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>../../../IcEngBuild/windows/lib/$(Platform)/$(Configuration);../../../ext/glWinLib/lib/$(Platform)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>IcEngLib.lib;opengl32.lib;glew32s.lib;freeglut.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../../../../IcEng/IcEngBuild/windows/dep/glWinLib/lib/$(Platform);../../../../IcEng/IcEngBuild/windows/lib/$(Platform)/$(Configuration)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>IcEngLib.lib;freeglut.lib;glew32s.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /Y /R /E /C /I  ..\..\..\ext\glWinLib\dll\$(Platform)\*.dll  $(OutDir)
-xcopy /Y /R /E /C /I ..\..\..\IcEngDemo\data\IcDemo  $(OutDir)\IcDemo
-xcopy /Y /R /E /C /I ..\..\..\IcEngLib\IcShader  $(OutDir)\IcShader
+      <Command>xcopy /Y /R /E /C /I  ..\..\..\..\IcEng\IcEngBuild\dep\glWinLib\dll\$(Platform)\*.dll  $(OutDir)
+xcopy /Y /R /E /C /I ..\..\..\..\IcEng\demo\data\IcDemo  $(OutDir)\IcDemo
+xcopy /Y /R /E /C /I ..\..\..\..\IcEng\IcShader  $(OutDir)\IcShader
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -118,18 +118,18 @@ xcopy /Y /R /E /C /I ..\..\..\IcEngLib\IcShader  $(OutDir)\IcShader
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>../../../IcEngDemo/src;../../../IcEngLib/inc</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../../IcEng/demo/src;../../../../IcEng/inc</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>../../../IcEngBuild/windows/lib/$(Platform)/$(Configuration);../../../ext/glWinLib/lib/$(Platform)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>IcEngLib.lib;opengl32.lib;glew32s.lib;freeglut.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../../../../IcEng/IcEngBuild/windows/dep/glWinLib/lib/$(Platform);../../../../IcEng/IcEngBuild/windows/lib/$(Platform)/$(Configuration)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>IcEngLib.lib;freeglut.lib;glew32s.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /Y /R /E /C /I  ..\..\..\ext\glWinLib\dll\$(Platform)\*.dll  $(OutDir)
-xcopy /Y /R /E /C /I ..\..\..\IcEngDemo\data\IcDemo  $(OutDir)\IcDemo
-xcopy /Y /R /E /C /I ..\..\..\IcEngLib\IcShader  $(OutDir)\IcShader
+      <Command>xcopy /Y /R /E /C /I  ..\..\..\..\IcEng\IcEngBuild\dep\glWinLib\dll\$(Platform)\*.dll  $(OutDir)
+xcopy /Y /R /E /C /I ..\..\..\..\IcEng\demo\data\IcDemo  $(OutDir)\IcDemo
+xcopy /Y /R /E /C /I ..\..\..\..\IcEng\IcShader  $(OutDir)\IcShader
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -142,20 +142,20 @@ xcopy /Y /R /E /C /I ..\..\..\IcEngLib\IcShader  $(OutDir)\IcShader
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>../../../IcEngDemo/src;../../../IcEngLib/inc</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../../IcEng/demo/src;../../../../IcEng/inc</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>../../../IcEngBuild/windows/lib/$(Platform)/$(Configuration);../../../ext/glWinLib/lib/$(Platform)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>IcEngLib.lib;opengl32.lib;glew32s.lib;freeglut.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../../../../IcEng/IcEngBuild/windows/dep/glWinLib/lib/$(Platform);../../../../IcEng/IcEngBuild/windows/lib/$(Platform)/$(Configuration)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>IcEngLib.lib;freeglut.lib;glew32s.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /Y /R /E /C /I  ..\..\..\ext\glWinLib\dll\$(Platform)\*.dll  $(OutDir)
-xcopy /Y /R /E /C /I ..\..\..\IcEngDemo\data\IcDemo  $(OutDir)\IcDemo
-xcopy /Y /R /E /C /I ..\..\..\IcEngLib\IcShader  $(OutDir)\IcShader
+      <Command>xcopy /Y /R /E /C /I  ..\..\..\..\IcEng\IcEngBuild\dep\glWinLib\dll\$(Platform)\*.dll  $(OutDir)
+xcopy /Y /R /E /C /I ..\..\..\..\IcEng\demo\data\IcDemo  $(OutDir)\IcDemo
+xcopy /Y /R /E /C /I ..\..\..\..\IcEng\IcShader  $(OutDir)\IcShader
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -168,20 +168,20 @@ xcopy /Y /R /E /C /I ..\..\..\IcEngLib\IcShader  $(OutDir)\IcShader
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>../../../IcEngDemo/src;../../../IcEngLib/inc</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../../IcEng/demo/src;../../../../IcEng/inc</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>../../../IcEngBuild/windows/lib/$(Platform)/$(Configuration);../../../ext/glWinLib/lib/$(Platform)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>IcEngLib.lib;opengl32.lib;glew32s.lib;freeglut.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../../../../IcEng/IcEngBuild/windows/dep/glWinLib/lib/$(Platform);../../../../IcEng/IcEngBuild/windows/lib/$(Platform)/$(Configuration)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>IcEngLib.lib;freeglut.lib;glew32s.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /Y /R /E /C /I  ..\..\..\ext\glWinLib\dll\$(Platform)\*.dll  $(OutDir)
-xcopy /Y /R /E /C /I ..\..\..\IcEngDemo\data\IcDemo  $(OutDir)\IcDemo
-xcopy /Y /R /E /C /I ..\..\..\IcEngLib\IcShader  $(OutDir)\IcShader
+      <Command>xcopy /Y /R /E /C /I  ..\..\..\..\IcEng\IcEngBuild\dep\glWinLib\dll\$(Platform)\*.dll  $(OutDir)
+xcopy /Y /R /E /C /I ..\..\..\..\IcEng\demo\data\IcDemo  $(OutDir)\IcDemo
+xcopy /Y /R /E /C /I ..\..\..\..\IcEng\IcShader  $(OutDir)\IcShader
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -189,29 +189,29 @@ xcopy /Y /R /E /C /I ..\..\..\IcEngLib\IcShader  $(OutDir)\IcShader
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\IcEngDemo\src\DemoAnimation.hpp" />
-    <ClInclude Include="..\..\..\IcEngDemo\src\DemoApp.hpp" />
-    <ClInclude Include="..\..\..\IcEngDemo\src\DemoBasic.hpp" />
-    <ClInclude Include="..\..\..\IcEngDemo\src\DemoLights.hpp" />
-    <ClInclude Include="..\..\..\IcEngDemo\src\DemoModelCreate.hpp" />
-    <ClInclude Include="..\..\..\IcEngDemo\src\DemoModels.h" />
-    <ClInclude Include="..\..\..\IcEngDemo\src\DemoNestedTrans.hpp" />
-    <ClInclude Include="..\..\..\IcEngDemo\src\DemoScene.h" />
-    <ClInclude Include="..\..\..\IcEngDemo\src\DemoTransform.hpp" />
+    <ClInclude Include="..\..\..\demo\src\DemoAnimation.hpp" />
+    <ClInclude Include="..\..\..\demo\src\DemoBasic.hpp" />
+    <ClInclude Include="..\..\..\demo\src\DemoLights.hpp" />
+    <ClInclude Include="..\..\..\demo\src\DemoModelCreate.hpp" />
+    <ClInclude Include="..\..\..\demo\src\DemoModels.h" />
+    <ClInclude Include="..\..\..\demo\src\DemoNestedTrans.hpp" />
+    <ClInclude Include="..\..\..\demo\src\DemoScene.h" />
+    <ClInclude Include="..\..\..\demo\src\DemoTransform.hpp" />
+    <ClInclude Include="..\..\..\demo\src\DemoWindow.hpp" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\IcEngDemo\src\DemoAnimation.cpp" />
-    <ClCompile Include="..\..\..\IcEngDemo\src\DemoApp.cpp" />
-    <ClCompile Include="..\..\..\IcEngDemo\src\DemoBasic.cpp" />
-    <ClCompile Include="..\..\..\IcEngDemo\src\DemoLights.cpp" />
-    <ClCompile Include="..\..\..\IcEngDemo\src\DemoModelCreate.cpp" />
-    <ClCompile Include="..\..\..\IcEngDemo\src\DemoModels.cpp" />
-    <ClCompile Include="..\..\..\IcEngDemo\src\DemoNestedTrans.cpp" />
-    <ClCompile Include="..\..\..\IcEngDemo\src\DemoScene.cpp" />
-    <ClCompile Include="..\..\..\IcEngDemo\src\DemoTransform.cpp" />
-    <ClCompile Include="..\..\..\IcEngDemo\src\glut\main.cpp" />
+    <ClCompile Include="..\..\..\demo\src\DemoAnimation.cpp" />
+    <ClCompile Include="..\..\..\demo\src\DemoBasic.cpp" />
+    <ClCompile Include="..\..\..\demo\src\DemoLights.cpp" />
+    <ClCompile Include="..\..\..\demo\src\DemoModelCreate.cpp" />
+    <ClCompile Include="..\..\..\demo\src\DemoModels.cpp" />
+    <ClCompile Include="..\..\..\demo\src\DemoNestedTrans.cpp" />
+    <ClCompile Include="..\..\..\demo\src\DemoScene.cpp" />
+    <ClCompile Include="..\..\..\demo\src\DemoTransform.cpp" />
+    <ClCompile Include="..\..\..\demo\src\DemoWindow.cpp" />
+    <ClCompile Include="..\..\..\demo\src\pc\main.cpp" />
     <ClCompile Include="stdafx.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -19,5 +19,4 @@
 -(void)Ic3d_onViewRect:(CGRect)viewRect;
 -(void)Ic3d_onDrawUpdate:(double)deltaT;
 
-
 @end

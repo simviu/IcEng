@@ -40,6 +40,13 @@ namespace Ic3d {
         void createCylinder(float R, float height); // TODO : Implement
         void createCone(float R, float height); // TODO : Implement
         void dbgPrint() const;
+        //---- Cfg
+        struct TCfg
+        {
+            // Counter clock wise winding, otherwise CR
+            bool m_isWindingCCR = true;
+        };
+        TCfg m_cfg;
         
     };
 	//-----------------------------------------------
@@ -55,12 +62,7 @@ namespace Ic3d {
 	};
 	
 
-    //-----------------------------------------
-	//	Util
-	//-----------------------------------------
-	inline float deg2rad(float d){ return d*M_PI/180.0; };
-	inline float rad2deg(float d){ return d*180.0/M_PI; };
-	//-----------------------------------------
+ 	//-----------------------------------------
 	//	IcTexture
 	//-----------------------------------------
 	class IcTexture
@@ -387,8 +389,13 @@ namespace Ic3d {
         virtual void onScreenSize(const ctl::TSize& size);
         void addScene(ctl::Sp<IcScene> pScn);
         void removeAllScene();
-        virtual void onKeyboard(unsigned char key); // Available only on PC
-        
+        //-----------------
+        // PC input
+        //-----------------
+        enum class TE_MouseButton{L,M,R,NONE};
+        virtual void onKeyboard(unsigned char key); // TODO: int
+        virtual void onMouseClick(TE_MouseButton btn, bool isUp, int x, int y){};
+        virtual void onMouseMove(int x, int y){};
         //-----------------
         // Configuration
         //-----------------
@@ -402,12 +409,12 @@ namespace Ic3d {
         //-----------------
         // For PC, not mobile
         static int runCmd(int argc, char **argv, ctl::Sp<IcWindow> pWin);
-        
+        ctl::SpAry<IcScene>& getScnAry(){ return m_scnAry; };
     protected:
         ctl::TSize          m_winSize;
         ctl::SpAry<IcScene> m_scnAry;
         std::mutex          m_mtx_draw;
-	bool	m_isDrawing = false;
+        bool	m_isDrawing = false;
         
     };
     //--------------------------
@@ -416,37 +423,48 @@ namespace Ic3d {
     class IcWindowVr : public Ic3d::IcWindow
     {
     public:
+        IcWindowVr();
         virtual void onInit() override;
         virtual void onWindowSize(const ctl::TSize& size) override;
-        void setCamRot(const Ic3d::TQuat& camRot);
-        struct TCfg
-        {
-            std::string m_sPathRes;
-        };
-        static TCfg m_cfg;
         void setRootObj(ctl::Sp<Ic3d::IcObject> p);
+        ctl::Sp<IcObject> getRootObj(){ return m_pRootObj; };
         
-    protected:
+        //---- Can be override
+        void setCamRot(const Ic3d::TQuat& camRot);
+//        virtual void onCamAttitude(float pitch, float roll, float yaw);
+        virtual void onMouseMove(int x, int y) override;
         //--------------------------
-        //  VR Camera
+        //  IcSceneVr
         //--------------------------
-        struct VrCamMng
+        // Be implemented in cpp
+        class IcSceneVr_IF : public IcScene
         {
-            typedef ctl::Sp<Ic3d::IcCamera> TCamSp;
-            void onInit(bool isLeft, TCamSp pCams);
-            void updateCam(const Ic3d::TVec3& camPos,
-                           const Ic3d::TQuat& camRot);
-            ctl::Sp<Ic3d::IcObject> getDbgObj(){ return m_pDbgObj; };
+        public:
+            IcSceneVr_IF(bool isLeft): m_isLeft(isLeft){};
+            virtual void updateCam(const Ic3d::TVec3& camPos,
+                                   const Ic3d::TQuat& camRot){};
         protected:
-            bool    m_isLeft = false;
-            TCamSp  m_pCam = nullptr;
-            ctl::Sp<Ic3d::IcObject> m_pDbgObj = nullptr;
+            bool m_isLeft = false;
         };
+    protected:
+        ctl::Sp<IcObject> m_pRootObj = ctl::makeSp<IcObject>();
+        //---- VR scene left/right
+        ctl::Sp<IcSceneVr_IF> m_vrScn[2]{nullptr, nullptr};
         
-        //---- Camera Mng
-        VrCamMng    m_camMng[2];
-        
-        
+        //------------------------
+        //  MouseHelper
+        //------------------------
+        // simulate cam tilte by mouse
+        class CMouseHelper
+        {
+        public:
+            TQuat onMouseMove(int x, int y);
+        protected:
+            TEuler  m_camAtt;
+            TVec2   m_mousePrevPos;
+            bool    m_isFirst = true;
+        };
+        CMouseHelper m_mouseHelper;
     };
  
     
@@ -468,8 +486,10 @@ namespace Ic3d {
         void onFrameStart();
         void onFrameEnd();
         bool hasInit() const { return m_hasInit; };
+        bool isEnabled()const{ return m_isEnabled; };
     protected:
         bool    m_hasInit = false;
+        bool    m_isEnabled = false;
 	};
 	
 }//namespace Ic3d
