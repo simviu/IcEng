@@ -109,21 +109,15 @@ namespace Ic3d {
     {
      //   ctl::logDbg(toStr(TVec2(x,y)));
         TVec2 pos(x,y);
+        if(m_isFirst) m_mousePrevPos = pos;
+        m_isFirst = false;
         auto dPos = pos - m_mousePrevPos;
-        m_camAtt.p += dPos.y *K_mouseCoef.p;
+        m_camAtt.p += dPos.y * K_mouseCoef.p;
         m_camAtt.y += dPos.x * K_mouseCoef.y;
+        //---- Pitch in +/-90 degree
+        dClamp<decltype(m_camAtt.p)>(m_camAtt.p, -M_PI/2.0, M_PI/2.0);
         m_mousePrevPos = pos;
-        return getCamQuat();
+        return m_camAtt.toQuat();
     }
-    TQuat IcWindowVr::CMouseHelper::getCamQuat() const
-    {
-        //---- TODO: code resuse above
-        const auto& a = m_camAtt;
-        Ic3d::TVec3 e1 = { a.r, -a.p, a.y  };
-        Ic3d::TQuat qInv(TVec3(deg2rad(-90),0,0));
-        Ic3d::TQuat q(e1);
-        q = qInv * q;
-        return q;
-    }
-
+    
 }

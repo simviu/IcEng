@@ -55,12 +55,7 @@ namespace Ic3d {
 	};
 	
 
-    //-----------------------------------------
-	//	Util
-	//-----------------------------------------
-	inline float deg2rad(float d){ return d*M_PI/180.0; };
-	inline float rad2deg(float d){ return d*180.0/M_PI; };
-	//-----------------------------------------
+ 	//-----------------------------------------
 	//	IcTexture
 	//-----------------------------------------
 	class IcTexture
@@ -463,9 +458,9 @@ namespace Ic3d {
         public:
             TQuat onMouseMove(int x, int y);
         protected:
-            TQuat getCamQuat() const;
-            TEuler m_camAtt;
-            TVec2 m_mousePrevPos;
+            TEuler  m_camAtt;
+            TVec2   m_mousePrevPos;
+            bool    m_isFirst = true;
         };
         CMouseHelper m_mouseHelper;
     };

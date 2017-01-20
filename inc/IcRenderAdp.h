@@ -43,6 +43,7 @@ namespace Ic3d
         float p = 0;    // pitch
         float r = 0;    // roll
         float y = 0;    // yaw
+        TQuat toQuat()const{ return TQuat(TVec3(p,y,r));};
     };
 	
     //-----------------------------------------------

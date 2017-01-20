@@ -62,6 +62,14 @@ namespace ctl {
 	extern bool sReplace(std::string& s,
                          const std::string& sKey,
                          const std::string& sRepl);
+    
+    //-----------------------------------------
+    //	Math Util
+    //-----------------------------------------
+    inline float deg2rad(float d){ return d*M_PI/180.0; };
+    inline float rad2deg(float d){ return d*180.0/M_PI; };
+    template<typename T> inline void dClamp(T& d,T min,T max)
+        { d = (d>max)?max:(d<min)?min:d; };
     //-----------------------------
     //	Aliase for std::shared_ptr
     //-----------------------------
