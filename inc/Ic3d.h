@@ -433,7 +433,8 @@ namespace Ic3d {
         ctl::Sp<IcObject> getRootObj(){ return m_pRootObj; };
         
         //---- Can be override
-        virtual void onCamAttitude(float pitch, float roll, float yaw);
+        void setCamRot(const Ic3d::TQuat& camRot);
+//        virtual void onCamAttitude(float pitch, float roll, float yaw);
         virtual void onMouseMove(int x, int y) override;
         //--------------------------
         //  IcSceneVr
@@ -449,10 +450,24 @@ namespace Ic3d {
             bool m_isLeft = false;
         };
     protected:
-        void setCamRot(const Ic3d::TQuat& camRot);
         ctl::Sp<IcObject> m_pRootObj = ctl::makeSp<IcObject>();
         //---- VR scene left/right
         ctl::Sp<IcSceneVr_IF> m_vrScn[2]{nullptr, nullptr};
+        
+        //------------------------
+        //  MouseHelper
+        //------------------------
+        // simulate cam tilte by mouse
+        class CMouseHelper
+        {
+        public:
+            TQuat onMouseMove(int x, int y);
+        protected:
+            TQuat getCamQuat() const;
+            TEuler m_camAtt;
+            TVec2 m_mousePrevPos;
+        };
+        CMouseHelper m_mouseHelper;
     };
  
     

@@ -37,8 +37,11 @@ namespace Ic3d
     //-----------------------------------------------
 	struct TEuler
     {
+        TEuler(){};
+        TEuler(float pi, float ri, float yi):
+        p(pi), r(ri), y(yi){};
         float p = 0;    // pitch
-        float r = 0;    // row
+        float r = 0;    // roll
         float y = 0;    // yaw
     };
 	
