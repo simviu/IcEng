@@ -89,14 +89,14 @@ namespace Ic3d
 		logInfo("IcRenderEng::initEng()");
         string sVert = sPath_shader + K_sFileVert;
         string sFrag = sPath_shader + K_sFileFrag;
-		auto pShdr = ctl::makeSp<IcRenderAdpStd>();
-		bool isOK = pShdr->loadShader(sVert, sFrag);
+		auto pAdp = ctl::makeSp<IcRenderAdpStd>();
+		bool isOK = pAdp->loadShader(sVert, sFrag);
 		if (!isOK)
 		{
  			logErr("IcRenderEng::initEng() failed");
 			return false;
 		}
-		m_pCurRenderAdp = pShdr;
+		m_pCurRenderAdp = pAdp;
  		logInfo("IcRenderEng::initEng() : GL cmd 1");
 		glEnable(GL_DEPTH_TEST);
  		logInfo("IcRenderEng::initEng() : GL cmd 2");

@@ -40,6 +40,13 @@ namespace Ic3d {
         void createCylinder(float R, float height); // TODO : Implement
         void createCone(float R, float height); // TODO : Implement
         void dbgPrint() const;
+        //---- Cfg
+        struct TCfg
+        {
+            // Counter clock wise winding, otherwise CR
+            bool m_isWindingCCR = true;
+        };
+        TCfg m_cfg;
         
     };
 	//-----------------------------------------------
@@ -419,11 +426,6 @@ namespace Ic3d {
         IcWindowVr();
         virtual void onInit() override;
         virtual void onWindowSize(const ctl::TSize& size) override;
-        struct TCfg
-        {
-            std::string m_sPathRes;
-        };
-        static TCfg m_cfg;
         void setRootObj(ctl::Sp<Ic3d::IcObject> p);
         ctl::Sp<IcObject> getRootObj(){ return m_pRootObj; };
         

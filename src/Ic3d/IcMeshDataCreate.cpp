@@ -58,7 +58,7 @@ namespace Ic3d{
                 pnts[i].m_ni = qi;
                 pnts[i].m_ti = 0;
             }
-            addQuad(f);
+            addQuad(f, m_cfg.m_isWindingCCR);
             qi ++;
         }
     }
@@ -99,7 +99,7 @@ namespace Ic3d{
             v.m_vi = v.m_ti = i;
             i++;
         }
-        addQuad(f);
+        addQuad(f, m_cfg.m_isWindingCCR);
     }
     //-----------------------------------------------------
     //	createSphere
@@ -128,12 +128,14 @@ namespace Ic3d{
         for(int i=0;i<N_stack; i++)      // Latitude
              for(int j=0;j<N_slice;j++)  // longtitude
              {
-                 size_t i0 = (N_slice+1)*(i+1) + j; size_t i1 = i0 +1;
-                 size_t i2 = (N_slice+1)*i + j;     size_t i3 = i2 +1;
+                 size_t i0 = (N_slice+1)*(i+1) + j;
+                 size_t i1 = i0 +1;
+                 size_t i2 = (N_slice+1)*i + j;
+                 size_t i3 = i2 +1;
                  TFaceIdx f; auto& vs = f.m_verts;
                  vs[0]={i0, i0, i0}; vs[1]={i1, i1, i1};
                  vs[2]={i2, i2, i2}; vs[3]={i3, i3, i3};
-                 addQuad(f);
+                 addQuad(f, m_cfg.m_isWindingCCR);
              }
         
     }
