@@ -20,7 +20,7 @@
 #include "glm/gtc/quaternion.hpp"
 #include "glm/gtx/euler_angles.hpp"
 
-namespace Ic3d
+inline namespace Ic3d
 {
 	//-----------------------------------------------
 	//	From vector vmath
@@ -32,6 +32,9 @@ namespace Ic3d
 	typedef glm::mat3	TMat3;
 	typedef glm::mat4	TMat4;
 	typedef glm::vec4	TColor;
+    
+    inline TVec2 vecConv(const ctl::TPos& d){ return TVec2(d.x, d.y); };
+    inline ctl::TPos vecConv(const TVec2& d){ return ctl::TPos(d.x, d.y); };
     //-----------------------------------------------
     //	TEuler
     //-----------------------------------------------

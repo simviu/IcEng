@@ -66,8 +66,22 @@ namespace ctl {
 			m_pBuf.get()[i] = pBuf[j++];
 		return iEnd - iStart;
 	}
+    //------------------------------------------
+    //	pick
+    //------------------------------------------
+    size_t BinBuf::pick(TByte* pBufOut,
+                        size_t iStart, size_t N) const
+    {
+        size_t iEnd = iStart + N-1;
+        if(iEnd>=m_size) iEnd = m_size-1;
+        size_t j=0;
+        const TByte* p = m_pBuf.get();
+        for(size_t i=iStart;i<=iEnd;i++)
+             pBufOut[j++] = p[i];
+        return iEnd - iStart;
+    }
 	//------------------------------------------
-	//	copy
+	//	pick
 	//------------------------------------------
 	bool BinBuf::copy(const BinBuf& bbuf)
 	{

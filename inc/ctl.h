@@ -24,8 +24,9 @@
 #include <math.h>
 #include <thread>
 #include <mutex>
+#include <fstream>
 
-namespace ctl {
+inline namespace ctl {
 	//-----------------------------
 	//	String/value convertion
 	//-----------------------------
@@ -44,8 +45,8 @@ namespace ctl {
     //-----------------------------
 	//	string utils
 	//-----------------------------
-    std::vector<std::string> s2tokens(const std::string& s,
-							const std::string& sDelimeter);
+    extern std::vector<std::string> s2tokens(const std::string& s,
+							const std::string& sDelimeter=" \t\r\n");
 
 
 	//---- String util for file path
@@ -133,30 +134,40 @@ namespace ctl {
     //-----------------------------
     //	UI Coordinates
     //-----------------------------
+    //---- TPos
     struct TPos
     {
         TPos(){};
         virtual ~TPos(){};
         TPos(float xi, float yi){ x=xi; y=yi; };
         float x=0, y=0;
+        bool operator == (const TPos& d)const
+            { return (d.x==x)&&(d.y==y);};
     };
+    //---- TSize
     struct TSize
     {
         TSize(){};
         virtual ~TSize(){};
         TSize(float wi, float hi){ w=wi; h=hi; };
         float w=0, h=0;
+        bool operator == (const TSize& d)const
+            { return (d.w==w)&&(d.h==h);};
     };
+    //---- TRect
     struct TRect
     {
         TRect(){};
         TRect(float x, float y, float w, float h):
         TRect(TPos(x,y), TSize(w,h)){};
+        TRect(const TPos& p0, const TPos& p1):pos0(p0), pos1(p1){};
         TRect(const TPos& pos, const TSize& sz)
         :pos0(pos), pos1(pos0.x+sz.w , pos0.y+sz.h){};
         virtual ~TRect(){};
         TPos pos0; TPos pos1;
         TSize getSize() const;
+        bool operator == (const TRect& r)const
+            { return (r.pos0==pos0) && (r.pos1==pos1);};
     };
     extern bool s2v2d(const std::string& s, TSize& sz);
     extern bool s2v2d(const std::string& s, TPos& pos);
@@ -184,8 +195,8 @@ namespace ctl {
         bool setSize(size_t N);
         bool loadFile(const std::string& sFile);
         bool saveFile(const std::string& sFile) const;
-        size_t fill(const TByte* pBuf,
-                    size_t iStart, size_t N);
+        size_t fill(const TByte* pBuf, size_t iStart, size_t N);
+        size_t pick(TByte* pBufOut, size_t iStart, size_t N) const;
         bool append(const BinBuf& d);
         bool setAt(size_t i, TByte d);
         TByte  operator [](size_t i) const;
