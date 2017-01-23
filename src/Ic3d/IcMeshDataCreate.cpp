@@ -115,22 +115,22 @@ namespace Ic3d{
         auto vp0 = vecConv(rect.pos0);
         auto tp0 = vecConv(texRect.pos0);
         //---- Add Vert/Normal/TexCo
-        for(int i=0;i<N_y+1; i++)     // y
+        for(int y=0;y<N_y+1; y++)     // y
         {
-            for(int j=0;j<N_x+1;j++)  // x
+            for(int x=0;x<N_x+1;x++)  // x
             {
                 //--- Verti
-                float x = vgsz.w*j - vgsz.w/2 + vp0.x;
-                float z = vgsz.h*j - vgsz.h/2 + vp0.y;
-                float y = 0;
+                float vx = vgsz.w*x - vgsz.w/2 + vp0.x;
+                float vz = vgsz.h*y - vgsz.h/2 + vp0.y;
+                float vy = 0;
                 
                 //--- Texture
-                float u = tgsz.w*j - tgsz.w/2+ tp0.x;
-                float v = tgsz.h*j - tgsz.h/2+ tp0.y;
+                float u = tgsz.w*x - tgsz.w/2+ tp0.x;
+                float v = tgsz.h*y - tgsz.h/2+ tp0.y;
                 v = 1 - v;    // TODO: to be verified
                 
                 //---- Vert, normal and TexCo
-                addVert({x,y,z});
+                addVert({vx,vy,vz});
                 addNorm(glm::normalize(TVec3(0,1,0)));
                 addTexCo({u, v});
             }

@@ -247,8 +247,15 @@ namespace Ic3d {
 		virtual ~IcCamera(){};
 		void drawObj(const IcObject& rootObj) const;
         void updateViewMat();
+        //---- Camera Cfg
+        struct TCfg
+        {
+            float   m_FOV   = 50; // in degree
+            float   m_zNear = 0.1;
+            float   m_zFar  = 1000;
+        };
 		void setFrustum(const ctl::TSize& viewSize,
-						float viewAngle, float zNear, float zFar);
+						const TCfg& cfg);
 		void lookAt(const TVec3& pos,
 					const TVec3& vUp);
 		void drawText(const std::string& str,
@@ -256,7 +263,7 @@ namespace Ic3d {
 					  const TVec3& pos);
         TMat4   getViewMat()const { return m_matView; };
         TMat4   getProjMat()const { return m_matProj; };
-	protected:
+ 	protected:
 		TMat4	m_matProj;
 		TMat4	m_matView;
 		void drawObjTree(const IcObject& obj,
@@ -305,14 +312,11 @@ namespace Ic3d {
         ctl::Sp<IcCamera> getCamera(){ return m_pCamera; };
         ctl::SpAry<IcLight>& getLights(){ return m_lights; };
         void addLight(ctl::Sp<IcLight> pLight){ m_lights.add(pLight); };
-        
         //---- Configuration
         struct TCfg
         {
-            float   m_FOV   = 50; // in degree
-            float   m_zNear = 0.1;
-            float   m_zFar  = 1000;
             ctl::TRect m_viewRect;
+            IcCamera::TCfg m_camCfg;
         };
         TCfg m_cfg;
 	protected:
@@ -438,6 +442,12 @@ namespace Ic3d {
         void setCamRot(const Ic3d::TQuat& camRot);
 //        virtual void onCamAttitude(float pitch, float roll, float yaw);
         virtual void onMouseMove(int x, int y) override;
+        //---- Vr CFG
+        struct TVrCfg
+        {
+            IcCamera::TCfg m_camCfg;
+        };
+        TVrCfg m_vrCfg;
         //--------------------------
         //  IcSceneVr
         //--------------------------

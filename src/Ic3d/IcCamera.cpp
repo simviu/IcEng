@@ -42,17 +42,16 @@ namespace Ic3d
 	//	setFrustum
 	//-------------------------------------------
 	void IcCamera::setFrustum(const ctl::TSize& viewSize,
-							  float viewAngle,
-							  float zNear, float zFar)
+							  const TCfg& cfg)
 	{
 		if(viewSize.h ==0) return;
 		//----- Consider the landscape mode
         // Note:
-		float fx = zNear * tanf(deg2rad(viewAngle)/2.0);
+		float fx = cfg.m_zNear * tanf(deg2rad(cfg.m_FOV)/2.0);
 		float fy = fx*viewSize.h/viewSize.w;
 		
 		m_matProj = CameraHelper::setFrustum_LRBT(-fx, fx, -fy, fy,
-												  zNear, zFar);
+												  cfg.m_zNear, cfg.m_zFar);
 	}
 	//-------------------------------------------
 	//	lookAt

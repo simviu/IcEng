@@ -19,10 +19,12 @@ namespace Ic3d {
     //---------------------------------------
     IcWindowVr::IcWindowVr()
     {
-        m_vrScn[0] = makeSp<IcSceneVr>(true);
-        m_vrScn[1] = makeSp<IcSceneVr>(false);
-        addScene(m_vrScn[0]);
-        addScene(m_vrScn[1]);
+        auto pScn0 = makeSp<IcSceneVr>(true);
+        auto pScn1 = makeSp<IcSceneVr>(false);
+        addScene(pScn0);
+        addScene(pScn1);
+        m_vrScn[0] = pScn0;
+        m_vrScn[1] = pScn1;
     }
     //---------------------------------------
     //  IcWindowVr::setRootObj
@@ -49,6 +51,10 @@ namespace Ic3d {
         IcWindow::onInit();
          
         setRootObj(m_pRootObj);
+        //---- Copy Cfg
+
+        m_vrScn[0]->m_cfg.m_camCfg = m_vrCfg.m_camCfg;
+        m_vrScn[1]->m_cfg.m_camCfg = m_vrCfg.m_camCfg;
     }
  
     //---------------------------------------
