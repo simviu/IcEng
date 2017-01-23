@@ -40,6 +40,10 @@ namespace Ic3d {
         void createSphere(float R, int N_stack, int N_slice);
         void createCylinder(float R, float height); // TODO : Implement
         void createCone(float R, float height); // TODO : Implement
+        void createGridXZ(const ctl::TRect& rect,
+                          const ctl::TRect& texRect,
+                          int N_x, int N_y);
+        
         void dbgPrint() const;
         //---- Cfg
         struct TCfg

@@ -302,6 +302,9 @@ inline namespace ctl {
 		inline bool getAt(size_t i, T& d)const
 		{ if(i>=m_ary.size()) return false;
 			d = m_ary[i]; return true; };
+        inline bool setAt(size_t i, const T& d)
+        { if(i>=m_ary.size()) return false;
+            m_ary[i] = d; return true; };
 		void add(const T& d){ m_ary.push_back(d); };
 		void clear(){ m_ary.clear(); };
 		size_t size()const { return m_ary.size(); };
