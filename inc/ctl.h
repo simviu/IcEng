@@ -46,7 +46,7 @@ inline namespace ctl {
 	//	string utils
 	//-----------------------------
     extern std::vector<std::string> s2tokens(const std::string& s,
-							const std::string& sDelimeter=" \t\r\n");
+							const std::string& sDelimeter=" ,\t\r\n");
 
 
 	//---- String util for file path
@@ -135,40 +135,73 @@ inline namespace ctl {
     //	UI Coordinates
     //-----------------------------
     //---- TPos
-    struct TPos
+    template<typename T>
+    struct TPosT    // TODO: rename TVec2, (TVec2->IcVec2)
     {
-        TPos(){};
-        virtual ~TPos(){};
-        TPos(float xi, float yi){ x=xi; y=yi; };
-        float x=0, y=0;
-        bool operator == (const TPos& d)const
+        TPosT(){};
+        virtual ~TPosT(){};
+        TPosT(float xi, float yi){ x=xi; y=yi; };
+        T x=0, y=0;
+        bool operator == (const TPosT& d)const
             { return (d.x==x)&&(d.y==y);};
+        std::string toStr() const{ return v2s(y) + "," + v2s(x); }
+        TPosT operator + (const TPosT& d) const
+            { return TPosT(x+d.x, y+d.y); };
+        TPosT operator - (const TPosT& d) const
+            { return TPosT(x-d.x, y-d.y); };
+        TPosT& operator += (const TPosT& d)
+            { x+=d.x; y+=d.y; return (*this); };
+        TPosT& operator -= (const TPosT& d)
+            { x-=d.x; y-=d.y; return (*this); };
+        TPosT& operator *= (const T& d)
+            { x*=d; y*=d; return (*this); };
+        TPosT& operator * (const T& d)
+            { return TPosT(x*d, y*d); };
     };
+    typedef TPosT<float> TPos;
+    typedef TPosT<double> TPosHP;
+    
     //---- TSize
-    struct TSize
+    template<typename T>
+    struct TSizeT
     {
-        TSize(){};
-        virtual ~TSize(){};
-        TSize(float wi, float hi){ w=wi; h=hi; };
-        float w=0, h=0;
-        bool operator == (const TSize& d)const
+        TSizeT(){};
+        virtual ~TSizeT(){};
+        TSizeT(float wi, float hi){ w=wi; h=hi; };
+        T w=0, h=0;
+        bool operator == (const TSizeT& d)const
             { return (d.w==w)&&(d.h==h);};
+        std::string toStr() const{ return v2s<T>(w) + "," + v2s<T>(h); }
     };
+    typedef TSizeT<float> TSize;
+    typedef TSizeT<double> TSizeHP;
     //---- TRect
-    struct TRect
+    template<typename T>
+    struct TRectT
     {
-        TRect(){};
-        TRect(float x, float y, float w, float h):
-        TRect(TPos(x,y), TSize(w,h)){};
-        TRect(const TPos& p0, const TPos& p1):pos0(p0), pos1(p1){};
-        TRect(const TPos& pos, const TSize& sz)
+        TRectT(){};
+        TRectT(float x, float y, float w, float h):
+        TRectT(TPosT<T>(x,y), TSizeT<T>(w,h)){};
+        TRectT(const TPosT<T>& p0, const TPosT<T>& p1):pos0(p0), pos1(p1){};
+        TRectT(const TPosT<T>& pos, const TSizeT<T>& sz)
         :pos0(pos), pos1(pos0.x+sz.w , pos0.y+sz.h){};
-        virtual ~TRect(){};
-        TPos pos0; TPos pos1;
-        TSize getSize() const;
-        bool operator == (const TRect& r)const
+        virtual ~TRectT(){};
+        TPosT<T> pos0;
+        TPosT<T> pos1;
+        TSizeT<T> getSize() const
+        {
+            return TSizeT<T>(fabs(pos0.x-pos1.x),
+                             fabs(pos0.y-pos1.y));
+        };
+        bool operator == (const TRectT& r)const
             { return (r.pos0==pos0) && (r.pos1==pos1);};
+        TPosT<T> getCenter()const
+            { return TPosT<T>((pos0.x+pos1.x)/2, (pos0.y+pos1.y)/2); };
+        std::string toStr() const
+            { return "("+pos0.toStr() + "),(" + pos1.toStr()+")"; }
     };
+    typedef TRectT<float> TRect;
+    typedef TRectT<double> TRectHP;
     extern bool s2v2d(const std::string& s, TSize& sz);
     extern bool s2v2d(const std::string& s, TPos& pos);
     extern bool s2v2d(const std::string& s, TRect& r);

@@ -8,7 +8,7 @@
 
 
 #include "ctl.h"
-namespace ctl {
+inline namespace ctl {
     using namespace std;
 
     //------------------------------------------
@@ -57,14 +57,6 @@ namespace ctl {
 	string v2s2d(const TRect& r){ return
 		v2s2d(r.pos0)+K_sDelimeterOut + v2s2d(r.pos1); }
 	
-	//------------------------------------------
-	//	getSize
-	//------------------------------------------
-	TSize TRect::getSize() const
-	{
-		return TSize(fabs(pos0.x-pos1.x),
-					 fabs(pos0.y-pos1.y));
-	}
 	
 
 
