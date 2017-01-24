@@ -19,7 +19,7 @@ namespace Ic3d
 
     static const string K_sFileVert		= "IcShaderVert.vsh";
     static const string K_sFileFrag		= "IcShaderFrag.vsh";
-   
+    static const bool K_enCulling = false;
 	//--------------------------------------------------------------
 	//	IcRenderEng Singleton
 	//--------------------------------------------------------------
@@ -106,9 +106,12 @@ namespace Ic3d
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		
         //---- Culling
-        glFrontFace(GL_CCW);
-        glEnable(GL_CULL_FACE);
-        glCullFace(GL_BACK);
+        if(K_enCulling)
+        {
+            glFrontFace(GL_CCW);
+            glEnable(GL_CULL_FACE);
+            glCullFace(GL_BACK);
+        }
         
 		TMaterial dfltMat;
 		m_pCurRenderAdp->applyMaterial(dfltMat);

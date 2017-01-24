@@ -8,7 +8,7 @@
 
 #include "Ic3d.h"
 #include "IcRenderEng.h"
-namespace Ic3d
+inline namespace Ic3d
 {
 	using namespace std;
 	using namespace ctl;
@@ -36,8 +36,8 @@ namespace Ic3d
 	{
         m_cfg.m_viewRect = viewRect;
 		ctl::TSize viewSize = viewRect.getSize();
-		m_pCamera->setFrustum(viewSize, m_cfg.m_FOV,
-                              m_cfg.m_zNear, m_cfg.m_zFar);
+        const auto& camCfg = m_cfg.m_camCfg;
+		m_pCamera->setFrustum(viewSize, camCfg);
 		
 	}
 
@@ -47,7 +47,8 @@ namespace Ic3d
 	void IcScene::initCamera(const TRect& viewRect)
 	{
 		ctl::TSize viewSize = viewRect.getSize();
-        m_pCamera->setFrustum(viewSize, m_cfg.m_FOV, m_cfg.m_zNear, m_cfg.m_zFar);
+        const auto& camCfg = m_cfg.m_camCfg;
+        m_pCamera->setFrustum(viewSize, camCfg);
 	}
 	
     //-----------------------------------------

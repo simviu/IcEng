@@ -102,6 +102,53 @@ namespace Ic3d{
         addQuad(f, m_cfg.m_isWindingCCR);
     }
     //-----------------------------------------------------
+    //	createGridXZ
+    //-----------------------------------------------------
+    void IcMeshData::createGridXZ(const TRect& rect,
+                                  int N_x, int N_y,
+                                  const TRect& texRect)
+    {
+        auto vsz = rect.getSize();
+        auto tsz = texRect.getSize();
+        TSize vgsz(vsz.w/N_x, vsz.h/N_y);   // GridSize
+        TSize tgsz(tsz.w/N_x, tsz.h/N_y);   // Texture GridSize
+        auto vp0 = vecConv(rect.pos0);
+        auto tp0 = vecConv(texRect.pos0);
+        //---- Add Vert/Normal/TexCo
+        for(int y=0;y<N_y+1; y++)     // y
+        {
+            for(int x=0;x<N_x+1;x++)  // x
+            {
+                //--- Verti
+                float vx = vgsz.w*x + vp0.x;
+                float vz = vgsz.h*y + vp0.y;
+                float vy = 0;
+                
+                //--- Texture
+                float u = tgsz.w*x + tp0.x;
+                float v = tgsz.h*y + tp0.y;
+                  u = 1 - u;    // TODO: HackHack
+            //    v = 1 - v;    // TODO: to be verified
+
+                //---- Vert, normal and TexCo
+                addVert({vx,vy,vz});
+                addNorm(glm::normalize(TVec3(0,1,0)));
+                addTexCo({u, v});
+            }
+        }
+        //---- Add Quad
+        for(int i=0;i<N_y; i++)      // Latitude
+            for(int j=0;j<N_x;j++)  // longtitude
+            {
+                size_t i0 = (N_x+1)*(i+1) + j; size_t i1 = i0 +1;
+                size_t i2 = (N_x+1)*i + j;     size_t i3 = i2 +1;
+                TFaceIdx f; auto& vs = f.m_verts;
+                vs[0]={i0, i0, i0}; vs[1]={i1, i1, i1};
+                vs[2]={i2, i2, i2}; vs[3]={i3, i3, i3};
+                addQuad(f, m_cfg.m_isWindingCCR);
+            }
+    }
+    //-----------------------------------------------------
     //	createSphere
     //-----------------------------------------------------
     void IcMeshData::createSphere(float R, int N_stack, int N_slice)

@@ -7,6 +7,7 @@
 
 #include "IcRenderAdp.h"
 
+//---- TODO: Ic3d->IcEng
 namespace Ic3d {
    	//-----------------------------------------------
     //	Util
@@ -39,6 +40,10 @@ namespace Ic3d {
         void createSphere(float R, int N_stack, int N_slice);
         void createCylinder(float R, float height); // TODO : Implement
         void createCone(float R, float height); // TODO : Implement
+        void createGridXZ(const ctl::TRect& rect,
+                          int N_x, int N_y,
+                          const TRect& texRect = TRect(0,0,1,1));
+        
         void dbgPrint() const;
         //---- Cfg
         struct TCfg
@@ -242,8 +247,15 @@ namespace Ic3d {
 		virtual ~IcCamera(){};
 		void drawObj(const IcObject& rootObj) const;
         void updateViewMat();
+        //---- Camera Cfg
+        struct TCfg
+        {
+            float   m_FOV   = 50; // in degree
+            float   m_zNear = 0.1;
+            float   m_zFar  = 1000;
+        };
 		void setFrustum(const ctl::TSize& viewSize,
-						float viewAngle, float zNear, float zFar);
+						const TCfg& cfg);
 		void lookAt(const TVec3& pos,
 					const TVec3& vUp);
 		void drawText(const std::string& str,
@@ -251,7 +263,7 @@ namespace Ic3d {
 					  const TVec3& pos);
         TMat4   getViewMat()const { return m_matView; };
         TMat4   getProjMat()const { return m_matProj; };
-	protected:
+ 	protected:
 		TMat4	m_matProj;
 		TMat4	m_matView;
 		void drawObjTree(const IcObject& obj,
@@ -292,7 +304,8 @@ namespace Ic3d {
 		IcScene();
 		virtual ~IcScene() {};
         virtual void onInit(){};
-        virtual void onUpdate(double deltaT){};
+        virtual void onUpdate(double deltaT)
+        {    if(m_pCallBk_onUpdate!=nullptr) m_pCallBk_onUpdate(deltaT); };
 		virtual void onDraw();
 		virtual void onViewRect(const ctl::TRect& viewRect);
         void addObj(ctl::Sp<IcObject> p){ m_rootObj.addChildObj(p); };
@@ -300,16 +313,17 @@ namespace Ic3d {
         ctl::Sp<IcCamera> getCamera(){ return m_pCamera; };
         ctl::SpAry<IcLight>& getLights(){ return m_lights; };
         void addLight(ctl::Sp<IcLight> pLight){ m_lights.add(pLight); };
-        
         //---- Configuration
         struct TCfg
         {
-            float   m_FOV   = 50; // in degree
-            float   m_zNear = 0.1;
-            float   m_zFar  = 1000;
             ctl::TRect m_viewRect;
+            IcCamera::TCfg m_camCfg;
         };
         TCfg m_cfg;
+        
+        //---- On Update call back function
+        typedef std::function<void(float deltaT)> TFuncOnUpdate;
+        void setOnUpdatCallBack(TFuncOnUpdate func);
 	protected:
         // TODO: Camera Ary
         ctl::Sp<IcCamera>	m_pCamera = ctl::makeSp<IcCamera>();
@@ -320,6 +334,8 @@ namespace Ic3d {
 
         void drawLights();
 		void initCamera(const ctl::TRect& viewRect);
+        //---- On Update call back function
+        TFuncOnUpdate m_pCallBk_onUpdate = nullptr;
 	};
     
     //----------------------------
@@ -430,9 +446,24 @@ namespace Ic3d {
         ctl::Sp<IcObject> getRootObj(){ return m_pRootObj; };
         
         //---- Can be override
-        void setCamRot(const Ic3d::TQuat& camRot);
+        void updateVrCamPos(const TVec3& pos);
+        void updateVrCamRot(const TQuat& rot);
 //        virtual void onCamAttitude(float pitch, float roll, float yaw);
         virtual void onMouseMove(int x, int y) override;
+        //---- Vr CFG
+        struct TVrCfg
+        {
+            IcCamera::TCfg m_camCfg;
+        };
+        TVrCfg m_vrCfg;
+        
+        //---- VR window status
+        struct TVrStts
+        {
+            TVec3 m_camPos;
+            TQuat m_camRot;
+        };
+        TVrStts m_vrStts;
         //--------------------------
         //  IcSceneVr
         //--------------------------

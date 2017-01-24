@@ -24,8 +24,9 @@
 #include <math.h>
 #include <thread>
 #include <mutex>
+#include <fstream>
 
-namespace ctl {
+inline namespace ctl {
 	//-----------------------------
 	//	String/value convertion
 	//-----------------------------
@@ -44,8 +45,8 @@ namespace ctl {
     //-----------------------------
 	//	string utils
 	//-----------------------------
-    std::vector<std::string> s2tokens(const std::string& s,
-							const std::string& sDelimeter);
+    extern std::vector<std::string> s2tokens(const std::string& s,
+							const std::string& sDelimeter=" ,\t\r\n");
 
 
 	//---- String util for file path
@@ -133,31 +134,74 @@ namespace ctl {
     //-----------------------------
     //	UI Coordinates
     //-----------------------------
-    struct TPos
+    //---- TPos
+    template<typename T>
+    struct TPosT    // TODO: rename TVec2, (TVec2->IcVec2)
     {
-        TPos(){};
-        virtual ~TPos(){};
-        TPos(float xi, float yi){ x=xi; y=yi; };
-        float x=0, y=0;
+        TPosT(){};
+        virtual ~TPosT(){};
+        TPosT(float xi, float yi){ x=xi; y=yi; };
+        T x=0, y=0;
+        bool operator == (const TPosT& d)const
+            { return (d.x==x)&&(d.y==y);};
+        std::string toStr() const{ return v2s(y) + "," + v2s(x); }
+        TPosT operator + (const TPosT& d) const
+            { return TPosT(x+d.x, y+d.y); };
+        TPosT operator - (const TPosT& d) const
+            { return TPosT(x-d.x, y-d.y); };
+        TPosT& operator += (const TPosT& d)
+            { x+=d.x; y+=d.y; return (*this); };
+        TPosT& operator -= (const TPosT& d)
+            { x-=d.x; y-=d.y; return (*this); };
+        TPosT& operator *= (const T& d)
+            { x*=d; y*=d; return (*this); };
+        TPosT& operator * (const T& d)
+            { return TPosT(x*d, y*d); };
     };
-    struct TSize
+    typedef TPosT<float> TPos;
+    typedef TPosT<double> TPosHP;
+    
+    //---- TSize
+    template<typename T>
+    struct TSizeT
     {
-        TSize(){};
-        virtual ~TSize(){};
-        TSize(float wi, float hi){ w=wi; h=hi; };
-        float w=0, h=0;
+        TSizeT(){};
+        virtual ~TSizeT(){};
+        TSizeT(float wi, float hi){ w=wi; h=hi; };
+        T w=0, h=0;
+        bool operator == (const TSizeT& d)const
+            { return (d.w==w)&&(d.h==h);};
+        std::string toStr() const{ return v2s<T>(w) + "," + v2s<T>(h); }
     };
-    struct TRect
+    typedef TSizeT<float> TSize;
+    typedef TSizeT<double> TSizeHP;
+    //---- TRect
+    template<typename T>
+    struct TRectT
     {
-        TRect(){};
-        TRect(float x, float y, float w, float h):
-        TRect(TPos(x,y), TSize(w,h)){};
-        TRect(const TPos& pos, const TSize& sz)
+        TRectT(){};
+        TRectT(float x, float y, float w, float h):
+        TRectT(TPosT<T>(x,y), TSizeT<T>(w,h)){};
+        TRectT(const TPosT<T>& p0, const TPosT<T>& p1):pos0(p0), pos1(p1){};
+        TRectT(const TPosT<T>& pos, const TSizeT<T>& sz)
         :pos0(pos), pos1(pos0.x+sz.w , pos0.y+sz.h){};
-        virtual ~TRect(){};
-        TPos pos0; TPos pos1;
-        TSize getSize() const;
+        virtual ~TRectT(){};
+        TPosT<T> pos0;
+        TPosT<T> pos1;
+        TSizeT<T> getSize() const
+        {
+            return TSizeT<T>(fabs(pos0.x-pos1.x),
+                             fabs(pos0.y-pos1.y));
+        };
+        bool operator == (const TRectT& r)const
+            { return (r.pos0==pos0) && (r.pos1==pos1);};
+        TPosT<T> getCenter()const
+            { return TPosT<T>((pos0.x+pos1.x)/2, (pos0.y+pos1.y)/2); };
+        std::string toStr() const
+            { return "("+pos0.toStr() + "),(" + pos1.toStr()+")"; }
     };
+    typedef TRectT<float> TRect;
+    typedef TRectT<double> TRectHP;
     extern bool s2v2d(const std::string& s, TSize& sz);
     extern bool s2v2d(const std::string& s, TPos& pos);
     extern bool s2v2d(const std::string& s, TRect& r);
@@ -184,8 +228,8 @@ namespace ctl {
         bool setSize(size_t N);
         bool loadFile(const std::string& sFile);
         bool saveFile(const std::string& sFile) const;
-        size_t fill(const TByte* pBuf,
-                    size_t iStart, size_t N);
+        size_t fill(const TByte* pBuf, size_t iStart, size_t N);
+        size_t pick(TByte* pBufOut, size_t iStart, size_t N) const;
         bool append(const BinBuf& d);
         bool setAt(size_t i, TByte d);
         TByte  operator [](size_t i) const;
@@ -258,6 +302,9 @@ namespace ctl {
 		inline bool getAt(size_t i, T& d)const
 		{ if(i>=m_ary.size()) return false;
 			d = m_ary[i]; return true; };
+        inline bool setAt(size_t i, const T& d)
+        { if(i>=m_ary.size()) return false;
+            m_ary[i] = d; return true; };
 		void add(const T& d){ m_ary.push_back(d); };
 		void clear(){ m_ary.clear(); };
 		size_t size()const { return m_ary.size(); };

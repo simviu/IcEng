@@ -8,21 +8,22 @@
 
 #include "Ic3d.h"
 #include "IcSceneVr.h"
-namespace Ic3d {
+inline namespace Ic3d {
     using namespace ctl;
     using namespace std;
 
-    const static TVec3 K_camPos(0.2,1.8,-0);
     const static TEuler K_mouseCoef{0.02,0.02,0.02};
     //---------------------------------------
     //  IcWindowVr::IcWindowVr
     //---------------------------------------
     IcWindowVr::IcWindowVr()
     {
-        m_vrScn[0] = makeSp<IcSceneVr>(true);
-        m_vrScn[1] = makeSp<IcSceneVr>(false);
-        addScene(m_vrScn[0]);
-        addScene(m_vrScn[1]);
+        auto pScn0 = makeSp<IcSceneVr>(true);
+        auto pScn1 = makeSp<IcSceneVr>(false);
+        addScene(pScn0);
+        addScene(pScn1);
+        m_vrScn[0] = pScn0;
+        m_vrScn[1] = pScn1;
     }
     //---------------------------------------
     //  IcWindowVr::setRootObj
@@ -49,17 +50,31 @@ namespace Ic3d {
         IcWindow::onInit();
          
         setRootObj(m_pRootObj);
+        //---- Copy Cfg
+
+        m_vrScn[0]->m_cfg.m_camCfg = m_vrCfg.m_camCfg;
+        m_vrScn[1]->m_cfg.m_camCfg = m_vrCfg.m_camCfg;
     }
- 
     //---------------------------------------
-    //  IcWindowVr::onUpdate
+    //  updateVrCamPos/updateVrCamRot
     //---------------------------------------
-    void IcWindowVr::setCamRot(const Ic3d::TQuat &camRot)
+    void IcWindowVr::updateVrCamPos(const TVec3& pos)
     {
+        auto& stts = m_vrStts;
+        stts.m_camPos = pos;
+        m_vrScn[0]->updateCam(stts.m_camPos, stts.m_camRot);
+        m_vrScn[1]->updateCam(stts.m_camPos, stts.m_camRot);
+       
+    }
+    void IcWindowVr::updateVrCamRot(const TQuat& rot)
+    {
+        auto& stts = m_vrStts;
+        stts.m_camRot = rot;
+        m_vrScn[0]->updateCam(stts.m_camPos, stts.m_camRot);
+        m_vrScn[1]->updateCam(stts.m_camPos, stts.m_camRot);
         
-        m_vrScn[0]->updateCam(K_camPos, camRot);
-        m_vrScn[1]->updateCam(K_camPos, camRot);
-     }
+    }
+
     //---------------------------------------
     //  onCamAttitude
     //---------------------------------------
@@ -82,7 +97,7 @@ namespace Ic3d {
         IcWindow::onMouseMove(x, y);
         //---- Use mouse simulate camera attitude
         auto q = m_mouseHelper.onMouseMove(x, y);
-        setCamRot(q);
+        updateVrCamRot(q);
     }
    
     
