@@ -104,9 +104,9 @@ namespace Ic3d{
     //-----------------------------------------------------
     //	createGridXZ
     //-----------------------------------------------------
-    void IcMeshData::createGridXZ(const ctl::TRect& rect,
-                                  const ctl::TRect& texRect,
-                                  int N_x, int N_y)
+    void IcMeshData::createGridXZ(const TRect& rect,
+                                  int N_x, int N_y,
+                                  const TRect& texRect)
     {
         auto vsz = rect.getSize();
         auto tsz = texRect.getSize();
@@ -120,15 +120,16 @@ namespace Ic3d{
             for(int x=0;x<N_x+1;x++)  // x
             {
                 //--- Verti
-                float vx = vgsz.w*x - vgsz.w/2 + vp0.x;
-                float vz = vgsz.h*y - vgsz.h/2 + vp0.y;
+                float vx = vgsz.w*x + vp0.x;
+                float vz = vgsz.h*y + vp0.y;
                 float vy = 0;
                 
                 //--- Texture
-                float u = tgsz.w*x - tgsz.w/2+ tp0.x;
-                float v = tgsz.h*y - tgsz.h/2+ tp0.y;
-                v = 1 - v;    // TODO: to be verified
-                
+                float u = tgsz.w*x + tp0.x;
+                float v = tgsz.h*y + tp0.y;
+                  u = 1 - u;
+            //    v = 1 - v;    // TODO: to be verified
+
                 //---- Vert, normal and TexCo
                 addVert({vx,vy,vz});
                 addNorm(glm::normalize(TVec3(0,1,0)));

@@ -72,7 +72,7 @@ inline namespace Ic3d
     //----------------------------
     //	TLight
     //----------------------------
-    struct TLight
+    struct TLight // TODO: TLightPara
     {
         TMaterial m_mat = TMaterial(TColor(1,1,1,1),1,0.1);
         bool    m_isPara = true;

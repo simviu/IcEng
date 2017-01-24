@@ -41,8 +41,8 @@ namespace Ic3d {
         void createCylinder(float R, float height); // TODO : Implement
         void createCone(float R, float height); // TODO : Implement
         void createGridXZ(const ctl::TRect& rect,
-                          const ctl::TRect& texRect,
-                          int N_x, int N_y);
+                          int N_x, int N_y,
+                          const TRect& texRect = TRect(0,0,1,1));
         
         void dbgPrint() const;
         //---- Cfg
@@ -304,7 +304,8 @@ namespace Ic3d {
 		IcScene();
 		virtual ~IcScene() {};
         virtual void onInit(){};
-        virtual void onUpdate(double deltaT){};
+        virtual void onUpdate(double deltaT)
+        {    if(m_pCallBk_onUpdate!=nullptr) m_pCallBk_onUpdate(deltaT); };
 		virtual void onDraw();
 		virtual void onViewRect(const ctl::TRect& viewRect);
         void addObj(ctl::Sp<IcObject> p){ m_rootObj.addChildObj(p); };
@@ -319,6 +320,10 @@ namespace Ic3d {
             IcCamera::TCfg m_camCfg;
         };
         TCfg m_cfg;
+        
+        //---- On Update call back function
+        typedef std::function<void(float deltaT)> TFuncOnUpdate;
+        void setOnUpdatCallBack(TFuncOnUpdate func);
 	protected:
         // TODO: Camera Ary
         ctl::Sp<IcCamera>	m_pCamera = ctl::makeSp<IcCamera>();
@@ -329,6 +334,8 @@ namespace Ic3d {
 
         void drawLights();
 		void initCamera(const ctl::TRect& viewRect);
+        //---- On Update call back function
+        TFuncOnUpdate m_pCallBk_onUpdate = nullptr;
 	};
     
     //----------------------------
@@ -439,7 +446,8 @@ namespace Ic3d {
         ctl::Sp<IcObject> getRootObj(){ return m_pRootObj; };
         
         //---- Can be override
-        void setCamRot(const Ic3d::TQuat& camRot);
+        void updateVrCamPos(const TVec3& pos);
+        void updateVrCamRot(const TQuat& rot);
 //        virtual void onCamAttitude(float pitch, float roll, float yaw);
         virtual void onMouseMove(int x, int y) override;
         //---- Vr CFG
@@ -448,6 +456,14 @@ namespace Ic3d {
             IcCamera::TCfg m_camCfg;
         };
         TVrCfg m_vrCfg;
+        
+        //---- VR window status
+        struct TVrStts
+        {
+            TVec3 m_camPos;
+            TQuat m_camRot;
+        };
+        TVrStts m_vrStts;
         //--------------------------
         //  IcSceneVr
         //--------------------------
