@@ -84,6 +84,18 @@ inline namespace Ic3d
         // Note : The pos/dir here is in eye space ( Model/View Matrix )
     };
     //----------------------------
+    //  TFogPara
+    //----------------------------
+    struct TFogPara
+    {
+        float m_fogStart = 0;
+        //---- Linear Fog factor
+        float m_K_linear = 0;
+        
+        //---- Exponent coef para:
+        float m_K_exp = 0;
+    };
+    //----------------------------
 	//	TMeshData
 	//----------------------------
 	struct TMeshData

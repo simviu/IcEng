@@ -22,6 +22,7 @@ namespace Ic3d
 		ctl::Sp<CRenderAdp::CTexAdp> m_pDfltTexAdp = nullptr;
 		auto getDfltTexAdp()-> decltype(m_pDfltTexAdp)
 		{
+            //---- TODO: Texture auto resize 2^n
 			if(m_pDfltTexAdp!=nullptr)
 				return m_pDfltTexAdp;
 			
