@@ -41,6 +41,15 @@ inline namespace Ic3d {
             
         }
     }
+    //---------------------------------------
+    //  IcWindowVr::updateVrFogPara
+    //---------------------------------------
+    void IcWindowVr::updateVrFogPara()
+    {
+        m_vrScn[0]->m_cfg.m_fogPara = m_vrCfg.m_fogPara;
+        m_vrScn[1]->m_cfg.m_fogPara = m_vrCfg.m_fogPara;
+        
+    }
 
     //---------------------------------------
     //  IcWindowVr::onInit

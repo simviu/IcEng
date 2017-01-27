@@ -56,6 +56,16 @@ namespace Ic3d
             m_norm      = K_invld;
         }m_unfmLoc_mat;
         
+        //---- For Fog
+        struct
+        {
+            T_glLocIdx
+            m_start= K_invld,
+            m_k_linear= K_invld,
+            m_k_exp= K_invld,
+            m_color= K_invld;
+        }m_unfmLoc_fog;
+        
         //---- For Light
         struct
         {
@@ -180,6 +190,8 @@ namespace Ic3d
         TShaderSp m_pShader = nullptr;
         void sendUniform(TShaderData::T_glLocIdx loc, const TVec3& v) const;
         void sendUniform(TShaderData::T_glLocIdx loc, const TVec4& v) const;
+        void sendUniform(TShaderData::T_glLocIdx loc, const float& d) const;
+        void sendUniform(TShaderData::T_glLocIdx loc, const int& d) const;
         
     public:
 		IcRenderAdpStd() {};
@@ -197,6 +209,7 @@ namespace Ic3d
                               const TVec3& ecDir,   // Light dir in eye space
                               int lightIdx,
                               int totalLightNum) const override;
+        virtual void setFog(const TFogPara& para) const override;
         virtual void applyMatrix(TRenderMatrix& rm) override;
     private:
         void fillShaderData();

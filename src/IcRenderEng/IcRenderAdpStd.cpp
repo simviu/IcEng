@@ -44,7 +44,13 @@ namespace Ic3d {
         unfmMat.m_proj      = pShdr->GetUniformLocation("u_matProj");
         unfmMat.m_modelView = pShdr->GetUniformLocation("u_matModelView");
         unfmMat.m_norm      = pShdr->GetUniformLocation("u_matNormal");
-        
+        //---- Fog
+        auto& unfmFog = m_shaderData.m_unfmLoc_fog;
+        unfmFog.m_start  = pShdr->GetUniformLocation("u_fogPara.start");
+        unfmFog.m_k_linear=pShdr->GetUniformLocation("u_fogPara.k_linear");
+        unfmFog.m_k_exp  = pShdr->GetUniformLocation("u_fogPara.k_exp");
+        unfmFog.m_color  = pShdr->GetUniformLocation("u_fogPara.color");
+         
         //---- Light
         for(int i=0;i<TShaderData::K_MAX_LIGHTS;i++)
         {
@@ -53,7 +59,7 @@ namespace Ic3d {
             unfm.m_dir = pShdr->GetUniformLocation(sLoc + "dir");
             unfm.m_pos = pShdr->GetUniformLocation(sLoc + "pos");
             unfm.m_Kd2 = pShdr->GetUniformLocation(sLoc + "Kd2");
-            unfm.m_isPara       = pShdr->GetUniformLocation(sLoc + "isPara");
+            unfm.m_isPara = pShdr->GetUniformLocation(sLoc + "isPara");
             unfm.m_cosConeAngle = pShdr->GetUniformLocation(sLoc + "cosConeAngle");
             unfm.m_cosCutOff    = pShdr->GetUniformLocation(sLoc + "cosCutOff");
             
@@ -85,6 +91,7 @@ namespace Ic3d {
     //--------------------------------------------------------------
     //	sendUniform
     //--------------------------------------------------------------
+    // TODO: these can be move up to IcRenderAdp, or IcShader
     void IcRenderAdpStd::sendUniform(TShaderData::T_glLocIdx loc, const TVec3& v) const
     {
         glUniform3f(loc, v.x, v.y, v.z);
@@ -93,7 +100,18 @@ namespace Ic3d {
     {
         glUniform4f(loc, v.x, v.y, v.z, v.w);
     }
-    
+    void IcRenderAdpStd::sendUniform(TShaderData::T_glLocIdx loc,
+                                     const float& d) const
+    {
+        glUniform1f(loc, d);
+      
+    }
+    void IcRenderAdpStd::sendUniform(TShaderData::T_glLocIdx loc,
+                                     const int& d) const
+    {
+        glUniform1i(loc, d);
+    }
+   
     //--------------------------------------------------------------
     //	loadShader
     //--------------------------------------------------------------
@@ -131,6 +149,18 @@ namespace Ic3d {
         sendUniform(unfm.m_mat.m_ems,   light.m_mat.m_ems);
         
         glUniform1i(m_shaderData.m_unfmLoc_lightNum, totalLightNum);
+    }
+    //--------------------------------------------------------------
+    //	setFog
+    //--------------------------------------------------------------
+    void IcRenderAdpStd::setFog(const TFogPara& para) const
+    {
+        const auto& unfm = m_shaderData.m_unfmLoc_fog;
+        sendUniform(unfm.m_start,       para.m_start);
+        sendUniform(unfm.m_k_linear,    para.m_K_linear);
+        sendUniform(unfm.m_k_exp, para.m_K_exp);
+        sendUniform(unfm.m_color, para.m_color);
+        
     }
     //--------------------------------------------------------------
     //	applyMaterial

@@ -61,6 +61,15 @@ namespace Ic3d
         pRE->clearScreen(bkColor);
 
     }
+    //----------------------------
+    // getCurRenderAdp
+    //----------------------------
+    ctl::Sp<CRenderAdp> IcEng::getCurRenderAdp()
+    {
+        auto pRE= IcRenderEng::getInstance();
+        return pRE->getCurRenderAdp();
+    }
+
     /*
     //----------------------------
     // IcFrameRateCalc::onNewFrame
