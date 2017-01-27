@@ -1,7 +1,14 @@
-//======================================================================
-//
-//======================================================================
+/*
+ 
+ //  Created by Sherman Chen on 3/11/16.
 
+ Copyright (c) 2016 Simviu Technology Inc.
+ All rights reserved.
+ ( http://www.simviu.com/dev/ )
+ 
+ License : BSD (https://en.wikipedia.org/wiki/BSD_licenses)
+ 
+ */
 #ifndef _ICUBE_H
 #define _ICUBE_H
 
