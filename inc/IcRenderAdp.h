@@ -88,12 +88,13 @@ inline namespace Ic3d
     //----------------------------
     struct TFogPara
     {
-        float m_fogStart = 0;
+        float m_start = 0;
         //---- Linear Fog factor
         float m_K_linear = 0;
         
         //---- Exponent coef para:
         float m_K_exp = 0;
+        TColor m_color{0.7,0.7,0.7,1};
     };
     //----------------------------
 	//	TMeshData
@@ -216,6 +217,9 @@ inline namespace Ic3d
                               const TVec3& ecDir,   // Light dir in eye space
                               int lightIdx,
                               int totalLightNum) const = 0;
+        //---- Fog
+        virtual void setFog(const TFogPara& para) const = 0;
+        
         //---- Render Matrix
         struct TRenderMatrix
         {

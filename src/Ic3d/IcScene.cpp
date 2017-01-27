@@ -37,10 +37,12 @@ inline namespace Ic3d
         m_cfg.m_viewRect = viewRect;
 		ctl::TSize viewSize = viewRect.getSize();
         const auto& camCfg = m_cfg.m_camCfg;
+        
+        //---- TODO: move to drawUpdate()?
 		m_pCamera->setFrustum(viewSize, camCfg);
-		
 	}
 
+    /*
 	//---------------------------------------------
 	//	initCamera()
 	//---------------------------------------------
@@ -49,7 +51,10 @@ inline namespace Ic3d
 		ctl::TSize viewSize = viewRect.getSize();
         const auto& camCfg = m_cfg.m_camCfg;
         m_pCamera->setFrustum(viewSize, camCfg);
+        
+        
 	}
+     */
 	
     //-----------------------------------------
     //	drawLight
@@ -95,6 +100,10 @@ inline namespace Ic3d
 		dbgFrmCnt ++;
 		auto pRE= IcRenderEng::getInstance();
         pRE->setViewPort(m_cfg.m_viewRect);
+        //---- Set fog
+        auto pEng = IcRenderEng::getInstance();
+        auto pAdp = pEng->getCurRenderAdp();
+        pAdp->setFog(m_cfg.m_fogPara);
 		
 		//-----------------
 		//	Draw Light

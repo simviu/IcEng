@@ -316,8 +316,9 @@ namespace Ic3d {
         //---- Configuration
         struct TCfg
         {
-            ctl::TRect m_viewRect;
-            IcCamera::TCfg m_camCfg;
+            ctl::TRect      m_viewRect;
+            IcCamera::TCfg  m_camCfg;
+            TFogPara        m_fogPara;
         };
         TCfg m_cfg;
         
@@ -329,11 +330,11 @@ namespace Ic3d {
         ctl::Sp<IcCamera>	m_pCamera = ctl::makeSp<IcCamera>();
 		IcObject	m_rootObj;
         ctl::SpAry<IcLight>		m_lights;
-		size_t		m_frmCnt = 0;   // TODO: Move to IcWindow
+		size_t	m_frmCnt = 0;   // TODO: Move to IcWindow
         bool    m_hasInit = false;
 
         void drawLights();
-		void initCamera(const ctl::TRect& viewRect);
+	//	void initCamera(const ctl::TRect& viewRect);
         //---- On Update call back function
         TFuncOnUpdate m_pCallBk_onUpdate = nullptr;
 	};
@@ -453,7 +454,9 @@ namespace Ic3d {
         //---- Vr CFG
         struct TVrCfg
         {
+            //---- Scene Cfg
             IcCamera::TCfg m_camCfg;
+            TFogPara m_fogPara;
         };
         TVrCfg m_vrCfg;
         
@@ -481,7 +484,8 @@ namespace Ic3d {
         ctl::Sp<IcObject> m_pRootObj = ctl::makeSp<IcObject>();
         //---- VR scene left/right
         ctl::Sp<IcSceneVr_IF> m_vrScn[2]{nullptr, nullptr};
-        
+        void updateVrFogPara();
+       
         //------------------------
         //  MouseHelper
         //------------------------
@@ -518,6 +522,7 @@ namespace Ic3d {
         void onFrameEnd();
         bool hasInit() const { return m_hasInit; };
         bool isEnabled()const{ return m_isEnabled; };
+        ctl::Sp<CRenderAdp> getCurRenderAdp();
     protected:
         bool    m_hasInit = false;
         bool    m_isEnabled = false;
