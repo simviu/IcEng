@@ -1,9 +1,12 @@
 //
 //  IcWinMngIOS.cpp
-//  IcEngLib
+//  DevEng
 //
 //  Created by Sherman Chen on 1/5/17.
-//  Copyright © 2017 Simviu Technology Inc. All rights reserved.
+//  Copyright (c) 2016 Simviu Technology Inc.
+//  All rights reserved.
+//  http://www.simviu.com/dev
+//
 //
 
 

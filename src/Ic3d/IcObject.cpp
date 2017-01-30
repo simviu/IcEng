@@ -1,12 +1,12 @@
-/*
- *  icube_texture.cpp
- *  AppleCoder-OpenGLES-00
- *
- *  Created by X. Chen on 8/14/09.
- *  Copyright 2009 __MyCompanyName__. All rights reserved.
- *
- */
-
+//
+//  IcObject.cpp
+//  DevEng
+//
+//  Created by Sherman Chen on 3/11/16.
+//  Copyright (c) 2016 Simviu Technology Inc.
+//  All rights reserved.
+//  http://www.simviu.com/dev
+//
 
 #include "Ic3d.h"
 #include "IcRenderEng.h"

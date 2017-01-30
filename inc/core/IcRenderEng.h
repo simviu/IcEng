@@ -1,8 +1,11 @@
 //
-//  RanderEng.h
-//  Warbirds
+//  IcRenderEng.h
+//  DevEng
 //
 //  Created by Sherman Chen on 6/4/13.
+//  Copyright (c) 2016 Simviu Technology Inc.
+//  All rights reserved.
+//  http://www.simviu.com/dev
 //
 //
 

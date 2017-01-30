@@ -1,11 +1,13 @@
-/*
- *  iimage_pvrtc.cpp
- *  B_O_Britain
- *
- *  Created by X. Chen on 9/2/09.
- *  Copyright 2009 __MyCompanyName__. All rights reserved.
- *
- */
+//
+//  IcRenderAdpStd_TexPVR.cpp
+//  DevEng
+//
+//  Created by Sherman Chen on 9/28/16.
+//  Copyright (c) 2016 Simviu Technology Inc.
+//  All rights reserved.
+//  http://www.simviu.com/dev
+//
+
 
 #include "IcRenderAdpStd.h"
 #include "OpenGLinc.h"

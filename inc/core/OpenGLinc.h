@@ -1,10 +1,15 @@
 //
-//  OpenGLES.h
-//  Warbirds
+//  OpenGLinc.h
+//  DevEng
 //
-//  Created by Sherman Chen on 6/7/13.
+//  Created by Sherman Chen on 12/24/16.
+//  Copyright (c) 2016 Simviu Technology Inc.
+//  All rights reserved.
+//  http://www.simviu.com/dev
 //
 //
+//
+
 
 #ifndef _OpenGLinc_H
 #define _OpenGLinc_H

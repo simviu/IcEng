@@ -1,11 +1,12 @@
-/*
- *  icube_tex.cpp
- *  B_O_Britain
- *
- *  Created by X. Chen on 9/4/09.
- *  Copyright 2009 __MyCompanyName__. All rights reserved.
- *
- */
+//
+//  IcRenderAdpStd_Tex.cpp
+//  DevEng
+//
+//  Created by Sherman Chen on 9/28/16.
+//  Copyright (c) 2016 Simviu Technology Inc.
+//  All rights reserved.
+//  http://www.simviu.com/dev
+//
 
 
 
