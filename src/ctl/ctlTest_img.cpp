@@ -1,6 +1,6 @@
 //
-//  CtUT_img.cpp
-//  EngDemo
+//  ctlTest_img.cpp
+//  DevEng
 //
 //  Created by Sherman Chen on 2/24/16.
 //  Copyright (c) 2016 Simviu Technology Inc.

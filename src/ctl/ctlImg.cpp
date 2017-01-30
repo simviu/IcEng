@@ -1,6 +1,6 @@
 //
-//  CeImage.cpp
-//  EngDemo
+//  ctlImg.cpp
+//  DevEng
 //
 //  Created by Sherman Chen on 2/24/16.
 //  Copyright (c) 2016 Simviu Technology Inc.

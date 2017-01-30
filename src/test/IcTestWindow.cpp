@@ -1,5 +1,5 @@
 //
-//  IcTestApp.cpp
+//  IcTestWindow.cpp
 //  IcEngLib
 //
 //  Created by Sherman Chen on 12/23/16.

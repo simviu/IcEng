@@ -1,12 +1,9 @@
 //
 //  ViewController.m
-//  IcEngTestApp
+//  DevEng
 //
 //  Created by Sherman Chen on 12/2/16.
-//  Copyright (c) 2016 Simviu Technology Inc.
-//  All rights reserved.
-//  http://www.simviu.com/dev
-//
+//  Copyright © 2016 Simviu Technology Inc. All rights reserved.
 //
 
 #import "ViewController.h"

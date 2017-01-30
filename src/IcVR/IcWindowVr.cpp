@@ -1,6 +1,6 @@
 //
 //  IcWindowVr.cpp
-//  VrScenery
+//  DevEng
 //
 //  Created by Sherman Chen on 12/23/16.
 //  Copyright (c) 2016 Simviu Technology Inc.

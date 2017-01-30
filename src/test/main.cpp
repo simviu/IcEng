@@ -1,6 +1,6 @@
 //
 //  main.cpp
-//  IcEngLib
+//  DevEng
 //
 //  Created by Sherman Chen on 11/30/16.
 //  Copyright (c) 2016 Simviu Technology Inc.

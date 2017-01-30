@@ -1,5 +1,5 @@
 //
-//  CeLogger.cpp
+//  ctlLog.cpp
 //  DevEng
 //
 //  Created by Sherman Chen on 2/16/16.

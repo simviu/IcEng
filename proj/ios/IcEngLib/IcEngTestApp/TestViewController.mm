@@ -1,6 +1,6 @@
 //
-//  VConIc3dTestScn.m
-//  IcEngLib
+//  TestViewController.mm
+//  DevEng
 //
 //  Created by Sherman Chen on 12/2/16.
 //  Copyright (c) 2016 Simviu Technology Inc.
