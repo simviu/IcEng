@@ -117,5 +117,10 @@ inline namespace Ic3d
 		//-----------------
 		m_pCamera->drawObj(m_rootObj);
 		m_frmCnt ++;
+        //-----------------
+        //	Draw Text
+        //-----------------
+        for(auto pText : m_texts.getAry())
+            pText->onDraw();
 	}
 } // namespace Ic3d

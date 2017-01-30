@@ -44,6 +44,10 @@ public:
         cam.setPos(TVec3(10, 4, -6));
         cam.lookAt(TVec3(0,0,0), TVec3(0,1,0));
         m_pObj = pObj;
+        
+        //---- Add Text
+        auto pText = ctl::makeSp<IcText>("IcEng Test");
+        addText(pText);
     	logInfo("IcTestScene::onInit() done");
 		isDbgOn = false;
     };

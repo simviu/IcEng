@@ -22,6 +22,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		9C33E5221E3F4CF600DEC713 /* IcText.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C33E5211E3F4CF600DEC713 /* IcText.cpp */; };
+		9C33E5231E3F4CF600DEC713 /* IcText.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C33E5211E3F4CF600DEC713 /* IcText.cpp */; };
 		9C6143E11E2DC68500ABF9DB /* IcWindowVr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF604841E24804B008A662C /* IcWindowVr.cpp */; };
 		9C6143E21E2DC68600ABF9DB /* IcWindowVr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF604841E24804B008A662C /* IcWindowVr.cpp */; };
 		9C7DB66D1E3066F2008079A4 /* IcSceneVr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C7DB66C1E3066F2008079A4 /* IcSceneVr.cpp */; };
@@ -244,7 +246,6 @@
 		9CF606871E248125008A662C /* vec3.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9CF605ED1E248125008A662C /* vec3.hpp */; };
 		9CF606881E248125008A662C /* vec4.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9CF605EE1E248125008A662C /* vec4.hpp */; };
 		9CF606891E248125008A662C /* vector_relational.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9CF605EF1E248125008A662C /* vector_relational.hpp */; };
-		9CF6068A1E248125008A662C /* Ic3d.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF605F01E248125008A662C /* Ic3d.h */; };
 		9CF6068C1E248125008A662C /* IcRenderAdp.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF605F21E248125008A662C /* IcRenderAdp.h */; };
 		9CF6068D1E248125008A662C /* IcViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF605F31E248125008A662C /* IcViewController.h */; };
 		9CF606901E248286008A662C /* IcShader in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9CF6068F1E24827A008A662C /* IcShader */; };
@@ -281,6 +282,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		9C33E5211E3F4CF600DEC713 /* IcText.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcText.cpp; sourceTree = "<group>"; };
 		9C53F6BB1DCB14FB006EAF17 /* libIcEngLib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIcEngLib.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C7DB66B1E3065B0008079A4 /* IcSceneVr.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IcSceneVr.h; sourceTree = "<group>"; };
 		9C7DB66C1E3066F2008079A4 /* IcSceneVr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcSceneVr.cpp; sourceTree = "<group>"; };
@@ -681,6 +683,7 @@
 				9CF604771E24804B008A662C /* IcScene.cpp */,
 				9CF604781E24804B008A662C /* IcTexture.cpp */,
 				9CF604791E24804B008A662C /* IcUtil.cpp */,
+				9C33E5211E3F4CF600DEC713 /* IcText.cpp */,
 			);
 			path = Ic3d;
 			sourceTree = "<group>";
@@ -1075,7 +1078,6 @@
 				9CF6063D1E248125008A662C /* ulp.hpp in Headers */,
 				9CF606431E248125008A662C /* color_space_YCoCg.hpp in Headers */,
 				9CF606891E248125008A662C /* vector_relational.hpp in Headers */,
-				9CF6068A1E248125008A662C /* Ic3d.h in Headers */,
 				9CF606741E248125008A662C /* transform2.hpp in Headers */,
 				9CF606571E248125008A662C /* matrix_major_storage.hpp in Headers */,
 				9CF606771E248125008A662C /* vector_query.hpp in Headers */,
@@ -1327,6 +1329,7 @@
 				9CF604E11E24804C008A662C /* IcTestWindow.cpp in Sources */,
 				9CF604B11E24804C008A662C /* IcMeshDataSubMsh.cpp in Sources */,
 				9CF604B31E24804C008A662C /* IcModel.cpp in Sources */,
+				9C33E5221E3F4CF600DEC713 /* IcText.cpp in Sources */,
 				9CF6049B1E24804C008A662C /* ctlStr.cpp in Sources */,
 				9CF604C31E24804C008A662C /* IcRenderAdpStd_Mesh.cpp in Sources */,
 				9CF604A71E24804C008A662C /* IcCamera.cpp in Sources */,
@@ -1380,6 +1383,7 @@
 				9CF604A21E24804C008A662C /* ctlUtil.cpp in Sources */,
 				9CF604C61E24804C008A662C /* IcRenderAdpStd_Tex.cpp in Sources */,
 				9CF604E41E24804C008A662C /* main.cpp in Sources */,
+				9C33E5231E3F4CF600DEC713 /* IcText.cpp in Sources */,
 				9CF604BC1E24804C008A662C /* IcTexture.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

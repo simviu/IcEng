@@ -15,7 +15,7 @@
 #include "IcRenderAdp.h"
 
 //---- TODO: Ic3d->IcEng
-namespace Ic3d {
+inline namespace Ic3d {
    	//-----------------------------------------------
     //	Util
     //-----------------------------------------------
@@ -301,7 +301,40 @@ namespace Ic3d {
     private:
         void onInit(){ pointAt(K_dfltPointAt); };
     };
- 
+    //-----------------------------------------
+    //	IcText
+    //-----------------------------------------
+    // Text implementation
+    class IcText
+    {
+    public:
+        //---- TFont
+        struct TFont
+        {
+            std::string     m_sName;
+            TSize           m_size;
+            int             m_fontSize=10;
+            // equal to m_size.h
+        };
+        IcText(){};
+        IcText(const std::string& sText="",
+               const TVec2& pos=TVec2(0,0),
+               const TColor& c=TColor(1,1,1,1),
+               int fontSize=10,
+               ctl::Sp<const TFont> pFont = nullptr ):
+            m_pFont(pFont),m_sText(sText), m_color(c),
+            m_pos(pos), m_fontSize(fontSize){};
+        virtual ~IcText() {};
+        
+        ctl::Sp<const TFont> m_pFont = nullptr;
+        std::string     m_sText;  // Font Text
+        TColor  m_color{1,1,1,1};
+        TVec2   m_pos;
+        int     m_fontSize=10;
+        //---- Static sys functions
+        static ctl::SpAry<const TFont>& getAvailableFonts();
+        virtual void onDraw() const;
+    };
     //-----------------------------------------
 	//	IcScene
 	//-----------------------------------------
@@ -316,6 +349,7 @@ namespace Ic3d {
 		virtual void onDraw();
 		virtual void onViewRect(const ctl::TRect& viewRect);
         void addObj(ctl::Sp<IcObject> p){ m_rootObj.addChildObj(p); };
+        void addText(ctl::Sp<IcText> p){ m_texts.add(p); };
         void clearObjs(){ m_rootObj.clearChildObjs(); };
         ctl::Sp<IcCamera> getCamera(){ return m_pCamera; };
         ctl::SpAry<IcLight>& getLights(){ return m_lights; };
@@ -332,11 +366,13 @@ namespace Ic3d {
         //---- On Update call back function
         typedef std::function<void(float deltaT)> TFuncOnUpdate;
         void setOnUpdatCallBack(TFuncOnUpdate func);
+        
 	protected:
         // TODO: Camera Ary
         ctl::Sp<IcCamera>	m_pCamera = ctl::makeSp<IcCamera>();
 		IcObject	m_rootObj;
         ctl::SpAry<IcLight>		m_lights;
+        ctl::SpAry<IcText>      m_texts;
 		size_t	m_frmCnt = 0;   // TODO: Move to IcWindow
         bool    m_hasInit = false;
 
