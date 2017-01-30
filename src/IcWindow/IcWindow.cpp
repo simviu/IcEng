@@ -3,7 +3,10 @@
 //  DevEng
 //
 //  Created by Sherman Chen on 10/31/16.
-//  Copyright © 2016 Sherman Chen. All rights reserved.
+//  Copyright (c) 2016 Simviu Technology Inc.
+//  All rights reserved.
+//  http://www.simviu.com/dev
+//
 //
 
 #include "Ic3d.h"

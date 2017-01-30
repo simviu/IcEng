@@ -1,11 +1,13 @@
-/*
- *  icube_model_vbo.cpp
- *  AppleCoder-OpenGLES-00
- *
- *  Created by X. Chen on 7/25/09.
- *  Copyright 2009 __MyCompanyName__. All rights reserved.
- *
- */
+//
+//  IcRenderAdpStd_Mesh.cpp
+//  DevEng
+//
+//  Created by Sherman Chen on 9/28/16.
+//  Copyright (c) 2016 Simviu Technology Inc.
+//  All rights reserved.
+//  http://www.simviu.com/dev
+//
+
 
 
 #include "IcRenderAdpStd.h"

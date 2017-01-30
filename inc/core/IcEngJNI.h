@@ -3,7 +3,10 @@
 //  IcEngLib
 //
 //  Created by Sherman Chen on 1/4/17.
-//  Copyright © 2017 Simviu Technology Inc. All rights reserved.
+//  Copyright (c) 2016 Simviu Technology Inc.
+//  All rights reserved.
+//  http://www.simviu.com/dev
+//
 //
 
 #ifndef IcEngJNI_h

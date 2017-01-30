@@ -1,3 +1,13 @@
+//
+//  IcRenderEngText.cpp
+//  DevEng
+//
+//  Created by Sherman Chen on 9/28/16.
+//  Copyright (c) 2016 Simviu Technology Inc.
+//  All rights reserved.
+//  http://www.simviu.com/dev
+//
+
 
 #include "IcRenderEng.h"
 #define GLUT_STATIC
