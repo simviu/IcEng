@@ -3,7 +3,9 @@
 //  DevEng
 //
 //  Created by Sherman Chen on 3/3/16.
-//  Copyright (c) 2016 Sherman Chen. All rights reserved.
+//  Copyright (c) 2016 Simviu Technology Inc.
+//  All rights reserved.
+//  http://www.simviu.com/dev
 //
 
 #ifndef __DevEng__IcDemo__
