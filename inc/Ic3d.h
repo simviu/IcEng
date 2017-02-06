@@ -276,6 +276,16 @@ inline namespace Ic3d {
 		void drawObjTree(const IcObject& obj,
 						 const TMat4& matModelParent) const;
 	};
+    //-----------------------------------------
+    //	IcCameraVR
+    //-----------------------------------------
+    class IcCameraVR : public IcCamera
+    {
+    public:
+        using IcCamera::IcCamera;
+        
+    };
+
     //-------------------------------------
     //	IcLight
     //-------------------------------------
@@ -368,6 +378,9 @@ inline namespace Ic3d {
         void setOnUpdatCallBack(TFuncOnUpdate func);
         
 	protected:
+        void renderObjRecur(const IcCamera& cam,
+                            const IcObject& obj,
+                            const TMat4& matModelParent) const;
         // TODO: Camera Ary
         ctl::Sp<IcCamera>	m_pCamera = ctl::makeSp<IcCamera>();
 		IcObject	m_rootObj;

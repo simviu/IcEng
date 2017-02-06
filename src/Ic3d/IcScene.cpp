@@ -80,6 +80,30 @@ inline namespace Ic3d
         
     }
 
+    //-------------------------------------------
+    //	renderObjRecur
+    //-------------------------------------------
+    void IcScene::renderObjRecur(const IcCamera& cam,
+                                 const IcObject& obj,
+                                 const TMat4& matModelParent) const
+    {
+        auto pRIF = IcRenderEng::getInstance();
+        auto pAdp = pRIF->getCurRenderAdp();
+        //----- Draw this
+        TMat4 matModel = matModelParent * obj.calcMat();
+        CRenderAdp::TRenderMatrix rm;
+        rm.m_matProj  = cam.getProjMat();
+        rm.m_matModel = matModel;
+        rm.m_matView  = cam.getViewMat();
+        pAdp->applyMatrix(rm);
+        obj.draw();
+        
+        //---- Draw Childs
+        auto& childs = obj.getChildObjs();
+        for(auto pObj : childs.all())
+            renderObjRecur(cam, *pObj, matModel);
+    }
+    
 	
 	//-----------------------------------------
 	//	onDraw
@@ -115,12 +139,14 @@ inline namespace Ic3d
 		//-----------------
 		//	Draw Obj
 		//-----------------
-		m_pCamera->drawObj(m_rootObj);
-		m_frmCnt ++;
+	//	m_pCamera->drawObj(m_rootObj);
+        renderObjRecur(*m_pCamera, m_rootObj, TMat4());
         //-----------------
         //	Draw Text
         //-----------------
         for(auto pText : m_texts.getAry())
             pText->onDraw();
+        
+        m_frmCnt ++;
 	}
 } // namespace Ic3d
