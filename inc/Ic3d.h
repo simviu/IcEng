@@ -376,7 +376,8 @@ inline namespace Ic3d {
         //---- On Update call back function
         typedef std::function<void(float deltaT)> TFuncOnUpdate;
         void setOnUpdatCallBack(TFuncOnUpdate func);
-        
+        void setTargetTexture(ctl::Sp<IcTexture> pTex)
+            { m_pTargetTex = pTex; };
 	protected:
         void renderObjRecur(const IcCamera& cam,
                             const IcObject& obj,
@@ -393,6 +394,8 @@ inline namespace Ic3d {
 	//	void initCamera(const ctl::TRect& viewRect);
         //---- On Update call back function
         TFuncOnUpdate m_pCallBk_onUpdate = nullptr;
+        //---- TODO: Not implemented yet
+        ctl::Sp<IcTexture> m_pTargetTex = nullptr;
 	};
     
     //----------------------------
@@ -490,75 +493,6 @@ inline namespace Ic3d {
         bool	m_isDrawing = false;
         
     };
-    //--------------------------
-    //  IcWindowVr
-    //--------------------------
-    class IcWindowVr : public Ic3d::IcWindow
-    {
-    public:
-        IcWindowVr();
-        virtual void onInit() override;
-        virtual void onWindowSize(const ctl::TSize& size) override;
-        void setRootObj(ctl::Sp<Ic3d::IcObject> p);
-        ctl::Sp<IcObject> getRootObj(){ return m_pRootObj; };
-        
-        //---- Can be override
-        void updateVrCamPos(const TVec3& pos);
-        void updateVrCamRot(const TQuat& rot);
-//        virtual void onCamAttitude(float pitch, float roll, float yaw);
-        virtual void onMouseMove(int x, int y) override;
-        //---- Vr CFG
-        struct TVrCfg
-        {
-            //---- Scene Cfg
-            IcCamera::TCfg m_camCfg;
-            TFogPara m_fogPara;
-        };
-        TVrCfg m_vrCfg;
-        
-        //---- VR window status
-        struct TVrStts
-        {
-            TVec3 m_camPos;
-            TQuat m_camRot;
-        };
-        TVrStts m_vrStts;
-        //--------------------------
-        //  IcSceneVr
-        //--------------------------
-        // Be implemented in cpp
-        class IcSceneVr_IF : public IcScene
-        {
-        public:
-            IcSceneVr_IF(bool isLeft): m_isLeft(isLeft){};
-            virtual void updateCam(const Ic3d::TVec3& camPos,
-                                   const Ic3d::TQuat& camRot){};
-        protected:
-            bool m_isLeft = false;
-        };
-    protected:
-        ctl::Sp<IcObject> m_pRootObj = ctl::makeSp<IcObject>();
-        //---- VR scene left/right
-        ctl::Sp<IcSceneVr_IF> m_vrScn[2]{nullptr, nullptr};
-        void updateVrFogPara();
-       
-        //------------------------
-        //  MouseHelper
-        //------------------------
-        // simulate cam tilte by mouse
-        class CMouseHelper
-        {
-        public:
-            TQuat onMouseMove(int x, int y);
-        protected:
-            TEuler  m_camAtt;
-            TVec2   m_mousePrevPos;
-            bool    m_isFirst = true;
-        };
-        CMouseHelper m_mouseHelper;
-    };
- 
-    
     //-----------------------------------------
 	//	IcEng
 	//-----------------------------------------

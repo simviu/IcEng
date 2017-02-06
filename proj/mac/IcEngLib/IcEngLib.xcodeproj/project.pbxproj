@@ -24,10 +24,6 @@
 /* Begin PBXBuildFile section */
 		9C33E5221E3F4CF600DEC713 /* IcText.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C33E5211E3F4CF600DEC713 /* IcText.cpp */; };
 		9C33E5231E3F4CF600DEC713 /* IcText.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C33E5211E3F4CF600DEC713 /* IcText.cpp */; };
-		9C6143E11E2DC68500ABF9DB /* IcWindowVr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF604841E24804B008A662C /* IcWindowVr.cpp */; };
-		9C6143E21E2DC68600ABF9DB /* IcWindowVr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF604841E24804B008A662C /* IcWindowVr.cpp */; };
-		9C7DB66D1E3066F2008079A4 /* IcSceneVr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C7DB66C1E3066F2008079A4 /* IcSceneVr.cpp */; };
-		9C7DB66E1E3066F2008079A4 /* IcSceneVr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C7DB66C1E3066F2008079A4 /* IcSceneVr.cpp */; };
 		9C8CC3E31DEE81ED002583F2 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CAE4F1F1DCB201B003F7B38 /* OpenGL.framework */; };
 		9C8CC3ED1DEE862D002583F2 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C8CC3EC1DEE862D002583F2 /* GLUT.framework */; };
 		9CAE4F201DCB201B003F7B38 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CAE4F1F1DCB201B003F7B38 /* OpenGL.framework */; };
@@ -285,7 +281,6 @@
 		9C33E5211E3F4CF600DEC713 /* IcText.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcText.cpp; sourceTree = "<group>"; };
 		9C53F6BB1DCB14FB006EAF17 /* libIcEngLib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIcEngLib.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C7DB66B1E3065B0008079A4 /* IcSceneVr.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IcSceneVr.h; sourceTree = "<group>"; };
-		9C7DB66C1E3066F2008079A4 /* IcSceneVr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcSceneVr.cpp; sourceTree = "<group>"; };
 		9C8CC3AE1DEE8115002583F2 /* IcEngTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = IcEngTest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C8CC3EC1DEE862D002583F2 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
 		9CAE4F1F1DCB201B003F7B38 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
@@ -317,7 +312,6 @@
 		9CF604801E24804B008A662C /* IcRenderEng.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcRenderEng.cpp; sourceTree = "<group>"; };
 		9CF604811E24804B008A662C /* IcRenderEngText.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcRenderEngText.cpp; sourceTree = "<group>"; };
 		9CF604821E24804B008A662C /* IcShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcShader.cpp; sourceTree = "<group>"; };
-		9CF604841E24804B008A662C /* IcWindowVr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcWindowVr.cpp; sourceTree = "<group>"; };
 		9CF604891E24804B008A662C /* IcWindow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcWindow.cpp; sourceTree = "<group>"; };
 		9CF6048A1E24804B008A662C /* IcWinMng.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcWinMng.cpp; sourceTree = "<group>"; };
 		9CF604911E24804B008A662C /* IcWinMngPC.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcWinMngPC.cpp; sourceTree = "<group>"; };
@@ -644,7 +638,6 @@
 				9CF604631E24804B008A662C /* ctl */,
 				9CF6046C1E24804B008A662C /* Ic3d */,
 				9CF6047A1E24804B008A662C /* IcRenderEng */,
-				9CF604831E24804B008A662C /* IcVR */,
 				9CF604851E24804B008A662C /* IcWindow */,
 				9CF604921E24804C008A662C /* test */,
 			);
@@ -700,15 +693,6 @@
 				9CF604821E24804B008A662C /* IcShader.cpp */,
 			);
 			path = IcRenderEng;
-			sourceTree = "<group>";
-		};
-		9CF604831E24804B008A662C /* IcVR */ = {
-			isa = PBXGroup;
-			children = (
-				9CF604841E24804B008A662C /* IcWindowVr.cpp */,
-				9C7DB66C1E3066F2008079A4 /* IcSceneVr.cpp */,
-			);
-			path = IcVR;
 			sourceTree = "<group>";
 		};
 		9CF604851E24804B008A662C /* IcWindow */ = {
@@ -1309,11 +1293,9 @@
 				9CF604A51E24804C008A662C /* Ic3d.cpp in Sources */,
 				9CF6049D1E24804C008A662C /* ctlTest.cpp in Sources */,
 				9CF6060A1E248125008A662C /* glm.cpp in Sources */,
-				9C7DB66D1E3066F2008079A4 /* IcSceneVr.cpp in Sources */,
 				9CF604CB1E24804C008A662C /* IcRenderEngText.cpp in Sources */,
 				9CF604CD1E24804C008A662C /* IcShader.cpp in Sources */,
 				9CF604BD1E24804C008A662C /* IcUtil.cpp in Sources */,
-				9C6143E11E2DC68500ABF9DB /* IcWindowVr.cpp in Sources */,
 				9CF604D51E24804C008A662C /* IcWindow.cpp in Sources */,
 				9CF604AF1E24804C008A662C /* IcMeshDataCreate.cpp in Sources */,
 				9CF604AB1E24804C008A662C /* IcMaterial.cpp in Sources */,
@@ -1351,10 +1333,8 @@
 				9CF604C21E24804C008A662C /* IcRenderAdpStd.cpp in Sources */,
 				9CF604A61E24804C008A662C /* Ic3d.cpp in Sources */,
 				9CF6049E1E24804C008A662C /* ctlTest.cpp in Sources */,
-				9C7DB66E1E3066F2008079A4 /* IcSceneVr.cpp in Sources */,
 				9CF604CC1E24804C008A662C /* IcRenderEngText.cpp in Sources */,
 				9CF604CE1E24804C008A662C /* IcShader.cpp in Sources */,
-				9C6143E21E2DC68600ABF9DB /* IcWindowVr.cpp in Sources */,
 				9CF604BE1E24804C008A662C /* IcUtil.cpp in Sources */,
 				9CF604D61E24804C008A662C /* IcWindow.cpp in Sources */,
 				9CF604B01E24804C008A662C /* IcMeshDataCreate.cpp in Sources */,
