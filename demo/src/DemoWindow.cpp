@@ -9,16 +9,7 @@
 //
 
 #include "DemoWindow.hpp"
-
-#include "DemoBasic.hpp"
-#include "DemoTransform.hpp"
-#include "DemoNestedTrans.hpp"
-#include "DemoAnimation.hpp"
-#include "DemoModels.h"
-#include "DemoModelCreate.hpp"
-#include "DemoLights.hpp"
-
-
+#include "DemoScene.h"
 
 using namespace std;
 using namespace ctl;
@@ -33,12 +24,9 @@ DemoWindow::DemoWindow(const std::string& sPathRes)
     //---- Init demo list
     m_demoAry = {
         {"Basic"},              // 0
-        {"Transform"},          // 1
-        {"Nested Transform"},   // 2
-        {"Animation"},          // 3
-        {"Models"},             // 4
-        {"Model Create"},       // 5
-        {"Lights"},             // 6
+        {"Nested Transform"},   // 1
+        {"Model Create"},       // 2
+        {"Lights"},             // 3
     };
  
 }
@@ -52,12 +40,9 @@ void DemoWindow::createDemoScn(int sel)
     ctl::Sp<IcScene> pScn = nullptr;
     switch (sel) {
         case 0: pScn = ctl::makeSp<DemoBasic>();        break;
-        case 1: pScn = ctl::makeSp<DemoTransform>();    break;
-        case 2: pScn = ctl::makeSp<DemoNestedTrans>();  break;
-        case 3: pScn = ctl::makeSp<DemoAnimation>();    break;
-        case 4: pScn = ctl::makeSp<DemoModels>();       break;
-        case 5: pScn = ctl::makeSp<DemoModelCreate>();  break;
-        case 6: pScn = ctl::makeSp<DemoLights>();       break;
+        case 1: pScn = ctl::makeSp<DemoNestedTrans>();  break;
+        case 2: pScn = ctl::makeSp<DemoModelCreate>();  break;
+        case 3: pScn = ctl::makeSp<DemoLights>();       break;
         default:
             break;
     }

@@ -13,13 +13,5 @@
 
 
 #include "DemoScene.h"
-//-----------------------------
-//	DemoModelCreate
-//-----------------------------
-class DemoModelCreate : public DemoScene
-{
-public:
-    virtual void onInit() override;
-};
 
 #endif /* DemoModelCreate_hpp */

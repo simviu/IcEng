@@ -378,6 +378,7 @@ inline namespace Ic3d {
         void setOnUpdatCallBack(TFuncOnUpdate func);
         void setTargetTexture(ctl::Sp<IcTexture> pTex)
             { m_pTargetTex = pTex; };
+        void addSubScn(ctl::Sp<IcScene> pScn){ m_subScns.add(pScn);};
 	protected:
         void renderObjRecur(const IcCamera& cam,
                             const IcObject& obj,
@@ -387,6 +388,7 @@ inline namespace Ic3d {
 		IcObject	m_rootObj;
         ctl::SpAry<IcLight>		m_lights;
         ctl::SpAry<IcText>      m_texts;
+        ctl::SpAry<IcScene>     m_subScns;
 		size_t	m_frmCnt = 0;   // TODO: Move to IcWindow
         bool    m_hasInit = false;
 

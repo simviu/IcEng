@@ -8,7 +8,7 @@
 //  http://www.simviu.com/dev
 //
 
-#include "DemoNestedTrans.hpp"
+#include "DemoScene.h"
 
 
 using namespace Ic3d;
@@ -23,12 +23,13 @@ void DemoNestedTrans::onInit()
     IcScene::onInit();
     
     //---- Let's create 3 cube models, with different color
-    float L0 = 8;   // Length of upper arm
-    float L1 = 16;  // Length of lower arm
-    float L2 = 4;   // Length of palm
-    auto pModel0 = IcModel::createCube(TVec3(1.1,L0/2,1), TVec3(0,L0/2,0), TColor(1,0,0,1)); // Red Cube
-    auto pModel1 = IcModel::createCube(TVec3(1,L1/2,1),   TVec3(0,L1/2,0), TColor(0,1,1,1)); // Green Cube
-    auto pModel2 = IcModel::createCube(TVec3(1.2,L2/2,1), TVec3(0,L2/2,0), TColor(0,0,1,1)); // Blue Cube
+    float L0 = 2;   // Length of upper arm
+    float L1 = 3;  // Length of lower arm
+    float L2 = 1;   // Length of palm
+    float w = 0.2;
+    auto pModel0 = IcModel::createCube(TVec3(w,L0/2,w), TVec3(0,L0/2,0), TColor(1,0,0,1)); // Red Cube
+    auto pModel1 = IcModel::createCube(TVec3(w,L1/2,w),   TVec3(0,L1/2,0), TColor(0,1,1,1)); // Green Cube
+    auto pModel2 = IcModel::createCube(TVec3(w,L2/2,w), TVec3(0,L2/2,0), TColor(0,0,1,1)); // Blue Cube
     
     //---- Create robot arm objects with above models
     // 1) Upper Arm, 2) lower Arm, 3)palm

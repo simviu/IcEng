@@ -146,7 +146,12 @@ inline namespace Ic3d
         //-----------------
         for(auto pText : m_texts.getAry())
             pText->onDraw();
-        
+        //-----------------
+        //	Draw Sub Scenes
+        //-----------------
+        for(auto pScn : m_subScns.getAry())
+            pScn->onDraw();
+       
         m_frmCnt ++;
 	}
 } // namespace Ic3d

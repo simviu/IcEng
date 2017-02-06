@@ -13,14 +13,5 @@
 
 
 #include "DemoScene.h"
-//-----------------------------
-//	DemoNestedTrans
-//-----------------------------
-class DemoNestedTrans : public DemoScene
-{
-public:
-    virtual void onInit() override;
-};
-
 
 #endif /* DemoNestedTrans_hpp */
