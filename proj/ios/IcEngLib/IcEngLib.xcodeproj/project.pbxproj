@@ -74,8 +74,6 @@
 		9CF607161E248B8F008A662C /* IcTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF606D21E248B8F008A662C /* IcTexture.cpp */; };
 		9CF607171E248B8F008A662C /* IcUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF606D31E248B8F008A662C /* IcUtil.cpp */; };
 		9CF607181E248B8F008A662C /* IcUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF606D31E248B8F008A662C /* IcUtil.cpp */; };
-		9CF607191E248B8F008A662C /* IcRenderAdp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF606D51E248B8F008A662C /* IcRenderAdp.cpp */; };
-		9CF6071A1E248B8F008A662C /* IcRenderAdp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF606D51E248B8F008A662C /* IcRenderAdp.cpp */; };
 		9CF6071B1E248B8F008A662C /* IcRenderAdpStd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF606D61E248B8F008A662C /* IcRenderAdpStd.cpp */; };
 		9CF6071C1E248B8F008A662C /* IcRenderAdpStd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF606D61E248B8F008A662C /* IcRenderAdpStd.cpp */; };
 		9CF6071D1E248B8F008A662C /* IcRenderAdpStd_Mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF606D71E248B8F008A662C /* IcRenderAdpStd_Mesh.cpp */; };
@@ -170,7 +168,6 @@
 		9CF606D11E248B8F008A662C /* IcScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcScene.cpp; sourceTree = "<group>"; };
 		9CF606D21E248B8F008A662C /* IcTexture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcTexture.cpp; sourceTree = "<group>"; };
 		9CF606D31E248B8F008A662C /* IcUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcUtil.cpp; sourceTree = "<group>"; };
-		9CF606D51E248B8F008A662C /* IcRenderAdp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcRenderAdp.cpp; sourceTree = "<group>"; };
 		9CF606D61E248B8F008A662C /* IcRenderAdpStd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcRenderAdpStd.cpp; sourceTree = "<group>"; };
 		9CF606D71E248B8F008A662C /* IcRenderAdpStd_Mesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcRenderAdpStd_Mesh.cpp; sourceTree = "<group>"; };
 		9CF606D81E248B8F008A662C /* IcRenderAdpStd_Tex.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcRenderAdpStd_Tex.cpp; sourceTree = "<group>"; };
@@ -346,7 +343,6 @@
 		9CF606D41E248B8F008A662C /* IcRenderEng */ = {
 			isa = PBXGroup;
 			children = (
-				9CF606D51E248B8F008A662C /* IcRenderAdp.cpp */,
 				9CF606D61E248B8F008A662C /* IcRenderAdpStd.cpp */,
 				9CF606D71E248B8F008A662C /* IcRenderAdpStd_Mesh.cpp */,
 				9CF606D81E248B8F008A662C /* IcRenderAdpStd_Tex.cpp */,
@@ -534,7 +530,6 @@
 				9CF6072F1E248B8F008A662C /* IcWindow.cpp in Sources */,
 				9CF607091E248B8F008A662C /* IcMeshDataCreate.cpp in Sources */,
 				9CF607051E248B8F008A662C /* IcMaterial.cpp in Sources */,
-				9CF607191E248B8F008A662C /* IcRenderAdp.cpp in Sources */,
 				9CF606EF1E248B8F008A662C /* ctlBinBuf.cpp in Sources */,
 				9CF607031E248B8F008A662C /* IcLight.cpp in Sources */,
 				9CF606F11E248B8F008A662C /* ctlImg.cpp in Sources */,
@@ -593,7 +588,6 @@
 				9CF606F41E248B8F008A662C /* ctlLog.cpp in Sources */,
 				9CF6072A1E248B8F008A662C /* IcWindowVr.cpp in Sources */,
 				9C7AD3DD1DF11751008968FC /* main.m in Sources */,
-				9CF6071A1E248B8F008A662C /* IcRenderAdp.cpp in Sources */,
 				9CF607181E248B8F008A662C /* IcUtil.cpp in Sources */,
 				9CF607161E248B8F008A662C /* IcTexture.cpp in Sources */,
 				9CF607371E248B8F008A662C /* IcWinMngIOS.cpp in Sources */,

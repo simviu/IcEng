@@ -1,9 +1,13 @@
 //
-//  Ic3dBase.h
+//  IcRenderAdp.h
 //  DevEng
 //
 //  Created by Sherman Chen on 9/20/16.
-//  Copyright © 2016 Sherman Chen. All rights reserved.
+//  Copyright (c) 2016 Simviu Technology Inc.
+//  All rights reserved.
+//  http://www.simviu.com/dev
+//
+//
 //
 
 #ifndef Ic3dBase_h
@@ -82,6 +86,19 @@ inline namespace Ic3d
         float   m_cosCutOff = -2;       // Complete cut off angle in Cos()
         float   m_Kd2 = 0;                  // Attenuation : atn = 1/(1 + Kd2 * dist^2);
         // Note : The pos/dir here is in eye space ( Model/View Matrix )
+    };
+    //----------------------------
+    //  TFogPara
+    //----------------------------
+    struct TFogPara
+    {
+        float m_start = 0;
+        //---- Linear Fog factor
+        float m_K_linear = 0;
+        
+        //---- Exponent coef para:
+        float m_K_exp = 0;
+        TColor m_color{0.7,0.7,0.7,1};
     };
     //----------------------------
 	//	TMeshData
@@ -204,6 +221,9 @@ inline namespace Ic3d
                               const TVec3& ecDir,   // Light dir in eye space
                               int lightIdx,
                               int totalLightNum) const = 0;
+        //---- Fog
+        virtual void setFog(const TFogPara& para) const = 0;
+        
         //---- Render Matrix
         struct TRenderMatrix
         {

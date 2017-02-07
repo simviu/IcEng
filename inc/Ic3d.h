@@ -1,6 +1,13 @@
-//======================================================================
 //
-//======================================================================
+//  Ic3d.h
+//  DevEng
+//
+//  Created by Sherman Chen on 3/11/16.
+//  Copyright (c) 2016 Simviu Technology Inc.
+//  All rights reserved.
+//  http://www.simviu.com/dev
+//
+//
 
 #ifndef _ICUBE_H
 #define _ICUBE_H
@@ -8,7 +15,7 @@
 #include "IcRenderAdp.h"
 
 //---- TODO: Ic3d->IcEng
-namespace Ic3d {
+inline namespace Ic3d {
    	//-----------------------------------------------
     //	Util
     //-----------------------------------------------
@@ -269,6 +276,16 @@ namespace Ic3d {
 		void drawObjTree(const IcObject& obj,
 						 const TMat4& matModelParent) const;
 	};
+    //-----------------------------------------
+    //	IcCameraVR
+    //-----------------------------------------
+    class IcCameraVR : public IcCamera
+    {
+    public:
+        using IcCamera::IcCamera;
+        
+    };
+
     //-------------------------------------
     //	IcLight
     //-------------------------------------
@@ -294,7 +311,40 @@ namespace Ic3d {
     private:
         void onInit(){ pointAt(K_dfltPointAt); };
     };
- 
+    //-----------------------------------------
+    //	IcText
+    //-----------------------------------------
+    // Text implementation
+    class IcText
+    {
+    public:
+        //---- TFont
+        struct TFont
+        {
+            std::string     m_sName;
+            TSize           m_size;
+            int             m_fontSize=10;
+            // equal to m_size.h
+        };
+        IcText(){};
+        IcText(const std::string& sText="",
+               const TVec2& pos=TVec2(0,0),
+               const TColor& c=TColor(1,1,1,1),
+               int fontSize=10,
+               ctl::Sp<const TFont> pFont = nullptr ):
+            m_pFont(pFont),m_sText(sText), m_color(c),
+            m_pos(pos), m_fontSize(fontSize){};
+        virtual ~IcText() {};
+        
+        ctl::Sp<const TFont> m_pFont = nullptr;
+        std::string     m_sText;  // Font Text
+        TColor  m_color{1,1,1,1};
+        TVec2   m_pos;
+        int     m_fontSize=10;
+        //---- Static sys functions
+        static ctl::SpAry<const TFont>& getAvailableFonts();
+        virtual void onDraw() const;
+    };
     //-----------------------------------------
 	//	IcScene
 	//-----------------------------------------
@@ -309,6 +359,7 @@ namespace Ic3d {
 		virtual void onDraw();
 		virtual void onViewRect(const ctl::TRect& viewRect);
         void addObj(ctl::Sp<IcObject> p){ m_rootObj.addChildObj(p); };
+        void addText(ctl::Sp<IcText> p){ m_texts.add(p); };
         void clearObjs(){ m_rootObj.clearChildObjs(); };
         ctl::Sp<IcCamera> getCamera(){ return m_pCamera; };
         ctl::SpAry<IcLight>& getLights(){ return m_lights; };
@@ -316,26 +367,37 @@ namespace Ic3d {
         //---- Configuration
         struct TCfg
         {
-            ctl::TRect m_viewRect;
-            IcCamera::TCfg m_camCfg;
+            ctl::TRect      m_viewRect;
+            IcCamera::TCfg  m_camCfg;
+            TFogPara        m_fogPara;
         };
         TCfg m_cfg;
         
         //---- On Update call back function
         typedef std::function<void(float deltaT)> TFuncOnUpdate;
         void setOnUpdatCallBack(TFuncOnUpdate func);
+        void setTargetTexture(ctl::Sp<IcTexture> pTex)
+            { m_pTargetTex = pTex; };
+        void addSubScn(ctl::Sp<IcScene> pScn){ m_subScns.add(pScn);};
 	protected:
+        void renderObjRecur(const IcCamera& cam,
+                            const IcObject& obj,
+                            const TMat4& matModelParent) const;
         // TODO: Camera Ary
         ctl::Sp<IcCamera>	m_pCamera = ctl::makeSp<IcCamera>();
 		IcObject	m_rootObj;
         ctl::SpAry<IcLight>		m_lights;
-		size_t		m_frmCnt = 0;   // TODO: Move to IcWindow
+        ctl::SpAry<IcText>      m_texts;
+        ctl::SpAry<IcScene>     m_subScns;
+		size_t	m_frmCnt = 0;   // TODO: Move to IcWindow
         bool    m_hasInit = false;
 
         void drawLights();
-		void initCamera(const ctl::TRect& viewRect);
+	//	void initCamera(const ctl::TRect& viewRect);
         //---- On Update call back function
         TFuncOnUpdate m_pCallBk_onUpdate = nullptr;
+        //---- TODO: Not implemented yet
+        ctl::Sp<IcTexture> m_pTargetTex = nullptr;
 	};
     
     //----------------------------
@@ -433,72 +495,6 @@ namespace Ic3d {
         bool	m_isDrawing = false;
         
     };
-    //--------------------------
-    //  IcWindowVr
-    //--------------------------
-    class IcWindowVr : public Ic3d::IcWindow
-    {
-    public:
-        IcWindowVr();
-        virtual void onInit() override;
-        virtual void onWindowSize(const ctl::TSize& size) override;
-        void setRootObj(ctl::Sp<Ic3d::IcObject> p);
-        ctl::Sp<IcObject> getRootObj(){ return m_pRootObj; };
-        
-        //---- Can be override
-        void updateVrCamPos(const TVec3& pos);
-        void updateVrCamRot(const TQuat& rot);
-//        virtual void onCamAttitude(float pitch, float roll, float yaw);
-        virtual void onMouseMove(int x, int y) override;
-        //---- Vr CFG
-        struct TVrCfg
-        {
-            IcCamera::TCfg m_camCfg;
-        };
-        TVrCfg m_vrCfg;
-        
-        //---- VR window status
-        struct TVrStts
-        {
-            TVec3 m_camPos;
-            TQuat m_camRot;
-        };
-        TVrStts m_vrStts;
-        //--------------------------
-        //  IcSceneVr
-        //--------------------------
-        // Be implemented in cpp
-        class IcSceneVr_IF : public IcScene
-        {
-        public:
-            IcSceneVr_IF(bool isLeft): m_isLeft(isLeft){};
-            virtual void updateCam(const Ic3d::TVec3& camPos,
-                                   const Ic3d::TQuat& camRot){};
-        protected:
-            bool m_isLeft = false;
-        };
-    protected:
-        ctl::Sp<IcObject> m_pRootObj = ctl::makeSp<IcObject>();
-        //---- VR scene left/right
-        ctl::Sp<IcSceneVr_IF> m_vrScn[2]{nullptr, nullptr};
-        
-        //------------------------
-        //  MouseHelper
-        //------------------------
-        // simulate cam tilte by mouse
-        class CMouseHelper
-        {
-        public:
-            TQuat onMouseMove(int x, int y);
-        protected:
-            TEuler  m_camAtt;
-            TVec2   m_mousePrevPos;
-            bool    m_isFirst = true;
-        };
-        CMouseHelper m_mouseHelper;
-    };
- 
-    
     //-----------------------------------------
 	//	IcEng
 	//-----------------------------------------
@@ -518,6 +514,7 @@ namespace Ic3d {
         void onFrameEnd();
         bool hasInit() const { return m_hasInit; };
         bool isEnabled()const{ return m_isEnabled; };
+        ctl::Sp<CRenderAdp> getCurRenderAdp();
     protected:
         bool    m_hasInit = false;
         bool    m_isEnabled = false;

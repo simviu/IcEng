@@ -1,9 +1,11 @@
 //
-//  CeBinBuf.cpp
-//  EngDemo
+//  ctlBinBuf.cpp
+//  DevEng
 //
 //  Created by Sherman Chen on 2/24/16.
-//
+//  Copyright (c) 2016 Simviu Technology Inc.
+//  All rights reserved.
+//  http://www.simviu.com/dev
 //
 
 
@@ -113,7 +115,12 @@ namespace ctl {
 	//------------------------------------------
 	bool BinBuf::setAt(size_t i, TByte d)
 	{
-		if(i>=m_size) return false;
+        if(i>=m_size)
+        {
+            if(m_pFuncErrCB!=nullptr)
+                m_pFuncErrCB(*this, i, true);
+            return false;
+        }
 		m_pBuf.get()[i] = d;
 		return true;
 	}
@@ -122,7 +129,13 @@ namespace ctl {
 	//------------------------------------------
 	TByte BinBuf::operator [](size_t i) const
 	{
-		if(i>=m_size) return 0xEE;	// TODO: Report Err
+		if(i>=m_size)
+        {
+            if(m_pFuncErrCB!=nullptr)
+                m_pFuncErrCB(*this, i, false);
+        
+            return 0xEE;
+        }
 		return m_pBuf.get()[i];
 	}
 }

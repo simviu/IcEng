@@ -3,7 +3,9 @@
 //  DevEng
 //
 //  Created by Sherman Chen on 10/24/16.
-//  Copyright © 2016 Sherman Chen. All rights reserved.
+//  Copyright (c) 2016 Simviu Technology Inc.
+//  All rights reserved.
+//  http://www.simviu.com/dev
 //
 
 #ifndef DemoScene_h
@@ -16,21 +18,11 @@
 //	DemoScene
 //-----------------------------
 /*
-    *  Basic        : 1 cube model, Look at.
-    *  Transform    : Ground Plate, Multiple Model/objects, position/rotate/scale
-    *  Nested Transform : Child Object, Robot Arm Chain
-    *  Models       : Complex Demo Model, rotate.
-    *  ModelCreate  : Manually create model by Mesh build, img Texture and material.
-    *  Animation    : Cartoon Car.
-    *  Lighting     : Rotate Light, color change
+ 0)  Basic            : 1 Mix Shapes model load from OBJ.
+ 1)  Nested Transform : Child Object, Robot Arm Chain
+ 2)  ModelCreate      : Manually create model by Mesh build, img Texture and material.
+ 3)  Lighting         : Lighting demo
  
- 
- Options:
- 
- Primitive Mesh Build : Sphere/Cylinder/Cone/Plane
- Multiple Scene
- Multiple Window
- Multiple Thread
  */
 class DemoScene : public Ic3d::IcScene
 {
@@ -40,6 +32,16 @@ public:
         std::string m_sPathRes;
     };
     static TCfg m_cfg;
+    virtual void onUpdate(double deltaT) override;
+protected:
+    //---- Camera Manage, rotate around scene
+    struct CCamMng
+    {
+        void onUpdate(double deltaT, IcCamera& cam);
+    protected:
+        float m_angle = 0;  // Roate angle
+    };
+    CCamMng m_camMng;
 };
 //-----------------------------
 //	DemeScnMng
@@ -55,7 +57,6 @@ public:
         return pItem->m_pScn;
     };
     size_t getNum() const { return m_scnAry.size(); };
-    
 protected:
     struct TItem
     {
@@ -64,6 +65,41 @@ protected:
     };
     ctl::SpAry<TItem> m_scnAry;
 };
+//-----------------------------
+//	DemoBasic
+//-----------------------------
+class DemoBasic : public DemoScene
+{
+public:
+    virtual void onInit() override;
+};
+//-----------------------------
+//	DemoLights
+//-----------------------------
+class DemoLights : public DemoScene
+{
+public:
+    virtual void onInit() override;
+};
+
+//-----------------------------
+//	DemoNestedTrans
+//-----------------------------
+class DemoNestedTrans : public DemoScene
+{
+public:
+    virtual void onInit() override;
+};
+//-----------------------------
+//	DemoModelCreate
+//-----------------------------
+class DemoModelCreate : public DemoScene
+{
+public:
+    virtual void onInit() override;
+};
+
+
 
 
 #endif /* DemoScene_h */

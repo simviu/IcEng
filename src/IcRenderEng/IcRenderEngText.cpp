@@ -1,3 +1,13 @@
+//
+//  IcRenderEngText.cpp
+//  DevEng
+//
+//  Created by Sherman Chen on 9/28/16.
+//  Copyright (c) 2016 Simviu Technology Inc.
+//  All rights reserved.
+//  http://www.simviu.com/dev
+//
+
 
 #include "IcRenderEng.h"
 #define GLUT_STATIC
@@ -28,8 +38,6 @@ namespace Ic3d
 		// TODO: Text Adapter needed.
 #else // TARGET_OS_IPHONE
         // TODO: Re-implement
-        /*
-        if(m_pShader==nullptr) return;
         glColor3d(c.r, c.g, c.b);
         glColor4f(c.r, c.g, c.b, c.a);
 
@@ -39,12 +47,11 @@ namespace Ic3d
         mtl.m_ems = c;
         mtl.m_amb = c;
         mtl.m_spc = c;
-        applyMaterial(mtl);
+     //   applyMaterial(mtl);
 
         glRasterPos2f(pos.x, pos.y);
         for(auto c : str)
             glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_10, c);
-         */
 #endif // #if TARGET_IPHONE_SIMULATOR
     }
 }

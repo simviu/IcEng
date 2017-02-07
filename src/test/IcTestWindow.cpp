@@ -1,9 +1,12 @@
 //
-//  IcTestApp.cpp
+//  IcTestWindow.cpp
 //  IcEngLib
 //
 //  Created by Sherman Chen on 12/23/16.
-//  Copyright © 2016 Simviu Technology Inc. All rights reserved.
+//  Copyright (c) 2016 Simviu Technology Inc.
+//  All rights reserved.
+//  http://www.simviu.com/dev
+//
 //
 
 #include "Ic3d.h"
@@ -41,6 +44,10 @@ public:
         cam.setPos(TVec3(10, 4, -6));
         cam.lookAt(TVec3(0,0,0), TVec3(0,1,0));
         m_pObj = pObj;
+        
+        //---- Add Text
+        auto pText = ctl::makeSp<IcText>("IcEng Test");
+        addText(pText);
     	logInfo("IcTestScene::onInit() done");
 		isDbgOn = false;
     };

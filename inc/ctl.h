@@ -3,7 +3,10 @@
 //  CtLib
 //
 //  Created by Sherman Chen on 2/15/16.
-//  Copyright (c) 2016 Sherman Chen. All rights reserved.
+//  Copyright (c) 2016 Simviu Technology Inc.
+//  All rights reserved.
+//  http://www.simviu.com/dev
+//
 //
 #pragma once
 
@@ -236,9 +239,16 @@ inline namespace ctl {
         size_t size()const { return m_size; };
         TByte* getBuf() const{ return m_pBuf.get(); };
         void clear(){ m_pBuf = nullptr; m_size=0; };
+        
+        //---- Call back of exceed boundry error
+        typedef std::function<void(const BinBuf& buf, size_t i, bool isWr)>  TErrFuncCB;
+        void setFuncCB(TErrFuncCB pFunc)
+            { m_pFuncErrCB = pFunc; };
+        
     protected:
         size_t	m_size = 0;
         std::unique_ptr<TByte> m_pBuf = nullptr;
+        TErrFuncCB m_pFuncErrCB = nullptr;
         
     };
     

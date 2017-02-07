@@ -3,7 +3,9 @@
 //  DevEng
 //
 //  Created by Sherman Chen on 9/20/16.
-//  Copyright © 2016 Sherman Chen. All rights reserved.
+//  Copyright (c) 2016 Simviu Technology Inc.
+//  All rights reserved.
+//  http://www.simviu.com/dev
 //
 
 #include "Ic3d.h"
@@ -22,6 +24,7 @@ namespace Ic3d
 		ctl::Sp<CRenderAdp::CTexAdp> m_pDfltTexAdp = nullptr;
 		auto getDfltTexAdp()-> decltype(m_pDfltTexAdp)
 		{
+            //---- TODO: Texture auto resize 2^n
 			if(m_pDfltTexAdp!=nullptr)
 				return m_pDfltTexAdp;
 			

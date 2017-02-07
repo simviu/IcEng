@@ -1,12 +1,12 @@
-/*
- *  icube_model.cpp
- *  B_O_Britain
- *
- *  Created by Sherman Chen on 2/22/10.
- *  Copyright 2010 __MyCompanyName__. All rights reserved.
- *
- */
-
+//
+//  IcModel.cpp
+//  DevEng
+//
+//  Created by Sherman Chen on 9/30/16.
+//  Copyright (c) 2016 Simviu Technology Inc.
+//  All rights reserved.
+//  http://www.simviu.com/dev
+//
 
 #include "Ic3d.h"
 

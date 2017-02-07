@@ -1,8 +1,11 @@
 //
-//  CeCG.cpp
+//  ctlUtil.cpp
 //  EngDemo
 //
 //  Created by Sherman Chen on 2/24/16.
+//  Copyright (c) 2016 Simviu Technology Inc.
+//  All rights reserved.
+//  http://www.simviu.com/dev
 //
 //
 

@@ -3,7 +3,9 @@
 //  DevEng
 //
 //  Created by Sherman Chen on 3/11/16.
-//  Copyright (c) 2016 Sherman Chen. All rights reserved.
+//  Copyright (c) 2016 Simviu Technology Inc.
+//  All rights reserved.
+//  http://www.simviu.com/dev
 //
 
 
@@ -61,6 +63,15 @@ namespace Ic3d
         pRE->clearScreen(bkColor);
 
     }
+    //----------------------------
+    // getCurRenderAdp
+    //----------------------------
+    ctl::Sp<CRenderAdp> IcEng::getCurRenderAdp()
+    {
+        auto pRE= IcRenderEng::getInstance();
+        return pRE->getCurRenderAdp();
+    }
+
     /*
     //----------------------------
     // IcFrameRateCalc::onNewFrame

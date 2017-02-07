@@ -3,7 +3,9 @@
 //  DevEng
 //
 //  Created by Sherman Chen on 5/10/16.
-//  Copyright (c) 2016 Sherman Chen. All rights reserved.
+//  Copyright (c) 2016 Simviu Technology Inc.
+//  All rights reserved.
+//  http://www.simviu.com/dev
 //
 
 #include "Ic3d.h"
@@ -37,10 +39,12 @@ inline namespace Ic3d
         m_cfg.m_viewRect = viewRect;
 		ctl::TSize viewSize = viewRect.getSize();
         const auto& camCfg = m_cfg.m_camCfg;
+        
+        //---- TODO: move to drawUpdate()?
 		m_pCamera->setFrustum(viewSize, camCfg);
-		
 	}
 
+    /*
 	//---------------------------------------------
 	//	initCamera()
 	//---------------------------------------------
@@ -49,7 +53,10 @@ inline namespace Ic3d
 		ctl::TSize viewSize = viewRect.getSize();
         const auto& camCfg = m_cfg.m_camCfg;
         m_pCamera->setFrustum(viewSize, camCfg);
+        
+        
 	}
+     */
 	
     //-----------------------------------------
     //	drawLight
@@ -73,6 +80,30 @@ inline namespace Ic3d
         
     }
 
+    //-------------------------------------------
+    //	renderObjRecur
+    //-------------------------------------------
+    void IcScene::renderObjRecur(const IcCamera& cam,
+                                 const IcObject& obj,
+                                 const TMat4& matModelParent) const
+    {
+        auto pRIF = IcRenderEng::getInstance();
+        auto pAdp = pRIF->getCurRenderAdp();
+        //----- Draw this
+        TMat4 matModel = matModelParent * obj.calcMat();
+        CRenderAdp::TRenderMatrix rm;
+        rm.m_matProj  = cam.getProjMat();
+        rm.m_matModel = matModel;
+        rm.m_matView  = cam.getViewMat();
+        pAdp->applyMatrix(rm);
+        obj.draw();
+        
+        //---- Draw Childs
+        auto& childs = obj.getChildObjs();
+        for(auto pObj : childs.all())
+            renderObjRecur(cam, *pObj, matModel);
+    }
+    
 	
 	//-----------------------------------------
 	//	onDraw
@@ -95,6 +126,10 @@ inline namespace Ic3d
 		dbgFrmCnt ++;
 		auto pRE= IcRenderEng::getInstance();
         pRE->setViewPort(m_cfg.m_viewRect);
+        //---- Set fog
+        auto pEng = IcRenderEng::getInstance();
+        auto pAdp = pEng->getCurRenderAdp();
+        pAdp->setFog(m_cfg.m_fogPara);
 		
 		//-----------------
 		//	Draw Light
@@ -104,7 +139,19 @@ inline namespace Ic3d
 		//-----------------
 		//	Draw Obj
 		//-----------------
-		m_pCamera->drawObj(m_rootObj);
-		m_frmCnt ++;
+	//	m_pCamera->drawObj(m_rootObj);
+        renderObjRecur(*m_pCamera, m_rootObj, TMat4());
+        //-----------------
+        //	Draw Text
+        //-----------------
+        for(auto pText : m_texts.getAry())
+            pText->onDraw();
+        //-----------------
+        //	Draw Sub Scenes
+        //-----------------
+        for(auto pScn : m_subScns.getAry())
+            pScn->onDraw();
+       
+        m_frmCnt ++;
 	}
 } // namespace Ic3d

@@ -1,3 +1,15 @@
+//
+//  IcShaderFrag.vsh
+//  IcEngLib
+//
+//  Created by Sherman Chen on 12/24/16.
+//  Copyright (c) 2016 Simviu Technology Inc.
+//  All rights reserved.
+//  http://www.simviu.com/dev
+//
+//
+//
+
 
  #ifdef GL_ES
  precision highp float;
@@ -38,12 +50,41 @@ struct TLight
     TMaterial   mat;
 };
 
+
+//-------------------------
+//  TFogPara
+//-------------------------
+struct TFogPara
+{
+    float   start;
+    float   k_linear;
+    float   k_exp;
+    vec4    color;
+};
+
 //-------------------------
 //  Uniform of Material/Light
 //-------------------------
 uniform TMaterial   u_material;
 uniform TLight      u_lightAry[K_MAX_LIGHTS];
+uniform TFogPara    u_fogPara;
 uniform int         u_lightNum;
+
+
+//-------------------------
+//  calcFog
+//-------------------------
+vec4 calcFog(TFogPara para, vec4 c_in, vec4 ecVert)
+{
+    float L = length(ecVert)-para.start;
+    float f0 = para.k_linear*L; // Linear
+    float f1 = 1.0 - 1.0/exp(L*para.k_exp);  // Exp
+    float f = f0 + f1;
+  //  f = 0.7; // dbg
+    vec4 c = mix(c_in, para.color, f);
+    return c;
+}
+
 
 //-------------------------
 //  spotLightCoef
@@ -106,8 +147,8 @@ void main()
     vec4 c = vec4(0,0,0,1);
     for(int i = 0; i < u_lightNum; ++i)
         c += calcColor(u_material, u_lightAry[i], v_ecNormal, v_ecVert);
-    
     vec4 cAlpha = vec4(c.rgb, u_material.alpha);
-    vec4 cTex = texture2D(u_texSampler, v_texCo);
-	gl_FragColor = cTex * cAlpha;
+    c = texture2D(u_texSampler, v_texCo);
+    c = calcFog(u_fogPara, c, v_ecVert);
+	gl_FragColor = c * cAlpha;
 }
