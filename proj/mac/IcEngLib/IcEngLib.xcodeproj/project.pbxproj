@@ -280,7 +280,6 @@
 /* Begin PBXFileReference section */
 		9C33E5211E3F4CF600DEC713 /* IcText.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcText.cpp; sourceTree = "<group>"; };
 		9C53F6BB1DCB14FB006EAF17 /* libIcEngLib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIcEngLib.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		9C7DB66B1E3065B0008079A4 /* IcSceneVr.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IcSceneVr.h; sourceTree = "<group>"; };
 		9C8CC3AE1DEE8115002583F2 /* IcEngTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = IcEngTest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C8CC3EC1DEE862D002583F2 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
 		9CAE4F1F1DCB201B003F7B38 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
@@ -744,7 +743,6 @@
 				9CF604EB1E248125008A662C /* IcTestWindow.h */,
 				9CF604EC1E248125008A662C /* lodepng.h */,
 				9CF604ED1E248125008A662C /* OpenGLinc.h */,
-				9C7DB66B1E3065B0008079A4 /* IcSceneVr.h */,
 			);
 			path = core;
 			sourceTree = "<group>";
