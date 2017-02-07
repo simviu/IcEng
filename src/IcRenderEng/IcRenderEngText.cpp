@@ -38,6 +38,8 @@ namespace Ic3d
 		// TODO: Text Adapter needed.
 #else // TARGET_OS_IPHONE
         // TODO: Re-implement
+        // TODO: not valid in Linux
+        /*
         glColor3d(c.r, c.g, c.b);
         glColor4f(c.r, c.g, c.b, c.a);
 
@@ -52,6 +54,7 @@ namespace Ic3d
         glRasterPos2f(pos.x, pos.y);
         for(auto c : str)
             glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_10, c);
+            */
 #endif // #if TARGET_IPHONE_SIMULATOR
     }
 }

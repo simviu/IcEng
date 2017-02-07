@@ -59,7 +59,6 @@ add_library(IcEng SHARED
 			${ICENGLIB}/src/ctl/ctlTest_img.cpp
 			${ICENGLIB}/src/ctl/ctlUtil.cpp
 			${ICENGLIB}/src/ctl/lodepng.cpp
-			${ICENGLIB}/src/IcRenderEng/IcRenderAdp.cpp
 			${ICENGLIB}/src/IcRenderEng/IcRenderAdpStd.cpp
 			${ICENGLIB}/src/IcRenderEng/IcRenderAdpStd_Mesh.cpp
 			${ICENGLIB}/src/IcRenderEng/IcRenderAdpStd_Tex.cpp
@@ -78,12 +77,12 @@ add_library(IcEng SHARED
 			${ICENGLIB}/src/Ic3d/IcModelLoaderObj.cpp
 			${ICENGLIB}/src/Ic3d/IcObject.cpp
 			${ICENGLIB}/src/Ic3d/IcScene.cpp
+			${ICENGLIB}/src/Ic3d/IcText.cpp
 			${ICENGLIB}/src/Ic3d/IcTexture.cpp
 			${ICENGLIB}/src/Ic3d/IcUtil.cpp
 			${ICENGLIB}/src/IcWindow/IcWindow.cpp
 			${ICENGLIB}/src/IcWindow/IcWinMng.cpp
-			${ICENGLIB}/src/IcWindow/pc/IcWinMngGlut.cpp
-			${ICENGLIB}/src/IcWindow/pc/IcWindowPC.cpp
+			${ICENGLIB}/src/IcWindow/pc/IcWinMngPC.cpp
 			)
 
 add_executable(IcEngTest 

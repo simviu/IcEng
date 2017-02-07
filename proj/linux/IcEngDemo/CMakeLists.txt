@@ -55,14 +55,10 @@ add_executable(IcEngDemo
 	${ICENGDEMO}/src/pc/main.cpp		
 	${ICENGDEMO}/src/DemoWindow.cpp		
 	${ICENGDEMO}/src/DemoBasic.cpp
-	${ICENGDEMO}/src/DemoAnimation.cpp
-	${ICENGDEMO}/src/DemoBasic.cpp
 	${ICENGDEMO}/src/DemoLights.cpp
 	${ICENGDEMO}/src/DemoModelCreate.cpp
-	${ICENGDEMO}/src/DemoModels.cpp
 	${ICENGDEMO}/src/DemoNestedTrans.cpp
 	${ICENGDEMO}/src/DemoScene.cpp
-	${ICENGDEMO}/src/DemoTransform.cpp
 	)
 
 
