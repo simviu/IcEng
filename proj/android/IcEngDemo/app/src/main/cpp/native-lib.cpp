@@ -9,7 +9,7 @@ extern "C" JNIEXPORT void JNICALL Java_com_simviu_IcEngDemo_DemoActivity_initApp
 {
     std::string sPathRes = IcEngJNI::jstr2str(env, jsPathRes) + "/";
     l_pWin = ctl::makeSp<DemoWindow>(sPathRes);
-    l_pWin->setDemoSel(4);
+    l_pWin->setDemoSel(0);
     IcEngJNI::setAppInstance(l_pWin.get());
 
 
