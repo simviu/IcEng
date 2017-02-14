@@ -14,7 +14,7 @@
 		9CF606B11E248603008A662C /* DemoModelCreate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF6069A1E248603008A662C /* DemoModelCreate.cpp */; };
 		9CF606B31E248603008A662C /* DemoNestedTrans.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF6069E1E248603008A662C /* DemoNestedTrans.cpp */; };
 		9CF606B41E248603008A662C /* DemoScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF606A01E248603008A662C /* DemoScene.cpp */; };
-		9CF606B61E248603008A662C /* DemoWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF606A41E248603008A662C /* DemoWindow.cpp */; };
+		9CF606B61E248603008A662C /* DemoApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF606A41E248603008A662C /* DemoApp.cpp */; };
 		9CF606B91E248603008A662C /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF606AD1E248603008A662C /* main.cpp */; };
 		9CF606BA1E2488BB008A662C /* IcShader in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9CF606921E2485E2008A662C /* IcShader */; };
 		9CF606BB1E2488BE008A662C /* IcDemo in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9CF606911E2485CE008A662C /* IcDemo */; };
@@ -46,8 +46,8 @@
 		9CF6069E1E248603008A662C /* DemoNestedTrans.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DemoNestedTrans.cpp; sourceTree = "<group>"; };
 		9CF606A01E248603008A662C /* DemoScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DemoScene.cpp; sourceTree = "<group>"; };
 		9CF606A11E248603008A662C /* DemoScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoScene.h; sourceTree = "<group>"; };
-		9CF606A41E248603008A662C /* DemoWindow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DemoWindow.cpp; sourceTree = "<group>"; };
-		9CF606A51E248603008A662C /* DemoWindow.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DemoWindow.hpp; sourceTree = "<group>"; };
+		9CF606A41E248603008A662C /* DemoApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DemoApp.cpp; sourceTree = "<group>"; };
+		9CF606A51E248603008A662C /* DemoApp.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DemoApp.hpp; sourceTree = "<group>"; };
 		9CF606AD1E248603008A662C /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -109,8 +109,8 @@
 				9CF6069E1E248603008A662C /* DemoNestedTrans.cpp */,
 				9CF606A01E248603008A662C /* DemoScene.cpp */,
 				9CF606A11E248603008A662C /* DemoScene.h */,
-				9CF606A41E248603008A662C /* DemoWindow.cpp */,
-				9CF606A51E248603008A662C /* DemoWindow.hpp */,
+				9CF606A41E248603008A662C /* DemoApp.cpp */,
+				9CF606A51E248603008A662C /* DemoApp.hpp */,
 				9CF606AC1E248603008A662C /* pc */,
 			);
 			name = src;
@@ -190,7 +190,7 @@
 				9CF606B31E248603008A662C /* DemoNestedTrans.cpp in Sources */,
 				9CF606B11E248603008A662C /* DemoModelCreate.cpp in Sources */,
 				9CF606AF1E248603008A662C /* DemoBasic.cpp in Sources */,
-				9CF606B61E248603008A662C /* DemoWindow.cpp in Sources */,
+				9CF606B61E248603008A662C /* DemoApp.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
