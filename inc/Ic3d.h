@@ -508,10 +508,17 @@ namespace Ic3d {
         void onScreenSize(const ctl::TSize& sz);
         void initWithScn(ctl::Sp<IcScene> pScn);
         //-----------------
+        // Cmd interface
+        //-----------------
+        // simple command interface with outside by string,
+        // could be JSON or simple text cmd, by your implementation.
+        // Return string back.
+        virtual std::string onCmd(const std::string& sCmd){ return "OK";};
+        //-----------------
         // runCmd()
         //-----------------
         // For PC, not mobile
-        int runCmd(int argc, char **argv);
+        virtual int runCmd(int argc, char **argv);
     protected:
     };
     //---- This global function should implemented and link

@@ -37,7 +37,7 @@ protected:
     //---- Camera Manage, rotate around scene
     struct CCamMng
     {
-        void onUpdate(double deltaT, IcCamera& cam);
+        void onUpdate(double deltaT, Ic3d::IcCamera& cam);
     protected:
         float m_angle = 0;  // Roate angle
     };

@@ -8,7 +8,7 @@
 //  http://www.simviu.com/dev
 //
 
-#include "DemoWindow.hpp"
+#include "DemoApp.hpp"
 #include "DemoScene.h"
 
 using namespace std;
@@ -16,27 +16,10 @@ using namespace ctl;
 using namespace Ic3d;
 
 //-----------------------------------
-//  DemoWindow
-//-----------------------------------
-DemoWindow::DemoWindow(const std::string& sPathRes)
-:m_sPathRes(sPathRes)
-{
-    //---- Init demo list
-    m_demoAry = {
-        {"Basic"},              // 0
-        {"Nested Transform"},   // 1
-        {"Model Create"},       // 2
-        {"Lights"},             // 3
-    };
- 
-}
-
-//-----------------------------------
 //  createDemoScn
 //-----------------------------------
-void DemoWindow::createDemoScn(int sel)
+ctl::Sp<IcScene> DemoApp::createDemoScn(int sel)
 {
-    DemoScene::m_cfg.m_sPathRes = m_sPathRes;
     ctl::Sp<IcScene> pScn = nullptr;
     switch (sel) {
         case 0: pScn = ctl::makeSp<DemoBasic>();        break;
@@ -46,18 +29,49 @@ void DemoWindow::createDemoScn(int sel)
         default:
             break;
     }
-    if(pScn==nullptr) return;
-    removeAllScene();
-    addScene(pScn);
+    return pScn;
 }
+
+//-----------------------------------
+//  onCmd
+//-----------------------------------
+std::string DemoApp::onCmd(const std::string& sCmd)
+{
+    string sRet = "OK";
+    if(sCmd=="") return sRet;
+    int i = sCmd[0]-'0';
+    auto pScn = createDemoScn(i);
+
+    return sRet;
+}
+
 //-----------------------------------
 //  onInit
 //-----------------------------------
-void DemoWindow::onInit()
+void DemoApp::onInit()
 {
-    IcWindow::onInit();
-    logInfo("DemoWindow::onInit()");
-    createDemoScn(m_demoSel);
-    logInfo("DemoWindow::onInit() done");
+    IcApp::onInit();
+    //---- Init demo list
+    m_demoAry = {
+        {"Basic"},              // 0
+        {"Nested Transform"},   // 1
+        {"Model Create"},       // 2
+        {"Lights"},             // 3
+    };
+    
+    logInfo("DemoApp::onInit()");
+    auto pWin = makeSp<IcWindow>();
+    auto pScn = createDemoScn(m_demoSel);
+    pWin->addScene(pScn);
+    addWindow(pWin);
+    logInfo("DemoApp::onInit() done");
+}
+//---- Instanciatiation of App
+static DemoApp l_app;
+namespace Ic3d {
+    extern IcApp& getIcAppInstance()
+    {
+        return l_app;
+    }
 }
 

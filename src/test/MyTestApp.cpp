@@ -63,16 +63,9 @@ class MyTestApp : public IcApp
     //---- Override onInit
     virtual void onInit() override
     {
-        // 1. Call super onInit()
         IcApp::onInit();
-        // 2. Create Window
-        auto pWin = makeSp<IcWindow>();
-        // 3. Create our scene
-        auto pScn = ctl::makeSp<MyTestScn>();
-        // 4. add scene to the window
-        pWin->addScene(pScn);
-        // 5. add the window to App
-        addWindow(pWin);
+        auto pScn = makeSp<MyTestScn>();
+        initWithScn(pScn);
     };
 };
 //---- Put our App instance here statically
