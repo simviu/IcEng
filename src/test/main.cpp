@@ -1,24 +1,19 @@
 //
 //  main.cpp
-//  DevEng
+//  IcEngLib
 //
-//  Created by Sherman Chen on 11/30/16.
-//  Copyright (c) 2016 Simviu Technology Inc.
-//  All rights reserved.
-//  http://www.simviu.com/dev
-//
+//  Created by Sherman Chen on 2/14/17.
+//  Copyright © 2017 Simviu Technology Inc. All rights reserved.
 //
 
 #include "Ic3d.h"
-#include "IcTestWindow.h"
 
-using namespace Ic3d;
 
 //--------------------
 //  main
 //--------------------
 int main(int argc, char **argv)
 {
-    auto pWin = ctl::makeSp<IcTestWindow>();
-    return IcWindow::runCmd(argc, argv, pWin);
+    auto& app = Ic3d::getIcAppInstance();
+    return app.runCmd(argc, argv);
 }

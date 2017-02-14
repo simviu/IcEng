@@ -29,7 +29,7 @@
 #include <mutex>
 #include <fstream>
 
-inline namespace ctl {
+namespace ctl {
 	//-----------------------------
 	//	String/value convertion
 	//-----------------------------

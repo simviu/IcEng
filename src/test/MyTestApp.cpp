@@ -10,9 +10,10 @@
 //
 
 #include "Ic3d.h"
-#include "IcTestWindow.h"
+
 using namespace Ic3d;
 using namespace ctl;
+
 static float K_rotSpeed = 30.0;
 
 //---- TODO: put into IcTestApp header without cpp,
@@ -70,15 +71,29 @@ protected:
     float m_degree = 0; // rotation degree
 };
 //---------------------------------
-//  IcTestWindow
+//  MyTestApp
 //---------------------------------
-void IcTestWindow::onInit()
+class MyTestApp : public IcApp
 {
-    logInfo("IcTestWindow::onInit()");
-    // Call parent is necessary
-    IcWindow::onInit();
-    auto pScn = ctl::makeSp<IcTestScene>();
-    addScene(pScn);
-    logInfo("IcTestWindow::onInit() done");
+    //---- Override onInit
+    virtual void onInit() override
+    {
+        IcApp::onInit();
+        auto pScn = ctl::makeSp<IcTestScene>();
+        initWithScn(pScn);
+    };
+};
+//---- Put our App instance here statically
+static MyTestApp l_app;
+
+//---------------------------------
+//  Implementation of IcApp instance
+//---------------------------------
+namespace Ic3d
+{
+    IcApp& getIcAppInstance()
+    {
+        return l_app;
+    }
 }
 

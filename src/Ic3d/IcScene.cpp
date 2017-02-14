@@ -10,7 +10,7 @@
 
 #include "Ic3d.h"
 #include "IcRenderEng.h"
-inline namespace Ic3d
+namespace Ic3d
 {
 	using namespace std;
 	using namespace ctl;

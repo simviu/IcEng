@@ -24,6 +24,16 @@
 /* Begin PBXBuildFile section */
 		9C33E5221E3F4CF600DEC713 /* IcText.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C33E5211E3F4CF600DEC713 /* IcText.cpp */; };
 		9C33E5231E3F4CF600DEC713 /* IcText.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C33E5211E3F4CF600DEC713 /* IcText.cpp */; };
+		9C3E25F61E52E8B300B1C17E /* IcWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C3E25EA1E52E8B300B1C17E /* IcWindow.cpp */; };
+		9C3E25F71E52E8B300B1C17E /* IcWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C3E25EA1E52E8B300B1C17E /* IcWindow.cpp */; };
+		9C3E25F81E52E8B300B1C17E /* IcWinMng.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C3E25EB1E52E8B300B1C17E /* IcWinMng.cpp */; };
+		9C3E25F91E52E8B300B1C17E /* IcWinMng.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C3E25EB1E52E8B300B1C17E /* IcWinMng.cpp */; };
+		9C3E25FE1E52E8B300B1C17E /* IcWinMngPC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C3E25F11E52E8B300B1C17E /* IcWinMngPC.cpp */; };
+		9C3E25FF1E52E8B300B1C17E /* IcWinMngPC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C3E25F11E52E8B300B1C17E /* IcWinMngPC.cpp */; };
+		9C3E26021E52ED0B00B1C17E /* IcApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C3E26011E52ED0B00B1C17E /* IcApp.cpp */; };
+		9C3E26031E52ED0B00B1C17E /* IcApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C3E26011E52ED0B00B1C17E /* IcApp.cpp */; };
+		9C3E26051E52EF1300B1C17E /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C3E26041E52EF1300B1C17E /* main.cpp */; };
+		9C3E26061E52EF1300B1C17E /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C3E26041E52EF1300B1C17E /* main.cpp */; };
 		9C8CC3E31DEE81ED002583F2 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CAE4F1F1DCB201B003F7B38 /* OpenGL.framework */; };
 		9C8CC3ED1DEE862D002583F2 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C8CC3EC1DEE862D002583F2 /* GLUT.framework */; };
 		9CAE4F201DCB201B003F7B38 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CAE4F1F1DCB201B003F7B38 /* OpenGL.framework */; };
@@ -83,18 +93,10 @@
 		9CF604CC1E24804C008A662C /* IcRenderEngText.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF604811E24804B008A662C /* IcRenderEngText.cpp */; };
 		9CF604CD1E24804C008A662C /* IcShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF604821E24804B008A662C /* IcShader.cpp */; };
 		9CF604CE1E24804C008A662C /* IcShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF604821E24804B008A662C /* IcShader.cpp */; };
-		9CF604D51E24804C008A662C /* IcWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF604891E24804B008A662C /* IcWindow.cpp */; };
-		9CF604D61E24804C008A662C /* IcWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF604891E24804B008A662C /* IcWindow.cpp */; };
-		9CF604D71E24804C008A662C /* IcWinMng.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF6048A1E24804B008A662C /* IcWinMng.cpp */; };
-		9CF604D81E24804C008A662C /* IcWinMng.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF6048A1E24804B008A662C /* IcWinMng.cpp */; };
-		9CF604DF1E24804C008A662C /* IcWinMngPC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF604911E24804B008A662C /* IcWinMngPC.cpp */; };
-		9CF604E01E24804C008A662C /* IcWinMngPC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF604911E24804B008A662C /* IcWinMngPC.cpp */; };
-		9CF604E11E24804C008A662C /* IcTestWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF604931E24804C008A662C /* IcTestWindow.cpp */; };
-		9CF604E21E24804C008A662C /* IcTestWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF604931E24804C008A662C /* IcTestWindow.cpp */; };
-		9CF604E41E24804C008A662C /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF604941E24804C008A662C /* main.cpp */; };
+		9CF604E11E24804C008A662C /* MyTestApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF604931E24804C008A662C /* MyTestApp.cpp */; };
+		9CF604E21E24804C008A662C /* MyTestApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF604931E24804C008A662C /* MyTestApp.cpp */; };
 		9CF605F41E248125008A662C /* IcRenderAdpStd.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF604E91E248125008A662C /* IcRenderAdpStd.h */; };
 		9CF605F51E248125008A662C /* IcRenderEng.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF604EA1E248125008A662C /* IcRenderEng.h */; };
-		9CF605F61E248125008A662C /* IcTestWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF604EB1E248125008A662C /* IcTestWindow.h */; };
 		9CF605F71E248125008A662C /* lodepng.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF604EC1E248125008A662C /* lodepng.h */; };
 		9CF605F81E248125008A662C /* OpenGLinc.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF604ED1E248125008A662C /* OpenGLinc.h */; };
 		9CF605F91E248125008A662C /* ctl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF604EE1E248125008A662C /* ctl.h */; };
@@ -243,7 +245,6 @@
 		9CF606881E248125008A662C /* vec4.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9CF605EE1E248125008A662C /* vec4.hpp */; };
 		9CF606891E248125008A662C /* vector_relational.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9CF605EF1E248125008A662C /* vector_relational.hpp */; };
 		9CF6068C1E248125008A662C /* IcRenderAdp.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF605F21E248125008A662C /* IcRenderAdp.h */; };
-		9CF6068D1E248125008A662C /* IcViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF605F31E248125008A662C /* IcViewController.h */; };
 		9CF606901E248286008A662C /* IcShader in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9CF6068F1E24827A008A662C /* IcShader */; };
 /* End PBXBuildFile section */
 
@@ -279,6 +280,17 @@
 
 /* Begin PBXFileReference section */
 		9C33E5211E3F4CF600DEC713 /* IcText.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcText.cpp; sourceTree = "<group>"; };
+		9C3E25E81E52E8B300B1C17E /* IcEngJNI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcEngJNI.cpp; sourceTree = "<group>"; };
+		9C3E25E91E52E8B300B1C17E /* IcWinMngAndroid.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcWinMngAndroid.cpp; sourceTree = "<group>"; };
+		9C3E25EA1E52E8B300B1C17E /* IcWindow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcWindow.cpp; sourceTree = "<group>"; };
+		9C3E25EB1E52E8B300B1C17E /* IcWinMng.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcWinMng.cpp; sourceTree = "<group>"; };
+		9C3E25ED1E52E8B300B1C17E /* IcViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = IcViewController.mm; sourceTree = "<group>"; };
+		9C3E25EE1E52E8B300B1C17E /* IcViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IcViewController.xib; sourceTree = "<group>"; };
+		9C3E25EF1E52E8B300B1C17E /* IcWinMngIOS.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcWinMngIOS.cpp; sourceTree = "<group>"; };
+		9C3E25F11E52E8B300B1C17E /* IcWinMngPC.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcWinMngPC.cpp; sourceTree = "<group>"; };
+		9C3E26001E52E97B00B1C17E /* IcViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IcViewController.h; sourceTree = "<group>"; };
+		9C3E26011E52ED0B00B1C17E /* IcApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcApp.cpp; sourceTree = "<group>"; };
+		9C3E26041E52EF1300B1C17E /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		9C53F6BB1DCB14FB006EAF17 /* libIcEngLib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIcEngLib.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C8CC3AE1DEE8115002583F2 /* IcEngTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = IcEngTest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C8CC3EC1DEE862D002583F2 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
@@ -311,14 +323,9 @@
 		9CF604801E24804B008A662C /* IcRenderEng.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcRenderEng.cpp; sourceTree = "<group>"; };
 		9CF604811E24804B008A662C /* IcRenderEngText.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcRenderEngText.cpp; sourceTree = "<group>"; };
 		9CF604821E24804B008A662C /* IcShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcShader.cpp; sourceTree = "<group>"; };
-		9CF604891E24804B008A662C /* IcWindow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcWindow.cpp; sourceTree = "<group>"; };
-		9CF6048A1E24804B008A662C /* IcWinMng.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcWinMng.cpp; sourceTree = "<group>"; };
-		9CF604911E24804B008A662C /* IcWinMngPC.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcWinMngPC.cpp; sourceTree = "<group>"; };
-		9CF604931E24804C008A662C /* IcTestWindow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcTestWindow.cpp; sourceTree = "<group>"; };
-		9CF604941E24804C008A662C /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		9CF604931E24804C008A662C /* MyTestApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MyTestApp.cpp; sourceTree = "<group>"; };
 		9CF604E91E248125008A662C /* IcRenderAdpStd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IcRenderAdpStd.h; sourceTree = "<group>"; };
 		9CF604EA1E248125008A662C /* IcRenderEng.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IcRenderEng.h; sourceTree = "<group>"; };
-		9CF604EB1E248125008A662C /* IcTestWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IcTestWindow.h; sourceTree = "<group>"; };
 		9CF604EC1E248125008A662C /* lodepng.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lodepng.h; sourceTree = "<group>"; };
 		9CF604ED1E248125008A662C /* OpenGLinc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenGLinc.h; sourceTree = "<group>"; };
 		9CF604EE1E248125008A662C /* ctl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ctl.h; sourceTree = "<group>"; };
@@ -577,7 +584,6 @@
 		9CF605EF1E248125008A662C /* vector_relational.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = vector_relational.hpp; sourceTree = "<group>"; };
 		9CF605F01E248125008A662C /* Ic3d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ic3d.h; sourceTree = "<group>"; };
 		9CF605F21E248125008A662C /* IcRenderAdp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IcRenderAdp.h; sourceTree = "<group>"; };
-		9CF605F31E248125008A662C /* IcViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IcViewController.h; sourceTree = "<group>"; };
 		9CF6068F1E24827A008A662C /* IcShader */ = {isa = PBXFileReference; lastKnownFileType = folder; name = IcShader; path = ../../../IcShader; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -602,6 +608,46 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9C3E25E61E52E8B300B1C17E /* IcApp */ = {
+			isa = PBXGroup;
+			children = (
+				9C3E25E71E52E8B300B1C17E /* android */,
+				9C3E25EA1E52E8B300B1C17E /* IcWindow.cpp */,
+				9C3E25EB1E52E8B300B1C17E /* IcWinMng.cpp */,
+				9C3E25EC1E52E8B300B1C17E /* iOS */,
+				9C3E25F01E52E8B300B1C17E /* pc */,
+				9C3E26011E52ED0B00B1C17E /* IcApp.cpp */,
+			);
+			path = IcApp;
+			sourceTree = "<group>";
+		};
+		9C3E25E71E52E8B300B1C17E /* android */ = {
+			isa = PBXGroup;
+			children = (
+				9C3E25E81E52E8B300B1C17E /* IcEngJNI.cpp */,
+				9C3E25E91E52E8B300B1C17E /* IcWinMngAndroid.cpp */,
+			);
+			path = android;
+			sourceTree = "<group>";
+		};
+		9C3E25EC1E52E8B300B1C17E /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				9C3E25ED1E52E8B300B1C17E /* IcViewController.mm */,
+				9C3E25EE1E52E8B300B1C17E /* IcViewController.xib */,
+				9C3E25EF1E52E8B300B1C17E /* IcWinMngIOS.cpp */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		9C3E25F01E52E8B300B1C17E /* pc */ = {
+			isa = PBXGroup;
+			children = (
+				9C3E25F11E52E8B300B1C17E /* IcWinMngPC.cpp */,
+			);
+			path = pc;
+			sourceTree = "<group>";
+		};
 		9C53F6B21DCB14FB006EAF17 = {
 			isa = PBXGroup;
 			children = (
@@ -634,10 +680,10 @@
 		9CF604621E24804B008A662C /* src */ = {
 			isa = PBXGroup;
 			children = (
+				9C3E25E61E52E8B300B1C17E /* IcApp */,
 				9CF604631E24804B008A662C /* ctl */,
 				9CF6046C1E24804B008A662C /* Ic3d */,
 				9CF6047A1E24804B008A662C /* IcRenderEng */,
-				9CF604851E24804B008A662C /* IcWindow */,
 				9CF604921E24804C008A662C /* test */,
 			);
 			name = src;
@@ -694,29 +740,11 @@
 			path = IcRenderEng;
 			sourceTree = "<group>";
 		};
-		9CF604851E24804B008A662C /* IcWindow */ = {
-			isa = PBXGroup;
-			children = (
-				9CF604891E24804B008A662C /* IcWindow.cpp */,
-				9CF6048A1E24804B008A662C /* IcWinMng.cpp */,
-				9CF6048F1E24804B008A662C /* pc */,
-			);
-			path = IcWindow;
-			sourceTree = "<group>";
-		};
-		9CF6048F1E24804B008A662C /* pc */ = {
-			isa = PBXGroup;
-			children = (
-				9CF604911E24804B008A662C /* IcWinMngPC.cpp */,
-			);
-			path = pc;
-			sourceTree = "<group>";
-		};
 		9CF604921E24804C008A662C /* test */ = {
 			isa = PBXGroup;
 			children = (
-				9CF604931E24804C008A662C /* IcTestWindow.cpp */,
-				9CF604941E24804C008A662C /* main.cpp */,
+				9CF604931E24804C008A662C /* MyTestApp.cpp */,
+				9C3E26041E52EF1300B1C17E /* main.cpp */,
 			);
 			path = test;
 			sourceTree = "<group>";
@@ -729,7 +757,6 @@
 				9CF604EF1E248125008A662C /* glm */,
 				9CF605F01E248125008A662C /* Ic3d.h */,
 				9CF605F21E248125008A662C /* IcRenderAdp.h */,
-				9CF605F31E248125008A662C /* IcViewController.h */,
 			);
 			name = inc;
 			path = ../../../inc;
@@ -738,9 +765,9 @@
 		9CF604E81E248125008A662C /* core */ = {
 			isa = PBXGroup;
 			children = (
+				9C3E26001E52E97B00B1C17E /* IcViewController.h */,
 				9CF604E91E248125008A662C /* IcRenderAdpStd.h */,
 				9CF604EA1E248125008A662C /* IcRenderEng.h */,
-				9CF604EB1E248125008A662C /* IcTestWindow.h */,
 				9CF604EC1E248125008A662C /* lodepng.h */,
 				9CF604ED1E248125008A662C /* OpenGLinc.h */,
 			);
@@ -1049,7 +1076,6 @@
 				9CF606201E248125008A662C /* type_mat4x2.hpp in Headers */,
 				9CF606461E248125008A662C /* component_wise.hpp in Headers */,
 				9CF605FE1E248125008A662C /* _swizzle.hpp in Headers */,
-				9CF6068D1E248125008A662C /* IcViewController.h in Headers */,
 				9CF6061B1E248125008A662C /* type_mat2x3.hpp in Headers */,
 				9CF606001E248125008A662C /* _vectorize.hpp in Headers */,
 				9CF606811E248125008A662C /* mat4x3.hpp in Headers */,
@@ -1087,7 +1113,6 @@
 				9CF6060C1E248125008A662C /* intrinsic_common.hpp in Headers */,
 				9CF6065E1E248125008A662C /* normal.hpp in Headers */,
 				9CF605F41E248125008A662C /* IcRenderAdpStd.h in Headers */,
-				9CF605F61E248125008A662C /* IcTestWindow.h in Headers */,
 				9CF606841E248125008A662C /* packing.hpp in Headers */,
 				9CF606631E248125008A662C /* perpendicular.hpp in Headers */,
 				9CF606251E248125008A662C /* type_vec2.hpp in Headers */,
@@ -1289,12 +1314,12 @@
 			files = (
 				9CF604C11E24804C008A662C /* IcRenderAdpStd.cpp in Sources */,
 				9CF604A51E24804C008A662C /* Ic3d.cpp in Sources */,
+				9C3E26051E52EF1300B1C17E /* main.cpp in Sources */,
 				9CF6049D1E24804C008A662C /* ctlTest.cpp in Sources */,
 				9CF6060A1E248125008A662C /* glm.cpp in Sources */,
 				9CF604CB1E24804C008A662C /* IcRenderEngText.cpp in Sources */,
 				9CF604CD1E24804C008A662C /* IcShader.cpp in Sources */,
 				9CF604BD1E24804C008A662C /* IcUtil.cpp in Sources */,
-				9CF604D51E24804C008A662C /* IcWindow.cpp in Sources */,
 				9CF604AF1E24804C008A662C /* IcMeshDataCreate.cpp in Sources */,
 				9CF604AB1E24804C008A662C /* IcMaterial.cpp in Sources */,
 				9CF604951E24804C008A662C /* ctlBinBuf.cpp in Sources */,
@@ -1302,11 +1327,12 @@
 				9CF604971E24804C008A662C /* ctlImg.cpp in Sources */,
 				9CF604C71E24804C008A662C /* IcRenderAdpStd_TexPVR.cpp in Sources */,
 				9CF604B91E24804C008A662C /* IcScene.cpp in Sources */,
-				9CF604DF1E24804C008A662C /* IcWinMngPC.cpp in Sources */,
+				9C3E25FE1E52E8B300B1C17E /* IcWinMngPC.cpp in Sources */,
+				9C3E25F81E52E8B300B1C17E /* IcWinMng.cpp in Sources */,
 				9CF604991E24804C008A662C /* ctlLog.cpp in Sources */,
 				9CF604B71E24804C008A662C /* IcObject.cpp in Sources */,
 				9CF604C91E24804C008A662C /* IcRenderEng.cpp in Sources */,
-				9CF604E11E24804C008A662C /* IcTestWindow.cpp in Sources */,
+				9CF604E11E24804C008A662C /* MyTestApp.cpp in Sources */,
 				9CF604B11E24804C008A662C /* IcMeshDataSubMsh.cpp in Sources */,
 				9CF604B31E24804C008A662C /* IcModel.cpp in Sources */,
 				9C33E5221E3F4CF600DEC713 /* IcText.cpp in Sources */,
@@ -1316,9 +1342,10 @@
 				9CF604AD1E24804C008A662C /* IcMesh.cpp in Sources */,
 				9CF604A31E24804C008A662C /* lodepng.cpp in Sources */,
 				9CF6049F1E24804C008A662C /* ctlTest_img.cpp in Sources */,
-				9CF604D71E24804C008A662C /* IcWinMng.cpp in Sources */,
+				9C3E25F61E52E8B300B1C17E /* IcWindow.cpp in Sources */,
 				9CF604B51E24804C008A662C /* IcModelLoaderObj.cpp in Sources */,
 				9CF604A11E24804C008A662C /* ctlUtil.cpp in Sources */,
+				9C3E26021E52ED0B00B1C17E /* IcApp.cpp in Sources */,
 				9CF604C51E24804C008A662C /* IcRenderAdpStd_Tex.cpp in Sources */,
 				9CF604BB1E24804C008A662C /* IcTexture.cpp in Sources */,
 			);
@@ -1329,38 +1356,39 @@
 			buildActionMask = 2147483647;
 			files = (
 				9CF604C21E24804C008A662C /* IcRenderAdpStd.cpp in Sources */,
+				9C3E25F91E52E8B300B1C17E /* IcWinMng.cpp in Sources */,
+				9C3E26061E52EF1300B1C17E /* main.cpp in Sources */,
 				9CF604A61E24804C008A662C /* Ic3d.cpp in Sources */,
 				9CF6049E1E24804C008A662C /* ctlTest.cpp in Sources */,
 				9CF604CC1E24804C008A662C /* IcRenderEngText.cpp in Sources */,
 				9CF604CE1E24804C008A662C /* IcShader.cpp in Sources */,
 				9CF604BE1E24804C008A662C /* IcUtil.cpp in Sources */,
-				9CF604D61E24804C008A662C /* IcWindow.cpp in Sources */,
 				9CF604B01E24804C008A662C /* IcMeshDataCreate.cpp in Sources */,
+				9C3E25FF1E52E8B300B1C17E /* IcWinMngPC.cpp in Sources */,
 				9CF604AC1E24804C008A662C /* IcMaterial.cpp in Sources */,
 				9CF604961E24804C008A662C /* ctlBinBuf.cpp in Sources */,
 				9CF604AA1E24804C008A662C /* IcLight.cpp in Sources */,
 				9CF6060B1E248125008A662C /* glm.cpp in Sources */,
 				9CF604981E24804C008A662C /* ctlImg.cpp in Sources */,
 				9CF604C81E24804C008A662C /* IcRenderAdpStd_TexPVR.cpp in Sources */,
+				9C3E26031E52ED0B00B1C17E /* IcApp.cpp in Sources */,
 				9CF604BA1E24804C008A662C /* IcScene.cpp in Sources */,
-				9CF604E01E24804C008A662C /* IcWinMngPC.cpp in Sources */,
 				9CF6049A1E24804C008A662C /* ctlLog.cpp in Sources */,
 				9CF604B81E24804C008A662C /* IcObject.cpp in Sources */,
 				9CF604CA1E24804C008A662C /* IcRenderEng.cpp in Sources */,
-				9CF604E21E24804C008A662C /* IcTestWindow.cpp in Sources */,
+				9CF604E21E24804C008A662C /* MyTestApp.cpp in Sources */,
 				9CF604B21E24804C008A662C /* IcMeshDataSubMsh.cpp in Sources */,
 				9CF604B41E24804C008A662C /* IcModel.cpp in Sources */,
 				9CF6049C1E24804C008A662C /* ctlStr.cpp in Sources */,
 				9CF604C41E24804C008A662C /* IcRenderAdpStd_Mesh.cpp in Sources */,
 				9CF604A81E24804C008A662C /* IcCamera.cpp in Sources */,
 				9CF604AE1E24804C008A662C /* IcMesh.cpp in Sources */,
+				9C3E25F71E52E8B300B1C17E /* IcWindow.cpp in Sources */,
 				9CF604A41E24804C008A662C /* lodepng.cpp in Sources */,
 				9CF604A01E24804C008A662C /* ctlTest_img.cpp in Sources */,
-				9CF604D81E24804C008A662C /* IcWinMng.cpp in Sources */,
 				9CF604B61E24804C008A662C /* IcModelLoaderObj.cpp in Sources */,
 				9CF604A21E24804C008A662C /* ctlUtil.cpp in Sources */,
 				9CF604C61E24804C008A662C /* IcRenderAdpStd_Tex.cpp in Sources */,
-				9CF604E41E24804C008A662C /* main.cpp in Sources */,
 				9C33E5231E3F4CF600DEC713 /* IcText.cpp in Sources */,
 				9CF604BC1E24804C008A662C /* IcTexture.cpp in Sources */,
 			);
