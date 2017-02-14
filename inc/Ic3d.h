@@ -15,7 +15,7 @@
 #include "IcRenderAdp.h"
 
 //---- TODO: Ic3d->IcEng
-inline namespace Ic3d {
+namespace Ic3d {
    	//-----------------------------------------------
     //	Util
     //-----------------------------------------------
@@ -49,7 +49,7 @@ inline namespace Ic3d {
         void createCone(float R, float height); // TODO : Implement
         void createGridXZ(const ctl::TRect& rect,
                           int N_x, int N_y,
-                          const TRect& texRect = TRect(0,0,1,1));
+                          const ctl::TRect& texRect = ctl::TRect(0,0,1,1));
         
         void dbgPrint() const;
         //---- Cfg
@@ -322,7 +322,7 @@ inline namespace Ic3d {
         struct TFont
         {
             std::string     m_sName;
-            TSize           m_size;
+            ctl::TSize           m_size;
             int             m_fontSize=10;
             // equal to m_size.h
         };
@@ -482,11 +482,6 @@ inline namespace Ic3d {
             TColor  m_bkColor = TColor(0.2, 0.5, 0.7, 1.0);
         };
         TCfg m_cfg;
-        //-----------------
-        // runCmd()
-        //-----------------
-        // For PC, not mobile
-        static int runCmd(int argc, char **argv, ctl::Sp<IcWindow> pWin);
         ctl::SpAry<IcScene>& getScnAry(){ return m_scnAry; };
     protected:
         ctl::TSize          m_winSize;
@@ -495,6 +490,34 @@ inline namespace Ic3d {
         bool	m_isDrawing = false;
         
     };
+    //-----------------------------------------------
+    //	IcApp
+    //-----------------------------------------------
+    class IcApp
+    {
+    public:
+        IcApp(){};
+        virtual ~IcApp(){};
+        struct TCfg
+        {
+            std::string m_sPathRes;
+        };
+        TCfg m_cfg;
+        virtual void onInit(){};
+        void addWindow(ctl::Sp<IcWindow> pWin);
+        void onScreenSize(const ctl::TSize& sz);
+        void initWithScn(ctl::Sp<IcScene> pScn);
+        //-----------------
+        // runCmd()
+        //-----------------
+        // For PC, not mobile
+        int runCmd(int argc, char **argv);
+    protected:
+    };
+    //---- This global function should implemented and link
+    //  by IcEng User on App level.
+    extern IcApp& getIcAppInstance();
+    
     //-----------------------------------------
 	//	IcEng
 	//-----------------------------------------

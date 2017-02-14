@@ -350,18 +350,6 @@ namespace Ic3d
     {
         return ctl::makeSp<IcWinMngGlut>();
     }
-    //----------------------------------
-    //  IcWindow::runCmd
-    //----------------------------------
-    int IcWindow::runCmd(int argc, char **argv, ctl::Sp<IcWindow> pWin)
-    {
-        auto pMng = IcWinMng::getInstance();
-        pMng->addWindow(pWin);
-        pMng->initMng(argc, argv);
-        pMng->startMainLoop();
-        return 0;
-    }
-
  }
 
 
