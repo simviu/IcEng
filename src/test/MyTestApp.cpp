@@ -54,8 +54,6 @@ public:
         TQuat q(TVec3(0, deg2rad(m_degree), 0));
         m_pObj->setQuat(q);
     }
-    
-
 };
 //---------------------------------
 //  MyTestApp
@@ -65,9 +63,16 @@ class MyTestApp : public IcApp
     //---- Override onInit
     virtual void onInit() override
     {
+        // 1. Call super onInit()
         IcApp::onInit();
+        // 2. Create Window
+        auto pWin = makeSp<IcWindow>();
+        // 3. Create our scene
         auto pScn = ctl::makeSp<MyTestScn>();
-        initWithScn(pScn);
+        // 4. add scene to the window
+        pWin->addScene(pScn);
+        // 5. add the window to App
+        addWindow(pWin);
     };
 };
 //---- Put our App instance here statically
