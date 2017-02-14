@@ -14,28 +14,23 @@
 using namespace Ic3d;
 using namespace ctl;
 
-static float K_rotSpeed = 30.0;
 
-//---- TODO: put into IcTestApp header without cpp,
-// serve as sample project.
 //----------------------------
-// IcTestScene
+// MyTestScn
 //----------------------------
-// Embedded self test scene
-class IcTestScene : public IcScene
+class MyTestScn : public IcScene
 {
+protected:
+    ctl::Sp<IcObject> m_pObj = nullptr;
+    float m_degree = 0; // rotation degree
+    
 public:
     //--------------------------
     //  onInit
     //--------------------------
-
     void onInit() override
     {
-    	static bool isDbgOn = false;
         logInfo("IcTestScene::onInit()");
-		if(isDbgOn) logErr("Multiple entry");
-		isDbgOn = true;
-
         IcMeshData mshd;
         mshd.createCube(TVec3(1,1,1), TVec3(0,0,0));
         auto pModel = ctl::makeSp<IcModel>(mshd);
@@ -45,30 +40,22 @@ public:
         cam.setPos(TVec3(10, 4, -6));
         cam.lookAt(TVec3(0,0,0), TVec3(0,1,0));
         m_pObj = pObj;
-        
-        //---- Add Text
-        auto pText = ctl::makeSp<IcText>("IcEng Test");
-        addText(pText);
-    	logInfo("IcTestScene::onInit() done");
-		isDbgOn = false;
     };
     //--------------------------
     //  onUpdate
     //--------------------------
     void onUpdate(double deltaT) override
     {        
+        static float K_rotSpeed = 30.0;
         float dt = deltaT > 1.0 ? 1.0 : deltaT;
         if(m_pObj==nullptr) return;
         m_degree += K_rotSpeed*dt;
         if(m_degree>360) m_degree -= 360;
         TQuat q(TVec3(0, deg2rad(m_degree), 0));
         m_pObj->setQuat(q);
-        
     }
     
-protected:
-    ctl::Sp<IcObject> m_pObj = nullptr;
-    float m_degree = 0; // rotation degree
+
 };
 //---------------------------------
 //  MyTestApp
@@ -79,7 +66,7 @@ class MyTestApp : public IcApp
     virtual void onInit() override
     {
         IcApp::onInit();
-        auto pScn = ctl::makeSp<IcTestScene>();
+        auto pScn = ctl::makeSp<MyTestScn>();
         initWithScn(pScn);
     };
 };
