@@ -9,7 +9,7 @@
 //
 //
 
-#include "Ic3d.h"
+#include "MyTestApp.h"
 
 using namespace Ic3d;
 using namespace ctl;
@@ -55,30 +55,13 @@ public:
         m_pObj->setQuat(q);
     }
 };
-//---------------------------------
-//  MyTestApp
-//---------------------------------
-class MyTestApp : public IcApp
+//----------------------------
+// MyTestApp
+//----------------------------
+void MyTestApp::onInit()
 {
-    //---- Override onInit
-    virtual void onInit() override
-    {
-        IcApp::onInit();
-        auto pScn = makeSp<MyTestScn>();
-        initWithScn(pScn);
-    };
+    IcApp::onInit();
+    auto pScn = makeSp<MyTestScn>();
+    initWithScn(pScn);
 };
-//---- Put our App instance here statically
-static MyTestApp l_app;
-
-//---------------------------------
-//  Implementation of IcApp instance
-//---------------------------------
-namespace Ic3d
-{
-    IcApp& getIcAppInstance()
-    {
-        return l_app;
-    }
-}
 

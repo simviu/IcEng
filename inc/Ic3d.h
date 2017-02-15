@@ -429,12 +429,13 @@ namespace Ic3d {
         virtual void addWindow(ctl::Sp<IcWindow> pWin){ m_winAry.add(pWin); };
         virtual ctl::TSize getScreenSize(){ return m_screenSize; };
         virtual bool onScreenSize(const ctl::TSize& screenSize);
+        virtual void onInitWindows();
         virtual void drawUpdate(float deltaT);
         virtual bool initMng(int argc, char **argv){ return false; };
         virtual void startMainLoop(){};
         virtual ctl::Sp<IcWindow> getWindow(int idx){ return m_winAry[idx]; } ;
         virtual void onQuit();
-        //---- Singleton of IcWinMng can be set externally.
+       //---- Singleton of IcWinMng can be set externally.
         static ctl::Sp<IcWinMng> getInstance();
         static void setInstance(ctl::Sp<IcWinMng> p);
         static ctl::Sp<IcWinMng> createWinMngImpl();
@@ -503,7 +504,7 @@ namespace Ic3d {
             std::string m_sPathRes;
         };
         TCfg m_cfg;
-        virtual void onInit(){};
+        virtual void onInit();
         void addWindow(ctl::Sp<IcWindow> pWin);
         void onScreenSize(const ctl::TSize& sz);
         void initWithScn(ctl::Sp<IcScene> pScn);
@@ -521,10 +522,7 @@ namespace Ic3d {
         virtual int runCmdLine(int argc, char **argv);
     protected:
     };
-    //---- This global function should implemented and link
-    //  by IcEng User on App level.
-    extern IcApp& getIcAppInstance();
-    
+     
     //-----------------------------------------
 	//	IcEng
 	//-----------------------------------------

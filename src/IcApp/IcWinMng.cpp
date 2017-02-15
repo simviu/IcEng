@@ -32,6 +32,14 @@ namespace Ic3d
     {
         m_pInstance = p;
     }
+    //-------------------------------------------
+    //	onInitWindows
+    //-------------------------------------------
+    void IcWinMng::onInitWindows()
+    {
+        for(auto pWin : m_winAry.getAry())
+            pWin->onInit();
+    }
 
     //-------------------------------------------
     //	IcWinMng

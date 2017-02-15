@@ -10,8 +10,7 @@
 //
 
 #import "TestViewController.h"
-#include "Ic3d.h"
-#include "IcTestWindow.h"
+#include "MyTestApp.h"
 
 using namespace std;
 using namespace ctl;
@@ -20,7 +19,7 @@ using namespace Ic3d;
 
 @interface TestViewController ()
 {
-    IcTestWindow    m_testWin;
+    MyTestApp   m_testApp;
 }
 //---- These to be override
 -(void)Ic3d_onInit;
@@ -33,6 +32,7 @@ using namespace Ic3d;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self initWithIcApp:&m_testApp];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -54,19 +54,14 @@ using namespace Ic3d;
 -(void) Ic3d_onInit
 {
     [super Ic3d_onInit];
-    m_testWin.onInit();
 }
 -(void) Ic3d_onViewRect:(CGRect)viewRect
 {
     [super Ic3d_onViewRect:viewRect];
-    float w = viewRect.size.width;
-    float h = viewRect.size.height;
-    m_testWin.onScreenSize(ctl::TSize(w, h));
 }
 -(void)Ic3d_onDrawUpdate:(double)deltaT;
 {
     [super Ic3d_onDrawUpdate:deltaT];
-    m_testWin.onDrawUpdate(deltaT);
 
 }
 

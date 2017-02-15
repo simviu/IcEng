@@ -36,6 +36,7 @@ namespace Ic3d
 			
 			auto pEng = IcRenderEng::getInstance();
             auto pAdp = pEng->getCurRenderAdp();
+            if(pAdp==nullptr) return nullptr;
 			auto p = pAdp->createTextureAdp(img);
 			m_pDfltTexAdp = p;
 			return p;

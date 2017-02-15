@@ -14,6 +14,13 @@ namespace Ic3d
     using namespace ctl;
     using namespace std;
     //----------------------------
+    //  onInit
+    //----------------------------
+    void IcApp::onInit()
+    {
+    };
+
+    //----------------------------
     //  addWindow
     //----------------------------
     void IcApp::addWindow(ctl::Sp<IcWindow> pWin)

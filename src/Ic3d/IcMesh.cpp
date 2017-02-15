@@ -31,6 +31,7 @@ namespace Ic3d{
 		//---- Use Mesh Data to create Render Mesh
 		auto pRE = IcRenderEng::getInstance();
         auto pAdp = pRE->getCurRenderAdp();
+        if(pAdp==nullptr) return;
 		m_renderAdp = pAdp->createMeshAdp(rMshd);
 	}
 

@@ -1,7 +1,7 @@
-#include "Ic3d.h"
+#include "DemoApp.hpp"
 
 int main(int argc, char *argv[])
 {
-    auto& app = Ic3d::getIcAppInstance();
+    DemoApp app;
     app.runCmdLine(argc, argv);
 }

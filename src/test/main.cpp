@@ -6,7 +6,7 @@
 //  Copyright © 2017 Simviu Technology Inc. All rights reserved.
 //
 
-#include "Ic3d.h"
+#include "MyTestApp.h"
 
 
 //--------------------
@@ -14,6 +14,6 @@
 //--------------------
 int main(int argc, char **argv)
 {
-    auto& app = Ic3d::getIcAppInstance();
+    MyTestApp app;
     return app.runCmdLine(argc, argv);
 }

@@ -22,6 +22,19 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		9C5806281E53F3E900E61F85 /* IcApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C58061B1E53F3E900E61F85 /* IcApp.cpp */; };
+		9C5806291E53F3E900E61F85 /* IcApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C58061B1E53F3E900E61F85 /* IcApp.cpp */; };
+		9C58062A1E53F3E900E61F85 /* IcWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C58061C1E53F3E900E61F85 /* IcWindow.cpp */; };
+		9C58062B1E53F3E900E61F85 /* IcWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C58061C1E53F3E900E61F85 /* IcWindow.cpp */; };
+		9C58062C1E53F3E900E61F85 /* IcWinMng.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C58061D1E53F3E900E61F85 /* IcWinMng.cpp */; };
+		9C58062D1E53F3E900E61F85 /* IcWinMng.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C58061D1E53F3E900E61F85 /* IcWinMng.cpp */; };
+		9C58062E1E53F3E900E61F85 /* IcViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9C58061F1E53F3E900E61F85 /* IcViewController.mm */; };
+		9C58062F1E53F3E900E61F85 /* IcViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9C58061F1E53F3E900E61F85 /* IcViewController.mm */; };
+		9C5806301E53F3E900E61F85 /* IcViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C5806201E53F3E900E61F85 /* IcViewController.xib */; };
+		9C5806311E53F3E900E61F85 /* IcWinMngIOS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C5806211E53F3E900E61F85 /* IcWinMngIOS.cpp */; };
+		9C5806321E53F3E900E61F85 /* IcWinMngIOS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C5806211E53F3E900E61F85 /* IcWinMngIOS.cpp */; };
+		9C5806361E53F43F00E61F85 /* MyTestApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C5806351E53F43F00E61F85 /* MyTestApp.cpp */; };
+		9C5806371E53F43F00E61F85 /* MyTestApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C5806351E53F43F00E61F85 /* MyTestApp.cpp */; };
 		9C7AD3DD1DF11751008968FC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7AD3DC1DF11751008968FC /* main.m */; };
 		9C7AD3E01DF11751008968FC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7AD3DF1DF11751008968FC /* AppDelegate.m */; };
 		9C7AD3E31DF11751008968FC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7AD3E21DF11751008968FC /* ViewController.m */; };
@@ -30,8 +43,6 @@
 		9C7AD3EB1DF11751008968FC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C7AD3E91DF11751008968FC /* LaunchScreen.storyboard */; };
 		9C7AD3F31DF118B0008968FC /* TestViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9C7AD3F11DF118B0008968FC /* TestViewController.mm */; };
 		9C7AD3F41DF118B0008968FC /* TestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C7AD3F21DF118B0008968FC /* TestViewController.xib */; };
-		9C7DB6711E306F7C008079A4 /* IcSceneVr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C7DB6701E306F7C008079A4 /* IcSceneVr.cpp */; };
-		9C7DB6721E306F84008079A4 /* IcSceneVr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C7DB6701E306F7C008079A4 /* IcSceneVr.cpp */; };
 		9CF606EF1E248B8F008A662C /* ctlBinBuf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF606BE1E248B8F008A662C /* ctlBinBuf.cpp */; };
 		9CF606F01E248B8F008A662C /* ctlBinBuf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF606BE1E248B8F008A662C /* ctlBinBuf.cpp */; };
 		9CF606F11E248B8F008A662C /* ctlImg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF606BF1E248B8F008A662C /* ctlImg.cpp */; };
@@ -88,19 +99,6 @@
 		9CF607261E248B8F008A662C /* IcRenderEngText.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF606DB1E248B8F008A662C /* IcRenderEngText.cpp */; };
 		9CF607271E248B8F008A662C /* IcShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF606DC1E248B8F008A662C /* IcShader.cpp */; };
 		9CF607281E248B8F008A662C /* IcShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF606DC1E248B8F008A662C /* IcShader.cpp */; };
-		9CF607291E248B8F008A662C /* IcWindowVr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF606DE1E248B8F008A662C /* IcWindowVr.cpp */; };
-		9CF6072A1E248B8F008A662C /* IcWindowVr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF606DE1E248B8F008A662C /* IcWindowVr.cpp */; };
-		9CF6072F1E248B8F008A662C /* IcWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF606E31E248B8F008A662C /* IcWindow.cpp */; };
-		9CF607301E248B8F008A662C /* IcWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF606E31E248B8F008A662C /* IcWindow.cpp */; };
-		9CF607311E248B8F008A662C /* IcWinMng.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF606E41E248B8F008A662C /* IcWinMng.cpp */; };
-		9CF607321E248B8F008A662C /* IcWinMng.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF606E41E248B8F008A662C /* IcWinMng.cpp */; };
-		9CF607331E248B8F008A662C /* IcViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9CF606E61E248B8F008A662C /* IcViewController.mm */; };
-		9CF607341E248B8F008A662C /* IcViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9CF606E61E248B8F008A662C /* IcViewController.mm */; };
-		9CF607351E248B8F008A662C /* IcViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CF606E71E248B8F008A662C /* IcViewController.xib */; };
-		9CF607361E248B8F008A662C /* IcWinMngIOS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF606E81E248B8F008A662C /* IcWinMngIOS.cpp */; };
-		9CF607371E248B8F008A662C /* IcWinMngIOS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF606E81E248B8F008A662C /* IcWinMngIOS.cpp */; };
-		9CF6073C1E248B8F008A662C /* IcTestWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF606ED1E248B8F008A662C /* IcTestWindow.cpp */; };
-		9CF6073D1E248B8F008A662C /* IcTestWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF606ED1E248B8F008A662C /* IcTestWindow.cpp */; };
 		9CF607421E248C5B008A662C /* IcShader in Resources */ = {isa = PBXBuildFile; fileRef = 9CF607411E248C5B008A662C /* IcShader */; };
 /* End PBXBuildFile section */
 
@@ -126,6 +124,17 @@
 		9C36EB401E2F161D00F1DB3D /* OpenGLinc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OpenGLinc.h; path = ../../../inc/core/OpenGLinc.h; sourceTree = "<group>"; };
 		9C36EB411E2F1B3E00F1DB3D /* IcViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IcViewController.h; path = ../../../inc/IcViewController.h; sourceTree = "<group>"; };
 		9C53F6CD1DCB18F8006EAF17 /* libIcEngLib_iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIcEngLib_iOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C5806191E53F3E900E61F85 /* IcEngJNI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcEngJNI.cpp; sourceTree = "<group>"; };
+		9C58061A1E53F3E900E61F85 /* IcWinMngAndroid.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcWinMngAndroid.cpp; sourceTree = "<group>"; };
+		9C58061B1E53F3E900E61F85 /* IcApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcApp.cpp; sourceTree = "<group>"; };
+		9C58061C1E53F3E900E61F85 /* IcWindow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcWindow.cpp; sourceTree = "<group>"; };
+		9C58061D1E53F3E900E61F85 /* IcWinMng.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcWinMng.cpp; sourceTree = "<group>"; };
+		9C58061F1E53F3E900E61F85 /* IcViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = IcViewController.mm; sourceTree = "<group>"; };
+		9C5806201E53F3E900E61F85 /* IcViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IcViewController.xib; sourceTree = "<group>"; };
+		9C5806211E53F3E900E61F85 /* IcWinMngIOS.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcWinMngIOS.cpp; sourceTree = "<group>"; };
+		9C5806231E53F3E900E61F85 /* IcWinMngPC.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcWinMngPC.cpp; sourceTree = "<group>"; };
+		9C5806351E53F43F00E61F85 /* MyTestApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MyTestApp.cpp; sourceTree = "<group>"; };
+		9C5806381E540A4C00E61F85 /* MyTestApp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyTestApp.h; sourceTree = "<group>"; };
 		9C7AD3D91DF11751008968FC /* IcEngTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IcEngTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C7AD3DC1DF11751008968FC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		9C7AD3DE1DF11751008968FC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -140,7 +149,6 @@
 		9C7AD3F11DF118B0008968FC /* TestViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestViewController.mm; sourceTree = "<group>"; };
 		9C7AD3F21DF118B0008968FC /* TestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestViewController.xib; sourceTree = "<group>"; };
 		9C7DB66F1E306F6F008079A4 /* IcSceneVr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IcSceneVr.h; path = ../../../inc/core/IcSceneVr.h; sourceTree = "<group>"; };
-		9C7DB6701E306F7C008079A4 /* IcSceneVr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcSceneVr.cpp; sourceTree = "<group>"; };
 		9C8CC3EA1DEE860E002583F2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9C8CC3EC1DEE862D002583F2 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
 		9C8CC3EE1DEE86A2002583F2 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
@@ -175,13 +183,6 @@
 		9CF606DA1E248B8F008A662C /* IcRenderEng.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcRenderEng.cpp; sourceTree = "<group>"; };
 		9CF606DB1E248B8F008A662C /* IcRenderEngText.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcRenderEngText.cpp; sourceTree = "<group>"; };
 		9CF606DC1E248B8F008A662C /* IcShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcShader.cpp; sourceTree = "<group>"; };
-		9CF606DE1E248B8F008A662C /* IcWindowVr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcWindowVr.cpp; sourceTree = "<group>"; };
-		9CF606E31E248B8F008A662C /* IcWindow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcWindow.cpp; sourceTree = "<group>"; };
-		9CF606E41E248B8F008A662C /* IcWinMng.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcWinMng.cpp; sourceTree = "<group>"; };
-		9CF606E61E248B8F008A662C /* IcViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = IcViewController.mm; sourceTree = "<group>"; };
-		9CF606E71E248B8F008A662C /* IcViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IcViewController.xib; sourceTree = "<group>"; };
-		9CF606E81E248B8F008A662C /* IcWinMngIOS.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcWinMngIOS.cpp; sourceTree = "<group>"; };
-		9CF606ED1E248B8F008A662C /* IcTestWindow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcTestWindow.cpp; sourceTree = "<group>"; };
 		9CF606EE1E248B8F008A662C /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		9CF607411E248C5B008A662C /* IcShader */ = {isa = PBXFileReference; lastKnownFileType = folder; name = IcShader; path = ../../../IcShader; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -251,6 +252,46 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		9C5806171E53F3E900E61F85 /* IcApp */ = {
+			isa = PBXGroup;
+			children = (
+				9C5806181E53F3E900E61F85 /* android */,
+				9C58061B1E53F3E900E61F85 /* IcApp.cpp */,
+				9C58061C1E53F3E900E61F85 /* IcWindow.cpp */,
+				9C58061D1E53F3E900E61F85 /* IcWinMng.cpp */,
+				9C58061E1E53F3E900E61F85 /* iOS */,
+				9C5806221E53F3E900E61F85 /* pc */,
+			);
+			path = IcApp;
+			sourceTree = "<group>";
+		};
+		9C5806181E53F3E900E61F85 /* android */ = {
+			isa = PBXGroup;
+			children = (
+				9C5806191E53F3E900E61F85 /* IcEngJNI.cpp */,
+				9C58061A1E53F3E900E61F85 /* IcWinMngAndroid.cpp */,
+			);
+			path = android;
+			sourceTree = "<group>";
+		};
+		9C58061E1E53F3E900E61F85 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				9C58061F1E53F3E900E61F85 /* IcViewController.mm */,
+				9C5806201E53F3E900E61F85 /* IcViewController.xib */,
+				9C5806211E53F3E900E61F85 /* IcWinMngIOS.cpp */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		9C5806221E53F3E900E61F85 /* pc */ = {
+			isa = PBXGroup;
+			children = (
+				9C5806231E53F3E900E61F85 /* IcWinMngPC.cpp */,
+			);
+			path = pc;
+			sourceTree = "<group>";
+		};
 		9C7AD3DA1DF11751008968FC /* IcEngTestApp */ = {
 			isa = PBXGroup;
 			children = (
@@ -294,11 +335,10 @@
 		9CF606BC1E248B8F008A662C /* src */ = {
 			isa = PBXGroup;
 			children = (
+				9C5806171E53F3E900E61F85 /* IcApp */,
 				9CF606BD1E248B8F008A662C /* ctl */,
 				9CF606C61E248B8F008A662C /* Ic3d */,
 				9CF606D41E248B8F008A662C /* IcRenderEng */,
-				9CF606DD1E248B8F008A662C /* IcVR */,
-				9CF606DF1E248B8F008A662C /* IcWindow */,
 				9CF606EC1E248B8F008A662C /* test */,
 			);
 			name = src;
@@ -354,39 +394,11 @@
 			path = IcRenderEng;
 			sourceTree = "<group>";
 		};
-		9CF606DD1E248B8F008A662C /* IcVR */ = {
-			isa = PBXGroup;
-			children = (
-				9C7DB6701E306F7C008079A4 /* IcSceneVr.cpp */,
-				9CF606DE1E248B8F008A662C /* IcWindowVr.cpp */,
-			);
-			path = IcVR;
-			sourceTree = "<group>";
-		};
-		9CF606DF1E248B8F008A662C /* IcWindow */ = {
-			isa = PBXGroup;
-			children = (
-				9CF606E31E248B8F008A662C /* IcWindow.cpp */,
-				9CF606E41E248B8F008A662C /* IcWinMng.cpp */,
-				9CF606E51E248B8F008A662C /* iOS */,
-			);
-			path = IcWindow;
-			sourceTree = "<group>";
-		};
-		9CF606E51E248B8F008A662C /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-				9CF606E61E248B8F008A662C /* IcViewController.mm */,
-				9CF606E71E248B8F008A662C /* IcViewController.xib */,
-				9CF606E81E248B8F008A662C /* IcWinMngIOS.cpp */,
-			);
-			path = iOS;
-			sourceTree = "<group>";
-		};
 		9CF606EC1E248B8F008A662C /* test */ = {
 			isa = PBXGroup;
 			children = (
-				9CF606ED1E248B8F008A662C /* IcTestWindow.cpp */,
+				9C5806381E540A4C00E61F85 /* MyTestApp.h */,
+				9C5806351E53F43F00E61F85 /* MyTestApp.cpp */,
 				9CF606EE1E248B8F008A662C /* main.cpp */,
 			);
 			path = test;
@@ -487,9 +499,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C5806301E53F3E900E61F85 /* IcViewController.xib in Resources */,
 				9C7AD3EB1DF11751008968FC /* LaunchScreen.storyboard in Resources */,
 				9CF607421E248C5B008A662C /* IcShader in Resources */,
-				9CF607351E248B8F008A662C /* IcViewController.xib in Resources */,
 				9C7AD3F41DF118B0008968FC /* TestViewController.xib in Resources */,
 				9C7AD3E81DF11751008968FC /* Assets.xcassets in Resources */,
 				9C7AD3E61DF11751008968FC /* Main.storyboard in Resources */,
@@ -520,14 +532,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				9CF6071B1E248B8F008A662C /* IcRenderAdpStd.cpp in Sources */,
+				9C58062C1E53F3E900E61F85 /* IcWinMng.cpp in Sources */,
 				9CF606FF1E248B8F008A662C /* Ic3d.cpp in Sources */,
-				9CF607361E248B8F008A662C /* IcWinMngIOS.cpp in Sources */,
 				9CF606F71E248B8F008A662C /* ctlTest.cpp in Sources */,
-				9C7DB6711E306F7C008079A4 /* IcSceneVr.cpp in Sources */,
 				9CF607251E248B8F008A662C /* IcRenderEngText.cpp in Sources */,
+				9C5806361E53F43F00E61F85 /* MyTestApp.cpp in Sources */,
 				9CF607271E248B8F008A662C /* IcShader.cpp in Sources */,
 				9CF607171E248B8F008A662C /* IcUtil.cpp in Sources */,
-				9CF6072F1E248B8F008A662C /* IcWindow.cpp in Sources */,
+				9C5806311E53F3E900E61F85 /* IcWinMngIOS.cpp in Sources */,
 				9CF607091E248B8F008A662C /* IcMeshDataCreate.cpp in Sources */,
 				9CF607051E248B8F008A662C /* IcMaterial.cpp in Sources */,
 				9CF606EF1E248B8F008A662C /* ctlBinBuf.cpp in Sources */,
@@ -535,21 +547,20 @@
 				9CF606F11E248B8F008A662C /* ctlImg.cpp in Sources */,
 				9CF607211E248B8F008A662C /* IcRenderAdpStd_TexPVR.cpp in Sources */,
 				9CF607131E248B8F008A662C /* IcScene.cpp in Sources */,
+				9C58062E1E53F3E900E61F85 /* IcViewController.mm in Sources */,
+				9C5806281E53F3E900E61F85 /* IcApp.cpp in Sources */,
 				9CF606F31E248B8F008A662C /* ctlLog.cpp in Sources */,
 				9CF607111E248B8F008A662C /* IcObject.cpp in Sources */,
 				9CF607231E248B8F008A662C /* IcRenderEng.cpp in Sources */,
-				9CF6073C1E248B8F008A662C /* IcTestWindow.cpp in Sources */,
 				9CF6070B1E248B8F008A662C /* IcMeshDataSubMsh.cpp in Sources */,
 				9CF6070D1E248B8F008A662C /* IcModel.cpp in Sources */,
 				9CF606F51E248B8F008A662C /* ctlStr.cpp in Sources */,
 				9CF6071D1E248B8F008A662C /* IcRenderAdpStd_Mesh.cpp in Sources */,
 				9CF607011E248B8F008A662C /* IcCamera.cpp in Sources */,
+				9C58062A1E53F3E900E61F85 /* IcWindow.cpp in Sources */,
 				9CF607071E248B8F008A662C /* IcMesh.cpp in Sources */,
 				9CF606FD1E248B8F008A662C /* lodepng.cpp in Sources */,
 				9CF606F91E248B8F008A662C /* ctlTest_img.cpp in Sources */,
-				9CF607291E248B8F008A662C /* IcWindowVr.cpp in Sources */,
-				9CF607331E248B8F008A662C /* IcViewController.mm in Sources */,
-				9CF607311E248B8F008A662C /* IcWinMng.cpp in Sources */,
 				9CF6070F1E248B8F008A662C /* IcModelLoaderObj.cpp in Sources */,
 				9CF606FB1E248B8F008A662C /* ctlUtil.cpp in Sources */,
 				9CF6071F1E248B8F008A662C /* IcRenderAdpStd_Tex.cpp in Sources */,
@@ -562,6 +573,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9CF607021E248B8F008A662C /* IcCamera.cpp in Sources */,
+				9C58062D1E53F3E900E61F85 /* IcWinMng.cpp in Sources */,
 				9CF606FC1E248B8F008A662C /* ctlUtil.cpp in Sources */,
 				9CF6070A1E248B8F008A662C /* IcMeshDataCreate.cpp in Sources */,
 				9CF607041E248B8F008A662C /* IcLight.cpp in Sources */,
@@ -570,36 +582,34 @@
 				9C7AD3E31DF11751008968FC /* ViewController.m in Sources */,
 				9CF6071C1E248B8F008A662C /* IcRenderAdpStd.cpp in Sources */,
 				9CF6070E1E248B8F008A662C /* IcModel.cpp in Sources */,
+				9C58062F1E53F3E900E61F85 /* IcViewController.mm in Sources */,
+				9C58062B1E53F3E900E61F85 /* IcWindow.cpp in Sources */,
 				9CF606F01E248B8F008A662C /* ctlBinBuf.cpp in Sources */,
+				9C5806371E53F43F00E61F85 /* MyTestApp.cpp in Sources */,
 				9CF607001E248B8F008A662C /* Ic3d.cpp in Sources */,
 				9CF607141E248B8F008A662C /* IcScene.cpp in Sources */,
 				9CF607121E248B8F008A662C /* IcObject.cpp in Sources */,
 				9C7AD3F31DF118B0008968FC /* TestViewController.mm in Sources */,
 				9CF606F21E248B8F008A662C /* ctlImg.cpp in Sources */,
-				9CF607301E248B8F008A662C /* IcWindow.cpp in Sources */,
 				9CF607261E248B8F008A662C /* IcRenderEngText.cpp in Sources */,
-				9CF607341E248B8F008A662C /* IcViewController.mm in Sources */,
 				9C7AD3E01DF11751008968FC /* AppDelegate.m in Sources */,
 				9CF607281E248B8F008A662C /* IcShader.cpp in Sources */,
 				9CF6070C1E248B8F008A662C /* IcMeshDataSubMsh.cpp in Sources */,
 				9CF606F81E248B8F008A662C /* ctlTest.cpp in Sources */,
+				9C5806291E53F3E900E61F85 /* IcApp.cpp in Sources */,
 				9CF607101E248B8F008A662C /* IcModelLoaderObj.cpp in Sources */,
 				9CF607061E248B8F008A662C /* IcMaterial.cpp in Sources */,
 				9CF606F41E248B8F008A662C /* ctlLog.cpp in Sources */,
-				9CF6072A1E248B8F008A662C /* IcWindowVr.cpp in Sources */,
 				9C7AD3DD1DF11751008968FC /* main.m in Sources */,
 				9CF607181E248B8F008A662C /* IcUtil.cpp in Sources */,
 				9CF607161E248B8F008A662C /* IcTexture.cpp in Sources */,
-				9CF607371E248B8F008A662C /* IcWinMngIOS.cpp in Sources */,
 				9CF606FE1E248B8F008A662C /* lodepng.cpp in Sources */,
-				9C7DB6721E306F84008079A4 /* IcSceneVr.cpp in Sources */,
-				9CF6073D1E248B8F008A662C /* IcTestWindow.cpp in Sources */,
 				9CF607241E248B8F008A662C /* IcRenderEng.cpp in Sources */,
 				9CF606F61E248B8F008A662C /* ctlStr.cpp in Sources */,
 				9CF607081E248B8F008A662C /* IcMesh.cpp in Sources */,
+				9C5806321E53F3E900E61F85 /* IcWinMngIOS.cpp in Sources */,
 				9CF606FA1E248B8F008A662C /* ctlTest_img.cpp in Sources */,
 				9CF607201E248B8F008A662C /* IcRenderAdpStd_Tex.cpp in Sources */,
-				9CF607321E248B8F008A662C /* IcWinMng.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

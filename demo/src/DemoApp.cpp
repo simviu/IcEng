@@ -77,12 +77,4 @@ void DemoApp::onInit()
     addWindow(pWin);
     logInfo("DemoApp::onInit() done");
 }
-//---- Instanciatiation of App
-static DemoApp l_app;
-namespace Ic3d {
-    extern IcApp& getIcAppInstance()
-    {
-        return l_app;
-    }
-}
 
