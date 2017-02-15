@@ -15,5 +15,5 @@
 int main(int argc, char **argv)
 {
     auto& app = Ic3d::getIcAppInstance();
-    return app.runCmd(argc, argv);
+    return app.runCmdLine(argc, argv);
 }

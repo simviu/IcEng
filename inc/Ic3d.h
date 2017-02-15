@@ -518,7 +518,7 @@ namespace Ic3d {
         // runCmd()
         //-----------------
         // For PC, not mobile
-        virtual int runCmd(int argc, char **argv);
+        virtual int runCmdLine(int argc, char **argv);
     protected:
     };
     //---- This global function should implemented and link

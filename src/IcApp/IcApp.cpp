@@ -41,7 +41,7 @@ namespace Ic3d
     //----------------------------------
     //  runCmd
     //----------------------------------
-    int IcApp::runCmd(int argc, char **argv)
+    int IcApp::runCmdLine(int argc, char **argv)
     {
         onInit();
         auto pMng = IcWinMng::getInstance();

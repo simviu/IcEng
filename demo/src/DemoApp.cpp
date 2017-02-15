@@ -33,6 +33,16 @@ ctl::Sp<IcScene> DemoApp::createDemoScn(int sel)
 }
 
 //-----------------------------------
+//  runCmdLine
+//-----------------------------------
+int DemoApp::runCmdLine(int argc, char **argv)
+{
+    if(argc>1)
+        onCmd(argv[1]);
+    return IcApp::runCmdLine(argc, argv);
+}
+
+//-----------------------------------
 //  onCmd
 //-----------------------------------
 std::string DemoApp::onCmd(const std::string& sCmd)
@@ -40,6 +50,7 @@ std::string DemoApp::onCmd(const std::string& sCmd)
     string sRet = "OK";
     if(sCmd=="") return sRet;
     int i = sCmd[0]-'0';
+    m_demoSel = i;
     auto pScn = createDemoScn(i);
 
     return sRet;

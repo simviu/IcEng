@@ -30,7 +30,8 @@ public:
     const TItem& getDemoItem(int idx){ return m_demoAry[idx]; };
     void setDemoSel(int sel){ m_demoSel = sel; };
     virtual std::string onCmd(const std::string& sCmd) override;
-     
+    virtual int runCmdLine(int argc, char **argv) override;
+   
 protected:
     ctl::Sp<Ic3d::IcScene> createDemoScn(int sel);
 	std::vector<TItem> m_demoAry;
