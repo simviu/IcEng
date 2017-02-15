@@ -30,12 +30,25 @@ const static GLfloat K_bkColor[4] = {0.2, 0.4, 0.9, 1.0};
 @end
 
 @implementation IcViewController
--(void)initWithIcApp:(void*)pApp
+-(void)setIcAppInstance:(void*)pApp
 {
     m_pIcApp = reinterpret_cast<Ic3d::IcApp*>(pApp);
-    m_pIcApp->onInit();
-}
 
+ }
+//--------------------------------------
+//  initIcApp
+//--------------------------------------
+-(void)initIcApp
+{
+    //---- Set App Res Path
+    NSString* ns = [[NSBundle mainBundle] resourcePath];
+    std::string sPathRes = std::string([ns UTF8String]) +"/";
+    m_pIcApp->m_cfg.m_sPathRes = sPathRes;
+    
+    //---- Call onInit()
+    m_pIcApp->onInit();
+    
+}
 //--------------------------------------
 //  viewDidLoad
 //--------------------------------------
@@ -44,8 +57,12 @@ const static GLfloat K_bkColor[4] = {0.2, 0.4, 0.9, 1.0};
 	[super viewDidLoad];
 	m_hasInit = false;
     m_reqViewSizeChange = false;
-    m_pIcApp = nullptr;
-	
+    
+    //---- Make sure IcApp Init before GL context,
+    // For cross platform consistence.
+    if(m_pIcApp!=nullptr)
+        [self initIcApp];
+    
 	self.context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
 	
 	if (!self.context) {

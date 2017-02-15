@@ -30,6 +30,7 @@ public:
     //--------------------------
     void onInit() override
     {
+        IcScene::onInit();
         logInfo("IcTestScene::onInit()");
         IcMeshData mshd;
         mshd.createCube(TVec3(1,1,1), TVec3(0,0,0));

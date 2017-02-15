@@ -287,7 +287,6 @@
 		9C3E25EE1E52E8B300B1C17E /* IcViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IcViewController.xib; sourceTree = "<group>"; };
 		9C3E25EF1E52E8B300B1C17E /* IcWinMngIOS.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcWinMngIOS.cpp; sourceTree = "<group>"; };
 		9C3E25F11E52E8B300B1C17E /* IcWinMngPC.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcWinMngPC.cpp; sourceTree = "<group>"; };
-		9C3E26001E52E97B00B1C17E /* IcViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IcViewController.h; sourceTree = "<group>"; };
 		9C3E26011E52ED0B00B1C17E /* IcApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcApp.cpp; sourceTree = "<group>"; };
 		9C53F6BB1DCB14FB006EAF17 /* libIcEngLib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIcEngLib.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C5A2F221E53042C00655840 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
@@ -764,7 +763,6 @@
 		9CF604E81E248125008A662C /* core */ = {
 			isa = PBXGroup;
 			children = (
-				9C3E26001E52E97B00B1C17E /* IcViewController.h */,
 				9CF604E91E248125008A662C /* IcRenderAdpStd.h */,
 				9CF604EA1E248125008A662C /* IcRenderEng.h */,
 				9CF604EC1E248125008A662C /* lodepng.h */,

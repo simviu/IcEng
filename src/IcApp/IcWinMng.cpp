@@ -57,7 +57,7 @@ namespace Ic3d
     {
         m_screenSize = screenSize;
         for(auto pWin : m_winAry.getAry())
-            pWin->onScreenSize(screenSize);
+            pWin->onWindowSize(screenSize);
         return true;
     };
     //----------------------------

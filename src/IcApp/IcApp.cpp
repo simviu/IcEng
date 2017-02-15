@@ -31,6 +31,15 @@ namespace Ic3d
     //----------------------------
     //  onScreenSize
     //----------------------------
+    ctl::Sp<IcWindow> IcApp::getWindow(int idx)
+    {
+        auto pMng = IcWinMng::getInstance();
+        return pMng->getWindow(idx);
+    }
+
+    //----------------------------
+    //  onScreenSize
+    //----------------------------
     void IcApp::onScreenSize(const ctl::TSize& sz)
     {
         auto pMng = IcWinMng::getInstance();

@@ -17,7 +17,7 @@
 	
 }
 //---- This called by user
--(void)initWithIcApp:(void*)pApp;
+-(void)setIcAppInstance:(void*)pApp;
 
 //---- These to be override
 -(void)Ic3d_onInit;

@@ -33,6 +33,16 @@ public:
     };
     static TCfg m_cfg;
     virtual void onUpdate(double deltaT) override;
+    
+    //---- DemoItem
+    struct DemoItem
+    {
+        DemoItem(const std::string& sTitle):m_sTitle(sTitle){};
+        std::string  m_sTitle;
+    };
+    static size_t getDemoNum();
+    static const DemoItem& getDemoItem(int idx);
+    static ctl::Sp<IcScene> createDemoScn(int sel);
 protected:
     //---- Camera Manage, rotate around scene
     struct CCamMng

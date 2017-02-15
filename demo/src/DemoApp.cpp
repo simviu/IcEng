@@ -9,38 +9,11 @@
 //
 
 #include "DemoApp.hpp"
-#include "DemoScene.h"
 
 using namespace std;
 using namespace ctl;
 using namespace Ic3d;
 
-//-----------------------------------
-//  createDemoScn
-//-----------------------------------
-ctl::Sp<IcScene> DemoApp::createDemoScn(int sel)
-{
-    ctl::Sp<IcScene> pScn = nullptr;
-    switch (sel) {
-        case 0: pScn = ctl::makeSp<DemoBasic>();        break;
-        case 1: pScn = ctl::makeSp<DemoNestedTrans>();  break;
-        case 2: pScn = ctl::makeSp<DemoModelCreate>();  break;
-        case 3: pScn = ctl::makeSp<DemoLights>();       break;
-        default:
-            break;
-    }
-    return pScn;
-}
-
-//-----------------------------------
-//  runCmdLine
-//-----------------------------------
-int DemoApp::runCmdLine(int argc, char **argv)
-{
-    if(argc>1)
-        onCmd(argv[1]);
-    return IcApp::runCmdLine(argc, argv);
-}
 
 //-----------------------------------
 //  onCmd
@@ -50,11 +23,20 @@ std::string DemoApp::onCmd(const std::string& sCmd)
     string sRet = "OK";
     if(sCmd=="") return sRet;
     int i = sCmd[0]-'0';
-    m_demoSel = i;
-    auto pScn = createDemoScn(i);
-
+    reqSetDemo(i);
     return sRet;
 }
+//-----------------------------------
+//  DemoApp
+//-----------------------------------
+DemoApp::DemoApp()
+{
+}
+void DemoApp::reqSetDemo(int sel)
+{
+    if(m_pDemoWin != nullptr)
+        m_pDemoWin->reqSetDemo(sel);
+};
 
 //-----------------------------------
 //  onInit
@@ -62,19 +44,48 @@ std::string DemoApp::onCmd(const std::string& sCmd)
 void DemoApp::onInit()
 {
     IcApp::onInit();
-    //---- Init demo list
-    m_demoAry = {
-        {"Basic"},              // 0
-        {"Nested Transform"},   // 1
-        {"Model Create"},       // 2
-        {"Lights"},             // 3
-    };
+    
+    // Copy res path
+    DemoScene::m_cfg.m_sPathRes = m_cfg.m_sPathRes; // TODO: Simplify
     
     logInfo("DemoApp::onInit()");
-    auto pWin = makeSp<IcWindow>();
-    auto pScn = createDemoScn(m_demoSel);
-    pWin->addScene(pScn);
-    addWindow(pWin);
+    m_pDemoWin = makeSp<DemoWindow>();
+    addWindow(m_pDemoWin);
     logInfo("DemoApp::onInit() done");
+}
+//-----------------------------------
+//  DemoWindow override
+//-----------------------------------
+void DemoWindow::reqSetDemo(int sel)
+{
+    m_demoSel_req = sel;
+}
+
+void DemoWindow::onDrawUpdate(float deltaT)
+{
+    IcWindow::onDrawUpdate(deltaT);
+    if(m_demoSel != m_demoSel_req)
+    {
+        auto pScn = DemoScene::createDemoScn(m_demoSel_req);
+        removeAllScene();
+        addScene(pScn);
+        m_demoSel = m_demoSel_req;
+    }
+}
+
+void DemoWindow::onKeyboard(unsigned char key)
+{
+    IcWindow::onKeyboard(key);
+    switch(key)
+    {
+        case ' ' :
+        {
+            int N = DemoScene::getDemoNum();
+            int i = m_demoSel +1;
+            if(i>=N) i = 0;
+            reqSetDemo(i);
+        }break;
+        default:break;
+    }
 }
 

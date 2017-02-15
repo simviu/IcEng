@@ -7,10 +7,12 @@
 //
 
 #import "ViewController.h"
-#import "TestViewController.h"
-
+#import "IcViewController.h"
+#import "MyTestApp.h"
 @interface ViewController ()
-
+{
+    MyTestApp   m_app;
+}
 @end
 
 @implementation ViewController
@@ -28,7 +30,8 @@
 
 
 - (IBAction)onButton_Test:(id)sender {
-    TestViewController* vcon = [[TestViewController alloc] init];
+    IcViewController* vcon = [[IcViewController alloc] init];
+    [vcon setIcAppInstance:&m_app];
     [self presentViewController:vcon animated:NO completion:nil];
 }
 @end

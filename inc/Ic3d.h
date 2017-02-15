@@ -353,11 +353,11 @@ namespace Ic3d {
 	public:
 		IcScene();
 		virtual ~IcScene() {};
-        virtual void onInit(){};
+        virtual void onInit(){ m_hasInit = true; };
         virtual void onUpdate(double deltaT)
         {    if(m_pCallBk_onUpdate!=nullptr) m_pCallBk_onUpdate(deltaT); };
 		virtual void onDraw();
-		virtual void onViewRect(const ctl::TRect& viewRect);
+		virtual void onWindowSize(const ctl::TSize& winSize);
         void addObj(ctl::Sp<IcObject> p){ m_rootObj.addChildObj(p); };
         void addText(ctl::Sp<IcText> p){ m_texts.add(p); };
         void clearObjs(){ m_rootObj.clearChildObjs(); };
@@ -379,6 +379,8 @@ namespace Ic3d {
         void setTargetTexture(ctl::Sp<IcTexture> pTex)
             { m_pTargetTex = pTex; };
         void addSubScn(ctl::Sp<IcScene> pScn){ m_subScns.add(pScn);};
+        bool hasInit()const{ return m_hasInit; };
+        void setHasInit(bool b){ m_hasInit = b; };
 	protected:
         void renderObjRecur(const IcCamera& cam,
                             const IcObject& obj,
@@ -465,7 +467,6 @@ namespace Ic3d {
         virtual void onInit();
         virtual void onDrawUpdate(float deltaT);
         virtual void onWindowSize(const ctl::TSize& size);
-        virtual void onScreenSize(const ctl::TSize& size);
         void addScene(ctl::Sp<IcScene> pScn);
         void removeAllScene();
         //-----------------
@@ -506,6 +507,7 @@ namespace Ic3d {
         TCfg m_cfg;
         virtual void onInit();
         void addWindow(ctl::Sp<IcWindow> pWin);
+        ctl::Sp<IcWindow> getWindow(int idx);
         void onScreenSize(const ctl::TSize& sz);
         void initWithScn(ctl::Sp<IcScene> pScn);
         //-----------------
