@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9C58063B1E54171B00E61F85 /* DemoApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C5806391E54171B00E61F85 /* DemoApp.cpp */; };
+		9C64BE451E542C51003D2382 /* IcDemoViewCon.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9C64BE431E542C51003D2382 /* IcDemoViewCon.mm */; };
+		9C64BE461E542C51003D2382 /* IcDemoViewCon.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C64BE441E542C51003D2382 /* IcDemoViewCon.xib */; };
 		9CEC54B81DCB3A3E00A9E864 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CEC54B71DCB3A3E00A9E864 /* main.m */; };
 		9CEC54BB1DCB3A3E00A9E864 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CEC54BA1DCB3A3E00A9E864 /* AppDelegate.m */; };
 		9CEC54BE1DCB3A3E00A9E864 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CEC54BD1DCB3A3E00A9E864 /* ViewController.m */; };
@@ -15,16 +18,11 @@
 		9CEC54C61DCB3A3E00A9E864 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CEC54C41DCB3A3E00A9E864 /* LaunchScreen.storyboard */; };
 		9CF607441E249107008A662C /* IcShader in Resources */ = {isa = PBXBuildFile; fileRef = 9CF607431E249107008A662C /* IcShader */; };
 		9CF607461E24911D008A662C /* IcDemo in Resources */ = {isa = PBXBuildFile; fileRef = 9CF607451E24911D008A662C /* IcDemo */; };
-		9CF607BE1E249217008A662C /* DemoAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF607A41E249217008A662C /* DemoAnimation.cpp */; };
 		9CF607BF1E249217008A662C /* DemoBasic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF607A61E249217008A662C /* DemoBasic.cpp */; };
 		9CF607C01E249217008A662C /* DemoLights.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF607A81E249217008A662C /* DemoLights.cpp */; };
 		9CF607C11E249217008A662C /* DemoModelCreate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF607AA1E249217008A662C /* DemoModelCreate.cpp */; };
-		9CF607C21E249217008A662C /* DemoModels.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF607AC1E249217008A662C /* DemoModels.cpp */; };
 		9CF607C31E249217008A662C /* DemoNestedTrans.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF607AE1E249217008A662C /* DemoNestedTrans.cpp */; };
 		9CF607C41E249217008A662C /* DemoScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF607B01E249217008A662C /* DemoScene.cpp */; };
-		9CF607C51E249217008A662C /* DemoTransform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF607B21E249217008A662C /* DemoTransform.cpp */; };
-		9CF607C61E249217008A662C /* DemoWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF607B41E249217008A662C /* DemoWindow.cpp */; };
-		9CF607C71E249217008A662C /* DemoViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9CF607B81E249217008A662C /* DemoViewController.mm */; };
 		9CF607C81E249217008A662C /* IcDemoTableVCon.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9CF607BA1E249217008A662C /* IcDemoTableVCon.mm */; };
 		9CF607C91E249217008A662C /* IcDemoTableVCon.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CF607BB1E249217008A662C /* IcDemoTableVCon.xib */; };
 		9CF607CC1E2492C7008A662C /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CF607CB1E2492C7008A662C /* GLKit.framework */; };
@@ -43,6 +41,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		9C5806391E54171B00E61F85 /* DemoApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DemoApp.cpp; sourceTree = "<group>"; };
+		9C58063A1E54171B00E61F85 /* DemoApp.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DemoApp.hpp; sourceTree = "<group>"; };
+		9C64BE421E542C51003D2382 /* IcDemoViewCon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IcDemoViewCon.h; sourceTree = "<group>"; };
+		9C64BE431E542C51003D2382 /* IcDemoViewCon.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = IcDemoViewCon.mm; sourceTree = "<group>"; };
+		9C64BE441E542C51003D2382 /* IcDemoViewCon.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IcDemoViewCon.xib; sourceTree = "<group>"; };
 		9CEC54B41DCB3A3E00A9E864 /* IcEngDemoIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IcEngDemoIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CEC54B71DCB3A3E00A9E864 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		9CEC54B91DCB3A3E00A9E864 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -56,26 +59,12 @@
 		9CEC56D51DCB3F5D00A9E864 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9CF607431E249107008A662C /* IcShader */ = {isa = PBXFileReference; lastKnownFileType = folder; name = IcShader; path = ../../../IcShader; sourceTree = "<group>"; };
 		9CF607451E24911D008A662C /* IcDemo */ = {isa = PBXFileReference; lastKnownFileType = folder; name = IcDemo; path = ../../../demo/data/IcDemo; sourceTree = "<group>"; };
-		9CF607A41E249217008A662C /* DemoAnimation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DemoAnimation.cpp; sourceTree = "<group>"; };
-		9CF607A51E249217008A662C /* DemoAnimation.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DemoAnimation.hpp; sourceTree = "<group>"; };
 		9CF607A61E249217008A662C /* DemoBasic.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DemoBasic.cpp; sourceTree = "<group>"; };
-		9CF607A71E249217008A662C /* DemoBasic.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DemoBasic.hpp; sourceTree = "<group>"; };
 		9CF607A81E249217008A662C /* DemoLights.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DemoLights.cpp; sourceTree = "<group>"; };
-		9CF607A91E249217008A662C /* DemoLights.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DemoLights.hpp; sourceTree = "<group>"; };
 		9CF607AA1E249217008A662C /* DemoModelCreate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DemoModelCreate.cpp; sourceTree = "<group>"; };
-		9CF607AB1E249217008A662C /* DemoModelCreate.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DemoModelCreate.hpp; sourceTree = "<group>"; };
-		9CF607AC1E249217008A662C /* DemoModels.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DemoModels.cpp; sourceTree = "<group>"; };
-		9CF607AD1E249217008A662C /* DemoModels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoModels.h; sourceTree = "<group>"; };
 		9CF607AE1E249217008A662C /* DemoNestedTrans.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DemoNestedTrans.cpp; sourceTree = "<group>"; };
-		9CF607AF1E249217008A662C /* DemoNestedTrans.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DemoNestedTrans.hpp; sourceTree = "<group>"; };
 		9CF607B01E249217008A662C /* DemoScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DemoScene.cpp; sourceTree = "<group>"; };
 		9CF607B11E249217008A662C /* DemoScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoScene.h; sourceTree = "<group>"; };
-		9CF607B21E249217008A662C /* DemoTransform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DemoTransform.cpp; sourceTree = "<group>"; };
-		9CF607B31E249217008A662C /* DemoTransform.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DemoTransform.hpp; sourceTree = "<group>"; };
-		9CF607B41E249217008A662C /* DemoWindow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DemoWindow.cpp; sourceTree = "<group>"; };
-		9CF607B51E249217008A662C /* DemoWindow.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DemoWindow.hpp; sourceTree = "<group>"; };
-		9CF607B71E249217008A662C /* DemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoViewController.h; sourceTree = "<group>"; };
-		9CF607B81E249217008A662C /* DemoViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DemoViewController.mm; sourceTree = "<group>"; };
 		9CF607B91E249217008A662C /* IcDemoTableVCon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IcDemoTableVCon.h; sourceTree = "<group>"; };
 		9CF607BA1E249217008A662C /* IcDemoTableVCon.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = IcDemoTableVCon.mm; sourceTree = "<group>"; };
 		9CF607BB1E249217008A662C /* IcDemoTableVCon.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IcDemoTableVCon.xib; sourceTree = "<group>"; };
@@ -158,24 +147,14 @@
 		9CF607A31E249217008A662C /* src */ = {
 			isa = PBXGroup;
 			children = (
-				9CF607A41E249217008A662C /* DemoAnimation.cpp */,
-				9CF607A51E249217008A662C /* DemoAnimation.hpp */,
+				9C58063A1E54171B00E61F85 /* DemoApp.hpp */,
+				9C5806391E54171B00E61F85 /* DemoApp.cpp */,
 				9CF607A61E249217008A662C /* DemoBasic.cpp */,
-				9CF607A71E249217008A662C /* DemoBasic.hpp */,
 				9CF607A81E249217008A662C /* DemoLights.cpp */,
-				9CF607A91E249217008A662C /* DemoLights.hpp */,
 				9CF607AA1E249217008A662C /* DemoModelCreate.cpp */,
-				9CF607AB1E249217008A662C /* DemoModelCreate.hpp */,
-				9CF607AC1E249217008A662C /* DemoModels.cpp */,
-				9CF607AD1E249217008A662C /* DemoModels.h */,
 				9CF607AE1E249217008A662C /* DemoNestedTrans.cpp */,
-				9CF607AF1E249217008A662C /* DemoNestedTrans.hpp */,
 				9CF607B01E249217008A662C /* DemoScene.cpp */,
 				9CF607B11E249217008A662C /* DemoScene.h */,
-				9CF607B21E249217008A662C /* DemoTransform.cpp */,
-				9CF607B31E249217008A662C /* DemoTransform.hpp */,
-				9CF607B41E249217008A662C /* DemoWindow.cpp */,
-				9CF607B51E249217008A662C /* DemoWindow.hpp */,
 				9CF607B61E249217008A662C /* iOS */,
 			);
 			name = src;
@@ -185,11 +164,12 @@
 		9CF607B61E249217008A662C /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				9CF607B71E249217008A662C /* DemoViewController.h */,
-				9CF607B81E249217008A662C /* DemoViewController.mm */,
 				9CF607B91E249217008A662C /* IcDemoTableVCon.h */,
 				9CF607BA1E249217008A662C /* IcDemoTableVCon.mm */,
 				9CF607BB1E249217008A662C /* IcDemoTableVCon.xib */,
+				9C64BE421E542C51003D2382 /* IcDemoViewCon.h */,
+				9C64BE431E542C51003D2382 /* IcDemoViewCon.mm */,
+				9C64BE441E542C51003D2382 /* IcDemoViewCon.xib */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -258,6 +238,7 @@
 				9CEC54C61DCB3A3E00A9E864 /* LaunchScreen.storyboard in Resources */,
 				9CEC54C31DCB3A3E00A9E864 /* Assets.xcassets in Resources */,
 				9CEC54C11DCB3A3E00A9E864 /* Main.storyboard in Resources */,
+				9C64BE461E542C51003D2382 /* IcDemoViewCon.xib in Resources */,
 				9CF607441E249107008A662C /* IcShader in Resources */,
 				9CF607C91E249217008A662C /* IcDemoTableVCon.xib in Resources */,
 			);
@@ -270,19 +251,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9CF607C21E249217008A662C /* DemoModels.cpp in Sources */,
 				9CEC54BE1DCB3A3E00A9E864 /* ViewController.m in Sources */,
 				9CEC54BB1DCB3A3E00A9E864 /* AppDelegate.m in Sources */,
 				9CEC54B81DCB3A3E00A9E864 /* main.m in Sources */,
-				9CF607C61E249217008A662C /* DemoWindow.cpp in Sources */,
-				9CF607C71E249217008A662C /* DemoViewController.mm in Sources */,
 				9CF607C01E249217008A662C /* DemoLights.cpp in Sources */,
-				9CF607C51E249217008A662C /* DemoTransform.cpp in Sources */,
 				9CF607C41E249217008A662C /* DemoScene.cpp in Sources */,
 				9CF607C31E249217008A662C /* DemoNestedTrans.cpp in Sources */,
-				9CF607BE1E249217008A662C /* DemoAnimation.cpp in Sources */,
 				9CF607C11E249217008A662C /* DemoModelCreate.cpp in Sources */,
+				9C58063B1E54171B00E61F85 /* DemoApp.cpp in Sources */,
 				9CF607BF1E249217008A662C /* DemoBasic.cpp in Sources */,
+				9C64BE451E542C51003D2382 /* IcDemoViewCon.mm in Sources */,
 				9CF607C81E249217008A662C /* IcDemoTableVCon.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

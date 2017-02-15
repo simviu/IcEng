@@ -18,6 +18,43 @@ DemoScene::TCfg DemoScene::m_cfg;
 const static float K_camRotSpd = 1;
 const static float K_camDistH = 20;
 const static float K_camHeight = 8;
+
+
+//-----------------------------------
+//  Demo list
+//-----------------------------------
+static std::vector<DemoScene::DemoItem> l_demoAry {
+    {"Basic"},              // 0
+    {"Nested Transform"},   // 1
+    {"Model Create"},       // 2
+    {"Lights"},             // 3
+};
+size_t DemoScene::getDemoNum()
+{
+    return l_demoAry.size();
+};
+const DemoScene::DemoItem& DemoScene::getDemoItem(int idx)
+{
+    return l_demoAry[idx];
+};
+//-----------------------------------
+//  createDemoScn
+//-----------------------------------
+ctl::Sp<IcScene> DemoScene::createDemoScn(int sel)
+{
+    ctl::Sp<IcScene> pScn = nullptr;
+    switch (sel) {
+        case 0: pScn = ctl::makeSp<DemoBasic>();        break;
+        case 1: pScn = ctl::makeSp<DemoNestedTrans>();  break;
+        case 2: pScn = ctl::makeSp<DemoModelCreate>();  break;
+        case 3: pScn = ctl::makeSp<DemoLights>();       break;
+        default:
+            break;
+    }
+    return pScn;
+}
+
+
 //------------------------------------
 //  DemoScene
 //------------------------------------

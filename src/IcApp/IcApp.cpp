@@ -14,6 +14,13 @@ namespace Ic3d
     using namespace ctl;
     using namespace std;
     //----------------------------
+    //  onInit
+    //----------------------------
+    void IcApp::onInit()
+    {
+    };
+
+    //----------------------------
     //  addWindow
     //----------------------------
     void IcApp::addWindow(ctl::Sp<IcWindow> pWin)
@@ -21,6 +28,15 @@ namespace Ic3d
         auto pMng = IcWinMng::getInstance();
         pMng->addWindow(pWin);
     }
+    //----------------------------
+    //  onScreenSize
+    //----------------------------
+    ctl::Sp<IcWindow> IcApp::getWindow(int idx)
+    {
+        auto pMng = IcWinMng::getInstance();
+        return pMng->getWindow(idx);
+    }
+
     //----------------------------
     //  onScreenSize
     //----------------------------
@@ -41,7 +57,7 @@ namespace Ic3d
     //----------------------------------
     //  runCmd
     //----------------------------------
-    int IcApp::runCmd(int argc, char **argv)
+    int IcApp::runCmdLine(int argc, char **argv)
     {
         onInit();
         auto pMng = IcWinMng::getInstance();

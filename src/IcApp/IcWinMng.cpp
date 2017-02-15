@@ -32,6 +32,14 @@ namespace Ic3d
     {
         m_pInstance = p;
     }
+    //-------------------------------------------
+    //	onInitWindows
+    //-------------------------------------------
+    void IcWinMng::onInitWindows()
+    {
+        for(auto pWin : m_winAry.getAry())
+            pWin->onInit();
+    }
 
     //-------------------------------------------
     //	IcWinMng
@@ -49,7 +57,7 @@ namespace Ic3d
     {
         m_screenSize = screenSize;
         for(auto pWin : m_winAry.getAry())
-            pWin->onScreenSize(screenSize);
+            pWin->onWindowSize(screenSize);
         return true;
     };
     //----------------------------

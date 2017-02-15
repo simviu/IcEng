@@ -353,11 +353,11 @@ namespace Ic3d {
 	public:
 		IcScene();
 		virtual ~IcScene() {};
-        virtual void onInit(){};
+        virtual void onInit(){ m_hasInit = true; };
         virtual void onUpdate(double deltaT)
         {    if(m_pCallBk_onUpdate!=nullptr) m_pCallBk_onUpdate(deltaT); };
 		virtual void onDraw();
-		virtual void onViewRect(const ctl::TRect& viewRect);
+		virtual void onWindowSize(const ctl::TSize& winSize);
         void addObj(ctl::Sp<IcObject> p){ m_rootObj.addChildObj(p); };
         void addText(ctl::Sp<IcText> p){ m_texts.add(p); };
         void clearObjs(){ m_rootObj.clearChildObjs(); };
@@ -379,6 +379,8 @@ namespace Ic3d {
         void setTargetTexture(ctl::Sp<IcTexture> pTex)
             { m_pTargetTex = pTex; };
         void addSubScn(ctl::Sp<IcScene> pScn){ m_subScns.add(pScn);};
+        bool hasInit()const{ return m_hasInit; };
+        void setHasInit(bool b){ m_hasInit = b; };
 	protected:
         void renderObjRecur(const IcCamera& cam,
                             const IcObject& obj,
@@ -429,12 +431,13 @@ namespace Ic3d {
         virtual void addWindow(ctl::Sp<IcWindow> pWin){ m_winAry.add(pWin); };
         virtual ctl::TSize getScreenSize(){ return m_screenSize; };
         virtual bool onScreenSize(const ctl::TSize& screenSize);
+        virtual void onInitWindows();
         virtual void drawUpdate(float deltaT);
         virtual bool initMng(int argc, char **argv){ return false; };
         virtual void startMainLoop(){};
         virtual ctl::Sp<IcWindow> getWindow(int idx){ return m_winAry[idx]; } ;
         virtual void onQuit();
-        //---- Singleton of IcWinMng can be set externally.
+       //---- Singleton of IcWinMng can be set externally.
         static ctl::Sp<IcWinMng> getInstance();
         static void setInstance(ctl::Sp<IcWinMng> p);
         static ctl::Sp<IcWinMng> createWinMngImpl();
@@ -464,7 +467,6 @@ namespace Ic3d {
         virtual void onInit();
         virtual void onDrawUpdate(float deltaT);
         virtual void onWindowSize(const ctl::TSize& size);
-        virtual void onScreenSize(const ctl::TSize& size);
         void addScene(ctl::Sp<IcScene> pScn);
         void removeAllScene();
         //-----------------
@@ -503,21 +505,26 @@ namespace Ic3d {
             std::string m_sPathRes;
         };
         TCfg m_cfg;
-        virtual void onInit(){};
+        virtual void onInit();
         void addWindow(ctl::Sp<IcWindow> pWin);
+        ctl::Sp<IcWindow> getWindow(int idx);
         void onScreenSize(const ctl::TSize& sz);
         void initWithScn(ctl::Sp<IcScene> pScn);
+        //-----------------
+        // Cmd interface
+        //-----------------
+        // simple command interface with outside by string,
+        // could be JSON or simple text cmd, by your implementation.
+        // Return string back.
+        virtual std::string onCmd(const std::string& sCmd){ return "OK";};
         //-----------------
         // runCmd()
         //-----------------
         // For PC, not mobile
-        int runCmd(int argc, char **argv);
+        virtual int runCmdLine(int argc, char **argv);
     protected:
     };
-    //---- This global function should implemented and link
-    //  by IcEng User on App level.
-    extern IcApp& getIcAppInstance();
-    
+     
     //-----------------------------------------
 	//	IcEng
 	//-----------------------------------------

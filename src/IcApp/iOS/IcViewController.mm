@@ -13,11 +13,13 @@
 #import <OpenGLES/ES2/glext.h>
 #include "Ic3d.h"
 
+
 const static GLfloat K_bkColor[4] = {0.2, 0.4, 0.9, 1.0};
 @interface IcViewController () {
 	
 	bool m_hasInit;
     bool m_reqViewSizeChange;
+    Ic3d::IcApp*    m_pIcApp;
 }
 
 @property (strong, nonatomic) EAGLContext *context;
@@ -28,13 +30,39 @@ const static GLfloat K_bkColor[4] = {0.2, 0.4, 0.9, 1.0};
 @end
 
 @implementation IcViewController
+-(void)setIcAppInstance:(void*)pApp
+{
+    m_pIcApp = reinterpret_cast<Ic3d::IcApp*>(pApp);
 
+ }
+//--------------------------------------
+//  initIcApp
+//--------------------------------------
+-(void)initIcApp
+{
+    //---- Set App Res Path
+    NSString* ns = [[NSBundle mainBundle] resourcePath];
+    std::string sPathRes = std::string([ns UTF8String]) +"/";
+    m_pIcApp->m_cfg.m_sPathRes = sPathRes;
+    
+    //---- Call onInit()
+    m_pIcApp->onInit();
+    
+}
+//--------------------------------------
+//  viewDidLoad
+//--------------------------------------
 - (void)viewDidLoad
 {
 	[super viewDidLoad];
 	m_hasInit = false;
     m_reqViewSizeChange = false;
-	
+    
+    //---- Make sure IcApp Init before GL context,
+    // For cross platform consistence.
+    if(m_pIcApp!=nullptr)
+        [self initIcApp];
+    
 	self.context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
 	
 	if (!self.context) {
@@ -46,6 +74,9 @@ const static GLfloat K_bkColor[4] = {0.2, 0.4, 0.9, 1.0};
 	view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
 	[self setupGL];
 }
+//--------------------------------------
+//  getScaledViewRect
+//--------------------------------------
 -(CGRect)getScaledViewRect
 {
     float w = self.view.frame.size.width;
@@ -58,22 +89,48 @@ const static GLfloat K_bkColor[4] = {0.2, 0.4, 0.9, 1.0};
     return vrect;
 }
 
-//---- These are to be override
-// TODO: Ic3d_ -> IcEng_
-
+//--------------------------------------
+//  Ic3d_onInit
+//--------------------------------------
 -(void)Ic3d_onInit
 {
+    if(m_pIcApp==nullptr) return;
     //----- Configure App
     NSString* nsPath = [[NSBundle mainBundle] resourcePath];
     std::string sPathRes = std::string([nsPath UTF8String]) +"/";
     
+    // TODO: pass sPathRes from IcApp
     auto& cfg = Ic3d::IcEng::getInstance()->m_cfg;
     cfg.m_sPath_shader = sPathRes + "IcShader/";
- 
+    
+    auto pMng = Ic3d::IcWinMng::getInstance();
+    pMng->onInitWindows();
+    
 }
--(void)Ic3d_onViewRect:(CGRect)viewRect{};
--(void)Ic3d_onDrawUpdate:(double)deltaT{};
+//--------------------------------------
+//  Ic3d_onInit
+//--------------------------------------
+-(void)Ic3d_onViewRect:(CGRect)viewRect
+{
+    if(m_pIcApp==nullptr) return;
+    auto sz = viewRect.size;
+    //---- convert to ctl::TSize from CGSize
+    m_pIcApp->onScreenSize(ctl::TSize(sz.width, sz.height));
+};
+//--------------------------------------
+//  Ic3d_onInit
+//--------------------------------------
+-(void)Ic3d_onDrawUpdate:(double)deltaT
+{
+    if(m_pIcApp==nullptr) return;
+    // TODO: IcWinMng into IcApp
+    auto pMng = Ic3d::IcWinMng::getInstance();
+    pMng->drawUpdate(deltaT);
+};
 
+//--------------------------------------
+//  viewWillLayoutSubviews
+//--------------------------------------
 -(void) viewWillLayoutSubviews
 {
     if(!m_hasInit) return;
@@ -82,6 +139,9 @@ const static GLfloat K_bkColor[4] = {0.2, 0.4, 0.9, 1.0};
     NSLog(@"[Debug]: VConIc3d: viewWillLayoutSubviews");
 }
 
+//--------------------------------------
+//  viewWillTransitionToSize
+//--------------------------------------
 -(void) viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
 {
     // best call super just in case
@@ -147,12 +207,15 @@ const static GLfloat K_bkColor[4] = {0.2, 0.4, 0.9, 1.0};
 
 - (void)update
 {
-
+    // this is handled by drawInRect
 }
 
+//--------------------------------------
+//  drawInRect
+//--------------------------------------
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect
 {
-
+    if(m_pIcApp==nullptr) return;
     //---- clear screen
     const auto& c = K_bkColor;
     glClearColor(c[0], c[1], c[2], c[3]);	// background color
@@ -165,6 +228,7 @@ const static GLfloat K_bkColor[4] = {0.2, 0.4, 0.9, 1.0};
     {
         CGRect vrect = [self getScaledViewRect];
         [self Ic3d_onInit];
+        
         [self Ic3d_onViewRect:vrect];
         m_hasInit = true;
     }
@@ -172,6 +236,7 @@ const static GLfloat K_bkColor[4] = {0.2, 0.4, 0.9, 1.0};
     {
         float deltaT = self.timeSinceLastDraw;
         [self Ic3d_onDrawUpdate:deltaT];
+        
     }
 }
 

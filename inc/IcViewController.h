@@ -16,10 +16,11 @@
 {
 	
 }
+//---- This called by user
+-(void)setIcAppInstance:(void*)pApp;
 
 //---- These to be override
 -(void)Ic3d_onInit;
 -(void)Ic3d_onViewRect:(CGRect)viewRect;
 -(void)Ic3d_onDrawUpdate:(double)deltaT;
-
 @end

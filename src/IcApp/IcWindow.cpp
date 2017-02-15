@@ -34,18 +34,6 @@ namespace Ic3d
     }
     
     //-------------------------------------------
-    //	onWindowSize
-    //-------------------------------------------
-    // TODO: 1) restore window create with rect.
-    //    2) m_winSize -> m_winSize/m_winPos
-    void IcWindow::onWindowSize(const ctl::TSize& size)
-    {
-        m_winSize = size;
-        TRect viewRect(0,0,m_winSize.w, m_winSize.h);
-        for(auto pScn : m_scnAry.getAry())
-            pScn->onViewRect(viewRect);
-    }
-    //-------------------------------------------
     //	onInit
     //-------------------------------------------
     void IcWindow::onInit()
@@ -57,15 +45,18 @@ namespace Ic3d
             pEng->initEng();
     }
     //-------------------------------------------
-    //	onScreenSize
+    //	onWindowSize
     //-------------------------------------------
-    void IcWindow::onScreenSize(const ctl::TSize& size)
+    void IcWindow::onWindowSize(const ctl::TSize& size)
     {
         // In default, call onWindowSize().
         // TODO:
         //    Consider add option to fit window into screen
         //    based on normalized coordinator, etc.
-        onWindowSize(size);
+        m_winSize = size;
+        TRect viewRect(0,0,m_winSize.w, m_winSize.h);
+        for(auto pScn : m_scnAry.getAry())
+            pScn->onWindowSize(size);
     }
 
     //-------------------------------------------
@@ -91,6 +82,13 @@ namespace Ic3d
         //-------------
         for(auto pScn : m_scnAry.getAry())
         {
+            if(!pScn->hasInit())
+            {
+                pScn->onInit();
+                pScn->onWindowSize(m_winSize);
+                pScn->setHasInit(true);
+            }
+
             pScn->onUpdate(deltaT);
             pScn->onDraw();
         }
