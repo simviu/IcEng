@@ -498,7 +498,7 @@ namespace Ic3d {
     class IcApp
     {
     public:
-        IcApp(){};
+        IcApp();
         virtual ~IcApp(){};
         struct TCfg
         {
@@ -510,6 +510,7 @@ namespace Ic3d {
         ctl::Sp<IcWindow> getWindow(int idx);
         void onScreenSize(const ctl::TSize& sz);
         void initWithScn(ctl::Sp<IcScene> pScn);
+        static IcApp* getInstance();
         //-----------------
         // Cmd interface
         //-----------------

@@ -19,7 +19,6 @@ const static GLfloat K_bkColor[4] = {0.2, 0.4, 0.9, 1.0};
 	
 	bool m_hasInit;
     bool m_reqViewSizeChange;
-    Ic3d::IcApp*    m_pIcApp;
 }
 
 @property (strong, nonatomic) EAGLContext *context;
@@ -30,11 +29,7 @@ const static GLfloat K_bkColor[4] = {0.2, 0.4, 0.9, 1.0};
 @end
 
 @implementation IcViewController
--(void)setIcAppInstance:(void*)pApp
-{
-    m_pIcApp = reinterpret_cast<Ic3d::IcApp*>(pApp);
 
- }
 //--------------------------------------
 //  initIcApp
 //--------------------------------------
@@ -43,10 +38,12 @@ const static GLfloat K_bkColor[4] = {0.2, 0.4, 0.9, 1.0};
     //---- Set App Res Path
     NSString* ns = [[NSBundle mainBundle] resourcePath];
     std::string sPathRes = std::string([ns UTF8String]) +"/";
-    m_pIcApp->m_cfg.m_sPathRes = sPathRes;
+    auto pApp = Ic3d::IcApp::getInstance();
+    if(pApp==nullptr) return;
+    pApp->m_cfg.m_sPathRes = sPathRes;
     
     //---- Call onInit()
-    m_pIcApp->onInit();
+    pApp->onInit();
     
 }
 //--------------------------------------
@@ -60,7 +57,8 @@ const static GLfloat K_bkColor[4] = {0.2, 0.4, 0.9, 1.0};
     
     //---- Make sure IcApp Init before GL context,
     // For cross platform consistence.
-    if(m_pIcApp!=nullptr)
+    auto pApp = Ic3d::IcApp::getInstance();
+    if(pApp!=nullptr)
         [self initIcApp];
     
 	self.context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
@@ -94,7 +92,6 @@ const static GLfloat K_bkColor[4] = {0.2, 0.4, 0.9, 1.0};
 //--------------------------------------
 -(void)Ic3d_onInit
 {
-    if(m_pIcApp==nullptr) return;
     //----- Configure App
     NSString* nsPath = [[NSBundle mainBundle] resourcePath];
     std::string sPathRes = std::string([nsPath UTF8String]) +"/";
@@ -112,17 +109,17 @@ const static GLfloat K_bkColor[4] = {0.2, 0.4, 0.9, 1.0};
 //--------------------------------------
 -(void)Ic3d_onViewRect:(CGRect)viewRect
 {
-    if(m_pIcApp==nullptr) return;
+    auto pApp = Ic3d::IcApp::getInstance();
+    if(pApp==nullptr) return;
     auto sz = viewRect.size;
     //---- convert to ctl::TSize from CGSize
-    m_pIcApp->onScreenSize(ctl::TSize(sz.width, sz.height));
+    pApp->onScreenSize(ctl::TSize(sz.width, sz.height));
 };
 //--------------------------------------
 //  Ic3d_onInit
 //--------------------------------------
 -(void)Ic3d_onDrawUpdate:(double)deltaT
 {
-    if(m_pIcApp==nullptr) return;
     // TODO: IcWinMng into IcApp
     auto pMng = Ic3d::IcWinMng::getInstance();
     pMng->drawUpdate(deltaT);
@@ -215,7 +212,6 @@ const static GLfloat K_bkColor[4] = {0.2, 0.4, 0.9, 1.0};
 //--------------------------------------
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect
 {
-    if(m_pIcApp==nullptr) return;
     //---- clear screen
     const auto& c = K_bkColor;
     glClearColor(c[0], c[1], c[2], c[3]);	// background color

@@ -13,6 +13,26 @@ namespace Ic3d
 {
     using namespace ctl;
     using namespace std;
+    
+    static IcApp* l_pIcAppInstance = nullptr;
+    //----------------------------
+    //  IcApp
+    //----------------------------
+    IcApp::IcApp()
+    {
+        //---- Set as default IcApp
+        if(l_pIcAppInstance!=nullptr)
+            logWarn("IcApp::IcApp() : In most case there should be only one IcApp instanciation");
+        l_pIcAppInstance = this;
+    };
+    //----------------------------
+    //  singleton
+    //----------------------------
+    IcApp* IcApp::getInstance()
+    {
+        return l_pIcAppInstance;
+    }
+
     //----------------------------
     //  onInit
     //----------------------------

@@ -31,7 +31,6 @@
 
 - (IBAction)onButton_Test:(id)sender {
     IcViewController* vcon = [[IcViewController alloc] init];
-    [vcon setIcAppInstance:&m_app];
     [self presentViewController:vcon animated:NO completion:nil];
 }
 @end
