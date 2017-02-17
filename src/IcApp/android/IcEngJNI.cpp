@@ -23,21 +23,23 @@
 #include "Ic3d.h"
 #include "IcEngJNI.h"
 
+using namespace ctl;
 using namespace Ic3d;
 
 
 #define  LOG_TAG    "IcAppJNI"
 #define  LOGI(...)  __android_log_print(ANDROID_LOG_INFO,LOG_TAG,__VA_ARGS__)
 #define  LOGE(...)  __android_log_print(ANDROID_LOG_ERROR,LOG_TAG,__VA_ARGS__)
-
 //------------------------------------------
-//  Static pointer of IcApp
+//  Android Log handler to replace ctl::Log
 //------------------------------------------
-static IcWindow* l_pWinInstance = nullptr;
-void IcEngJNI::setAppInstance(IcWindow* pWin)
+struct LogHandlerJNI : LogHandler
 {
-    l_pWinInstance = pWin;
-}
+    virtual void logMsgBase(const std::string& sMsg) override
+    { LOGI("%s", sMsg.c_str()); };
+
+};
+static LogHandlerJNI l_logHandlerJNI;
 
 //------------------------------------------
 //  IcAppJNI.onInit()
@@ -50,10 +52,18 @@ extern "C" JNIEXPORT void JNICALL Java_com_simviu_IcEng_IcEngJNI_onInit(JNIEnv *
     pEng->m_cfg.m_sPath_shader = sPathRes + "/IcShader/";
 
 
-    //---- Init window
-    auto pWin = l_pWinInstance;
-    if(pWin== nullptr) return;
-    pWin->onInit();
+    //---- Set logHandler
+    ctl::LogHandler::setCurHandler(&l_logHandlerJNI);
+    //---- Init App
+    auto pApp = IcApp::getInstance();
+    if(pApp== nullptr)
+    {
+        LOGI("Error: JNI IcEngJNI_onInit(): IcApp instance empty\n");
+        return;
+    }
+    LOGI("JNI IcEngJNI_onInit(): IcApp instance [0x%x] on Init\n", pApp);
+    pApp->onInit();
+    pApp->initWindows();
 }
 
 //------------------------------------------
@@ -62,9 +72,12 @@ extern "C" JNIEXPORT void JNICALL Java_com_simviu_IcEng_IcEngJNI_onInit(JNIEnv *
 extern "C" JNIEXPORT void JNICALL Java_com_simviu_IcEng_IcEngJNI_onScreenSize(JNIEnv * env, jobject obj,
                                                                               jint width, jint height)
 {
-    auto pWin = l_pWinInstance;
-    if(pWin== nullptr) return;
-    pWin->onScreenSize(ctl::TSize(width, height));
+    auto pApp = IcApp::getInstance();
+    if(pApp== nullptr)
+    {
+        return;
+    }
+    pApp->onScreenSize(ctl::TSize(width, height));
 }
 
 //------------------------------------------
@@ -72,10 +85,11 @@ extern "C" JNIEXPORT void JNICALL Java_com_simviu_IcEng_IcEngJNI_onScreenSize(JN
 //------------------------------------------
 extern "C" JNIEXPORT void JNICALL Java_com_simviu_IcEng_IcEngJNI_onDrawUpdate(JNIEnv * env, jobject obj, jfloat deltaT)
 {
-    auto pWin = l_pWinInstance;
-    if(pWin== nullptr) return;
- //   auto pApp = g_pIcAppJniInstnace;
-    pWin->onDrawUpdate(deltaT);
+    auto pApp = IcApp::getInstance();
+    if(pApp== nullptr) return;
+    pApp->drawUpdateWindows(deltaT);
+
+
 }
 
 //------------------------------------------

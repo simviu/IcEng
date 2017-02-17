@@ -510,6 +510,8 @@ namespace Ic3d {
         ctl::Sp<IcWindow> getWindow(int idx);
         void onScreenSize(const ctl::TSize& sz);
         void initWithScn(ctl::Sp<IcScene> pScn);
+        void drawUpdateWindows(float deltaT);
+        void initWindows();
         static IcApp* getInstance();
         //-----------------
         // Cmd interface

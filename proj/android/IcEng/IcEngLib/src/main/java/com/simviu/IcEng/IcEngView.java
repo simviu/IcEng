@@ -363,7 +363,7 @@ public class IcEngView extends GLSurfaceView {
             m_renderCallBack.IcEng_onInit();
             m_renderCallBack.IcEng_onViewSize(width, height);
 
-            IcEngJNI.debugPrint("JNI String from GLSurfaceView");
+            IcEngJNI.debugPrint("JNI print from IcEngView::onSurfaceChanged()");
         }
 
         public void onSurfaceCreated(GL10 gl, EGLConfig config) {

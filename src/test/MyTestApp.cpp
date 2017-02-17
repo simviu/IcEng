@@ -30,8 +30,9 @@ public:
     //--------------------------
     void onInit() override
     {
+        logInfo("MyTestScn::onInit()");
         IcScene::onInit();
-        logInfo("IcTestScene::onInit()");
+
         IcMeshData mshd;
         mshd.createCube(TVec3(1,1,1), TVec3(0,0,0));
         auto pModel = ctl::makeSp<IcModel>(mshd);
@@ -61,6 +62,7 @@ public:
 //----------------------------
 void MyTestApp::onInit()
 {
+    logInfo("MyTestApp::onInit()");
     IcApp::onInit();
     auto pScn = makeSp<MyTestScn>();
     initWithScn(pScn);

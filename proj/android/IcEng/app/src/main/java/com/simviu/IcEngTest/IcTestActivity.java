@@ -20,9 +20,9 @@ public class IcTestActivity extends IcActivity{
     }
 
     @Override protected void onCreate(Bundle icicle) {
+        initApp(m_sPathRes);
         super.onCreate(icicle);
         //----- CreateApp()
-        initApp(m_sPathRes);
         copyAssetDir("IcShader");
     }
 

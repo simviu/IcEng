@@ -23,6 +23,7 @@ namespace Ic3d
         //---- Set as default IcApp
         if(l_pIcAppInstance!=nullptr)
             logWarn("IcApp::IcApp() : In most case there should be only one IcApp instanciation");
+        logInfo("IcApp instance instanciated");
         l_pIcAppInstance = this;
     };
     //----------------------------
@@ -38,6 +39,7 @@ namespace Ic3d
     //----------------------------
     void IcApp::onInit()
     {
+        logDbg("IcApp::onInit()");
     };
 
     //----------------------------
@@ -85,6 +87,22 @@ namespace Ic3d
         pMng->startMainLoop();
         return 0;
     }
-    
+    //----------------------------------
+    //  windows
+    //----------------------------------
+    void IcApp::drawUpdateWindows(float deltaT)
+    {
+        // TODO: IcWinMng into IcApp
+        auto pMng = Ic3d::IcWinMng::getInstance();
+        pMng->drawUpdate(deltaT);
+       
+    }
+    void IcApp::initWindows()
+    {
+        auto pMng = Ic3d::IcWinMng::getInstance();
+        pMng->onInitWindows();
+      
+    }
+   
 
 }

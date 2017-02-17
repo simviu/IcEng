@@ -12,7 +12,7 @@ add_definitions (-D_HAS_EXCEPTIONS=1)
 include_directories(
     ${ICENGLIB}/inc
     ${ICENGLIB}/inc/core
-    ${ICENGLIB}/inc/test
+    ${ICENGLIB}/src/test
     )
 
 link_directories(${ICENGBUILD_BIN})

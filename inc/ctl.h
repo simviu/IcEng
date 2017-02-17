@@ -40,11 +40,21 @@ namespace ctl {
 		os << d ;
 		return os.str() ;
 	};
+    //----------------------
 	template <typename T>
 	inline bool s2v(const std::string& s, T& d)
 	{
 		return !((std::stringstream(s)>>d).fail());
 	};
+    //----------------------
+    template <typename T>
+    inline std::string v2hex(T d)
+    {
+        std::stringstream ss;
+        ss << std::hex << d;
+        std::string s( ss.str() );
+        return s;
+    }
     //-----------------------------
 	//	string utils
 	//-----------------------------
@@ -99,11 +109,11 @@ namespace ctl {
 			L_ERR,
 		};
 		virtual void logMsg(TE_logLevel lvl, const std::string& sMsg);
-        inline virtual void logMsg(const std::string& sMsg){ std::cout << sMsg; };
-        static ctl::Sp<LogHandler> getCurHandler(){ return m_pLogHandler; };
-        static void setCurHandler(ctl::Sp<LogHandler> p){ m_pLogHandler = p; };
+        virtual void logMsgBase(const std::string& sMsg);
+        static LogHandler* getCurHandler();
+        static void setCurHandler(LogHandler* p);
 	protected:
-        static ctl::Sp<LogHandler> m_pLogHandler;
+        static LogHandler* m_pLogHandler;
 		//---- Log Level Default
 #if DEBUG
 		TE_logLevel m_curLogLvl=L_DBG;
@@ -112,8 +122,7 @@ namespace ctl {
 #endif
 	};
 
-	inline void logMsg(LogHandler::TE_logLevel lvl, const std::string& sMsg)
-		{ LogHandler::getCurHandler()->logMsg(lvl,sMsg); };
+    void logMsg(LogHandler::TE_logLevel lvl, const std::string& sMsg);
 	inline void logDbg (const std::string& sMsg)
         {logMsg(LogHandler::TE_logLevel::L_DBG,sMsg);};
 	inline void logInfo(const std::string& sMsg)

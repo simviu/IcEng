@@ -67,7 +67,7 @@ void DemoWindow::onDrawUpdate(float deltaT)
     if(m_demoSel != m_demoSel_req)
     {
         auto pScn = DemoScene::createDemoScn(m_demoSel_req);
-        removeAllScene();
+         removeAllScene();
         addScene(pScn);
         m_demoSel = m_demoSel_req;
     }

@@ -100,9 +100,9 @@ const static GLfloat K_bkColor[4] = {0.2, 0.4, 0.9, 1.0};
     auto& cfg = Ic3d::IcEng::getInstance()->m_cfg;
     cfg.m_sPath_shader = sPathRes + "IcShader/";
     
-    auto pMng = Ic3d::IcWinMng::getInstance();
-    pMng->onInitWindows();
-    
+    auto pApp = Ic3d::IcApp::getInstance();
+    if(pApp==nullptr) return;
+    pApp->initWindows();
 }
 //--------------------------------------
 //  Ic3d_onInit
@@ -120,9 +120,9 @@ const static GLfloat K_bkColor[4] = {0.2, 0.4, 0.9, 1.0};
 //--------------------------------------
 -(void)Ic3d_onDrawUpdate:(double)deltaT
 {
-    // TODO: IcWinMng into IcApp
-    auto pMng = Ic3d::IcWinMng::getInstance();
-    pMng->drawUpdate(deltaT);
+    auto pApp = Ic3d::IcApp::getInstance();
+    if(pApp==nullptr) return;
+    pApp->drawUpdateWindows(deltaT);
 };
 
 //--------------------------------------

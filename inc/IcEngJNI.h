@@ -23,7 +23,6 @@ namespace Ic3d {
     class IcEngJNI
     {
     public:
-        static void setAppInstance(IcWindow* pWin);
         //---- JNI util
         static std::string jstr2str(JNIEnv * env, jstring jstr);
     };
