@@ -15,7 +15,6 @@
 @interface IcDemoTableVCon ()
 {
     IcDemoViewCon*    m_vconDemo;
-    DemoApp           m_app;
 }
 @end
 
@@ -25,7 +24,6 @@
     [super viewDidLoad];
     
     m_vconDemo = [[IcDemoViewCon alloc] init];
-    [m_vconDemo initWithApp:&m_app];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -113,7 +111,8 @@
     // Push the view controller.
  //   [self.navigationController pushViewController:vcon animated:YES];
     [self presentViewController:m_vconDemo animated:NO completion:nil];
-    m_app.reqSetDemo(row);
+    auto pApp = (DemoApp*)([m_vconDemo getAppInstance]);
+    pApp->reqSetDemo(row);
 }
 
 

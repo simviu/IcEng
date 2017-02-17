@@ -8,28 +8,35 @@
 
 #import "IcDemoViewCon.h"
 #import "IcViewController.h"
-
+#include "DemoApp.hpp"
+using namespace std;
 @interface IcDemoViewCon ()
 {
     IcViewController*    m_IcViewCon;
+    DemoApp                 m_app;
 }
 @end
 
 @implementation IcDemoViewCon
--(void)initWithApp:(void*)pApp
+-(void*)getAppInstance
 {
-    m_IcViewCon = [[IcViewController alloc] init];
-   [m_IcViewCon setIcAppInstance:pApp];
+    return reinterpret_cast<void*>(&m_app);
 }
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    // Do any additional setup after loading the view from its nib.
+    
+    //---- Init IcViewController, and tell it IcApp instance.
+    m_IcViewCon = [[IcViewController alloc] init];
+    [m_IcViewCon setIcAppInstance:&m_app];
+    
+    //---- Add IcViewController as subview,
+    // send to bottom of view stack, so your other UI elements show.
     UIView* icView = m_IcViewCon.view;
     [self.view addSubview:m_IcViewCon.view];
     icView.frame = self.view.frame;
     [self.view sendSubviewToBack:icView];
-    // Do any additional setup after loading the view from its nib.
 }
 
 - (void)didReceiveMemoryWarning {

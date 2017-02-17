@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+
 @interface IcDemoViewCon : UIViewController
 - (IBAction)onBtn_Close:(id)sender;
--(void)initWithApp:(void*)pApp;
+-(void*)getAppInstance;
 
 @end
