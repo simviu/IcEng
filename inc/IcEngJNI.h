@@ -19,6 +19,7 @@ namespace Ic3d {
     //----------------
     //  JNI Wrapper
     //----------------
+    // All android JNI related util put here.
     class IcEngJNI
     {
     public:

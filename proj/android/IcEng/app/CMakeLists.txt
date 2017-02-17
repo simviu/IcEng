@@ -12,12 +12,13 @@ add_definitions (-D_HAS_EXCEPTIONS=1)
 include_directories(
     ${ICENGLIB}/inc
     ${ICENGLIB}/inc/core
+    ${ICENGLIB}/inc/test
     )
 
 link_directories(${ICENGBUILD_BIN})
 
 add_library(IcEngTest SHARED
-    		${ICENGLIB}/src/test/IcTestWindow.cpp
+    		${ICENGLIB}/src/test/MyTestApp.cpp
             src/main/cpp/native-lib.cpp
 			)
 

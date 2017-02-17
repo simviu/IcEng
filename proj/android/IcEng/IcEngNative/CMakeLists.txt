@@ -45,10 +45,11 @@ add_library(IcEng SHARED
     			${ICENGLIB}/src/Ic3d/IcText.cpp
     			${ICENGLIB}/src/Ic3d/IcTexture.cpp
     			${ICENGLIB}/src/Ic3d/IcUtil.cpp
-    			${ICENGLIB}/src/IcWindow/IcWindow.cpp
-    			${ICENGLIB}/src/IcWindow/IcWinMng.cpp
-    			${ICENGLIB}/src/IcWindow/android/IcEngJNI.cpp
-    			${ICENGLIB}/src/IcWindow/android/IcWinMngAndroid.cpp
+    			${ICENGLIB}/src/IcApp/IcApp.cpp
+    			${ICENGLIB}/src/IcApp/IcWindow.cpp
+    			${ICENGLIB}/src/IcApp/IcWinMng.cpp
+    			${ICENGLIB}/src/IcApp/android/IcEngJNI.cpp
+    			${ICENGLIB}/src/IcApp/android/IcWinMngAndroid.cpp
 			)
 
 
