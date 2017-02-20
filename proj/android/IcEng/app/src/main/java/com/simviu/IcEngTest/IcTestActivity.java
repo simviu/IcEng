@@ -16,11 +16,13 @@ public class IcTestActivity extends IcActivity{
 
     // Used to load the 'native-lib' library on application startup.
     static {
-        System.loadLibrary("IcEngTest");
+	    System.loadLibrary("IcEngTest");
+	    
+	    //---- Init App
+        initApp();
     }
 
     @Override protected void onCreate(Bundle icicle) {
-        initApp(m_sPathRes);
         super.onCreate(icicle);
         //----- CreateApp()
         copyAssetDir("IcShader");
@@ -51,10 +53,5 @@ public class IcTestActivity extends IcActivity{
     }
 
 
-    /**
-     * A native method that is implemented by the 'native-lib' native library,
-     * which is packaged with this application.
-     */
-//    public native String stringFromJNI();
-    public native void initApp(String jsPathRes);
+	 static native void initApp();
 }

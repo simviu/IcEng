@@ -48,12 +48,14 @@ extern "C" JNIEXPORT void JNICALL Java_com_simviu_IcEng_IcEngJNI_onInit(JNIEnv *
 {
     //---- Configure IcEng
     std::string sPathRes = IcEngJNI::jstr2str(env, jsPathRes);
+    sPathRes += "/";
     auto pEng = IcEng::getInstance();
-    pEng->m_cfg.m_sPath_shader = sPathRes + "/IcShader/";
+    pEng->m_cfg.m_sPath_shader = sPathRes + "IcShader/";
 
 
     //---- Set logHandler
     ctl::LogHandler::setCurHandler(&l_logHandlerJNI);
+
     //---- Init App
     auto pApp = IcApp::getInstance();
     if(pApp== nullptr)
@@ -62,6 +64,7 @@ extern "C" JNIEXPORT void JNICALL Java_com_simviu_IcEng_IcEngJNI_onInit(JNIEnv *
         return;
     }
     LOGI("JNI IcEngJNI_onInit(): IcApp instance [0x%x] on Init\n", pApp);
+    pApp->m_cfg.m_sPathRes = sPathRes;
     pApp->onInit();
     pApp->initWindows();
 }

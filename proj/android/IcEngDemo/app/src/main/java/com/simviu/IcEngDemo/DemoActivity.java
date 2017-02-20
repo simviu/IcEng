@@ -12,18 +12,19 @@ import com.simviu.IcEng.IcAssetHelper;
 import com.simviu.IcEng.IcEngView;
 
 public class DemoActivity  extends IcActivity{
-
     // Used to load the 'native-lib' library on application startup.
     static {
         System.loadLibrary("IcEngDemo");
+
+        initApp();
     }
 
     @Override protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
         //----- CreateApp()
-        initApp(m_sPathRes);
         copyAssetDir("IcShader");
         copyAssetDir("IcDemo");
+
     }
 
     @Override protected void onPause() {
@@ -55,5 +56,5 @@ public class DemoActivity  extends IcActivity{
      * A native method that is implemented by the 'native-lib' native library,
      * which is packaged with this application.
      */
-    public native void initApp(String jsPathRes);
+    static native void initApp();
 }

@@ -21,7 +21,7 @@ add_library(IcEngDemo SHARED
     ${ICENGDEMO}/src/DemoLights.cpp
     ${ICENGDEMO}/src/DemoModelCreate.cpp
     ${ICENGDEMO}/src/DemoNestedTrans.cpp
-    ${ICENGDEMO}/src/DemoWindow.cpp
+    ${ICENGDEMO}/src/DemoApp.cpp
 			)
 
 
