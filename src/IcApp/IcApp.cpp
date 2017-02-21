@@ -34,13 +34,6 @@ namespace Ic3d
         return l_pIcAppInstance;
     }
 
-    //----------------------------
-    //  onInit
-    //----------------------------
-    void IcApp::onInit()
-    {
-        logDbg("IcApp::onInit()");
-    };
 
     //----------------------------
     //  addWindow

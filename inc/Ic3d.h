@@ -505,13 +505,21 @@ namespace Ic3d {
             std::string m_sPathRes;
         };
         TCfg m_cfg;
-        virtual void onInit();
+
+		//---- Always Override onInit()
+        virtual void onInit() {};
         void addWindow(ctl::Sp<IcWindow> pWin);
         ctl::Sp<IcWindow> getWindow(int idx);
         void onScreenSize(const ctl::TSize& sz);
         void initWithScn(ctl::Sp<IcScene> pScn);
+
+		//---- This 2 functions implicitly called by
+		// high level windows system of corresponding platform.
+		// Do not call it from users.
+		void initWindows();
         void drawUpdateWindows(float deltaT);
-        void initWindows();
+
+		//---- Singleton
         static IcApp* getInstance();
         //-----------------
         // Cmd interface
@@ -520,6 +528,7 @@ namespace Ic3d {
         // could be JSON or simple text cmd, by your implementation.
         // Return string back.
         virtual std::string onCmd(const std::string& sCmd){ return "OK";};
+
         //-----------------
         // runCmd()
         //-----------------

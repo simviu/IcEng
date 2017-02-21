@@ -12,12 +12,6 @@ import com.simviu.IcEng.IcAssetHelper;
 import com.simviu.IcEng.IcEngView;
 
 public class DemoActivity  extends IcActivity{
-    // Used to load the 'native-lib' library on application startup.
-    static {
-        System.loadLibrary("IcEngDemo");
-
-        initApp();
-    }
 
     @Override protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
@@ -56,5 +50,4 @@ public class DemoActivity  extends IcActivity{
      * A native method that is implemented by the 'native-lib' native library,
      * which is packaged with this application.
      */
-    static native void initApp();
 }

@@ -20,11 +20,47 @@ using namespace Ic3d;
 //-----------------------------------
 std::string DemoApp::onCmd(const std::string& sCmd)
 {
-    string sRet = "OK";
-    if(sCmd=="") return sRet;
-    int i = sCmd[0]-'0';
-    reqSetDemo(i);
-    return sRet;
+    logInfo("DemoApp::onCmd('"+sCmd+"')");
+    string sRet = "";
+
+    //---- Sep Main cmd and args
+    auto tkns = s2tokens(sCmd, ":");
+    if(tkns.size()==0)
+        return sRet;
+
+    string sCmdMain = tkns[0];
+    string sCmdArgs;
+    if(tkns.size()>1) sCmdArgs = tkns[1];
+
+    //---------------------
+    //  Decode Cmd
+    //---------------------
+
+    //---- get Demo list
+    if(sCmdMain=="list")
+    {
+        string sDemos;
+        int N = DemoScene::getDemoNum();
+        for(int i=0;i<N;i++)
+        {
+            const auto& item = DemoScene::getDemoItem(i);
+            sDemos += item.m_sTitle +";";
+        }
+        sRet = sDemos;
+    }//---- req select demo
+    else if(sCmdMain=="sel")
+    {
+        if(sCmdArgs.size()==0)
+        {
+            logErr("DemoApp::onCmd(): wrong selection");
+            return sRet;
+        }
+        char c= sCmdArgs[0];
+        int i = c-'0';
+        reqSetDemo(i);
+        sRet = "OK";
+    }
+     return sRet;
 }
 //-----------------------------------
 //  DemoApp
@@ -34,6 +70,7 @@ DemoApp::DemoApp()
 }
 void DemoApp::reqSetDemo(int sel)
 {
+    m_demoSel = sel;
     if(m_pDemoWin != nullptr)
         m_pDemoWin->reqSetDemo(sel);
 };
@@ -51,6 +88,7 @@ void DemoApp::onInit()
     logInfo("DemoApp::onInit()");
     m_pDemoWin = makeSp<DemoWindow>();
     addWindow(m_pDemoWin);
+    m_pDemoWin->reqSetDemo(m_demoSel);
     logInfo("DemoApp::onInit() done");
 }
 //-----------------------------------

@@ -107,6 +107,27 @@ extern "C" JNIEXPORT void JNICALL Java_com_simviu_IcEng_IcEngJNI_debugPrint(JNIE
 }
 
 //------------------------------------------
+//  IcAppJNI.debugPrint()
+//------------------------------------------
+extern "C" JNIEXPORT jstring JNICALL Java_com_simviu_IcEng_IcEngJNI_sendAppCmd(JNIEnv * env, jobject obj, jstring sCmd)
+{
+    const char* csCmd = (*env).GetStringUTFChars(sCmd, 0);
+    LOGI("JNI debugPrint[%s]\n", csCmd);
+    auto pApp = IcApp::getInstance();
+    std::string sRet = "";
+    if(pApp!= nullptr)
+        sRet = pApp->onCmd(std::string(csCmd));
+    else{
+        sRet = "IcEngJNI.sendAppCmd() failed: IcApp instance not instantiated";
+        logErr(sRet);
+    }
+    (*env).ReleaseStringUTFChars(sCmd, csCmd);
+    return (*env).NewStringUTF(sRet.c_str());
+
+
+}
+
+//------------------------------------------
 //  util jstr2str()
 //------------------------------------------
 std::string IcEngJNI::jstr2str(JNIEnv * env, jstring jstr)
