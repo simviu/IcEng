@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">IcEngTest</string>
+    <string name="title_activity_my_test">MyTestActivity</string>
 </resources>

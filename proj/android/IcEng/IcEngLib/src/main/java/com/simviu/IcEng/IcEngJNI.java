@@ -18,6 +18,8 @@ package com.simviu.IcEng;
 
 // Wrapper for native library
 
+import android.content.Context;
+
 public class IcEngJNI {
 
      static {
@@ -33,4 +35,11 @@ public class IcEngJNI {
      public static native void onDrawUpdate(float deltaT);
      public static native void debugPrint(String sMsg);
      public static native String sendAppCmd(String sCmd);
- }
+
+    //-----  Utils
+     public static void copyAssetDir(Context context, String sPath)
+     {
+        IcAssetHelper hlpr = new IcAssetHelper(context);
+        hlpr.copyAssetsDir(sPath);
+     }
+}

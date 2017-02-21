@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import com.simviu.IcEng.IcActivity;
@@ -45,7 +46,10 @@ public class DemoActivity  extends IcActivity{
         super.IcEng_onDrawUpdate(deltaT);
     }
 
-
+    public void onButton_Close(View v) {
+        // does something
+        finish();
+    }
     /**
      * A native method that is implemented by the 'native-lib' native library,
      * which is packaged with this application.

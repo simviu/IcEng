@@ -2,6 +2,7 @@ package com.simviu.IcEngTest;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.os.Environment;
 import android.content.res.AssetManager;
@@ -11,21 +12,23 @@ import com.simviu.IcEng.IcEngJNI;
 
 import android.app.Activity;
 import com.simviu.IcEng.IcActivity;
+import com.simviu.IcEng.IcEngView;
 
-public class IcTestActivity extends IcActivity{
+public class IcTestActivity extends Activity{//IcActivity{
 
-    // Used to load the 'native-lib' library on application startup.
-    static {
-	    System.loadLibrary("IcEngTest");
-	    
-	    //---- Init App
-        initApp();
-    }
 
-    @Override protected void onCreate(Bundle icicle) {
+     @Override protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
-        //----- CreateApp()
-        copyAssetDir("IcShader");
+     //   setContentView(R.layout.activity_main);
+
+
+
+
+        /*
+        //---- Add IcEngView
+        FrameLayout icLayout = (FrameLayout) findViewById(R.id.id_IcEngViewLayout); // Find the layout where you want to add button
+        IcEngView view = getLayoutInflater()
+        */
     }
 
     @Override protected void onPause() {
@@ -39,6 +42,7 @@ public class IcTestActivity extends IcActivity{
     //-------------------------------------
     //  IcEng Renderer call back override
     //-------------------------------------
+    /*
     @Override public void IcEng_onInit()
     {
         super.IcEng_onInit();
@@ -51,7 +55,6 @@ public class IcTestActivity extends IcActivity{
     {
         super.IcEng_onDrawUpdate(deltaT);
     }
+    */
 
-
-	 static native void initApp();
 }

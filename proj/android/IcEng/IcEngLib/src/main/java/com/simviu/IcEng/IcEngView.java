@@ -36,6 +36,7 @@ import android.content.Context;
 import android.graphics.PixelFormat;
 import android.opengl.GLSurfaceView;
 import android.os.Environment;
+import android.util.AttributeSet;
 import android.util.Log;
 
 import javax.microedition.khronos.egl.EGL10;
@@ -64,6 +65,7 @@ import com.simviu.IcEng.IcEngJNI;
  *   bit depths). Failure to do so would result in an EGL_BAD_MATCH error.
  */
 public class IcEngView extends GLSurfaceView {
+
     //-------------------------------------
     // RendererCallBack
     //-------------------------------------
@@ -72,24 +74,28 @@ public class IcEngView extends GLSurfaceView {
         public void IcEng_onViewSize(int w, int h);
         public void IcEng_onDrawUpdate(float deltaT);
     }
+    //----- This is needed for inflating from XML
+    public IcEngView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        init(true, 8, 0);
+    }
 
     //-------------------------------------
     private static String TAG = "GL2JNIView";
     private static final boolean DEBUG = false;
     private RendererCallBack m_renderCallBack = null;
-
-    public IcEngView(Context context, RendererCallBack renderCB) {
-        super(context);
-        m_renderCallBack = renderCB;
-        init(true, 8, 0);
+    public void setRenderCallBack(RendererCallBack rcb)
+    {
+        m_renderCallBack = rcb;
     }
 
+
+    /*
     public IcEngView(Context context, boolean translucent, int depth, int stencil) {
         super(context);
         init(translucent, depth, stencil);
     }
-
-
+    */
 
     //-------------------------------------
 
@@ -358,8 +364,11 @@ public class IcEngView extends GLSurfaceView {
         }
 
         public void onSurfaceChanged(GL10 gl, int width, int height) {
+
         //    IcAppJNI.onInit(m_sPathRes);
         //    IcAppJNI.onScreenSize(width, height);
+         //   IcEngJNI.onInit(m_sPathRes);
+
             m_renderCallBack.IcEng_onInit();
             m_renderCallBack.IcEng_onViewSize(width, height);
 

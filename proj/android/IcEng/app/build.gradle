@@ -27,7 +27,7 @@ android {
             path "CMakeLists.txt"
         }
     }
-    task copyIcShader(type: Copy){
+    task copyIcShader(type: Copy) {
         println("Run task : copyIcShader()")
         from "$projectDir/../../../../IcEngLib/IcShader"
         into "$projectDir/src/main/assets/IcShader"
@@ -46,5 +46,6 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile 'com.android.support:appcompat-v7:25.0.1'
+    compile 'com.android.support:design:25.0.1'
     testCompile 'junit:junit:4.12'
 }

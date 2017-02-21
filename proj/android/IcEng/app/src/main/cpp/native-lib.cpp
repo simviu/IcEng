@@ -13,11 +13,18 @@
 
 using namespace Ic3d;
 
-static MyTestApp l_myApp;
-extern "C" JNIEXPORT void JNICALL Java_com_simviu_IcEngTest_IcTestActivity_initApp(JNIEnv * env, jobject obj)
+static ctl::Sp<MyTestApp> l_pApp = nullptr;
+extern "C" JNIEXPORT void JNICALL Java_com_simviu_IcEngTest_MainActivity_createIcApp(JNIEnv * env, jobject obj)
 {
     //---- Configure App
-    LOGI("MyTestApp instanciated at [0x%x]", &l_myApp);
+    LOGI("MyTestApp instanciated at [0x%x]", l_pApp.get());
+    l_pApp = ctl::makeSp<MyTestApp>();
 
+}
+extern "C" JNIEXPORT void JNICALL Java_com_simviu_IcEngTest_MainActivity_releaseIcApp(JNIEnv * env, jobject obj)
+{
+    //---- Configure App
+    LOGI("MyTestApp released at [0x%x]", l_pApp.get());
+    l_pApp = nullptr;
 
 }

@@ -17,7 +17,7 @@
         android:text="Hello World!" />
 
     <Button
-        android:text="Button"
+        android:text="Close"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -26,6 +26,6 @@
         android:layout_marginRight="43dp"
         android:layout_marginEnd="43dp"
         android:layout_marginBottom="23dp"
-        android:id="@+id/Close"
-        android:onClick="demo_onBtn_close" />
+        android:id="@+id/id_button_close_demo"
+        android:onClick="onButton_Close" />
 </RelativeLayout>
