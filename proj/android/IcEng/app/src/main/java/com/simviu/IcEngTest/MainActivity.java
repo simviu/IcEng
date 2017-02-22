@@ -19,12 +19,12 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         //---- Create IcApp at very beginning
-        createIcApp();
-        //----- CreateApp()
+        String sPathRes = getCacheDir().toString();
+        initIcApp(sPathRes);
+        //----- Copy asset
         IcEngJNI.copyAssetDir(this, "IcShader");
     }
-    static native void createIcApp();
-    static native void releaseIcApp();
+    static native void initIcApp(String sPathCache);
 
     public void onBtn_IcTest(View v) {
 

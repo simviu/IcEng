@@ -30,7 +30,7 @@ public class IcEngJNI {
      * @param width the current view width
      * @param height the current view height
      */
-     public static native void onInit(String sPathRes);
+     public static native void onInit();
      public static native void onScreenSize(int width, int height);
      public static native void onDrawUpdate(float deltaT);
      public static native void debugPrint(String sMsg);

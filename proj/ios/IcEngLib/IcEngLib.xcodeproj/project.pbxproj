@@ -31,8 +31,6 @@
 		9C58062E1E53F3E900E61F85 /* IcViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9C58061F1E53F3E900E61F85 /* IcViewController.mm */; };
 		9C58062F1E53F3E900E61F85 /* IcViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9C58061F1E53F3E900E61F85 /* IcViewController.mm */; };
 		9C5806301E53F3E900E61F85 /* IcViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C5806201E53F3E900E61F85 /* IcViewController.xib */; };
-		9C5806311E53F3E900E61F85 /* IcWinMngIOS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C5806211E53F3E900E61F85 /* IcWinMngIOS.cpp */; };
-		9C5806321E53F3E900E61F85 /* IcWinMngIOS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C5806211E53F3E900E61F85 /* IcWinMngIOS.cpp */; };
 		9C5806361E53F43F00E61F85 /* MyTestApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C5806351E53F43F00E61F85 /* MyTestApp.cpp */; };
 		9C5806371E53F43F00E61F85 /* MyTestApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C5806351E53F43F00E61F85 /* MyTestApp.cpp */; };
 		9C7AD3DD1DF11751008968FC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7AD3DC1DF11751008968FC /* main.m */; };
@@ -124,14 +122,11 @@
 		9C36EB411E2F1B3E00F1DB3D /* IcViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IcViewController.h; path = ../../../inc/IcViewController.h; sourceTree = "<group>"; };
 		9C53F6CD1DCB18F8006EAF17 /* libIcEngLib_iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIcEngLib_iOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C5806191E53F3E900E61F85 /* IcEngJNI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcEngJNI.cpp; sourceTree = "<group>"; };
-		9C58061A1E53F3E900E61F85 /* IcWinMngAndroid.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcWinMngAndroid.cpp; sourceTree = "<group>"; };
 		9C58061B1E53F3E900E61F85 /* IcApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcApp.cpp; sourceTree = "<group>"; };
 		9C58061C1E53F3E900E61F85 /* IcWindow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcWindow.cpp; sourceTree = "<group>"; };
 		9C58061D1E53F3E900E61F85 /* IcWinMng.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcWinMng.cpp; sourceTree = "<group>"; };
 		9C58061F1E53F3E900E61F85 /* IcViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = IcViewController.mm; sourceTree = "<group>"; };
 		9C5806201E53F3E900E61F85 /* IcViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IcViewController.xib; sourceTree = "<group>"; };
-		9C5806211E53F3E900E61F85 /* IcWinMngIOS.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcWinMngIOS.cpp; sourceTree = "<group>"; };
-		9C5806231E53F3E900E61F85 /* IcWinMngPC.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcWinMngPC.cpp; sourceTree = "<group>"; };
 		9C5806351E53F43F00E61F85 /* MyTestApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MyTestApp.cpp; sourceTree = "<group>"; };
 		9C5806381E540A4C00E61F85 /* MyTestApp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyTestApp.h; sourceTree = "<group>"; };
 		9C7AD3D91DF11751008968FC /* IcEngTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IcEngTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -258,7 +253,6 @@
 				9C58061C1E53F3E900E61F85 /* IcWindow.cpp */,
 				9C58061D1E53F3E900E61F85 /* IcWinMng.cpp */,
 				9C58061E1E53F3E900E61F85 /* iOS */,
-				9C5806221E53F3E900E61F85 /* pc */,
 			);
 			path = IcApp;
 			sourceTree = "<group>";
@@ -267,7 +261,6 @@
 			isa = PBXGroup;
 			children = (
 				9C5806191E53F3E900E61F85 /* IcEngJNI.cpp */,
-				9C58061A1E53F3E900E61F85 /* IcWinMngAndroid.cpp */,
 			);
 			path = android;
 			sourceTree = "<group>";
@@ -277,17 +270,8 @@
 			children = (
 				9C58061F1E53F3E900E61F85 /* IcViewController.mm */,
 				9C5806201E53F3E900E61F85 /* IcViewController.xib */,
-				9C5806211E53F3E900E61F85 /* IcWinMngIOS.cpp */,
 			);
 			path = iOS;
-			sourceTree = "<group>";
-		};
-		9C5806221E53F3E900E61F85 /* pc */ = {
-			isa = PBXGroup;
-			children = (
-				9C5806231E53F3E900E61F85 /* IcWinMngPC.cpp */,
-			);
-			path = pc;
 			sourceTree = "<group>";
 		};
 		9C7AD3DA1DF11751008968FC /* IcEngTestApp */ = {
@@ -534,7 +518,6 @@
 				9C5806361E53F43F00E61F85 /* MyTestApp.cpp in Sources */,
 				9CF607271E248B8F008A662C /* IcShader.cpp in Sources */,
 				9CF607171E248B8F008A662C /* IcUtil.cpp in Sources */,
-				9C5806311E53F3E900E61F85 /* IcWinMngIOS.cpp in Sources */,
 				9CF607091E248B8F008A662C /* IcMeshDataCreate.cpp in Sources */,
 				9CF607051E248B8F008A662C /* IcMaterial.cpp in Sources */,
 				9CF606EF1E248B8F008A662C /* ctlBinBuf.cpp in Sources */,
@@ -601,7 +584,6 @@
 				9CF607241E248B8F008A662C /* IcRenderEng.cpp in Sources */,
 				9CF606F61E248B8F008A662C /* ctlStr.cpp in Sources */,
 				9CF607081E248B8F008A662C /* IcMesh.cpp in Sources */,
-				9C5806321E53F3E900E61F85 /* IcWinMngIOS.cpp in Sources */,
 				9CF606FA1E248B8F008A662C /* ctlTest_img.cpp in Sources */,
 				9CF607201E248B8F008A662C /* IcRenderAdpStd_Tex.cpp in Sources */,
 			);

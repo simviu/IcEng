@@ -49,7 +49,6 @@ add_library(IcEng SHARED
     			${ICENGLIB}/src/IcApp/IcWindow.cpp
     			${ICENGLIB}/src/IcApp/IcWinMng.cpp
     			${ICENGLIB}/src/IcApp/android/IcEngJNI.cpp
-    			${ICENGLIB}/src/IcApp/android/IcWinMngAndroid.cpp
 			)
 
 

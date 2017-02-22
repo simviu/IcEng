@@ -29,7 +29,7 @@ using namespace std;
     
     //---- Init IcViewController, and tell it IcApp instance.
     m_IcViewCon = [[IcViewController alloc] init];
-    [m_IcViewCon setIcAppInstance:&m_app];
+    [m_IcViewCon initIcApp:&m_app];
     
     //---- Add IcViewController as subview,
     // send to bottom of view stack, so your other UI elements show.

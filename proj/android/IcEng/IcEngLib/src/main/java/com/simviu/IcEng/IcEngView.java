@@ -31,7 +31,7 @@ package com.simviu.IcEng;
  * limitations under the License.
  */
 
-
+import com.simviu.IcEng.IcEngJNI;
 import android.content.Context;
 import android.graphics.PixelFormat;
 import android.opengl.GLSurfaceView;
@@ -357,20 +357,20 @@ public class IcEngView extends GLSurfaceView {
             float dt = (float)dtI/1000f;
             if(mTime==0) dt = K_initDeltaT;
 
-        //  IcAppJNI.onDrawUpdate(dt);
-            m_renderCallBack.IcEng_onDrawUpdate(dt);
+          IcEngJNI.onDrawUpdate(dt);
+        //    m_renderCallBack.IcEng_onDrawUpdate(dt);
 
             mTime = tCur;
         }
 
         public void onSurfaceChanged(GL10 gl, int width, int height) {
 
-        //    IcAppJNI.onInit(m_sPathRes);
-        //    IcAppJNI.onScreenSize(width, height);
+            IcEngJNI.onInit();
+            IcEngJNI.onScreenSize(width, height);
          //   IcEngJNI.onInit(m_sPathRes);
 
-            m_renderCallBack.IcEng_onInit();
-            m_renderCallBack.IcEng_onViewSize(width, height);
+         //   m_renderCallBack.IcEng_onInit();
+         //   m_renderCallBack.IcEng_onViewSize(width, height);
 
             IcEngJNI.debugPrint("JNI print from IcEngView::onSurfaceChanged()");
         }

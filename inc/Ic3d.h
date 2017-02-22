@@ -431,16 +431,15 @@ namespace Ic3d {
         virtual void addWindow(ctl::Sp<IcWindow> pWin){ m_winAry.add(pWin); };
         virtual ctl::TSize getScreenSize(){ return m_screenSize; };
         virtual bool onScreenSize(const ctl::TSize& screenSize);
-        virtual void onInitWindows();
+        virtual void initWindows();
         virtual void drawUpdate(float deltaT);
-        virtual bool initMng(int argc, char **argv){ return false; };
         virtual void startMainLoop(){};
         virtual ctl::Sp<IcWindow> getWindow(int idx){ return m_winAry[idx]; } ;
         virtual void onQuit();
+        virtual bool initMng(int argc, char **argv){return false;};
        //---- Singleton of IcWinMng can be set externally.
         static ctl::Sp<IcWinMng> getInstance();
         static void setInstance(ctl::Sp<IcWinMng> p);
-        static ctl::Sp<IcWinMng> createWinMngImpl();
         //-----------------
         // Configuration
         //-----------------
@@ -482,11 +481,12 @@ namespace Ic3d {
         struct TCfg
         {
             TColor  m_bkColor = TColor(0.2, 0.5, 0.7, 1.0);
+            ctl::TSize   m_size;
+            ctl::TPos    m_pos;
         };
         TCfg m_cfg;
         ctl::SpAry<IcScene>& getScnAry(){ return m_scnAry; };
     protected:
-        ctl::TSize          m_winSize;
         ctl::SpAry<IcScene> m_scnAry;
         std::mutex          m_mtx_draw;
         bool	m_isDrawing = false;
@@ -503,6 +503,7 @@ namespace Ic3d {
         struct TCfg
         {
             std::string m_sPathRes;
+            std::string m_sPathDoc;
         };
         TCfg m_cfg;
 
@@ -512,14 +513,14 @@ namespace Ic3d {
         ctl::Sp<IcWindow> getWindow(int idx);
         void onScreenSize(const ctl::TSize& sz);
         void initWithScn(ctl::Sp<IcScene> pScn);
-
 		//---- This 2 functions implicitly called by
 		// high level windows system of corresponding platform.
 		// Do not call it from users.
 		void initWindows();
         void drawUpdateWindows(float deltaT);
-
+        
 		//---- Singleton
+        static void setInstance(IcApp* pApp);
         static IcApp* getInstance();
         //-----------------
         // Cmd interface
@@ -533,7 +534,7 @@ namespace Ic3d {
         // runCmd()
         //-----------------
         // For PC, not mobile
-        virtual int runCmdLine(int argc, char **argv);
+        int runCmdLine(int argc, char **argv);
     protected:
     };
      
@@ -547,9 +548,8 @@ namespace Ic3d {
 		virtual ~IcEng(){};
         struct TCfg
         {
-            std::string m_sPath_shader = "IcShader/";
         }m_cfg;
-        bool initEng();
+        bool initEng(const std::string& sPathShader);
         void clearScreen(const TColor& bkColor);
         static ctl::Sp<IcEng> getInstance();
         void onFrameStart();

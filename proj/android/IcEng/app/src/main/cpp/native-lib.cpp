@@ -13,18 +13,9 @@
 
 using namespace Ic3d;
 
-static ctl::Sp<MyTestApp> l_pApp = nullptr;
-extern "C" JNIEXPORT void JNICALL Java_com_simviu_IcEngTest_MainActivity_createIcApp(JNIEnv * env, jobject obj)
+static MyTestApp l_app;
+extern "C" JNIEXPORT void JNICALL Java_com_simviu_IcEngTest_MainActivity_initIcApp(JNIEnv * env,  jobject obj,  jstring jsPathCache)
 {
-    //---- Configure App
-    LOGI("MyTestApp instanciated at [0x%x]", l_pApp.get());
-    l_pApp = ctl::makeSp<MyTestApp>();
-
-}
-extern "C" JNIEXPORT void JNICALL Java_com_simviu_IcEngTest_MainActivity_releaseIcApp(JNIEnv * env, jobject obj)
-{
-    //---- Configure App
-    LOGI("MyTestApp released at [0x%x]", l_pApp.get());
-    l_pApp = nullptr;
-
+    std::string sPathCache = IcEngJNI::jstr2str(env, jsPathCache);
+    IcEngJNI::initIcApp(&l_app, sPathCache, sPathCache);
 }

@@ -37,7 +37,7 @@ public class IcActivity extends Activity implements IcEngView.RendererCallBack{
     public void IcEng_onInit()
     {
         IcEngJNI.debugPrint("JNI print from IcActivity::IcEng_onInit()");
-        IcEngJNI.onInit(m_sPathRes);
+        IcEngJNI.onInit();
     }
     public void IcEng_onViewSize(int w, int h)
     {
