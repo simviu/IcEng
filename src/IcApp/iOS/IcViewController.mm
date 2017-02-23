@@ -41,7 +41,8 @@ const static GLfloat K_bkColor[4] = {0.2, 0.4, 0.9, 1.0};
 {
     m_pIcApp = static_cast<IcApp*>(pAppIn);
     if(m_pIcApp==nullptr) return;
-    
+    IcApp::setInstance(m_pIcApp);
+
     //---- Set App Res/Doc Path
     NSString* nsRes = [[NSBundle mainBundle] resourcePath];
     NSString *nsDoc = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];

@@ -28,6 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.23" />
     </FrameLayout>
+    <!--
     <Button
         android:text="Close"
         android:layout_width="wrap_content"
@@ -40,4 +41,6 @@
         android:layout_marginBottom="23dp"
         android:id="@+id/id_button_close_demo"
         android:onClick="onButton_Close" />
+
+        -->
 </RelativeLayout>
