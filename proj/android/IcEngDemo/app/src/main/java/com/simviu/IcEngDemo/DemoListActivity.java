@@ -21,27 +21,23 @@ public class DemoListActivity extends ListActivity {
     }
 
 
-    //---- Debug 1
-    /*
-    static final String[] FRUITS = new String[] { "Apple", "Avocado", "Banana",
-            "Blueberry", "Coconut", "Durian", "Guava", "Kiwifruit",
-            "Jackfruit", "Mango", "Olive", "Pear", "Sugar-apple" };
-    */
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //---- Debug 2
-        String sDemosDbg = "Demo1 Demo2 Demo3";
 
         //---- Init App at very beginning
-        initApp();
+        String sPathCache = getCacheDir().toString();
+        initIcApp(sPathCache);
+        IcEngJNI.copyAssetDir(this, "IcShader");
+        IcEngJNI.copyAssetDir(this, "IcDemo");
+
+
+        //----- Build List
+        // The list is sent back from DemoApp::onCmd, via JNI interface,
+        // Strings separated by ";";
         String sDemos = IcEngJNI.sendAppCmd("list");
         String[] sDemoAry = sDemos.split(";");
-        // no more this
-        // setContentView(R.layout.list_fruit);
-
         setListAdapter(new ArrayAdapter<String>(this, R.layout.activity_demo_list,sDemoAry));
 
         ListView listView = getListView();
@@ -68,6 +64,6 @@ public class DemoListActivity extends ListActivity {
         });
 
     }
-    static native void initApp();
+    static native void initIcApp(String sPathCache);
 
 }

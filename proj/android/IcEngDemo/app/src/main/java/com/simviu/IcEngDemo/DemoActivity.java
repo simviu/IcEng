@@ -12,13 +12,11 @@ import com.simviu.IcEng.IcEngJNI;
 import com.simviu.IcEng.IcAssetHelper;
 import com.simviu.IcEng.IcEngView;
 
-public class DemoActivity  extends IcActivity{
+public class DemoActivity  extends Activity{
 
     @Override protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
-        //----- CreateApp()
-        copyAssetDir("IcShader");
-        copyAssetDir("IcDemo");
+        setContentView(R.layout.activity_demo);
 
     }
 
@@ -30,21 +28,6 @@ public class DemoActivity  extends IcActivity{
         super.onResume();
     }
 
-    //-------------------------------------
-    //  IcEng Renderer call back override
-    //-------------------------------------
-    @Override public void IcEng_onInit()
-    {
-        super.IcEng_onInit();
-    }
-    @Override public void IcEng_onViewSize(int w, int h)
-    {
-        super.IcEng_onViewSize(w, h);
-    }
-    @Override public void IcEng_onDrawUpdate(float deltaT)
-    {
-        super.IcEng_onDrawUpdate(deltaT);
-    }
 
     public void onButton_Close(View v) {
         // does something
