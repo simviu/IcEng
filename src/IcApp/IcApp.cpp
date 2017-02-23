@@ -20,7 +20,7 @@ namespace Ic3d
     //----------------------------
     IcApp::IcApp()
     {
-        setInstance(this);
+      //  setInstance(this);
     };
     //----------------------------
     //  singleton

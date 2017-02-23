@@ -138,12 +138,14 @@ void IcEngJNI::initIcApp(IcApp* pApp,
                         const std::string& sPathRes,
                         const std::string& sPathDoc)
 {
+    if(pApp== nullptr) return;
+    IcApp::setInstance(pApp);
     //---- Set logHandler
     ctl::LogHandler::setCurHandler(&l_logHandlerJNI);
 
     //---- set path
     auto& cfg = pApp->m_cfg;
-    cfg.m_sPathRes = sPathRes;
-    cfg.m_sPathDoc = sPathDoc;
+    cfg.m_sPathRes = sPathRes +"/";
+    cfg.m_sPathDoc = sPathDoc +"/";
     pApp->onInit();
 }
