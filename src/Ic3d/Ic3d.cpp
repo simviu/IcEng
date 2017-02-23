@@ -30,11 +30,11 @@ namespace Ic3d
 	//--------------------------
 	//	initEng
 	//--------------------------
-    bool IcEng::initEng()
+    bool IcEng::initEng(const std::string& sPathShader)
 	{
 		logInfo("IcEng::initEng()");
 		auto pEng = IcRenderEng::getInstance();
-		bool isOK = pEng->initEng(m_cfg.m_sPath_shader);
+		bool isOK = pEng->initEng(sPathShader);
         m_hasInit = true;
         if(isOK)
             m_isEnabled = true;

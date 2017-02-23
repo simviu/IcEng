@@ -13,11 +13,9 @@
 
 using namespace Ic3d;
 
-static MyTestApp l_myApp;
-extern "C" JNIEXPORT void JNICALL Java_com_simviu_IcEngTest_IcTestActivity_initApp(JNIEnv * env, jobject obj)
+static MyTestApp l_app;
+extern "C" JNIEXPORT void JNICALL Java_com_simviu_IcEngTest_MainActivity_initIcApp(JNIEnv * env,  jobject obj,  jstring jsPathCache)
 {
-    //---- Configure App
-    LOGI("MyTestApp instanciated at [0x%x]", &l_myApp);
-
-
+    std::string sPathCache = IcEngJNI::jstr2str(env, jsPathCache);
+    IcEngJNI::initIcApp(&l_app, sPathCache, sPathCache);
 }

@@ -5,9 +5,11 @@
 
 using namespace Ic3d;
 static DemoApp l_demoApp;
-extern "C" JNIEXPORT void JNICALL Java_com_simviu_IcEngDemo_DemoActivity_initApp
-        (JNIEnv * env, jobject obj)
+extern "C" JNIEXPORT void JNICALL Java_com_simviu_IcEngDemo_DemoListActivity_initIcApp
+        (JNIEnv * env, jobject obj,  jstring jsPathCache)
 {
+    std::string sPathCache = IcEngJNI::jstr2str(env, jsPathCache);
+    IcEngJNI::initIcApp(&l_demoApp, sPathCache, sPathCache);
 
 
 }

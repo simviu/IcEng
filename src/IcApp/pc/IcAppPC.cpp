@@ -316,6 +316,7 @@ namespace Ic3d
     bool IcWinMngGlut::initMng(int argc, char *argv[])
     {
         bool isOK =  GlutHelper::onInit(argc, argv);
+        /* This was post creation, absoleted
         m_screenSize = GlutHelper::getScreenSize();
         
         //---- Create Window after glut init
@@ -324,7 +325,7 @@ namespace Ic3d
             ctl::TRect rect(TPos(0,0), m_screenSize);
             GlutHelper::createGlutWin(pWin, "", rect);
         }
-        
+        */
         return isOK;
     }
     
@@ -342,14 +343,26 @@ namespace Ic3d
     void IcWinMngGlut::addWindow(ctl::Sp<IcWindow> pWin)
     {
         IcWinMng::addWindow(pWin);
+        m_screenSize = GlutHelper::getScreenSize();
+        
+        ctl::TRect rect(TPos(0,0), m_screenSize);
+        GlutHelper::createGlutWin(pWin, "", rect);
+       
     }
-    //----------------------------
-    //  Implementation of Glut Win Mng
-    //----------------------------
-    ctl::Sp<IcWinMng> IcWinMng::createWinMngImpl()
+ 
+    //----------------------------------
+    //  IcApp::runCmdLine
+    //----------------------------------
+    int IcApp::runCmdLine(int argc, char **argv)
     {
-        return ctl::makeSp<IcWinMngGlut>();
+        auto pMng = ctl::makeSp<IcWinMngGlut>();
+        IcWinMng::setInstance(pMng);
+        pMng->initMng(argc, argv);
+        onInit();
+        pMng->startMainLoop();
+        return true;
     }
+
  }
 
 

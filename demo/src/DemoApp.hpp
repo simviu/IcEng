@@ -41,7 +41,7 @@ public:
     virtual std::string onCmd(const std::string& sCmd) override;
 protected:
     ctl::Sp<DemoWindow> m_pDemoWin = nullptr;
-   
+    int m_demoSel = 0;
 };
 
 

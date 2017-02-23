@@ -15,8 +15,8 @@ public class IcActivity extends Activity implements IcEngView.RendererCallBack{
 
     @Override protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
-        mView = new IcEngView(getApplication(), this);
-        setContentView(mView);
+     //   mView = new IcEngView(getApplication(), this);
+     //   setContentView(mView);
         m_sPathRes = getCacheDir().toString();
     }
 
@@ -30,18 +30,14 @@ public class IcActivity extends Activity implements IcEngView.RendererCallBack{
         mView.onResume();
     }
 
-    protected void copyAssetDir(String sPath)
-    {
-        IcAssetHelper hlpr = new IcAssetHelper(this, m_sPathRes);
-        hlpr.copyAssetsDir(sPath);
-    }
+
     //-------------------------------------
     //  IcEng Renderer call back
     //-------------------------------------
     public void IcEng_onInit()
     {
         IcEngJNI.debugPrint("JNI print from IcActivity::IcEng_onInit()");
-        IcEngJNI.onInit(m_sPathRes);
+        IcEngJNI.onInit();
     }
     public void IcEng_onViewSize(int w, int h)
     {

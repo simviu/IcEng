@@ -19,7 +19,7 @@ namespace Ic3d
     //-------------------------------------------
     //  def
     //-------------------------------------------
-    
+    const static string K_sSubPath_shader = "IcShader/";
     //-------------------------------------------
     //	drawObj
     //-------------------------------------------
@@ -42,7 +42,10 @@ namespace Ic3d
         // TODO: Multiple win nee multiple context?
         auto pEng = IcEng::getInstance();
         if(!pEng->hasInit())
-            pEng->initEng();
+        {
+            string sPathRes = IcApp::getInstance()->m_cfg.m_sPathRes;
+            pEng->initEng(sPathRes + K_sSubPath_shader);
+        }
     }
     //-------------------------------------------
     //	onWindowSize
@@ -53,8 +56,7 @@ namespace Ic3d
         // TODO:
         //    Consider add option to fit window into screen
         //    based on normalized coordinator, etc.
-        m_winSize = size;
-        TRect viewRect(0,0,m_winSize.w, m_winSize.h);
+        m_cfg.m_size = size;
         for(auto pScn : m_scnAry.getAry())
             pScn->onWindowSize(size);
     }
@@ -85,7 +87,7 @@ namespace Ic3d
             if(!pScn->hasInit())
             {
                 pScn->onInit();
-                pScn->onWindowSize(m_winSize);
+                pScn->onWindowSize(m_cfg.m_size);
                 pScn->setHasInit(true);
             }
 

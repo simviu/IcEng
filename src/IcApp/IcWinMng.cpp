@@ -23,8 +23,7 @@ namespace Ic3d
     ctl::Sp<IcWinMng> IcWinMng::getInstance()
     {
         if(m_pInstance==nullptr)
-            m_pInstance = createWinMngImpl();
-       //   m_pInstance = ctl::makeSp<IcWinMng>();
+            m_pInstance = ctl::makeSp<IcWinMng>();
         return m_pInstance;
     }
     //---- Can be set externally
@@ -35,7 +34,7 @@ namespace Ic3d
     //-------------------------------------------
     //	onInitWindows
     //-------------------------------------------
-    void IcWinMng::onInitWindows()
+    void IcWinMng::initWindows()
     {
         for(auto pWin : m_winAry.getAry())
             pWin->onInit();

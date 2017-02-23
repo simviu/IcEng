@@ -20,27 +20,22 @@ namespace Ic3d
     //----------------------------
     IcApp::IcApp()
     {
-        //---- Set as default IcApp
-        if(l_pIcAppInstance!=nullptr)
-            logWarn("IcApp::IcApp() : In most case there should be only one IcApp instanciation");
-        logInfo("IcApp instance instanciated");
-        l_pIcAppInstance = this;
+      //  setInstance(this);
     };
     //----------------------------
     //  singleton
     //----------------------------
+    void IcApp::setInstance(IcApp* pApp)
+    {
+        //---- Set as default IcApp
+        if(l_pIcAppInstance!=nullptr)
+            logWarn("IcApp::IcApp() : In most case there should be only one IcApp instanciation");
+       l_pIcAppInstance = pApp;
+    }
     IcApp* IcApp::getInstance()
     {
         return l_pIcAppInstance;
     }
-
-    //----------------------------
-    //  onInit
-    //----------------------------
-    void IcApp::onInit()
-    {
-        logDbg("IcApp::onInit()");
-    };
 
     //----------------------------
     //  addWindow
@@ -77,17 +72,6 @@ namespace Ic3d
         addWindow(pWin);
     }
     //----------------------------------
-    //  runCmd
-    //----------------------------------
-    int IcApp::runCmdLine(int argc, char **argv)
-    {
-        onInit();
-        auto pMng = IcWinMng::getInstance();
-        pMng->initMng(argc, argv);
-        pMng->startMainLoop();
-        return 0;
-    }
-    //----------------------------------
     //  windows
     //----------------------------------
     void IcApp::drawUpdateWindows(float deltaT)
@@ -100,9 +84,10 @@ namespace Ic3d
     void IcApp::initWindows()
     {
         auto pMng = Ic3d::IcWinMng::getInstance();
-        pMng->onInitWindows();
+        pMng->initWindows();
       
     }
-   
+  
+    
 
 }
