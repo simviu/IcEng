@@ -3,6 +3,12 @@ I-Cube 3D Engine (IcEng) is an open source, light weight OpenGL/C++ 3D graphics 
 The source or binary are provided with free BSD license, so you can use this engine on personal or commercial project with no restriction. See License section.
 For more information check website http://www.simviu.com/dev.
 
+#TODO
+* Windows Visual C++ project file need fix
+* Android GL context re-creation issue
+* Google Cardboard VR add-on
+* More doucuments
+
 #Features
 * OpenGL 2.0, with C++ 0x11 code and shader.
 * Cross Platform ( Mac/Windows/Linux/iOS/Android ), project file provided.
@@ -10,6 +16,7 @@ For more information check website http://www.simviu.com/dev.
 * Model loading with Waveform .OBJ file. ( More format in future )
 * Basic lighting, material.
 * Abstract C++ wrapper class with OpenGL function hidden.
+* Support Google CardBoard VR.(Coming soon...)
 
 
 #Architecture
@@ -23,6 +30,9 @@ For more information check website http://www.simviu.com/dev.
 * IcModel are constructed by IcMesh, IcTexture and IcMaterial.
 
 In most case your simple 3d application has one IcWindow and one IcScene. For iOS/Android mobile App. There should only be one window.
+
+#Document
+More info check IcEng/doc/IcEng_Manual.pdf
 
 #License
 Check BSD license :
