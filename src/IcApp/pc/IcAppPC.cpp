@@ -233,11 +233,8 @@ namespace Ic3d
         //--------------------------
 		bool onInit(int argc, char *argv[])
 		{
-            		logInfo("Init Glut");
-
 			if (m_hasInit) return m_valid;
 			m_valid = true;
-
 			//------------------------
 			//  Init Glut
 			//------------------------
@@ -355,6 +352,7 @@ namespace Ic3d
     //----------------------------------
     int IcApp::runCmdLine(int argc, char **argv)
     {
+        setInstance(this);
         auto pMng = ctl::makeSp<IcWinMngGlut>();
         IcWinMng::setInstance(pMng);
         pMng->initMng(argc, argv);
