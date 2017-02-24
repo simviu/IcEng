@@ -6,13 +6,13 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.simviu.IcEng.IcEngJNI;
-import com.simviu.IcEng.IcEngView;
 
 public class MainActivity extends Activity {
     // Used to load the 'native-lib' library on application startup.
     static {
         System.loadLibrary("IcEngTest");
     }
+    static native void initIcApp(String sPathCache);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +28,6 @@ public class MainActivity extends Activity {
 
 
     }
-    static native void initIcApp(String sPathCache);
 
     public void onBtn_IcTest(View v) {
 
@@ -37,5 +36,4 @@ public class MainActivity extends Activity {
         MainActivity.this.startActivity(intent);
 
     }
-
 }
