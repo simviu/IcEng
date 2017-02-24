@@ -3,14 +3,8 @@ I-Cube 3D Engine (IcEng) is an open source, light weight OpenGL/C++ 3D graphics 
 The source or binary are provided with free BSD license, so you can use this engine on personal or commercial project with no restriction. See License section.
 For more information check website http://www.simviu.com/dev.
 
-#TODO
-* Windows Visual C++ project file need fix
-* Android GL context re-creation issue
-* Google Cardboard VR add-on
-* More doucuments
-
 #Features
-* OpenGL 2.0, with C++ 0x11 code and shader.
+* C++ 0x11 code, OpenGL 2.0 shader.
 * Cross Platform ( Mac/Windows/Linux/iOS/Android ), project file provided.
 * Auto memory and resource management with C++ 0x11 std::shared_ptr.
 * Model loading with Waveform .OBJ file. ( More format in future )
@@ -18,6 +12,12 @@ For more information check website http://www.simviu.com/dev.
 * Abstract C++ wrapper class with OpenGL function hidden.
 * Support Google CardBoard VR.(Coming soon...)
 
+#TODO
+* Windows Visual C++ project file need fix
+* Android GL context re-creation issue
+* Google Cardboard VR add-on
+* More doucuments
+* Some other issues
 
 #Architecture
 * The IcEng applications are wrapped in IcApp/IcWindow/IcScene structure. 
@@ -29,7 +29,7 @@ For more information check website http://www.simviu.com/dev.
 * An IcObject has it's IcModel, loaded from OBJ file or created dynamically.
 * IcModel are constructed by IcMesh, IcTexture and IcMaterial.
 
-In most case your simple 3d application has one IcWindow and one IcScene. For iOS/Android mobile App. There should only be one window.
+In most case your simple 3d application has one IcWindow and one IcScene. For iOS/Android mobile App, there is only one window.
 
 #Document
 More info check IcEng/doc/IcEng_Manual.pdf
@@ -42,5 +42,10 @@ https://en.wikipedia.org/wiki/BSD_licenses
 support@simviu.com
 
 #ScreenShots
-![alt tag](doc/ScreenShots/1.png)
+| ...                                    | ...                                    |
+| ---------------------------------------|:--------------------------------------:|
+| ![alt tag](doc/ScreenShots/1.png)      | ![alt tag](doc/ScreenShots/2.png)      |
+| ![alt tag](doc/ScreenShots/3.png)      | ![alt tag](doc/ScreenShots/4.png)      | 
+
+
 
