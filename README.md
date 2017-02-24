@@ -23,3 +23,10 @@ For more information check website http://www.simviu.com/dev.
 * IcModel are constructed by IcMesh, IcTexture and IcMaterial.
 
 In most case your simple 3d application has one IcWindow and one IcScene. For iOS/Android mobile App. There should only be one window.
+
+#License
+Check BSD license :
+https://en.wikipedia.org/wiki/BSD_licenses
+
+#Contact
+support@simviu.com
