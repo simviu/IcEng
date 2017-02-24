@@ -17,7 +17,7 @@ For more information check website http://www.simviu.com/dev.
 * There is only one IcApp instance(singleton). 
 * An IcApp application can contain several IcWindow. 
 * Each window has it's own OpenGL context. 
-* Each window one or more Quick Start. 
+* Each window has one or more IcScene. 
 * Each IcScene contain one IcCamera, and many IcObject.
 * An IcObject has it's IcModel, loaded from OBJ file or created dynamically.
 * IcModel are constructed by IcMesh, IcTexture and IcMaterial.
