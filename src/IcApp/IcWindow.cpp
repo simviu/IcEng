@@ -38,14 +38,16 @@ namespace Ic3d
     //-------------------------------------------
     void IcWindow::onInit()
     {
+        m_scnAry.clear();
         //---- Check IcEng,
-        // TODO: Multiple win nee multiple context?
+        // TODO: Multiple win need multiple context?
         auto pEng = IcEng::getInstance();
-        if(!pEng->hasInit())
+    //    if(!pEng->hasInit())
         {
             string sPathRes = IcApp::getInstance()->m_cfg.m_sPathRes;
             pEng->initEng(sPathRes + K_sSubPath_shader);
         }
+
     }
     //-------------------------------------------
     //	onWindowSize

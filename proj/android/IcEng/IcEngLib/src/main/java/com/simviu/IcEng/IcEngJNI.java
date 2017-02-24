@@ -30,7 +30,7 @@ public class IcEngJNI {
      * @param width the current view width
      * @param height the current view height
      */
-     public static native void onInit();
+     public static native void onInitWindow();
      public static native void onScreenSize(int width, int height);
      public static native void onDrawUpdate(float deltaT);
      public static native void debugPrint(String sMsg);
@@ -42,4 +42,5 @@ public class IcEngJNI {
         IcAssetHelper hlpr = new IcAssetHelper(context);
         hlpr.copyAssetsDir(sPath);
      }
+
 }

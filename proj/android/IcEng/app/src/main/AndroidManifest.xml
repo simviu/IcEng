@@ -19,7 +19,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MyTestActivity"></activity>
+        <activity android:name=".MyTestActivity">
+            android:configChanges="keyboardHidden|orientation|screenSize"
+        </activity>
     </application>
 
 </manifest>

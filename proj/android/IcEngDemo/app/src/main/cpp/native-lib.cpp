@@ -11,5 +11,4 @@ extern "C" JNIEXPORT void JNICALL Java_com_simviu_IcEngDemo_DemoListActivity_ini
     std::string sPathCache = IcEngJNI::jstr2str(env, jsPathCache);
     IcEngJNI::initIcApp(&l_demoApp, sPathCache, sPathCache);
 
-
 }

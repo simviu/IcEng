@@ -38,13 +38,19 @@ namespace Ic3d
     }
 
     //----------------------------
-    //  addWindow
+    //  addWindow/clearWindow
     //----------------------------
     void IcApp::addWindow(ctl::Sp<IcWindow> pWin)
     {
         auto pMng = IcWinMng::getInstance();
         pMng->addWindow(pWin);
     }
+    void IcApp::clearWindows()
+    {
+        auto pMng = IcWinMng::getInstance();
+        pMng->clearWindows();
+    }
+
     //----------------------------
     //  onScreenSize
     //----------------------------
@@ -62,15 +68,8 @@ namespace Ic3d
         auto pMng = IcWinMng::getInstance();
         pMng->onScreenSize(sz);
     }
-    //----------------------------
-    //  initWithScn
-    //----------------------------
-    void IcApp::initWithScn(ctl::Sp<IcScene> pScn)
-    {
-        auto pWin = makeSp<IcWindow>();
-        pWin->addScene(pScn);
-        addWindow(pWin);
-    }
+
+
     //----------------------------------
     //  windows
     //----------------------------------

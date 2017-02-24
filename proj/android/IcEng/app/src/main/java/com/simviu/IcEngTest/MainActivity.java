@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.simviu.IcEng.IcEngJNI;
+import com.simviu.IcEng.IcEngView;
 
 public class MainActivity extends Activity {
     // Used to load the 'native-lib' library on application startup.
@@ -19,10 +20,13 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         //---- Create IcApp at very beginning
-        String sPathRes = getCacheDir().toString();
-        initIcApp(sPathRes);
+        String sPathCache = getCacheDir().toString();
+        initIcApp(sPathCache);
+
         //----- Copy asset
         IcEngJNI.copyAssetDir(this, "IcShader");
+
+
     }
     static native void initIcApp(String sPathCache);
 

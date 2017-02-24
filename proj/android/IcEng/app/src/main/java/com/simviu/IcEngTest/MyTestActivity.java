@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.widget.FrameLayout;
 
+import com.simviu.IcEng.IcEngJNI;
 import com.simviu.IcEng.IcEngView;
 
 public class MyTestActivity extends Activity {
@@ -15,4 +16,7 @@ public class MyTestActivity extends Activity {
 
 
     }
+
+
+
 }

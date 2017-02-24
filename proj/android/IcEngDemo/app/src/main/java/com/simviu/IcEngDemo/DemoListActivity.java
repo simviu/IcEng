@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.simviu.IcEng.IcEngJNI;
+import com.simviu.IcEng.IcEngView;
 
 import java.util.StringTokenizer;
 
@@ -20,11 +21,16 @@ public class DemoListActivity extends ListActivity {
         System.loadLibrary("IcEngDemo");
     }
 
+    IcEngView m_icEngView = null;
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //---- Create IcEngView
+        m_icEngView = new IcEngView(this);
+
 
         //---- Init App at very beginning
         String sPathCache = getCacheDir().toString();

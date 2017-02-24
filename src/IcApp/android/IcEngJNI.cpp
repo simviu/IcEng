@@ -34,11 +34,8 @@ using namespace Ic3d;
 //------------------------------------------
 //  IcAppJNI.onInit()
 //------------------------------------------
-extern "C" JNIEXPORT void JNICALL Java_com_simviu_IcEng_IcEngJNI_onInit(JNIEnv * env, jobject obj)
+extern "C" JNIEXPORT void JNICALL Java_com_simviu_IcEng_IcEngJNI_onInitWindow(JNIEnv * env, jobject obj)
 {
-
-
-
     //---- Init App
     auto pApp = IcApp::getInstance();
     if(pApp== nullptr)
@@ -46,8 +43,6 @@ extern "C" JNIEXPORT void JNICALL Java_com_simviu_IcEng_IcEngJNI_onInit(JNIEnv *
         LOGI("Error: JNI IcEngJNI_onInit(): IcApp instance empty\n");
         return;
     }
-    LOGI("JNI IcEngJNI_onInit(): IcApp instance [0x%x] on Init\n", pApp);
-//    pApp->onInit();
     pApp->initWindows();
 }
 
@@ -58,10 +53,7 @@ extern "C" JNIEXPORT void JNICALL Java_com_simviu_IcEng_IcEngJNI_onScreenSize(JN
                                                                               jint width, jint height)
 {
     auto pApp = IcApp::getInstance();
-    if(pApp== nullptr)
-    {
-        return;
-    }
+    if(pApp== nullptr) return;
     pApp->onScreenSize(ctl::TSize(width, height));
 }
 
@@ -73,8 +65,6 @@ extern "C" JNIEXPORT void JNICALL Java_com_simviu_IcEng_IcEngJNI_onDrawUpdate(JN
     auto pApp = IcApp::getInstance();
     if(pApp== nullptr) return;
     pApp->drawUpdateWindows(deltaT);
-
-
 }
 
 //------------------------------------------
@@ -85,7 +75,6 @@ extern "C" JNIEXPORT void JNICALL Java_com_simviu_IcEng_IcEngJNI_debugPrint(JNIE
     const char* cstr = (*env).GetStringUTFChars(sMsg, 0);
     LOGI("JNI debugPrint[%s]\n", cstr);
     (*env).ReleaseStringUTFChars(sMsg, cstr);
-
 }
 
 //------------------------------------------
@@ -105,8 +94,6 @@ extern "C" JNIEXPORT jstring JNICALL Java_com_simviu_IcEng_IcEngJNI_sendAppCmd(J
     }
     (*env).ReleaseStringUTFChars(sCmd, csCmd);
     return (*env).NewStringUTF(sRet.c_str());
-
-
 }
 
 //------------------------------------------

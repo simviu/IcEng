@@ -65,7 +65,6 @@ import com.simviu.IcEng.IcEngJNI;
  *   bit depths). Failure to do so would result in an EGL_BAD_MATCH error.
  */
 public class IcEngView extends GLSurfaceView {
-
     //-------------------------------------
     // RendererCallBack
     //-------------------------------------
@@ -74,9 +73,19 @@ public class IcEngView extends GLSurfaceView {
         public void IcEng_onViewSize(int w, int h);
         public void IcEng_onDrawUpdate(float deltaT);
     }
+
     //----- This is needed for inflating from XML
     public IcEngView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        setEGLContextClientVersion(2);
+        setPreserveEGLContextOnPause(true);
+        init(true, 8, 0);
+    }
+    //---- This is for programmatically create IcEngView
+    public IcEngView(Context context) {
+        super(context);
+        setEGLContextClientVersion(2);
+        setPreserveEGLContextOnPause(true);
         init(true, 8, 0);
     }
 
@@ -365,18 +374,12 @@ public class IcEngView extends GLSurfaceView {
 
         public void onSurfaceChanged(GL10 gl, int width, int height) {
 
-            IcEngJNI.onInit();
             IcEngJNI.onScreenSize(width, height);
-         //   IcEngJNI.onInit(m_sPathRes);
-
-         //   m_renderCallBack.IcEng_onInit();
-         //   m_renderCallBack.IcEng_onViewSize(width, height);
-
             IcEngJNI.debugPrint("JNI print from IcEngView::onSurfaceChanged()");
         }
 
         public void onSurfaceCreated(GL10 gl, EGLConfig config) {
-            // Do nothing.
+            IcEngJNI.onInitWindow();
         }
     }
 }

@@ -429,6 +429,7 @@ namespace Ic3d {
         IcWinMng(){};
         virtual ~IcWinMng(){};
         virtual void addWindow(ctl::Sp<IcWindow> pWin){ m_winAry.add(pWin); };
+		virtual void clearWindows(){  m_winAry.clear(); };
         virtual ctl::TSize getScreenSize(){ return m_screenSize; };
         virtual bool onScreenSize(const ctl::TSize& screenSize);
         virtual void initWindows();
@@ -480,7 +481,7 @@ namespace Ic3d {
         //-----------------
         struct TCfg
         {
-            TColor  m_bkColor = TColor(0.2, 0.5, 0.7, 1.0);
+            TColor  m_bkColor = TColor(0.2, 0.5, 0.9, 1.0);
             ctl::TSize   m_size;
             ctl::TPos    m_pos;
         };
@@ -510,6 +511,7 @@ namespace Ic3d {
 		//---- Always Override onInit()
         virtual void onInit() {};
         void addWindow(ctl::Sp<IcWindow> pWin);
+		void clearWindows();
         ctl::Sp<IcWindow> getWindow(int idx);
         void onScreenSize(const ctl::TSize& sz);
         void initWithScn(ctl::Sp<IcScene> pScn);

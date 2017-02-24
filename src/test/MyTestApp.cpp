@@ -30,8 +30,8 @@ public:
     //--------------------------
     void onInit() override
     {
-        logInfo("MyTestScn::onInit()");
         IcScene::onInit();
+        logInfo("MyTestScn::onInit()");
 
         IcMeshData mshd;
         mshd.createCube(TVec3(1,1,1), TVec3(0,0,0));
@@ -58,13 +58,25 @@ public:
     }
 };
 //----------------------------
+// MyTestWindow
+//----------------------------
+class MyTestWindow : public IcWindow
+{
+public:
+    virtual  void onInit() override
+    {
+        IcWindow::onInit();
+        logInfo("MyTestWindow::onInit()");
+        addScene(ctl::makeSp<MyTestScn>());
+    }
+};
+//----------------------------
 // MyTestApp
 //----------------------------
 void MyTestApp::onInit()
 {
-    logInfo("MyTestApp::onInit()");
     IcApp::onInit();
-    auto pScn = makeSp<MyTestScn>();
-    initWithScn(pScn);
+    logInfo("MyTestApp::onInit()");
+    addWindow(ctl::makeSp<MyTestWindow>());
 };
 
