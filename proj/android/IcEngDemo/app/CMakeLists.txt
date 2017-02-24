@@ -10,21 +10,18 @@ set(ICENGBUILD_BIN 	"${ICENGBUILD}/android/lib/${CMAKE_BUILD_TYPE}/${ANDROID_ABI
 
 add_definitions (-D_HAS_EXCEPTIONS=1)
 
-include_directories(${ICENGLIB}/inc ${ICENGDEMO}/src)
+include_directories(${ICENGLIB}/inc ${ICENGLIB}/inc/core ${ICENGDEMO}/src)
 link_directories(${ICENGBUILD_BIN})
 
 add_library(IcEngDemo SHARED
     #------ IcEngDemo src
 	src/main/cpp/native-lib.cpp
     ${ICENGDEMO}/src/DemoScene.cpp
-    ${ICENGDEMO}/src/DemoAnimation.cpp
     ${ICENGDEMO}/src/DemoBasic.cpp
     ${ICENGDEMO}/src/DemoLights.cpp
     ${ICENGDEMO}/src/DemoModelCreate.cpp
-    ${ICENGDEMO}/src/DemoModels.cpp
     ${ICENGDEMO}/src/DemoNestedTrans.cpp
-    ${ICENGDEMO}/src/DemoTransform.cpp
-    ${ICENGDEMO}/src/DemoWindow.cpp
+    ${ICENGDEMO}/src/DemoApp.cpp
 			)
 
 

@@ -15,7 +15,7 @@
 #include "IcRenderAdp.h"
 
 //---- TODO: Ic3d->IcEng
-inline namespace Ic3d {
+namespace Ic3d {
    	//-----------------------------------------------
     //	Util
     //-----------------------------------------------
@@ -49,7 +49,7 @@ inline namespace Ic3d {
         void createCone(float R, float height); // TODO : Implement
         void createGridXZ(const ctl::TRect& rect,
                           int N_x, int N_y,
-                          const TRect& texRect = TRect(0,0,1,1));
+                          const ctl::TRect& texRect = ctl::TRect(0,0,1,1));
         
         void dbgPrint() const;
         //---- Cfg
@@ -322,7 +322,7 @@ inline namespace Ic3d {
         struct TFont
         {
             std::string     m_sName;
-            TSize           m_size;
+            ctl::TSize           m_size;
             int             m_fontSize=10;
             // equal to m_size.h
         };
@@ -353,11 +353,11 @@ inline namespace Ic3d {
 	public:
 		IcScene();
 		virtual ~IcScene() {};
-        virtual void onInit(){};
+        virtual void onInit(){ m_hasInit = true; };
         virtual void onUpdate(double deltaT)
         {    if(m_pCallBk_onUpdate!=nullptr) m_pCallBk_onUpdate(deltaT); };
 		virtual void onDraw();
-		virtual void onViewRect(const ctl::TRect& viewRect);
+		virtual void onWindowSize(const ctl::TSize& winSize);
         void addObj(ctl::Sp<IcObject> p){ m_rootObj.addChildObj(p); };
         void addText(ctl::Sp<IcText> p){ m_texts.add(p); };
         void clearObjs(){ m_rootObj.clearChildObjs(); };
@@ -379,6 +379,8 @@ inline namespace Ic3d {
         void setTargetTexture(ctl::Sp<IcTexture> pTex)
             { m_pTargetTex = pTex; };
         void addSubScn(ctl::Sp<IcScene> pScn){ m_subScns.add(pScn);};
+        bool hasInit()const{ return m_hasInit; };
+        void setHasInit(bool b){ m_hasInit = b; };
 	protected:
         void renderObjRecur(const IcCamera& cam,
                             const IcObject& obj,
@@ -427,17 +429,18 @@ inline namespace Ic3d {
         IcWinMng(){};
         virtual ~IcWinMng(){};
         virtual void addWindow(ctl::Sp<IcWindow> pWin){ m_winAry.add(pWin); };
+		virtual void clearWindows(){  m_winAry.clear(); };
         virtual ctl::TSize getScreenSize(){ return m_screenSize; };
         virtual bool onScreenSize(const ctl::TSize& screenSize);
+        virtual void initWindows();
         virtual void drawUpdate(float deltaT);
-        virtual bool initMng(int argc, char **argv){ return false; };
         virtual void startMainLoop(){};
         virtual ctl::Sp<IcWindow> getWindow(int idx){ return m_winAry[idx]; } ;
         virtual void onQuit();
-        //---- Singleton of IcWinMng can be set externally.
+        virtual bool initMng(int argc, char **argv){return false;};
+       //---- Singleton of IcWinMng can be set externally.
         static ctl::Sp<IcWinMng> getInstance();
         static void setInstance(ctl::Sp<IcWinMng> p);
-        static ctl::Sp<IcWinMng> createWinMngImpl();
         //-----------------
         // Configuration
         //-----------------
@@ -464,7 +467,6 @@ inline namespace Ic3d {
         virtual void onInit();
         virtual void onDrawUpdate(float deltaT);
         virtual void onWindowSize(const ctl::TSize& size);
-        virtual void onScreenSize(const ctl::TSize& size);
         void addScene(ctl::Sp<IcScene> pScn);
         void removeAllScene();
         //-----------------
@@ -479,22 +481,65 @@ inline namespace Ic3d {
         //-----------------
         struct TCfg
         {
-            TColor  m_bkColor = TColor(0.2, 0.5, 0.7, 1.0);
+            TColor  m_bkColor = TColor(0.2, 0.5, 0.9, 1.0);
+            ctl::TSize   m_size;
+            ctl::TPos    m_pos;
         };
         TCfg m_cfg;
-        //-----------------
-        // runCmd()
-        //-----------------
-        // For PC, not mobile
-        static int runCmd(int argc, char **argv, ctl::Sp<IcWindow> pWin);
         ctl::SpAry<IcScene>& getScnAry(){ return m_scnAry; };
     protected:
-        ctl::TSize          m_winSize;
         ctl::SpAry<IcScene> m_scnAry;
         std::mutex          m_mtx_draw;
         bool	m_isDrawing = false;
         
     };
+    //-----------------------------------------------
+    //	IcApp
+    //-----------------------------------------------
+    class IcApp
+    {
+    public:
+        IcApp();
+        virtual ~IcApp(){};
+        struct TCfg
+        {
+            std::string m_sPathRes;
+            std::string m_sPathDoc;
+        };
+        TCfg m_cfg;
+
+		//---- Always Override onInit()
+        virtual void onInit() {};
+        void addWindow(ctl::Sp<IcWindow> pWin);
+		void clearWindows();
+        ctl::Sp<IcWindow> getWindow(int idx);
+        void onScreenSize(const ctl::TSize& sz);
+        void initWithScn(ctl::Sp<IcScene> pScn);
+		//---- This 2 functions implicitly called by
+		// high level windows system of corresponding platform.
+		// Do not call it from users.
+		void initWindows();
+        void drawUpdateWindows(float deltaT);
+        
+		//---- Singleton
+        static void setInstance(IcApp* pApp);
+        static IcApp* getInstance();
+        //-----------------
+        // Cmd interface
+        //-----------------
+        // simple command interface with outside by string,
+        // could be JSON or simple text cmd, by your implementation.
+        // Return string back.
+        virtual std::string onCmd(const std::string& sCmd){ return "OK";};
+
+        //-----------------
+        // runCmd()
+        //-----------------
+        // For PC, not mobile
+        int runCmdLine(int argc, char **argv);
+    protected:
+    };
+     
     //-----------------------------------------
 	//	IcEng
 	//-----------------------------------------
@@ -505,9 +550,8 @@ inline namespace Ic3d {
 		virtual ~IcEng(){};
         struct TCfg
         {
-            std::string m_sPath_shader = "IcShader/";
         }m_cfg;
-        bool initEng();
+        bool initEng(const std::string& sPathShader);
         void clearScreen(const TColor& bkColor);
         static ctl::Sp<IcEng> getInstance();
         void onFrameStart();

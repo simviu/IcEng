@@ -14,9 +14,25 @@
 
 namespace ctl {
     using namespace std;
-    
-    ctl::Sp<LogHandler> LogHandler::m_pLogHandler =
-        ctl::makeSp<LogHandler>();
+    //------------------------------------------
+    //	LogHelper instance
+    //------------------------------------------
+    static LogHandler l_dflt_logHandler;
+    LogHandler* LogHandler::m_pLogHandler = &l_dflt_logHandler;
+    LogHandler* LogHandler::getCurHandler()
+        { return m_pLogHandler; };
+    void LogHandler::setCurHandler(LogHandler* p)
+        {
+            m_pLogHandler = p;
+            logDbg("LogHandler set to [0x%x]"+v2hex((intptr_t)p));
+       };
+    //------------------------------------------
+    //	logMsg
+    //------------------------------------------
+    void logMsg(LogHandler::TE_logLevel lvl, const std::string& sMsg)
+    {
+        LogHandler::getCurHandler()->logMsg(lvl,sMsg);
+    };
 	//------------------------------------------
 	//	LogHelper
 	//------------------------------------------
@@ -36,14 +52,18 @@ namespace ctl {
 	};
 	
 	//------------------------------------------
-	//	logMsg
+	//	logMsg/logMsgBase
 	//------------------------------------------
-	void LogHandler::logMsg(LogHandler::TE_logLevel lvl,
-                         const std::string &sMsg)
+    void LogHandler::logMsg(LogHandler::TE_logLevel lvl, const std::string &sMsg)
 	{
 		if(lvl<m_curLogLvl) return;
 		LogHelper hlpr;
 		string sLvl = hlpr.getLvlName(lvl);
-		std::cout << "ctl:"+sLvl + ":"+ sMsg +"\n";
+        logMsgBase("ctl:"+sLvl + ":"+ sMsg +"\n");
 	}
+    void LogHandler::logMsgBase(const std::string& sMsg)
+    {
+        std::cout << sMsg;
+    }
+
 }

@@ -9,11 +9,12 @@
 //
 
 #import "IcDemoTableVCon.h"
-#import "DemoViewController.h"
+#import "IcDemoViewCon.h"
+#include "DemoApp.hpp"
 
 @interface IcDemoTableVCon ()
 {
-    DemoViewController*    m_vconDemo;
+    IcDemoViewCon*    m_vconDemo;
 }
 @end
 
@@ -22,8 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    m_vconDemo = [[DemoViewController alloc] init];
-    [m_vconDemo createApp];
+    m_vconDemo = [[IcDemoViewCon alloc] init];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -40,7 +40,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 #warning Incomplete implementation, return the number of rows
-    return [[m_vconDemo getDemoList] count];
+    return DemoScene::getDemoNum();
 }
 
 
@@ -55,8 +55,9 @@
         
     
     NSInteger idx = [indexPath row];
-    NSArray* ary = [m_vconDemo getDemoList];
-    cell.textLabel.text = ary[idx];
+    const auto& item = DemoScene::getDemoItem(idx);
+    NSString* ns = [NSString stringWithUTF8String:item.m_sTitle.c_str()];
+    cell.textLabel.text = ns;
     
     return cell;
 }
@@ -104,13 +105,14 @@
     // Navigation logic may go here, for example:
     // Create the next view controller.
     NSInteger row = [indexPath row];
-    m_vconDemo.m_demoSel = row;
-    
+
     // Pass the selected object to the new view controller.
     
     // Push the view controller.
  //   [self.navigationController pushViewController:vcon animated:YES];
     [self presentViewController:m_vconDemo animated:NO completion:nil];
+    auto pApp = (DemoApp*)([m_vconDemo getAppInstance]);
+    pApp->reqSetDemo(row);
 }
 
 

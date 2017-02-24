@@ -24,7 +24,7 @@
 #include "glm/gtc/quaternion.hpp"
 #include "glm/gtx/euler_angles.hpp"
 
-inline namespace Ic3d
+namespace Ic3d
 {
 	//-----------------------------------------------
 	//	From vector vmath

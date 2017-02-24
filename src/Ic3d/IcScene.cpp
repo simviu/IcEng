@@ -10,7 +10,7 @@
 
 #include "Ic3d.h"
 #include "IcRenderEng.h"
-inline namespace Ic3d
+namespace Ic3d
 {
 	using namespace std;
 	using namespace ctl;
@@ -32,16 +32,16 @@ inline namespace Ic3d
 
 
 	//---------------------------------------------
-	//	onViewSize()
+	//	onWindowSize()
 	//---------------------------------------------
-	void IcScene::onViewRect(const TRect& viewRect)
+	void IcScene::onWindowSize(const ctl::TSize& winSize)
 	{
-        m_cfg.m_viewRect = viewRect;
-		ctl::TSize viewSize = viewRect.getSize();
+        auto sz = winSize;
+        m_cfg.m_viewRect = TRect(TPos(0,0), sz);
         const auto& camCfg = m_cfg.m_camCfg;
         
         //---- TODO: move to drawUpdate()?
-		m_pCamera->setFrustum(viewSize, camCfg);
+		m_pCamera->setFrustum(sz, camCfg);
 	}
 
     /*
@@ -110,16 +110,6 @@ inline namespace Ic3d
 	//-----------------------------------------
 	void IcScene::onDraw()
 	{
-        //-----------------
-        //	Check Init
-        //-----------------
-        if(!m_hasInit)
-        {
-            onInit();
-            m_hasInit = true;
-            return;
-        };
-        
         
         //----------------------
 		static int dbgFrmCnt=0;

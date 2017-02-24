@@ -19,7 +19,7 @@ namespace Ic3d
     //-------------------------------------------
     //  def
     //-------------------------------------------
-    
+    const static string K_sSubPath_shader = "IcShader/";
     //-------------------------------------------
     //	drawObj
     //-------------------------------------------
@@ -34,38 +34,33 @@ namespace Ic3d
     }
     
     //-------------------------------------------
-    //	onWindowSize
-    //-------------------------------------------
-    // TODO: 1) restore window create with rect.
-    //    2) m_winSize -> m_winSize/m_winPos
-    void IcWindow::onWindowSize(const ctl::TSize& size)
-    {
-        m_winSize = size;
-        TRect viewRect(0,0,m_winSize.w, m_winSize.h);
-        for(auto pScn : m_scnAry.getAry())
-            pScn->onViewRect(viewRect);
-    }
-    //-------------------------------------------
     //	onInit
     //-------------------------------------------
     void IcWindow::onInit()
     {
+        m_scnAry.clear();
         //---- Check IcEng,
-        // TODO: Multiple win nee multiple context?
+        // TODO: Multiple win need multiple context?
         auto pEng = IcEng::getInstance();
-        if(!pEng->hasInit())
-            pEng->initEng();
+    //    if(!pEng->hasInit())
+        {
+            string sPathRes = IcApp::getInstance()->m_cfg.m_sPathRes;
+            pEng->initEng(sPathRes + K_sSubPath_shader);
+        }
+
     }
     //-------------------------------------------
-    //	onScreenSize
+    //	onWindowSize
     //-------------------------------------------
-    void IcWindow::onScreenSize(const ctl::TSize& size)
+    void IcWindow::onWindowSize(const ctl::TSize& size)
     {
         // In default, call onWindowSize().
         // TODO:
         //    Consider add option to fit window into screen
         //    based on normalized coordinator, etc.
-        onWindowSize(size);
+        m_cfg.m_size = size;
+        for(auto pScn : m_scnAry.getAry())
+            pScn->onWindowSize(size);
     }
 
     //-------------------------------------------
@@ -91,6 +86,13 @@ namespace Ic3d
         //-------------
         for(auto pScn : m_scnAry.getAry())
         {
+            if(!pScn->hasInit())
+            {
+                pScn->onInit();
+                pScn->onWindowSize(m_cfg.m_size);
+                pScn->setHasInit(true);
+            }
+
             pScn->onUpdate(deltaT);
             pScn->onDraw();
         }

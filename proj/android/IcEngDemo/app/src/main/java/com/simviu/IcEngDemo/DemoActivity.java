@@ -4,56 +4,41 @@ import android.app.Activity;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
-import com.simviu.IcEng.IcActivity;
 import com.simviu.IcEng.IcEngJNI;
 import com.simviu.IcEng.IcAssetHelper;
 import com.simviu.IcEng.IcEngView;
 
-public class DemoActivity  extends IcActivity{
+public class DemoActivity  extends Activity{
 
-    // Used to load the 'native-lib' library on application startup.
-    static {
-        System.loadLibrary("IcEngDemo");
-    }
-
+    IcEngView m_icEngView = null;
     @Override protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
-        //----- CreateApp()
-        initApp(m_sPathRes);
-        copyAssetDir("IcShader");
-        copyAssetDir("IcDemo");
+        setContentView(R.layout.activity_demo);
+        m_icEngView = (IcEngView)findViewById(R.id.id_ic_eng_view);
     }
 
     @Override protected void onPause() {
         super.onPause();
+        if(m_icEngView!=null)
+            m_icEngView.onPause();
     }
 
     @Override protected void onResume() {
         super.onResume();
-    }
-
-    //-------------------------------------
-    //  IcEng Renderer call back override
-    //-------------------------------------
-    @Override public void IcEng_onInit()
-    {
-        super.IcEng_onInit();
-    }
-    @Override public void IcEng_onViewSize(int w, int h)
-    {
-        super.IcEng_onViewSize(w, h);
-    }
-    @Override public void IcEng_onDrawUpdate(float deltaT)
-    {
-        super.IcEng_onDrawUpdate(deltaT);
+        if(m_icEngView!=null)
+            m_icEngView.onResume();
     }
 
 
+    public void onButton_Close(View v) {
+        // does something
+        finish();
+    }
     /**
      * A native method that is implemented by the 'native-lib' native library,
      * which is packaged with this application.
      */
-    public native void initApp(String jsPathRes);
 }

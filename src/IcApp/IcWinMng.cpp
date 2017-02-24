@@ -23,14 +23,21 @@ namespace Ic3d
     ctl::Sp<IcWinMng> IcWinMng::getInstance()
     {
         if(m_pInstance==nullptr)
-            m_pInstance = createWinMngImpl();
-       //   m_pInstance = ctl::makeSp<IcWinMng>();
+            m_pInstance = ctl::makeSp<IcWinMng>();
         return m_pInstance;
     }
     //---- Can be set externally
     void IcWinMng::setInstance(ctl::Sp<IcWinMng> p)
     {
         m_pInstance = p;
+    }
+    //-------------------------------------------
+    //	onInitWindows
+    //-------------------------------------------
+    void IcWinMng::initWindows()
+    {
+        for(auto pWin : m_winAry.getAry())
+            pWin->onInit();
     }
 
     //-------------------------------------------
@@ -49,7 +56,7 @@ namespace Ic3d
     {
         m_screenSize = screenSize;
         for(auto pWin : m_winAry.getAry())
-            pWin->onScreenSize(screenSize);
+            pWin->onWindowSize(screenSize);
         return true;
     };
     //----------------------------

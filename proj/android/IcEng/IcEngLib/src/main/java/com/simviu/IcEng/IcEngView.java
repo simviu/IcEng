@@ -31,11 +31,12 @@ package com.simviu.IcEng;
  * limitations under the License.
  */
 
-
+import com.simviu.IcEng.IcEngJNI;
 import android.content.Context;
 import android.graphics.PixelFormat;
 import android.opengl.GLSurfaceView;
 import android.os.Environment;
+import android.util.AttributeSet;
 import android.util.Log;
 
 import javax.microedition.khronos.egl.EGL10;
@@ -73,23 +74,37 @@ public class IcEngView extends GLSurfaceView {
         public void IcEng_onDrawUpdate(float deltaT);
     }
 
+    //----- This is needed for inflating from XML
+    public IcEngView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        setEGLContextClientVersion(2);
+        setPreserveEGLContextOnPause(true);
+        init(true, 8, 0);
+    }
+    //---- This is for programmatically create IcEngView
+    public IcEngView(Context context) {
+        super(context);
+        setEGLContextClientVersion(2);
+        setPreserveEGLContextOnPause(true);
+        init(true, 8, 0);
+    }
+
     //-------------------------------------
     private static String TAG = "GL2JNIView";
     private static final boolean DEBUG = false;
     private RendererCallBack m_renderCallBack = null;
-
-    public IcEngView(Context context, RendererCallBack renderCB) {
-        super(context);
-        m_renderCallBack = renderCB;
-        init(true, 8, 0);
+    public void setRenderCallBack(RendererCallBack rcb)
+    {
+        m_renderCallBack = rcb;
     }
 
+
+    /*
     public IcEngView(Context context, boolean translucent, int depth, int stencil) {
         super(context);
         init(translucent, depth, stencil);
     }
-
-
+    */
 
     //-------------------------------------
 
@@ -351,23 +366,20 @@ public class IcEngView extends GLSurfaceView {
             float dt = (float)dtI/1000f;
             if(mTime==0) dt = K_initDeltaT;
 
-        //  IcAppJNI.onDrawUpdate(dt);
-            m_renderCallBack.IcEng_onDrawUpdate(dt);
+          IcEngJNI.onDrawUpdate(dt);
+        //    m_renderCallBack.IcEng_onDrawUpdate(dt);
 
             mTime = tCur;
         }
 
         public void onSurfaceChanged(GL10 gl, int width, int height) {
-        //    IcAppJNI.onInit(m_sPathRes);
-        //    IcAppJNI.onScreenSize(width, height);
-            m_renderCallBack.IcEng_onInit();
-            m_renderCallBack.IcEng_onViewSize(width, height);
 
-            IcEngJNI.debugPrint("JNI String from GLSurfaceView");
+            IcEngJNI.onScreenSize(width, height);
+            IcEngJNI.debugPrint("JNI print from IcEngView::onSurfaceChanged()");
         }
 
         public void onSurfaceCreated(GL10 gl, EGLConfig config) {
-            // Do nothing.
+            IcEngJNI.onInitWindow();
         }
     }
 }

@@ -18,6 +18,8 @@ package com.simviu.IcEng;
 
 // Wrapper for native library
 
+import android.content.Context;
+
 public class IcEngJNI {
 
      static {
@@ -28,8 +30,17 @@ public class IcEngJNI {
      * @param width the current view width
      * @param height the current view height
      */
-     public static native void onInit(String sPathRes);
+     public static native void onInitWindow();
      public static native void onScreenSize(int width, int height);
      public static native void onDrawUpdate(float deltaT);
      public static native void debugPrint(String sMsg);
+     public static native String sendAppCmd(String sCmd);
+
+    //-----  Utils
+     public static void copyAssetDir(Context context, String sPath)
+     {
+        IcAssetHelper hlpr = new IcAssetHelper(context);
+        hlpr.copyAssetsDir(sPath);
+     }
+
 }

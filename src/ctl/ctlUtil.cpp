@@ -11,7 +11,7 @@
 
 
 #include "ctl.h"
-inline namespace ctl {
+namespace ctl {
     using namespace std;
 
     //------------------------------------------

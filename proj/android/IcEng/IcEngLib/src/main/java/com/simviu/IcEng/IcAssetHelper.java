@@ -17,9 +17,9 @@ import android.content.Context;
 
 public class IcAssetHelper {
 
-    public IcAssetHelper(Context context, String sPathDestRoot)
+    public IcAssetHelper(Context context)
     {
-        m_sPathDestRoot = sPathDestRoot;
+        m_sPathDestRoot = context.getCacheDir().toString();
         m_context = context;
     };
     protected String m_sPathDestRoot = "";

@@ -33,7 +33,8 @@ void DemoLights::onInit()
     }
     
     //--- Load Object
-    string sFile = DemoScene::m_cfg.m_sPathRes + K_sModel;
+    string sPathRes = DemoScene::m_cfg.m_sPathRes;
+    string sFile = sPathRes + K_sModel;
     auto pModel = ctl::makeSp<IcModel>(sFile);
     auto pObj   = ctl::makeSp<IcObject>(pModel);
     // Add this obj to Scene, will be rendered

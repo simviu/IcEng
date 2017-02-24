@@ -16,10 +16,10 @@
 {
 	
 }
+-(void)initIcApp:(void*)pAppIn;
 
-//---- These to be override
--(void)Ic3d_onInit;
+//---- These can be override
+-(void)Ic3d_onInitWindow;
 -(void)Ic3d_onViewRect:(CGRect)viewRect;
 -(void)Ic3d_onDrawUpdate:(double)deltaT;
-
 @end

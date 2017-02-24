@@ -19,12 +19,15 @@ namespace Ic3d {
     //----------------
     //  JNI Wrapper
     //----------------
+    // All android JNI related util put here.
     class IcEngJNI
     {
     public:
-        static void setAppInstance(IcWindow* pWin);
         //---- JNI util
         static std::string jstr2str(JNIEnv * env, jstring jstr);
+        static void initIcApp(IcApp* pApp,
+                              const std::string& sPathRes,
+                              const std::string& sPathDoc);
     };
 }
 
