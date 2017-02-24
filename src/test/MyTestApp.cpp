@@ -13,7 +13,7 @@
 
 using namespace Ic3d;
 using namespace ctl;
-
+using namespace std;
 
 //----------------------------
 // MyTestScn
@@ -21,7 +21,7 @@ using namespace ctl;
 class MyTestScn : public IcScene
 {
 protected:
-    ctl::Sp<IcObject> m_pObj = nullptr;
+    Sp<IcObject> m_pObj = nullptr;
     float m_degree = 0; // rotation degree
     
 public:
@@ -35,8 +35,8 @@ public:
 
         IcMeshData mshd;
         mshd.createCube(TVec3(1,1,1), TVec3(0,0,0));
-        auto pModel = ctl::makeSp<IcModel>(mshd);
-        auto pObj   = ctl::makeSp<IcObject>(pModel);
+        auto pModel = makeSp<IcModel>(mshd);
+        auto pObj   = makeSp<IcObject>(pModel);
         addObj(pObj);
         auto& cam = *getCamera();
         cam.setPos(TVec3(10, 4, -6));
@@ -67,7 +67,7 @@ public:
     {
         IcWindow::onInit();
         logInfo("MyTestWindow::onInit()");
-        addScene(ctl::makeSp<MyTestScn>());
+        addScene(makeSp<MyTestScn>());
     }
 };
 //----------------------------
@@ -77,6 +77,6 @@ void MyTestApp::onInit()
 {
     IcApp::onInit();
     logInfo("MyTestApp::onInit()");
-    addWindow(ctl::makeSp<MyTestWindow>());
+    addWindow(makeSp<MyTestWindow>());
 };
 
