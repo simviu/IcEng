@@ -47,8 +47,5 @@ support@simviu.com
 | ![alt tag](doc/ScreenShots/1.png)      | ![alt tag](doc/ScreenShots/2.png)      |
 | ![alt tag](doc/ScreenShots/3.png)      | ![alt tag](doc/ScreenShots/4.png)      | 
 
-![alt tag](doc/ScreenShots/1.png)
-![alt tag](doc/ScreenShots/2.png)
-![alt tag](doc/ScreenShots/3.png)
-![alt tag](doc/ScreenShots/4.png)
+
 
