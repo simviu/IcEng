@@ -6,7 +6,7 @@ For more information check website http://www.simviu.com/dev.
 #Features
 * OpenGL 2.0, with C++ 0x11 code and shader.
 * Cross Platform ( Mac/Windows/Linux/iOS/Android ), project file provided.
-Auto memory and resource management with C++ 0x11 std::shared_ptr.
-Model loading with Waveform .OBJ file. ( More format in future )
-Basic lighting, material.
-Abstract C++ wrapper class with OpenGL function hidden.
+* Auto memory and resource management with C++ 0x11 std::shared_ptr.
+* Model loading with Waveform .OBJ file. ( More format in future )
+* Basic lighting, material.
+* Abstract C++ wrapper class with OpenGL function hidden.
