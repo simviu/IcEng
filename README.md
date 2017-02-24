@@ -29,7 +29,7 @@ For more information check website http://www.simviu.com/dev.
 * An IcObject has it's IcModel, loaded from OBJ file or created dynamically.
 * IcModel are constructed by IcMesh, IcTexture and IcMaterial.
 
-In most case your simple 3d application has one IcWindow and one IcScene. For iOS/Android mobile App. There should only be one window.
+In most case your simple 3d application has one IcWindow and one IcScene. For iOS/Android mobile App, there is only one window.
 
 #Document
 More info check IcEng/doc/IcEng_Manual.pdf
