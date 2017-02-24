@@ -8,6 +8,7 @@ For more information check website http://www.simviu.com/dev.
 * Android GL context re-creation issue
 * Google Cardboard VR add-on
 * More doucuments
+* Some other issues
 
 #Features
 * C++ 0x11 code, OpenGL 2.0 shader.
