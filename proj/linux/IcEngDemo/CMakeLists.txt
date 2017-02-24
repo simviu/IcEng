@@ -53,7 +53,7 @@ include_directories(
 
 add_executable(IcEngDemo
 	${ICENGDEMO}/src/pc/main.cpp		
-	${ICENGDEMO}/src/DemoWindow.cpp		
+	${ICENGDEMO}/src/DemoApp.cpp		
 	${ICENGDEMO}/src/DemoBasic.cpp
 	${ICENGDEMO}/src/DemoLights.cpp
 	${ICENGDEMO}/src/DemoModelCreate.cpp

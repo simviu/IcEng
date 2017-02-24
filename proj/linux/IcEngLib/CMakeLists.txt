@@ -80,13 +80,14 @@ add_library(IcEng SHARED
 			${ICENGLIB}/src/Ic3d/IcText.cpp
 			${ICENGLIB}/src/Ic3d/IcTexture.cpp
 			${ICENGLIB}/src/Ic3d/IcUtil.cpp
-			${ICENGLIB}/src/IcWindow/IcWindow.cpp
-			${ICENGLIB}/src/IcWindow/IcWinMng.cpp
-			${ICENGLIB}/src/IcWindow/pc/IcWinMngPC.cpp
+			${ICENGLIB}/src/IcApp/IcApp.cpp
+			${ICENGLIB}/src/IcApp/IcWindow.cpp
+			${ICENGLIB}/src/IcApp/IcWinMng.cpp
+			${ICENGLIB}/src/IcApp/pc/IcAppPC.cpp
 			)
 
 add_executable(IcEngTest 
-		${ICENGLIB}/src/test/IcTestWindow.cpp
+		${ICENGLIB}/src/test/MyTestApp.cpp
 		${ICENGLIB}/src/test/main.cpp
 		)
 
