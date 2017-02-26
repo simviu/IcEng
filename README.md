@@ -34,6 +34,10 @@ In most case your simple 3d application has one IcWindow and one IcScene. For iO
 #Document
 More info check IcEng/doc/IcEng_Manual.pdf
 
+#Pre-Build Binary
+Pre-Build binary are provided in :
+https://github.com/simviu/IcEngBuild
+
 #License
 Check BSD license :
 https://en.wikipedia.org/wiki/BSD_licenses
