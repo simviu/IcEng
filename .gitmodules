@@ -1,4 +1,4 @@
 [submodule "IcEngBuild"]
 	path = IcEngBuild
-	url = git@github.com:simviu/IcEngBuild.git
+	url = https://github.com/simviu/IcEngBuild
 	branch = master
