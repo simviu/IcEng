@@ -1,0 +1,3 @@
+[submodule "IcEngBuild"]
+	path = IcEngBuild
+	url = https://github.com/simviu/IcEngBuild
