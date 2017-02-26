@@ -190,7 +190,10 @@
     <ClCompile Include="..\..\..\src\Ic3d\IcScene.cpp" />
     <ClCompile Include="..\..\..\src\Ic3d\IcTexture.cpp" />
     <ClCompile Include="..\..\..\src\Ic3d\IcUtil.cpp" />
-    <ClCompile Include="..\..\..\src\IcRenderEng\IcRenderAdp.cpp" />
+    <ClCompile Include="..\..\..\src\IcApp\IcApp.cpp" />
+    <ClCompile Include="..\..\..\src\IcApp\IcWindow.cpp" />
+    <ClCompile Include="..\..\..\src\IcApp\IcWinMng.cpp" />
+    <ClCompile Include="..\..\..\src\IcApp\pc\IcAppPC.cpp" />
     <ClCompile Include="..\..\..\src\IcRenderEng\IcRenderAdpStd.cpp" />
     <ClCompile Include="..\..\..\src\IcRenderEng\IcRenderAdpStd_Mesh.cpp" />
     <ClCompile Include="..\..\..\src\IcRenderEng\IcRenderAdpStd_Tex.cpp" />
@@ -198,10 +201,6 @@
     <ClCompile Include="..\..\..\src\IcRenderEng\IcRenderEng.cpp" />
     <ClCompile Include="..\..\..\src\IcRenderEng\IcRenderEngText.cpp" />
     <ClCompile Include="..\..\..\src\IcRenderEng\IcShader.cpp" />
-    <ClCompile Include="..\..\..\src\IcWindow\IcWindow.cpp" />
-    <ClCompile Include="..\..\..\src\IcWindow\IcWinMng.cpp" />
-    <ClCompile Include="..\..\..\src\IcWindow\pc\IcWindowPC.cpp" />
-    <ClCompile Include="..\..\..\src\IcWindow\pc\IcWinMngGlut.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

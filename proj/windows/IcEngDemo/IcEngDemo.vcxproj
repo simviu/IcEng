@@ -189,28 +189,18 @@ xcopy /Y /R /E /C /I ..\..\..\..\IcEng\IcShader  $(OutDir)\IcShader
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\demo\src\DemoAnimation.hpp" />
-    <ClInclude Include="..\..\..\demo\src\DemoBasic.hpp" />
-    <ClInclude Include="..\..\..\demo\src\DemoLights.hpp" />
-    <ClInclude Include="..\..\..\demo\src\DemoModelCreate.hpp" />
-    <ClInclude Include="..\..\..\demo\src\DemoModels.h" />
-    <ClInclude Include="..\..\..\demo\src\DemoNestedTrans.hpp" />
+    <ClInclude Include="..\..\..\demo\src\DemoApp.hpp" />
     <ClInclude Include="..\..\..\demo\src\DemoScene.h" />
-    <ClInclude Include="..\..\..\demo\src\DemoTransform.hpp" />
-    <ClInclude Include="..\..\..\demo\src\DemoWindow.hpp" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\demo\src\DemoAnimation.cpp" />
+    <ClCompile Include="..\..\..\demo\src\DemoApp.cpp" />
     <ClCompile Include="..\..\..\demo\src\DemoBasic.cpp" />
     <ClCompile Include="..\..\..\demo\src\DemoLights.cpp" />
     <ClCompile Include="..\..\..\demo\src\DemoModelCreate.cpp" />
-    <ClCompile Include="..\..\..\demo\src\DemoModels.cpp" />
     <ClCompile Include="..\..\..\demo\src\DemoNestedTrans.cpp" />
     <ClCompile Include="..\..\..\demo\src\DemoScene.cpp" />
-    <ClCompile Include="..\..\..\demo\src\DemoTransform.cpp" />
-    <ClCompile Include="..\..\..\demo\src\DemoWindow.cpp" />
     <ClCompile Include="..\..\..\demo\src\pc\main.cpp" />
     <ClCompile Include="stdafx.cpp" />
   </ItemGroup>
