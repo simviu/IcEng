@@ -154,6 +154,7 @@ public class IcEngView extends GLSurfaceView {
         }
 
         public void destroyContext(EGL10 egl, EGLDisplay display, EGLContext context) {
+            IcEngJNI.onReleaseWindow();
             egl.eglDestroyContext(display, context);
         }
     }
@@ -359,6 +360,8 @@ public class IcEngView extends GLSurfaceView {
     }
     static long mTime = 0;
     static float K_initDeltaT = 0.01f;
+
+
     //---------------------------------------------
     //  Renderer implements
     //---------------------------------------------
@@ -384,7 +387,6 @@ public class IcEngView extends GLSurfaceView {
         }
 
         public void onSurfaceCreated(GL10 gl, EGLConfig config) {
-            IcEngJNI.onReleaseWindow();
             IcEngJNI.onInitWindow();
         }
     }

@@ -106,8 +106,7 @@ const static GLfloat K_bkColor[4] = {0.2, 0.4, 0.9, 1.0};
 {
     auto pApp = m_pIcApp;
     if(pApp==nullptr) return;
-    pApp->initWindows();
-    pApp->onRelease();
+    pApp->releaseWindows();
 }
 //--------------------------------------
 //  Ic3d_onInit
