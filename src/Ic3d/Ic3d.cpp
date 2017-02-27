@@ -41,6 +41,17 @@ namespace Ic3d
         return isOK;
 	}
     //--------------------------------------------------------------
+    //	releaseEng
+    //--------------------------------------------------------------
+    void IcEng::releaseEng()
+    {
+        m_isEnabled = false;
+        m_hasInit = false;
+        auto pRE = IcRenderEng::getInstance();
+        pRE->releaseEng();
+    }
+
+    //--------------------------------------------------------------
     //	onFrameStart/onFrameEnd
     //--------------------------------------------------------------
     void IcEng::onFrameStart()

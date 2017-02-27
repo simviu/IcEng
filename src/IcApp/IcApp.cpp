@@ -22,6 +22,11 @@ namespace Ic3d
     {
       //  setInstance(this);
     };
+    IcApp::~IcApp()
+    {
+        logInfo("IcApp::~IcApp()");
+    }
+
     //----------------------------
     //  singleton
     //----------------------------
@@ -71,7 +76,7 @@ namespace Ic3d
 
 
     //----------------------------------
-    //  windows
+    //  drawUpdateWindows
     //----------------------------------
     void IcApp::drawUpdateWindows(float deltaT)
     {
@@ -80,13 +85,26 @@ namespace Ic3d
         pMng->drawUpdate(deltaT);
        
     }
+    //----------------------------------
+    //  initWindows
+    //----------------------------------
     void IcApp::initWindows()
     {
         auto pMng = Ic3d::IcWinMng::getInstance();
         pMng->initWindows();
       
     }
-  
-    
+    //----------------------------------
+    //  onRelease
+    //----------------------------------
+    void IcApp::onRelease()
+    {
+        logInfo("IcApp::onRelease()");
+        
+        auto pMng = Ic3d::IcWinMng::getInstance();
+        pMng->releaseWindows();
+
+    }
+   
 
 }

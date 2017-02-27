@@ -32,8 +32,10 @@ namespace Ic3d
         IcRenderEng(){};
 		virtual ~IcRenderEng(){};
         static IcRenderEng* getInstance();
+        
 		bool initEng(const std::string& sPath_shader);
- 		
+        void releaseEng();
+        
 		void clearDepthBuf();
 		void clearScreen(const TColor& color);
         void onFrameStart();

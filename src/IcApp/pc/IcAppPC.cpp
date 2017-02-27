@@ -142,6 +142,7 @@ namespace Ic3d
         void onQuit()
         {
             m_winSlotAry.clear();
+            IcApp::getInstance()->onRelease();
             exit(0);
         };
 
@@ -358,6 +359,7 @@ namespace Ic3d
         pMng->initMng(argc, argv);
         onInit();
         pMng->startMainLoop();
+        
         return true;
     }
 
