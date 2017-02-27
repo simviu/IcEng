@@ -42,6 +42,14 @@ https://github.com/simviu/IcEngBuild
 Check BSD license :
 https://en.wikipedia.org/wiki/BSD_licenses
 
+#Dependencies
+IcEng have a few dependencies, but all included in this repo.
+You can update them with latest version by yourself.
+* glm : GLM is a C++ mathematics library for graphics software, MIT license(Free). ( https://www.opengl.org/sdk/libs/GLM/ ) 
+* Lodepng : LodePNG is a PNG image decoder and encoder. It's own license(Free). (http://lodev.org/lodepng/)
+* FreeGlut Binary Lib: For windows only, provided as binary in IcEngBuild, X-Consortium license(Free).(http://freeglut.sourceforge.net/)
+* glew Binary Lib: For windows only, BSD/MIT license(Free). (http://glew.sourceforge.net/)
+
 #Contact
 support@simviu.com
 
