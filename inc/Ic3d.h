@@ -551,6 +551,11 @@ namespace Ic3d {
 	//-----------------------------------------
 	class IcEng
 	{
+    protected:
+        ctl::Sp<const CRenderAdp::CTexAdp>   m_pDfltTexAdp = nullptr;
+        std::atomic<bool>    m_hasInit{false};
+        std::atomic<bool>    m_isEnabled{false};
+        
 	public:
 		IcEng(){};
 		virtual ~IcEng(){};
@@ -566,10 +571,9 @@ namespace Ic3d {
         bool hasInit() const { return m_hasInit; };
         bool isEnabled()const{ return m_isEnabled; };
         ctl::Sp<CRenderAdp> getCurRenderAdp();
-    protected:
-        std::atomic<bool>    m_hasInit{false};
-        std::atomic<bool>    m_isEnabled{false};
-	};
+        decltype(m_pDfltTexAdp) getDfltTexAdp();
+        
+ 	};
 	
 }//namespace Ic3d
 #endif // _ICUBE_H
