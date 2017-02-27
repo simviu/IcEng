@@ -88,7 +88,12 @@ public class IcEngView extends GLSurfaceView {
         setPreserveEGLContextOnPause(true);
         init(true, 8, 0);
     }
+    @Override
+    public void onPause(){
+        super.onPause();
 
+        IcEngJNI.onReleaseWindow();
+    }
     //-------------------------------------
     private static String TAG = "GL2JNIView";
     private static final boolean DEBUG = false;
@@ -379,6 +384,7 @@ public class IcEngView extends GLSurfaceView {
         }
 
         public void onSurfaceCreated(GL10 gl, EGLConfig config) {
+            IcEngJNI.onReleaseWindow();
             IcEngJNI.onInitWindow();
         }
     }

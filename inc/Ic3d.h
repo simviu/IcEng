@@ -430,7 +430,6 @@ namespace Ic3d {
         IcWinMng(){};
         virtual ~IcWinMng(){};
         virtual void addWindow(ctl::Sp<IcWindow> pWin){ m_winAry.add(pWin); };
-		virtual void clearWindows(){  m_winAry.clear(); };
         virtual ctl::TSize getScreenSize(){ return m_screenSize; };
         virtual bool onScreenSize(const ctl::TSize& screenSize);
         
@@ -518,7 +517,7 @@ namespace Ic3d {
         virtual void onRelease();
         
         void addWindow(ctl::Sp<IcWindow> pWin);
-		void clearWindows();
+		void releaseWindows();
         ctl::Sp<IcWindow> getWindow(int idx);
         void onScreenSize(const ctl::TSize& sz);
         void initWithScn(ctl::Sp<IcScene> pScn);

@@ -43,7 +43,7 @@ namespace Ic3d
     {
         for(auto pWin : m_winAry.getAry())
             pWin->onRelease();
-        m_winAry.clear();
+        // TODO: release GLUT window
     }
 
     //-------------------------------------------

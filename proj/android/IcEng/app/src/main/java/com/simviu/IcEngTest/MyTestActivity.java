@@ -18,5 +18,9 @@ public class MyTestActivity extends Activity {
     }
 
 
-
+    @Override
+    protected void onPause()
+    {
+        super.onPause();
+    }
 }

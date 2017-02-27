@@ -53,6 +53,7 @@ namespace Ic3d
     //-------------------------------------------
     void IcWindow::onRelease()
     {
+
         m_scnAry.clear();
         auto pEng = IcEng::getInstance();
         pEng->releaseEng();

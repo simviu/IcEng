@@ -31,6 +31,7 @@ public class IcEngJNI {
      * @param height the current view height
      */
      public static native void onInitWindow();
+     public static native void onReleaseWindow();
      public static native void onScreenSize(int width, int height);
      public static native void onDrawUpdate(float deltaT);
      public static native void debugPrint(String sMsg);

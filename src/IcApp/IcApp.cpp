@@ -50,10 +50,12 @@ namespace Ic3d
         auto pMng = IcWinMng::getInstance();
         pMng->addWindow(pWin);
     }
-    void IcApp::clearWindows()
+    void IcApp::releaseWindows()
     {
         auto pMng = IcWinMng::getInstance();
-        pMng->clearWindows();
+        pMng->releaseWindows();
+
+
     }
 
     //----------------------------
@@ -101,9 +103,7 @@ namespace Ic3d
     {
         logInfo("IcApp::onRelease()");
         
-        auto pMng = Ic3d::IcWinMng::getInstance();
-        pMng->releaseWindows();
-
+        releaseWindows();
     }
    
 
