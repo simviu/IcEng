@@ -20,6 +20,7 @@
 
 //---- These can be override
 -(void)Ic3d_onInitWindow;
+-(void)Ic3d_onReleaseWindow;
 -(void)Ic3d_onViewRect:(CGRect)viewRect;
 -(void)Ic3d_onDrawUpdate:(double)deltaT;
 @end

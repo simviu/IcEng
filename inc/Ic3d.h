@@ -13,6 +13,7 @@
 #define _ICUBE_H
 
 #include "IcRenderAdp.h"
+#include <atomic>
 
 //---- TODO: Ic3d->IcEng
 namespace Ic3d {
@@ -429,12 +430,14 @@ namespace Ic3d {
         IcWinMng(){};
         virtual ~IcWinMng(){};
         virtual void addWindow(ctl::Sp<IcWindow> pWin){ m_winAry.add(pWin); };
-		virtual void clearWindows(){  m_winAry.clear(); };
         virtual ctl::TSize getScreenSize(){ return m_screenSize; };
         virtual bool onScreenSize(const ctl::TSize& screenSize);
+        
         virtual void initWindows();
         virtual void drawUpdate(float deltaT);
+        virtual void releaseWindows();
         virtual void startMainLoop(){};
+        
         virtual ctl::Sp<IcWindow> getWindow(int idx){ return m_winAry[idx]; } ;
         virtual void onQuit();
         virtual bool initMng(int argc, char **argv){return false;};
@@ -465,6 +468,7 @@ namespace Ic3d {
     public:
         IcWindow(){};
         virtual void onInit();
+        virtual void onRelease();
         virtual void onDrawUpdate(float deltaT);
         virtual void onWindowSize(const ctl::TSize& size);
         void addScene(ctl::Sp<IcScene> pScn);
@@ -500,7 +504,7 @@ namespace Ic3d {
     {
     public:
         IcApp();
-        virtual ~IcApp(){};
+        virtual ~IcApp();
         struct TCfg
         {
             std::string m_sPathRes;
@@ -510,8 +514,10 @@ namespace Ic3d {
 
 		//---- Always Override onInit()
         virtual void onInit() {};
+        virtual void onRelease();
+        
         void addWindow(ctl::Sp<IcWindow> pWin);
-		void clearWindows();
+		void releaseWindows();
         ctl::Sp<IcWindow> getWindow(int idx);
         void onScreenSize(const ctl::TSize& sz);
         void initWithScn(ctl::Sp<IcScene> pScn);
@@ -545,6 +551,11 @@ namespace Ic3d {
 	//-----------------------------------------
 	class IcEng
 	{
+    protected:
+        ctl::Sp<const CRenderAdp::CTexAdp>   m_pDfltTexAdp = nullptr;
+        std::atomic<bool>    m_hasInit{false};
+        std::atomic<bool>    m_isEnabled{false};
+        
 	public:
 		IcEng(){};
 		virtual ~IcEng(){};
@@ -552,6 +563,7 @@ namespace Ic3d {
         {
         }m_cfg;
         bool initEng(const std::string& sPathShader);
+        void releaseEng();
         void clearScreen(const TColor& bkColor);
         static ctl::Sp<IcEng> getInstance();
         void onFrameStart();
@@ -559,10 +571,9 @@ namespace Ic3d {
         bool hasInit() const { return m_hasInit; };
         bool isEnabled()const{ return m_isEnabled; };
         ctl::Sp<CRenderAdp> getCurRenderAdp();
-    protected:
-        bool    m_hasInit = false;
-        bool    m_isEnabled = false;
-	};
+        decltype(m_pDfltTexAdp) getDfltTexAdp();
+        
+ 	};
 	
 }//namespace Ic3d
 #endif // _ICUBE_H

@@ -88,7 +88,12 @@ public class IcEngView extends GLSurfaceView {
         setPreserveEGLContextOnPause(true);
         init(true, 8, 0);
     }
+    @Override
+    public void onPause(){
+        super.onPause();
 
+        IcEngJNI.onReleaseWindow();
+    }
     //-------------------------------------
     private static String TAG = "GL2JNIView";
     private static final boolean DEBUG = false;
@@ -149,6 +154,7 @@ public class IcEngView extends GLSurfaceView {
         }
 
         public void destroyContext(EGL10 egl, EGLDisplay display, EGLContext context) {
+            IcEngJNI.onReleaseWindow();
             egl.eglDestroyContext(display, context);
         }
     }
@@ -354,6 +360,8 @@ public class IcEngView extends GLSurfaceView {
     }
     static long mTime = 0;
     static float K_initDeltaT = 0.01f;
+
+
     //---------------------------------------------
     //  Renderer implements
     //---------------------------------------------

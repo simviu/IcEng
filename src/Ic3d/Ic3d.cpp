@@ -41,6 +41,18 @@ namespace Ic3d
         return isOK;
 	}
     //--------------------------------------------------------------
+    //	releaseEng
+    //--------------------------------------------------------------
+    void IcEng::releaseEng()
+    {
+        m_pDfltTexAdp = nullptr; // TODO: move into RenderAdp for more auto
+        m_isEnabled = false;
+        m_hasInit = false;
+        auto pRE = IcRenderEng::getInstance();
+        pRE->releaseEng();
+    }
+
+    //--------------------------------------------------------------
     //	onFrameStart/onFrameEnd
     //--------------------------------------------------------------
     void IcEng::onFrameStart()
@@ -70,6 +82,29 @@ namespace Ic3d
     {
         auto pRE= IcRenderEng::getInstance();
         return pRE->getCurRenderAdp();
+    }
+
+    //----------------------------
+    // getDfltTexAdp
+    //----------------------------
+    auto IcEng::getDfltTexAdp()-> decltype(m_pDfltTexAdp)
+    {
+        //---- TODO: Texture auto resize 2^n
+        if(m_pDfltTexAdp!=nullptr)
+            return m_pDfltTexAdp;
+        
+        const static ctl::TSize K_dfltTexSize(64, 64);
+        auto size = K_dfltTexSize;
+        IcImg img(K_dfltTexSize);
+        IcImg::TPixel c(255, 255, 255, 255);
+        img.fillColor(c);
+        
+        auto pEng = IcRenderEng::getInstance();
+        auto pAdp = pEng->getCurRenderAdp();
+        if(pAdp==nullptr) return nullptr;
+        auto p = pAdp->createTextureAdp(img);
+        m_pDfltTexAdp = p;
+        return p;
     }
 
     /*

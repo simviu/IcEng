@@ -77,6 +77,7 @@ const static GLfloat K_bkColor[4] = {0.2, 0.4, 0.9, 1.0};
 	view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
 	[self setupGL];
 }
+
 //--------------------------------------
 //  getScaledViewRect
 //--------------------------------------
@@ -100,6 +101,12 @@ const static GLfloat K_bkColor[4] = {0.2, 0.4, 0.9, 1.0};
     auto pApp = m_pIcApp;
     if(pApp==nullptr) return;
     pApp->initWindows();
+}
+-(void)Ic3d_onReleaseWindow
+{
+    auto pApp = m_pIcApp;
+    if(pApp==nullptr) return;
+    pApp->releaseWindows();
 }
 //--------------------------------------
 //  Ic3d_onInit
@@ -194,7 +201,8 @@ const static GLfloat K_bkColor[4] = {0.2, 0.4, 0.9, 1.0};
 - (void)tearDownGL
 {
 	[EAGLContext setCurrentContext:self.context];
-	
+    [self Ic3d_onReleaseWindow];
+
 }
 
 #pragma mark - GLKView and GLKViewController delegate methods

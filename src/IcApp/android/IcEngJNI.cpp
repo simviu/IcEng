@@ -47,6 +47,15 @@ extern "C" JNIEXPORT void JNICALL Java_com_simviu_IcEng_IcEngJNI_onInitWindow(JN
 }
 
 //------------------------------------------
+//  IcAppJNI.onReleaseWindow()
+//------------------------------------------
+extern "C" JNIEXPORT void JNICALL Java_com_simviu_IcEng_IcEngJNI_onReleaseWindow(JNIEnv * env, jobject obj)
+{
+    //---- Init App
+    auto pApp = IcApp::getInstance();
+    pApp->releaseWindows();
+}
+//------------------------------------------
 //  IcAppJNI.onScreenSize()
 //------------------------------------------
 extern "C" JNIEXPORT void JNICALL Java_com_simviu_IcEng_IcEngJNI_onScreenSize(JNIEnv * env, jobject obj,

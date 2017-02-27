@@ -110,15 +110,18 @@ namespace Ic3d
 	//-----------------------------------------
 	void IcScene::onDraw()
 	{
-        
+        //----------------------
+        // Check IcEng
+        auto pEng = IcEng::getInstance();
+        if(!pEng->isEnabled()) return;
+
         //----------------------
 		static int dbgFrmCnt=0;
 		dbgFrmCnt ++;
 		auto pRE= IcRenderEng::getInstance();
         pRE->setViewPort(m_cfg.m_viewRect);
         //---- Set fog
-        auto pEng = IcRenderEng::getInstance();
-        auto pAdp = pEng->getCurRenderAdp();
+        auto pAdp = pRE->getCurRenderAdp();
         pAdp->setFog(m_cfg.m_fogPara);
 		
 		//-----------------

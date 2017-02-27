@@ -39,6 +39,12 @@ namespace Ic3d
         for(auto pWin : m_winAry.getAry())
             pWin->onInit();
     }
+    void IcWinMng::releaseWindows()
+    {
+        for(auto pWin : m_winAry.getAry())
+            pWin->onRelease();
+        // TODO: release GLUT window
+    }
 
     //-------------------------------------------
     //	IcWinMng
