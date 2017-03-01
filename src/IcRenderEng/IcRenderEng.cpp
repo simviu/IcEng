@@ -82,6 +82,8 @@ namespace Ic3d
     }
     void IcRenderEng::onFrameEnd()
     {
+
+
  
     }
     
@@ -126,7 +128,7 @@ namespace Ic3d
     void IcRenderEng::releaseEng()
     {
         logInfo("IcRenderEng::releaseEng()");
-        m_pCurRenderAdp =nullptr;
+		m_pCurRenderAdp =nullptr;
         logInfo("IcRenderEng::releaseEng() done.");
      
     }

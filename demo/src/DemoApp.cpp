@@ -91,12 +91,23 @@ void DemoApp::onInit()
     m_pDemoWin->reqSetDemo(m_demoSel);
     logInfo("DemoApp::onInit() done");
 }
+
+//-----------------------------------
+//  DemoWindow override
+//-----------------------------------
+void DemoWindow::onInit()
+{
+    IcWindow::onInit();
+    m_demoSel = -1;
+}
+
 //-----------------------------------
 //  DemoWindow override
 //-----------------------------------
 void DemoWindow::reqSetDemo(int sel)
 {
     m_demoSel_req = sel;
+
 }
 
 void DemoWindow::onDrawUpdate(float deltaT)

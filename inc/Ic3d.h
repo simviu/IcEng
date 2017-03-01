@@ -84,7 +84,7 @@ namespace Ic3d {
 		bool isValid()const
 		{	if(m_pRenderAdp==nullptr) return false;
 			return m_pRenderAdp->m_isValid; };
-		IcTexture(){};
+		IcTexture();
 		IcTexture(const std::string& fname);
 		IcTexture(const ctl::IcImg& img);
 		virtual ~IcTexture(){};
@@ -93,9 +93,8 @@ namespace Ic3d {
 				m_pRenderAdp->render(); };
 
 	protected:
-		ctl::Sp<const CRenderAdp::CTexAdp>	m_pRenderAdp = initWithDfltAdp();
+		ctl::Sp<const CRenderAdp::CTexAdp>	m_pRenderAdp = nullptr;
 		bool m_isValid = false;
-		decltype(m_pRenderAdp) initWithDfltAdp();
 	};
 	
 	
@@ -555,7 +554,7 @@ namespace Ic3d {
         ctl::Sp<const CRenderAdp::CTexAdp>   m_pDfltTexAdp = nullptr;
         std::atomic<bool>    m_hasInit{false};
         std::atomic<bool>    m_isEnabled{false};
-        
+
 	public:
 		IcEng(){};
 		virtual ~IcEng(){};

@@ -16,22 +16,12 @@ namespace Ic3d
 	using namespace std;
 	using namespace ctl;
 
-    //--------------------------------------
-	//	CTexHelper
 	//--------------------------------------
-    /*
-	struct CTexHelper
+	//	Texture
+	//--------------------------------------
+	IcTexture::IcTexture()
 	{
-		ctl::Sp<CRenderAdp::CTexAdp> m_pDfltTexAdp = nullptr;
-	};
-	static CTexHelper l_texHelper;
-     */
-	//--------------------------------------
-	//	Default Texture
-	//--------------------------------------
-	auto IcTexture::initWithDfltAdp()->decltype(m_pRenderAdp)
-	{
-        return  IcEng::getInstance()->getDfltTexAdp();
+		m_pRenderAdp =  IcEng::getInstance()->getDfltTexAdp();
 	}
 
 

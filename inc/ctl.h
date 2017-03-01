@@ -23,6 +23,9 @@
 #include <sstream>
 #include <assert.h>
 #include <iostream>
+#include <atomic>
+
+
 #define _USE_MATH_DEFINES
 #include <math.h>
 #include <thread>

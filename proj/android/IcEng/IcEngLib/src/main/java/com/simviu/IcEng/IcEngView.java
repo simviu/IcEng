@@ -92,7 +92,6 @@ public class IcEngView extends GLSurfaceView {
     public void onPause(){
         super.onPause();
 
-        IcEngJNI.onReleaseWindow();
     }
     //-------------------------------------
     private static String TAG = "GL2JNIView";
@@ -381,9 +380,8 @@ public class IcEngView extends GLSurfaceView {
         }
 
         public void onSurfaceChanged(GL10 gl, int width, int height) {
-
-            IcEngJNI.onScreenSize(width, height);
             IcEngJNI.debugPrint("JNI print from IcEngView::onSurfaceChanged()");
+            IcEngJNI.onScreenSize(width, height);
         }
 
         public void onSurfaceCreated(GL10 gl, EGLConfig config) {

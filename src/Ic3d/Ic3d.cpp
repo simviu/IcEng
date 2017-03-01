@@ -37,6 +37,8 @@ namespace Ic3d
 		bool isOK = pEng->initEng(sPathShader);
         m_hasInit = true;
         if(isOK)
+            m_pDfltTexAdp = getDfltTexAdp();    // TODO: move to RenderAdapt for auto
+        if(isOK)
             m_isEnabled = true;
         return isOK;
 	}
@@ -45,6 +47,7 @@ namespace Ic3d
     //--------------------------------------------------------------
     void IcEng::releaseEng()
     {
+
         m_pDfltTexAdp = nullptr; // TODO: move into RenderAdp for more auto
         m_isEnabled = false;
         m_hasInit = false;
@@ -64,7 +67,6 @@ namespace Ic3d
     {
         auto pRE = IcRenderEng::getInstance();
         pRE->onFrameEnd();
-       
     }
     //--------------------------
     //	clearScreen

@@ -23,7 +23,8 @@ public:
     void reqSetDemo(int sel);
     virtual void onKeyboard(unsigned char key) override;
     virtual void onDrawUpdate(float deltaT) override;
-    
+    virtual void onInit() override;
+
 protected:
     int m_demoSel_req = 0;
     int m_demoSel = -1;
