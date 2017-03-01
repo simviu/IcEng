@@ -49,6 +49,7 @@ You can update them with latest version by yourself.
 * Lodepng : LodePNG is a PNG image decoder and encoder. It's own license(Free). (http://lodev.org/lodepng/)
 * FreeGlut Binary Lib: For windows only, provided as binary in IcEngBuild, X-Consortium license(Free).(http://freeglut.sourceforge.net/)
 * glew Binary Lib: For windows only, BSD/MIT license(Free). (http://glew.sourceforge.net/)
+* android OpenGL Surface View and JNI wrapper : derived from Android Open Source Project, OpenGL/JNI samples, Apache License.
 
 #Contact
 support@simviu.com
