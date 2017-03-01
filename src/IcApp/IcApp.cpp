@@ -43,68 +43,24 @@ namespace Ic3d
     }
 
     //----------------------------
-    //  addWindow/clearWindow
+    //  get winMng singleton
+    //----------------------------
+    ctl::Sp<IcWinMng> IcApp::getWinMng()
+    {
+        return IcWinMng::getInstance();
+    }
+
+    //----------------------------
+    //  addWindow
     //----------------------------
     void IcApp::addWindow(ctl::Sp<IcWindow> pWin)
     {
         auto pMng = IcWinMng::getInstance();
         pMng->addWindow(pWin);
     }
-    void IcApp::releaseWindows()
-    {
-        auto pMng = IcWinMng::getInstance();
-        pMng->releaseWindows();
 
-
-    }
-
-    //----------------------------
-    //  onScreenSize
-    //----------------------------
-    ctl::Sp<IcWindow> IcApp::getWindow(int idx)
-    {
-        auto pMng = IcWinMng::getInstance();
-        return pMng->getWindow(idx);
-    }
-
-    //----------------------------
-    //  onScreenSize
-    //----------------------------
-    void IcApp::onScreenSize(const ctl::TSize& sz)
-    {
-        auto pMng = IcWinMng::getInstance();
-        pMng->onScreenSize(sz);
-    }
-
-
-    //----------------------------------
-    //  drawUpdateWindows
-    //----------------------------------
-    void IcApp::drawUpdateWindows(float deltaT)
-    {
-        // TODO: IcWinMng into IcApp
-        auto pMng = Ic3d::IcWinMng::getInstance();
-        pMng->drawUpdate(deltaT);
-       
-    }
-    //----------------------------------
-    //  initWindows
-    //----------------------------------
-    void IcApp::initWindows()
-    {
-        auto pMng = Ic3d::IcWinMng::getInstance();
-        pMng->initWindows();
-      
-    }
-    //----------------------------------
-    //  onRelease
-    //----------------------------------
-    void IcApp::onRelease()
-    {
-        logInfo("IcApp::onRelease()");
-        
-        releaseWindows();
-    }
-   
+ 
+    
+    
 
 }

@@ -43,7 +43,7 @@ extern "C" JNIEXPORT void JNICALL Java_com_simviu_IcEng_IcEngJNI_onInitWindow(JN
         LOGI("Error: JNI IcEngJNI_onInit(): IcApp instance empty\n");
         return;
     }
-    pApp->initWindows();
+    pApp->getWinMng()->reqInitWindows();
 }
 
 //------------------------------------------
@@ -53,7 +53,7 @@ extern "C" JNIEXPORT void JNICALL Java_com_simviu_IcEng_IcEngJNI_onReleaseWindow
 {
     //---- Init App
     auto pApp = IcApp::getInstance();
-    pApp->releaseWindows();
+    pApp->getWinMng()->reqReleaseWindows();
 }
 //------------------------------------------
 //  IcAppJNI.onScreenSize()
@@ -63,7 +63,7 @@ extern "C" JNIEXPORT void JNICALL Java_com_simviu_IcEng_IcEngJNI_onScreenSize(JN
 {
     auto pApp = IcApp::getInstance();
     if(pApp== nullptr) return;
-    pApp->onScreenSize(ctl::TSize(width, height));
+    pApp->getWinMng()->onScreenSize(ctl::TSize(width, height));
 }
 
 //------------------------------------------
@@ -73,7 +73,7 @@ extern "C" JNIEXPORT void JNICALL Java_com_simviu_IcEng_IcEngJNI_onDrawUpdate(JN
 {
     auto pApp = IcApp::getInstance();
     if(pApp== nullptr) return;
-    pApp->drawUpdateWindows(deltaT);
+    pApp->getWinMng()->drawUpdate(deltaT);
 }
 
 //------------------------------------------

@@ -432,9 +432,9 @@ namespace Ic3d {
         virtual ctl::TSize getScreenSize(){ return m_screenSize; };
         virtual bool onScreenSize(const ctl::TSize& screenSize);
         
-        virtual void initWindows();
         virtual void drawUpdate(float deltaT);
-        virtual void releaseWindows();
+        virtual void reqInitWindows();
+        virtual void reqReleaseWindows();
         virtual void startMainLoop(){};
         
         virtual ctl::Sp<IcWindow> getWindow(int idx){ return m_winAry[idx]; } ;
@@ -466,8 +466,6 @@ namespace Ic3d {
     {
     public:
         IcWindow(){};
-        virtual void onInit();
-        virtual void onRelease();
         virtual void onDrawUpdate(float deltaT);
         virtual void onWindowSize(const ctl::TSize& size);
         void addScene(ctl::Sp<IcScene> pScn);
@@ -490,11 +488,20 @@ namespace Ic3d {
         };
         TCfg m_cfg;
         ctl::SpAry<IcScene>& getScnAry(){ return m_scnAry; };
+        void reqInit() { m_reqInit = true; };
+        void reqRelease() { m_reqRelease = true;  };
     protected:
-        ctl::SpAry<IcScene> m_scnAry;
+        //---- Derive onInit() to create/add your scenes.
+        virtual void onInit();
+		//---- Derive onRelease to release openGL res, usually that's not necessary.
+		// It's automatically handled by IcWindow::onRelease()
+		virtual void onRelease();
+		ctl::SpAry<IcScene> m_scnAry;
         std::mutex          m_mtx_draw;
-        bool	m_isDrawing = false;
-        
+        std::atomic<bool>	m_isDrawing{false};
+        std::atomic<bool>   m_reqInit{false};
+        std::atomic<bool>   m_reqRelease{false};
+  
     };
     //-----------------------------------------------
     //	IcApp
@@ -513,20 +520,12 @@ namespace Ic3d {
 
 		//---- Always Override onInit()
         virtual void onInit() {};
-        virtual void onRelease();
+        virtual void onRelease(){};
         
         void addWindow(ctl::Sp<IcWindow> pWin);
-		void releaseWindows();
-        ctl::Sp<IcWindow> getWindow(int idx);
-        void onScreenSize(const ctl::TSize& sz);
-        void initWithScn(ctl::Sp<IcScene> pScn);
-		//---- This 2 functions implicitly called by
-		// high level windows system of corresponding platform.
-		// Do not call it from users.
-		void initWindows();
-        void drawUpdateWindows(float deltaT);
-        
-		//---- Singleton
+        ctl::Sp<IcWinMng> getWinMng();
+
+ 		//---- Singleton
         static void setInstance(IcApp* pApp);
         static IcApp* getInstance();
         //-----------------

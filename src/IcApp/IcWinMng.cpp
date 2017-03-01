@@ -31,33 +31,27 @@ namespace Ic3d
     {
         m_pInstance = p;
     }
+   
     //-------------------------------------------
-    //	onInitWindows
-    //-------------------------------------------
-    void IcWinMng::initWindows()
-    {
-        for(auto pWin : m_winAry.getAry())
-            pWin->onInit();
-    }
-    void IcWinMng::releaseWindows() {
-        int i=0;
-        for (auto pWin : m_winAry.getAry())
-        {
-            logDbg("Release window ["+v2s(i++)+"]");
-            pWin->onRelease();
-        }
-        // TODO: release GLUT window
-    }
-
-    //-------------------------------------------
-    //	IcWinMng
+    //	IcWinMng for each window
     //-------------------------------------------
     void IcWinMng::drawUpdate(float deltaT)
     {
         for(auto pWin : m_winAry.getAry())
             pWin->onDrawUpdate(deltaT);
     }
-    
+    void IcWinMng::reqInitWindows()
+    {
+        for(auto pWin : m_winAry.getAry())
+            pWin->reqInit();
+       
+    }
+    void IcWinMng::reqReleaseWindows()
+    {
+        for(auto pWin : m_winAry.getAry())
+            pWin->reqRelease();
+    }
+   
     //-------------------------------------------
     //	onScreenSize
     //-------------------------------------------

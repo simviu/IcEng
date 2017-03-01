@@ -26,6 +26,7 @@ namespace Ic3d
     void IcWindow::addScene(ctl::Sp<IcScene> pScn)
     {
         m_scnAry.add(pScn);
+        pScn->onWindowSize(m_cfg.m_size);
     };
     
     void IcWindow::removeAllScene()
@@ -49,11 +50,11 @@ namespace Ic3d
 
     }
     //-------------------------------------------
-    //	onInit
+    //	onRelease
     //-------------------------------------------
     void IcWindow::onRelease()
     {
-        logDbg("IcWindow::onRelease()");
+        logInfo("IcWindow::onRelease()");
         m_scnAry.clear();
         auto pEng = IcEng::getInstance();
         pEng->releaseEng();
@@ -73,7 +74,7 @@ namespace Ic3d
     }
 
     //-------------------------------------------
-    //	drawObj
+    //	onDrawUpdate
     //-------------------------------------------
     void IcWindow::onDrawUpdate(float deltaT)
     {
@@ -89,6 +90,14 @@ namespace Ic3d
         pEng->onFrameStart();
         pEng->clearScreen(m_cfg.m_bkColor); // TODO: cfg of not clearScreen
         
+        //-------------
+        // Check Init
+        //-------------
+        if(m_reqInit)
+        {
+            onInit();
+            m_reqInit = false;
+        }
         
         //-------------
         // Draw Update Scene
@@ -105,6 +114,15 @@ namespace Ic3d
             pScn->onUpdate(deltaT);
             pScn->onDraw();
         }
+        //-------------
+        // Check Release
+        //-------------
+        if(m_reqRelease)
+        {
+            onRelease();
+            m_reqRelease = false;
+        }
+
         pEng->onFrameEnd();
 		m_isDrawing = false;
 
