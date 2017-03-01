@@ -141,6 +141,7 @@ namespace Ic3d
         //------------------------
         void onQuit()
         {
+            // TODO: call request release on IcWinMng
             m_winSlotAry.clear();
             IcApp::getInstance()->onRelease();
             exit(0);
@@ -178,7 +179,7 @@ namespace Ic3d
             if(pIcWin==nullptr) return;
             if(!pSlot->m_hasInit)
             {
-                pIcWin->onInit();
+             //   pIcWin->reqInit();
                 pSlot->m_hasInit = true;
             }
             
@@ -358,8 +359,9 @@ namespace Ic3d
         IcWinMng::setInstance(pMng);
         pMng->initMng(argc, argv);
         onInit();
+        pMng->reqInitWindows();
         pMng->startMainLoop();
-        
+        pMng->reqReleaseWindows();
         return true;
     }
 

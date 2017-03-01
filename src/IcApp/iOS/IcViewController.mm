@@ -100,13 +100,13 @@ const static GLfloat K_bkColor[4] = {0.2, 0.4, 0.9, 1.0};
 {
     auto pApp = m_pIcApp;
     if(pApp==nullptr) return;
-    pApp->initWindows();
+    pApp->getWinMng()->reqInitWindows();
 }
 -(void)Ic3d_onReleaseWindow
 {
     auto pApp = m_pIcApp;
     if(pApp==nullptr) return;
-    pApp->releaseWindows();
+    pApp->getWinMng()->reqReleaseWindows();
 }
 //--------------------------------------
 //  Ic3d_onInit
@@ -117,7 +117,7 @@ const static GLfloat K_bkColor[4] = {0.2, 0.4, 0.9, 1.0};
     if(pApp==nullptr) return;
     auto sz = viewRect.size;
     //---- convert to ctl::TSize from CGSize
-    pApp->onScreenSize(ctl::TSize(sz.width, sz.height));
+    pApp->getWinMng()->onScreenSize(ctl::TSize(sz.width, sz.height));
 };
 //--------------------------------------
 //  Ic3d_onInit
@@ -126,7 +126,7 @@ const static GLfloat K_bkColor[4] = {0.2, 0.4, 0.9, 1.0};
 {
     auto pApp = m_pIcApp;
     if(pApp==nullptr) return;
-    pApp->drawUpdateWindows(deltaT);
+    pApp->getWinMng()->drawUpdate(deltaT);
 };
 
 //--------------------------------------
