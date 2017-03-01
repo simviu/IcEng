@@ -114,6 +114,16 @@ namespace Ic3d
         // Check IcEng
         auto pEng = IcEng::getInstance();
         if(!pEng->isEnabled()) return;
+        //----------------------
+        // Check onInit()
+        //----------------------
+        if(!m_hasInit)
+        {
+            onInit();
+            m_hasInit = true;
+            return;
+        }
+
 
         //----------------------
 		static int dbgFrmCnt=0;

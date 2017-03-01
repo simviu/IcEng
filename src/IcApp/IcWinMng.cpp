@@ -40,16 +40,16 @@ namespace Ic3d
         for(auto pWin : m_winAry.getAry())
             pWin->onDrawUpdate(deltaT);
     }
-    void IcWinMng::reqInitWindows()
+    void IcWinMng::initWindows()
     {
         for(auto pWin : m_winAry.getAry())
-            pWin->reqInit();
+            pWin->initWindow();
        
     }
-    void IcWinMng::reqReleaseWindows()
+    void IcWinMng::releaseWindows()
     {
         for(auto pWin : m_winAry.getAry())
-            pWin->reqRelease();
+            pWin->releaseWindow();
     }
    
     //-------------------------------------------

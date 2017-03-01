@@ -353,7 +353,6 @@ namespace Ic3d {
 	public:
 		IcScene();
 		virtual ~IcScene() {};
-        virtual void onInit(){ m_hasInit = true; };
         virtual void onUpdate(double deltaT)
         {    if(m_pCallBk_onUpdate!=nullptr) m_pCallBk_onUpdate(deltaT); };
 		virtual void onDraw();
@@ -379,9 +378,9 @@ namespace Ic3d {
         void setTargetTexture(ctl::Sp<IcTexture> pTex)
             { m_pTargetTex = pTex; };
         void addSubScn(ctl::Sp<IcScene> pScn){ m_subScns.add(pScn);};
-        bool hasInit()const{ return m_hasInit; };
-        void setHasInit(bool b){ m_hasInit = b; };
+
 	protected:
+		virtual void onInit(){};
         void renderObjRecur(const IcCamera& cam,
                             const IcObject& obj,
                             const TMat4& matModelParent) const;
@@ -392,7 +391,7 @@ namespace Ic3d {
         ctl::SpAry<IcText>      m_texts;
         ctl::SpAry<IcScene>     m_subScns;
 		size_t	m_frmCnt = 0;   // TODO: Move to IcWindow
-        bool    m_hasInit = false;
+        std::atomic<bool>	    m_hasInit{false};
 
         void drawLights();
 	//	void initCamera(const ctl::TRect& viewRect);
@@ -433,8 +432,8 @@ namespace Ic3d {
         virtual bool onScreenSize(const ctl::TSize& screenSize);
         
         virtual void drawUpdate(float deltaT);
-        virtual void reqInitWindows();
-        virtual void reqReleaseWindows();
+        virtual void initWindows();
+        virtual void releaseWindows();
         virtual void startMainLoop(){};
         
         virtual ctl::Sp<IcWindow> getWindow(int idx){ return m_winAry[idx]; } ;
@@ -488,8 +487,9 @@ namespace Ic3d {
         };
         TCfg m_cfg;
         ctl::SpAry<IcScene>& getScnAry(){ return m_scnAry; };
-        void reqInit() { m_reqInit = true; };
-        void reqRelease() { m_reqRelease = true;  };
+        void initWindow();
+        void releaseWindow();
+
     protected:
         //---- Derive onInit() to create/add your scenes.
         virtual void onInit();
@@ -499,8 +499,7 @@ namespace Ic3d {
 		ctl::SpAry<IcScene> m_scnAry;
         std::mutex          m_mtx_draw;
         std::atomic<bool>	m_isDrawing{false};
-        std::atomic<bool>   m_reqInit{false};
-        std::atomic<bool>   m_reqRelease{false};
+        std::atomic<bool>   m_hasInit{false};
   
     };
     //-----------------------------------------------

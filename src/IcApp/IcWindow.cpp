@@ -39,15 +39,7 @@ namespace Ic3d
     //-------------------------------------------
     void IcWindow::onInit()
     {
-        //---- Check IcEng,
-        // TODO: Multiple win need multiple context?
-        auto pEng = IcEng::getInstance();
-    //    if(!pEng->hasInit())
-        {
-            string sPathRes = IcApp::getInstance()->m_cfg.m_sPathRes;
-            pEng->initEng(sPathRes + K_sSubPath_shader);
-        }
-
+        logInfo("IcWindow::onInit()");
     }
     //-------------------------------------------
     //	onRelease
@@ -56,8 +48,6 @@ namespace Ic3d
     {
         logInfo("IcWindow::onRelease()");
         m_scnAry.clear();
-        auto pEng = IcEng::getInstance();
-        pEng->releaseEng();
     }
     //-------------------------------------------
     //	onWindowSize
@@ -72,6 +62,26 @@ namespace Ic3d
         for(auto pScn : m_scnAry.getAry())
             pScn->onWindowSize(size);
     }
+    //-------------------------------------------
+    //	initWindow()/releaseWindow()
+    //-------------------------------------------
+    void IcWindow::initWindow()
+    {
+        //--- Init Eng
+        auto pEng = IcEng::getInstance();
+        string sPathRes = IcApp::getInstance()->m_cfg.m_sPathRes;
+        pEng->initEng(sPathRes + K_sSubPath_shader);
+        
+        //---- Request onInit(), will be called inside drawUpdate()
+        m_hasInit = false;
+    }
+    void IcWindow::releaseWindow()
+    {
+        onRelease();
+        //---- Release Eng
+        auto pEng = IcEng::getInstance();
+        pEng->releaseEng();
+    }
 
     //-------------------------------------------
     //	onDrawUpdate
@@ -81,47 +91,32 @@ namespace Ic3d
         //---- Thread protection
         std::unique_lock<std::mutex> lock(m_mtx_draw);
 		if(m_isDrawing) return;
-		m_isDrawing = true;        
-
-        auto pEng = IcEng::getInstance();
-        //-------------
-        // Frame Start
-        //-------------
-        pEng->onFrameStart();
-        pEng->clearScreen(m_cfg.m_bkColor); // TODO: cfg of not clearScreen
-        
+		m_isDrawing = true;
         //-------------
         // Check Init
         //-------------
-        if(m_reqInit)
+        if(!m_hasInit)
         {
             onInit();
-            m_reqInit = false;
+            m_hasInit = true;
+            m_isDrawing = false;
+            return;
         }
-        
+        //-------------
+        // Frame Start
+        //-------------
+        auto pEng = IcEng::getInstance();
+        pEng->onFrameStart();
+        pEng->clearScreen(m_cfg.m_bkColor); // TODO: cfg of not clearScreen
+
         //-------------
         // Draw Update Scene
         //-------------
         for(auto pScn : m_scnAry.getAry())
-        {
-            if(!pScn->hasInit())
-            {
-                pScn->onInit();
-                pScn->onWindowSize(m_cfg.m_size);
-                pScn->setHasInit(true);
-            }
-
             pScn->onUpdate(deltaT);
+
+        for(auto pScn : m_scnAry.getAry())
             pScn->onDraw();
-        }
-        //-------------
-        // Check Release
-        //-------------
-        if(m_reqRelease)
-        {
-            onRelease();
-            m_reqRelease = false;
-        }
 
         pEng->onFrameEnd();
 		m_isDrawing = false;

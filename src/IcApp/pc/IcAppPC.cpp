@@ -179,7 +179,7 @@ namespace Ic3d
             if(pIcWin==nullptr) return;
             if(!pSlot->m_hasInit)
             {
-                pIcWin->reqInit();
+             //   pIcWin->reqInit();
                 pSlot->m_hasInit = true;
             }
             

@@ -43,7 +43,7 @@ extern "C" JNIEXPORT void JNICALL Java_com_simviu_IcEng_IcEngJNI_onInitWindow(JN
         LOGI("Error: JNI IcEngJNI_onInit(): IcApp instance empty\n");
         return;
     }
-    pApp->getWinMng()->reqInitWindows();
+    pApp->getWinMng()->initWindows();
 }
 
 //------------------------------------------
@@ -53,7 +53,7 @@ extern "C" JNIEXPORT void JNICALL Java_com_simviu_IcEng_IcEngJNI_onReleaseWindow
 {
     //---- Init App
     auto pApp = IcApp::getInstance();
-    pApp->getWinMng()->reqReleaseWindows();
+    pApp->getWinMng()->releaseWindows();
 }
 //------------------------------------------
 //  IcAppJNI.onScreenSize()
