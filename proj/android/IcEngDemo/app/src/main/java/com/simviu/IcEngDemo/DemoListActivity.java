@@ -21,16 +21,10 @@ public class DemoListActivity extends ListActivity {
         System.loadLibrary("IcEngDemo");
     }
 
-    IcEngView m_icEngView = null;
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        //---- Create IcEngView
-        m_icEngView = new IcEngView(this);
-
 
         //---- Init App at very beginning
         String sPathCache = getCacheDir().toString();

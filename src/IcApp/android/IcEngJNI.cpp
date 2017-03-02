@@ -31,6 +31,40 @@ using namespace Ic3d;
 #define  LOGI(...)  __android_log_print(ANDROID_LOG_INFO,LOG_TAG,__VA_ARGS__)
 #define  LOGE(...)  __android_log_print(ANDROID_LOG_ERROR,LOG_TAG,__VA_ARGS__)
 
+
+//------------------------------------------
+//  Android Log handler to replace ctl::Log
+//------------------------------------------
+struct LogHandlerJNI : LogHandler
+{
+    virtual void logMsgBase(const std::string& sMsg) override
+    { LOGI("%s", sMsg.c_str()); };
+
+};
+static LogHandlerJNI l_logHandlerJNI;
+
+//------------------------------------------
+//  IcEngJNI::initIcApp()
+//------------------------------------------
+void IcEngJNI::initIcApp(IcApp* pApp,
+                         const std::string& sPathRes,
+                         const std::string& sPathDoc)
+{
+    //---- Set logHandler
+    ctl::LogHandler::setCurHandler(&l_logHandlerJNI);
+    if(pApp== nullptr) return;
+    IcApp::setInstance(pApp);
+
+    //---- Init App
+    logInfo("------------------------------------------");
+    logInfo("IcEngJNI::initIcApp:[0x"+v2hex(pApp)+"]");
+    auto& cfg = pApp->m_cfg;
+    cfg.m_sPathRes = sPathRes +"/";
+    cfg.m_sPathDoc = sPathDoc +"/";
+    pApp->onInit();
+}
+
+
 //------------------------------------------
 //  IcAppJNI.onInit()
 //------------------------------------------
@@ -116,32 +150,4 @@ std::string IcEngJNI::jstr2str(JNIEnv * env, jstring jstr)
     (*env).ReleaseStringUTFChars(jstr, cstr);
     return str;
 }
-//------------------------------------------
-//  Android Log handler to replace ctl::Log
-//------------------------------------------
-struct LogHandlerJNI : LogHandler
-{
-    virtual void logMsgBase(const std::string& sMsg) override
-    { LOGI("%s", sMsg.c_str()); };
 
-};
-static LogHandlerJNI l_logHandlerJNI;
-
-//------------------------------------------
-//  IcEngJNI::initIcApp()
-//------------------------------------------
-void IcEngJNI::initIcApp(IcApp* pApp,
-                        const std::string& sPathRes,
-                        const std::string& sPathDoc)
-{
-    if(pApp== nullptr) return;
-    IcApp::setInstance(pApp);
-    //---- Set logHandler
-    ctl::LogHandler::setCurHandler(&l_logHandlerJNI);
-
-    //---- set path
-    auto& cfg = pApp->m_cfg;
-    cfg.m_sPathRes = sPathRes +"/";
-    cfg.m_sPathDoc = sPathDoc +"/";
-    pApp->onInit();
-}
