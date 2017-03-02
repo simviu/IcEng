@@ -49,6 +49,17 @@ namespace Ic3d
     {
         return IcWinMng::getInstance();
     }
+    //----------------------------
+    // onInit()/onRelease()
+    //----------------------------
+    void IcApp::onInit()
+    {
+        logInfo("IcApp::onInit()");
+    };
+    void IcApp::onRelease()
+    {
+        logInfo("IcApp::onRelease()");
+    };
 
     //----------------------------
     //  addWindow

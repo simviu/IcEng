@@ -518,8 +518,8 @@ namespace Ic3d {
         TCfg m_cfg;
 
 		//---- Always Override onInit()
-        virtual void onInit() {};
-        virtual void onRelease(){};
+        virtual void onInit() ;
+        virtual void onRelease();
         
         void addWindow(ctl::Sp<IcWindow> pWin);
         ctl::Sp<IcWinMng> getWinMng();
