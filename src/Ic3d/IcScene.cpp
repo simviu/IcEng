@@ -36,7 +36,9 @@ namespace Ic3d
 	//---------------------------------------------
 	void IcScene::onWindowSize(const ctl::TSize& winSize)
 	{
-        auto sz = winSize;
+        const auto& sz = winSize;
+        logInfo("IcScene::onWindowSize() ["+
+                    v2s(sz.w) + "x"+ v2s(sz.h)+"]");
         m_cfg.m_viewRect = TRect(TPos(0,0), sz);
         const auto& camCfg = m_cfg.m_camCfg;
         

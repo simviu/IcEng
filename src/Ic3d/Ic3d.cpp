@@ -37,7 +37,9 @@ namespace Ic3d
 		bool isOK = pEng->initEng(sPathShader);
         m_hasInit = true;
         if(isOK)
-            m_pDfltTexAdp = getDfltTexAdp();    // TODO: move to RenderAdapt for auto
+            m_pDfltTexAdp = getDfltTexAdp();
+            // TODO: move to RenderAdapt for auto
+        
         if(isOK)
             m_isEnabled = true;
         return isOK;
@@ -47,13 +49,17 @@ namespace Ic3d
     //--------------------------------------------------------------
     void IcEng::releaseEng()
     {
-
+        logInfo("IcEng::releaseEng()");
+        logDbg("Default Texture adp removed at 0x"+
+               v2hex(m_pDfltTexAdp));
         m_pDfltTexAdp = nullptr; // TODO: move into RenderAdp for more auto
+        
         m_isEnabled = false;
         m_hasInit = false;
         auto pRE = IcRenderEng::getInstance();
         pRE->releaseEng();
-    }
+        logInfo("IcEng::releaseEng() done");
+   }
 
     //--------------------------------------------------------------
     //	onFrameStart/onFrameEnd
@@ -106,6 +112,8 @@ namespace Ic3d
         if(pAdp==nullptr) return nullptr;
         auto p = pAdp->createTextureAdp(img);
         m_pDfltTexAdp = p;
+        logDbg("Default Texture adp instantiated at 0x"+
+               v2hex(p));
         return p;
     }
 
