@@ -21,16 +21,19 @@ namespace Ic3d
     //-------------------------------------------
     const static string K_sSubPath_shader = "IcShader/";
     //-------------------------------------------
-    //	drawObj
+    //	addScene/removeScene
     //-------------------------------------------
     void IcWindow::addScene(ctl::Sp<IcScene> pScn)
     {
+        logInfo("IcWindow::addScene() ["+v2s(m_scnAry.size())+"]");
         m_scnAry.add(pScn);
         pScn->onWindowSize(m_cfg.m_size);
     };
     
     void IcWindow::removeAllScene()
     {
+        logInfo("IcWindow::removeAllScene() -- "+
+                        v2s(m_scnAry.size())+" scenes");
         m_scnAry.clear();
     }
     
@@ -47,13 +50,15 @@ namespace Ic3d
     void IcWindow::onRelease()
     {
         logInfo("IcWindow::onRelease()");
-        m_scnAry.clear();
+        removeAllScene();
     }
     //-------------------------------------------
     //	onWindowSize
     //-------------------------------------------
     void IcWindow::onWindowSize(const ctl::TSize& size)
     {
+        logInfo("IcWindow::onWindowSize() ["+
+            v2s(size.w) + "x"+ v2s(size.h) +"]");
         // In default, call onWindowSize().
         // TODO:
         //    Consider add option to fit window into screen
