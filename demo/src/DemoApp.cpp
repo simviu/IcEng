@@ -104,15 +104,16 @@ void DemoWindow::onInit()
 //-----------------------------------
 //  DemoWindow override
 //-----------------------------------
-void DemoWindow::reqSetDemo(int sel)
-{
+void DemoWindow::reqSetDemo(int sel) {
     m_demoSel_req = sel;
+
 
 }
 
 void DemoWindow::onDrawUpdate(float deltaT)
 {
     IcWindow::onDrawUpdate(deltaT);
+
     if(m_demoSel != m_demoSel_req)
     {
         auto pScn = DemoScene::createDemoScn(m_demoSel_req);

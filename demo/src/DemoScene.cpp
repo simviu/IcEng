@@ -42,6 +42,8 @@ const DemoScene::DemoItem& DemoScene::getDemoItem(int idx)
 //-----------------------------------
 ctl::Sp<IcScene> DemoScene::createDemoScn(int sel)
 {
+    logInfo("DemoScene::createDemoScn() [" +
+        v2s(sel) + "]");
     ctl::Sp<IcScene> pScn = nullptr;
     switch (sel) {
         case 0: pScn = ctl::makeSp<DemoBasic>();        break;
