@@ -244,7 +244,6 @@
 		9CF606881E248125008A662C /* vec4.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9CF605EE1E248125008A662C /* vec4.hpp */; };
 		9CF606891E248125008A662C /* vector_relational.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9CF605EF1E248125008A662C /* vector_relational.hpp */; };
 		9CF6068C1E248125008A662C /* IcRenderAdp.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF605F21E248125008A662C /* IcRenderAdp.h */; };
-		9CF606901E248286008A662C /* IcShader in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9CF6068F1E24827A008A662C /* IcShader */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -263,19 +262,6 @@
 			remoteInfo = IcEngTestMac;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		9C8CC3AC1DEE8115002583F2 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 12;
-			dstPath = "";
-			dstSubfolderSpec = 16;
-			files = (
-				9CF606901E248286008A662C /* IcShader in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		9C33E5211E3F4CF600DEC713 /* IcText.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcText.cpp; sourceTree = "<group>"; };
@@ -582,7 +568,6 @@
 		9CF605EF1E248125008A662C /* vector_relational.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = vector_relational.hpp; sourceTree = "<group>"; };
 		9CF605F01E248125008A662C /* Ic3d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ic3d.h; sourceTree = "<group>"; };
 		9CF605F21E248125008A662C /* IcRenderAdp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IcRenderAdp.h; sourceTree = "<group>"; };
-		9CF6068F1E24827A008A662C /* IcShader */ = {isa = PBXFileReference; lastKnownFileType = folder; name = IcShader; path = ../../../IcShader; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1058,7 +1043,6 @@
 		9CF6068E1E2481A6008A662C /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				9CF6068F1E24827A008A662C /* IcShader */,
 			);
 			name = Resource;
 			sourceTree = "<group>";
@@ -1247,7 +1231,6 @@
 			buildPhases = (
 				9C8CC3AA1DEE8115002583F2 /* Sources */,
 				9C8CC3AB1DEE8115002583F2 /* Frameworks */,
-				9C8CC3AC1DEE8115002583F2 /* CopyFiles */,
 			);
 			buildRules = (
 			);
