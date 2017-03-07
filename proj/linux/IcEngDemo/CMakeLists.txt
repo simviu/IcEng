@@ -34,14 +34,14 @@ if(NOT OPENGL_FOUND)
 endif(NOT OPENGL_FOUND)
 
 #########################################################
-# Include Files
+# IcEngDemo
 #########################################################
 
 set(ICENGDEMO "${CMAKE_CURRENT_SOURCE_DIR}/../../../../IcEng/demo")
 set(ICENGLIB   "${CMAKE_CURRENT_SOURCE_DIR}/../../../../IcEng")
 set(ICENGBUILD "${CMAKE_CURRENT_SOURCE_DIR}/../../../../IcEng/IcEngBuild")
-set(ICENGBUILD_LIB 	"${ICENGBUILD}/linux/lib/${CMAKE_BUILD_TYPE}")
-set(BUILD_EXE_DIR "${ICENGBUILD}/linux/bin/${CMAKE_BUILD_TYPE}")
+set(ICENGBUILD_LIB 	"${ICENGBUILD}/linux/lib/${CMAKE_HOST_SYSTEM_PROCESSOR}/${CMAKE_BUILD_TYPE}")
+set(BUILD_EXE_DIR "${ICENGBUILD}/linux/bin/${CMAKE_HOST_SYSTEM_PROCESSOR}/${CMAKE_BUILD_TYPE}")
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${BUILD_EXE_DIR}")
 

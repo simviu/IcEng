@@ -4,7 +4,7 @@ PROJECT(ICENG_LIB)
 IF( NOT CMAKE_BUILD_TYPE )
    SET( CMAKE_BUILD_TYPE Debug )
 ENDIF()
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall -D ${CMAKE_BUILD_TYPE}")
 #########################################################
 # FIND GLUT
 #########################################################
@@ -38,8 +38,9 @@ endif(NOT OPENGL_FOUND)
 #########################################################
 set(ICENGLIB "${CMAKE_CURRENT_SOURCE_DIR}/../../../../IcEng")
 set(ICENGBUILD "${CMAKE_CURRENT_SOURCE_DIR}/../../../IcEngBuild")
-set(BUILD_LIB_DIR "${ICENGBUILD}/linux/lib/${CMAKE_BUILD_TYPE}")
-set(BUILD_EXE_DIR "${ICENGBUILD}/linux/bin/${CMAKE_BUILD_TYPE}")
+
+set(BUILD_LIB_DIR "${ICENGBUILD}/linux/lib/${CMAKE_HOST_SYSTEM_PROCESSOR}/${CMAKE_BUILD_TYPE}")
+set(BUILD_EXE_DIR "${ICENGBUILD}/linux/bin/${CMAKE_HOST_SYSTEM_PROCESSOR}/${CMAKE_BUILD_TYPE}")
 
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${BUILD_LIB_DIR}")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${BUILD_EXE_DIR}")
