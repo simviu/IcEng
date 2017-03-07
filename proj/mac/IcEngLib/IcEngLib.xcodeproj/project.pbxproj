@@ -1473,7 +1473,7 @@
 				OBJROOT = ../../../IcEngBuild/mac/tmp;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
-				SYMROOT = ../../../IcEngBuild/mac;
+				SYMROOT = ../../../IcEngBuild/mac/;
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
@@ -1520,7 +1520,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OBJROOT = ../../../IcEngBuild/mac/tmp;
 				SDKROOT = macosx;
-				SYMROOT = ../../../IcEngBuild/mac;
+				SYMROOT = ../../../IcEngBuild/mac/;
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;
@@ -1533,9 +1533,9 @@
 				GCC_ENABLE_CPP_EXCEPTIONS = YES;
 				GCC_ENABLE_CPP_RTTI = YES;
 				HEADER_SEARCH_PATHS = "$(inherited)";
-				OBJROOT = "$(inherited)";
+				OBJROOT = "$(inherited)/${ARCHS}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SYMROOT = "$(inherited)/lib";
+				SYMROOT = "$(inherited)/lib/${ARCHS}";
 			};
 			name = Debug;
 		};
@@ -1547,9 +1547,9 @@
 				GCC_ENABLE_CPP_EXCEPTIONS = YES;
 				GCC_ENABLE_CPP_RTTI = YES;
 				HEADER_SEARCH_PATHS = "$(inherited)";
-				OBJROOT = "$(inherited)";
+				OBJROOT = "$(inherited)/${ARCHS}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SYMROOT = "$(inherited)/lib";
+				SYMROOT = "$(inherited)/lib/${ARCHS}";
 			};
 			name = Release;
 		};
@@ -1560,8 +1560,9 @@
 				DEVELOPMENT_TEAM = XG76D5W2B7;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				OBJROOT = "../../../IcEngBuild/mac/tmp/${ARCHS}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SYMROOT = "$(inherited)/bin";
+				SYMROOT = "$(inherited)/bin/${ARCHS}";
 			};
 			name = Debug;
 		};
@@ -1572,8 +1573,9 @@
 				DEVELOPMENT_TEAM = XG76D5W2B7;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				OBJROOT = "../../../IcEngBuild/mac/tmp/${ARCHS}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SYMROOT = "$(inherited)/bin";
+				SYMROOT = "$(inherited)/bin/${ARCHS}";
 			};
 			name = Release;
 		};
