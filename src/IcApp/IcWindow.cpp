@@ -43,6 +43,11 @@ namespace Ic3d
     void IcWindow::onInit()
     {
         logInfo("IcWindow::onInit()");
+        //--- Init Eng
+        auto pEng = IcEng::getInstance();
+        string sPathRes = IcApp::getInstance()->m_cfg.m_sPathRes;
+        pEng->initEng(sPathRes + K_sSubPath_shader);
+        
     }
     //-------------------------------------------
     //	onRelease
@@ -72,11 +77,6 @@ namespace Ic3d
     //-------------------------------------------
     void IcWindow::initWindow()
     {
-        //--- Init Eng
-        auto pEng = IcEng::getInstance();
-        string sPathRes = IcApp::getInstance()->m_cfg.m_sPathRes;
-        pEng->initEng(sPathRes + K_sSubPath_shader);
-        
         //---- Request onInit(), will be called inside drawUpdate()
         m_hasInit = false;
     }
