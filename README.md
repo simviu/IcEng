@@ -51,6 +51,9 @@ You can update them with latest version by yourself.
 * glew Binary Lib: For windows only, BSD/MIT license(Free). (http://glew.sourceforge.net/)
 * android OpenGL Surface View and JNI wrapper : derived from Android Open Source Project, OpenGL/JNI samples, Apache License.
 
+Note: For windows dependencies (FreeGlut and Glew), you can download the binary
+form IcEngBuild([https://github.com/simviu/IcEngBuild]), or you can download yourself, but re-orgnized the files in the same directory structures.
+
 #Contact
 support@simviu.com
 
