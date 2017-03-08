@@ -106,7 +106,8 @@
     </Link>
     <PostBuildEvent>
       <Command>xcopy /Y /R /E /C /I /F  ..\..\..\..\IcEng\IcEngBuild\windows\dep\glWinLib\dll\$(Platform)\*.dll  $(OutDir)
-xcopy /Y /R /E /C /I /F  ..\..\..\..\IcEng\IcShader  $(OutDir)\IcShader\</Command>
+
+</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -126,7 +127,8 @@ xcopy /Y /R /E /C /I /F  ..\..\..\..\IcEng\IcShader  $(OutDir)\IcShader\</Comman
     </Link>
     <PostBuildEvent>
       <Command>xcopy /Y /R /E /C /I /F  ..\..\..\..\IcEng\IcEngBuild\windows\dep\glWinLib\dll\$(Platform)\*.dll  $(OutDir)
-xcopy /Y /R /E /C /I /F  ..\..\..\..\IcEng\IcShader  $(OutDir)\IcShader\</Command>
+
+</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -150,7 +152,8 @@ xcopy /Y /R /E /C /I /F  ..\..\..\..\IcEng\IcShader  $(OutDir)\IcShader\</Comman
     </Link>
     <PostBuildEvent>
       <Command>xcopy /Y /R /E /C /I /F  ..\..\..\..\IcEng\IcEngBuild\windows\dep\glWinLib\dll\$(Platform)\*.dll  $(OutDir)
-xcopy /Y /R /E /C /I /F  ..\..\..\..\IcEng\IcShader  $(OutDir)\IcShader\</Command>
+
+</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -174,7 +177,8 @@ xcopy /Y /R /E /C /I /F  ..\..\..\..\IcEng\IcShader  $(OutDir)\IcShader\</Comman
     </Link>
     <PostBuildEvent>
       <Command>xcopy /Y /R /E /C /I /F  ..\..\..\..\IcEng\IcEngBuild\windows\dep\glWinLib\dll\$(Platform)\*.dll  $(OutDir)
-xcopy /Y /R /E /C /I /F  ..\..\..\..\IcEng\IcShader  $(OutDir)\IcShader\</Command>
+
+</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
