@@ -99,20 +99,13 @@ add_custom_command(TARGET IcEngTest PRE_BUILD
                    COMMAND ${CMAKE_COMMAND} -E make_directory 
 		   ${BUILD_LIB_DIR} 
 		   ${BUILD_EXE_DIR} 
-		   ${BUILD_EXE_DIR}/IcShader
  		)
 
-add_custom_command(TARGET IcEngTest POST_BUILD
-                   COMMAND ${CMAKE_COMMAND} -E copy 
-		   ${ICENGLIB}/IcShader/*
-		   ${BUILD_EXE_DIR}/IcShader
-			)
-
-add_custom_command(TARGET IcEng POST_BUILD
-                   COMMAND ${CMAKE_COMMAND} -E copy 
-		   $<TARGET_FILE:IcEng>
-		   ${BUILD_LIB_DIR}
-			)
+#add_custom_command(TARGET IcEng POST_BUILD
+#                   COMMAND ${CMAKE_COMMAND} -E copy 
+#		   $<TARGET_FILE:IcEng>
+#		   ${BUILD_LIB_DIR}
+#			)
 
 
 
