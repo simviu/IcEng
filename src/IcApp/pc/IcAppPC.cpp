@@ -171,7 +171,11 @@ namespace Ic3d
         void cbk_reshape(GLint w, GLint h)
         {
             //---- Check init glew
-            GlewHelper::checkInitGlew();
+			if (!GlewHelper::checkInitGlew())
+			{
+				logErr("Glew Init Failed, OpenGL shader not supported.");
+				onQuit();
+			}
  
             //---- Reshape Window
             auto pSlot = getCurWinSlot();
@@ -358,7 +362,11 @@ namespace Ic3d
         setInstance(this);
         auto pMng = ctl::makeSp<IcWinMngGlut>();
         IcWinMng::setInstance(pMng);
-        pMng->initMng(argc, argv);
+		if (!pMng->initMng(argc, argv))
+		{
+			logErr("OpenGL Windows Manager on this machine init failed.");
+			return 1;
+		}
         onInit();
         pMng->initWindows();
         pMng->startMainLoop();
