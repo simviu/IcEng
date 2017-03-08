@@ -43,12 +43,13 @@ const static GLfloat K_bkColor[4] = {0.2, 0.4, 0.9, 1.0};
     if(m_pIcApp==nullptr) return;
     IcApp::setInstance(m_pIcApp);
 
-    //---- Set App Res/Doc Path
-    NSString* nsRes = [[NSBundle mainBundle] resourcePath];
-    NSString *nsDoc = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-
     auto& cfg = m_pIcApp->m_cfg;
-    cfg.m_sPathRes = string([nsRes UTF8String]) +"/";
+    //---- Set App Res Path
+    NSString* nsRes = [[NSBundle mainBundle] resourcePath];
+    cfg.m_sPathRes = string([nsRes UTF8String]) +"/IcData/";
+
+    //---- Set App Doc Path
+    NSString *nsDoc = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     cfg.m_sPathDoc = string([nsDoc UTF8String]) +"/";
 }
 //--------------------------------------
@@ -100,13 +101,13 @@ const static GLfloat K_bkColor[4] = {0.2, 0.4, 0.9, 1.0};
 {
     auto pApp = m_pIcApp;
     if(pApp==nullptr) return;
-    pApp->getWinMng()->reqInitWindows();
+    pApp->getWinMng()->initWindows();
 }
 -(void)Ic3d_onReleaseWindow
 {
     auto pApp = m_pIcApp;
     if(pApp==nullptr) return;
-    pApp->getWinMng()->reqReleaseWindows();
+    pApp->getWinMng()->releaseWindows();
 }
 //--------------------------------------
 //  Ic3d_onInit
