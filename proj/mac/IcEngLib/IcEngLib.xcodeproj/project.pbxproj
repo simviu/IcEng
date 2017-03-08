@@ -244,7 +244,6 @@
 		9CF606881E248125008A662C /* vec4.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9CF605EE1E248125008A662C /* vec4.hpp */; };
 		9CF606891E248125008A662C /* vector_relational.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9CF605EF1E248125008A662C /* vector_relational.hpp */; };
 		9CF6068C1E248125008A662C /* IcRenderAdp.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CF605F21E248125008A662C /* IcRenderAdp.h */; };
-		9CF606901E248286008A662C /* IcShader in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9CF6068F1E24827A008A662C /* IcShader */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -263,19 +262,6 @@
 			remoteInfo = IcEngTestMac;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		9C8CC3AC1DEE8115002583F2 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 12;
-			dstPath = "";
-			dstSubfolderSpec = 16;
-			files = (
-				9CF606901E248286008A662C /* IcShader in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		9C33E5211E3F4CF600DEC713 /* IcText.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcText.cpp; sourceTree = "<group>"; };
@@ -582,7 +568,6 @@
 		9CF605EF1E248125008A662C /* vector_relational.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = vector_relational.hpp; sourceTree = "<group>"; };
 		9CF605F01E248125008A662C /* Ic3d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ic3d.h; sourceTree = "<group>"; };
 		9CF605F21E248125008A662C /* IcRenderAdp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IcRenderAdp.h; sourceTree = "<group>"; };
-		9CF6068F1E24827A008A662C /* IcShader */ = {isa = PBXFileReference; lastKnownFileType = folder; name = IcShader; path = ../../../IcShader; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1058,7 +1043,6 @@
 		9CF6068E1E2481A6008A662C /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				9CF6068F1E24827A008A662C /* IcShader */,
 			);
 			name = Resource;
 			sourceTree = "<group>";
@@ -1224,9 +1208,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		9C53F6BA1DCB14FB006EAF17 /* IcEngLib */ = {
+		9C53F6BA1DCB14FB006EAF17 /* IcEng */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9C53F6C61DCB14FB006EAF17 /* Build configuration list for PBXNativeTarget "IcEngLib" */;
+			buildConfigurationList = 9C53F6C61DCB14FB006EAF17 /* Build configuration list for PBXNativeTarget "IcEng" */;
 			buildPhases = (
 				9C53F6B71DCB14FB006EAF17 /* Sources */,
 				9C53F6B81DCB14FB006EAF17 /* Frameworks */,
@@ -1236,7 +1220,7 @@
 			);
 			dependencies = (
 			);
-			name = IcEngLib;
+			name = IcEng;
 			productName = IcEngLib;
 			productReference = 9C53F6BB1DCB14FB006EAF17 /* libIcEngLib.a */;
 			productType = "com.apple.product-type.library.static";
@@ -1247,7 +1231,6 @@
 			buildPhases = (
 				9C8CC3AA1DEE8115002583F2 /* Sources */,
 				9C8CC3AB1DEE8115002583F2 /* Frameworks */,
-				9C8CC3AC1DEE8115002583F2 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -1297,7 +1280,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				9C53F6BA1DCB14FB006EAF17 /* IcEngLib */,
+				9C53F6BA1DCB14FB006EAF17 /* IcEng */,
 				9C8CC3AD1DEE8115002583F2 /* IcEngTest */,
 				9C108D6B1E03B18200E0E1DF /* All */,
 			);
@@ -1395,7 +1378,7 @@
 /* Begin PBXTargetDependency section */
 		9C108D721E03B1A700E0E1DF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 9C53F6BA1DCB14FB006EAF17 /* IcEngLib */;
+			target = 9C53F6BA1DCB14FB006EAF17 /* IcEng */;
 			targetProxy = 9C108D711E03B1A700E0E1DF /* PBXContainerItemProxy */;
 		};
 		9C108D741E03B1AC00E0E1DF /* PBXTargetDependency */ = {
@@ -1473,7 +1456,7 @@
 				OBJROOT = ../../../IcEngBuild/mac/tmp;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
-				SYMROOT = ../../../IcEngBuild/mac;
+				SYMROOT = ../../../IcEngBuild/mac/;
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
@@ -1520,7 +1503,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OBJROOT = ../../../IcEngBuild/mac/tmp;
 				SDKROOT = macosx;
-				SYMROOT = ../../../IcEngBuild/mac;
+				SYMROOT = ../../../IcEngBuild/mac/;
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;
@@ -1533,9 +1516,9 @@
 				GCC_ENABLE_CPP_EXCEPTIONS = YES;
 				GCC_ENABLE_CPP_RTTI = YES;
 				HEADER_SEARCH_PATHS = "$(inherited)";
-				OBJROOT = "$(inherited)";
+				OBJROOT = "$(inherited)/${ARCHS}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SYMROOT = "$(inherited)/lib";
+				SYMROOT = "$(inherited)/lib/${ARCHS}";
 			};
 			name = Debug;
 		};
@@ -1547,9 +1530,9 @@
 				GCC_ENABLE_CPP_EXCEPTIONS = YES;
 				GCC_ENABLE_CPP_RTTI = YES;
 				HEADER_SEARCH_PATHS = "$(inherited)";
-				OBJROOT = "$(inherited)";
+				OBJROOT = "$(inherited)/${ARCHS}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SYMROOT = "$(inherited)/lib";
+				SYMROOT = "$(inherited)/lib/${ARCHS}";
 			};
 			name = Release;
 		};
@@ -1560,8 +1543,9 @@
 				DEVELOPMENT_TEAM = XG76D5W2B7;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				OBJROOT = "../../../IcEngBuild/mac/tmp/${ARCHS}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SYMROOT = "$(inherited)/bin";
+				SYMROOT = "$(inherited)/bin/${ARCHS}";
 			};
 			name = Debug;
 		};
@@ -1572,8 +1556,9 @@
 				DEVELOPMENT_TEAM = XG76D5W2B7;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				OBJROOT = "../../../IcEngBuild/mac/tmp/${ARCHS}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SYMROOT = "$(inherited)/bin";
+				SYMROOT = "$(inherited)/bin/${ARCHS}";
 			};
 			name = Release;
 		};
@@ -1598,7 +1583,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9C53F6C61DCB14FB006EAF17 /* Build configuration list for PBXNativeTarget "IcEngLib" */ = {
+		9C53F6C61DCB14FB006EAF17 /* Build configuration list for PBXNativeTarget "IcEng" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9C53F6C71DCB14FB006EAF17 /* Debug */,

@@ -37,11 +37,13 @@ namespace Ic3d
         unbindShader();
         if(m_isValid)
         {
+
             m_isValid = false;
             glDeleteProgram(m_uProgram);
             glDeleteShader(m_uVertexShader);
             glDeleteShader(m_uFragmentShader);
-        }
+            logInfo("IcShader::~IcShader()-- Shader Released");
+       }
     }
     //----------------------------------
     //  loadFile
@@ -49,8 +51,8 @@ namespace Ic3d
     bool IcShader::loadFile(const string& sFileVert,
                             const string& sFileFrag)
     {
- 	logInfo("IcShader::loadFile()-- Vert Shader    :["+sFileVert+"]");
- 	logInfo("IcShader::loadFile()-- Fragment Shader:["+sFileFrag+"]");
+        logInfo("IcShader::loadFile()-- Vert Shader    :["+sFileVert+"]");
+        logInfo("IcShader::loadFile()-- Fragment Shader:["+sFileFrag+"]");
 
         std::ifstream t1(sFileVert.c_str());
         if(!t1.is_open())

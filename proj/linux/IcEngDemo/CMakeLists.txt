@@ -34,31 +34,31 @@ if(NOT OPENGL_FOUND)
 endif(NOT OPENGL_FOUND)
 
 #########################################################
-# Include Files
+# IcEngDemo
 #########################################################
 
-set(ICENGDEMO "${CMAKE_CURRENT_SOURCE_DIR}/../../../../IcEng/demo")
+set(ICENGDEMO "${CMAKE_CURRENT_SOURCE_DIR}/../../../../IcEng/src/demo")
 set(ICENGLIB   "${CMAKE_CURRENT_SOURCE_DIR}/../../../../IcEng")
 set(ICENGBUILD "${CMAKE_CURRENT_SOURCE_DIR}/../../../../IcEng/IcEngBuild")
-set(ICENGBUILD_LIB 	"${ICENGBUILD}/linux/lib/${CMAKE_BUILD_TYPE}")
-set(BUILD_EXE_DIR "${ICENGBUILD}/linux/bin/${CMAKE_BUILD_TYPE}")
+set(ICENGBUILD_LIB 	"${ICENGBUILD}/linux/lib/${CMAKE_HOST_SYSTEM_PROCESSOR}/${CMAKE_BUILD_TYPE}")
+set(BUILD_EXE_DIR "${ICENGBUILD}/linux/bin/${CMAKE_HOST_SYSTEM_PROCESSOR}/${CMAKE_BUILD_TYPE}")
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${BUILD_EXE_DIR}")
 
 include_directories(
 	${OpenGL_INCLUDE_DIRS}
 	${ICENGLIB}/inc 
-	${ICENGDEMO}/src 
+	${ICENGDEMO}
 	)
 
 add_executable(IcEngDemo
-	${ICENGDEMO}/src/pc/main.cpp		
-	${ICENGDEMO}/src/DemoApp.cpp		
-	${ICENGDEMO}/src/DemoBasic.cpp
-	${ICENGDEMO}/src/DemoLights.cpp
-	${ICENGDEMO}/src/DemoModelCreate.cpp
-	${ICENGDEMO}/src/DemoNestedTrans.cpp
-	${ICENGDEMO}/src/DemoScene.cpp
+	${ICENGDEMO}/pc/main.cpp		
+	${ICENGDEMO}/DemoApp.cpp		
+	${ICENGDEMO}/DemoBasic.cpp
+	${ICENGDEMO}/DemoLights.cpp
+	${ICENGDEMO}/DemoModelCreate.cpp
+	${ICENGDEMO}/DemoNestedTrans.cpp
+	${ICENGDEMO}/DemoScene.cpp
 	)
 
 
@@ -68,22 +68,5 @@ target_link_libraries(IcEngDemo
 	${GLUT_LIBRARY} 
 	${GLEW_LIBRARY} 
 	)
-
-add_custom_command(TARGET IcEngDemo PRE_BUILD
-                   COMMAND ${CMAKE_COMMAND} -E make_directory 
-		   ${BUILD_EXE_DIR} 
-		   ${BUILD_EXE_DIR}/IcShader
-		)
-
-add_custom_command(TARGET IcEngDemo POST_BUILD
-                   COMMAND ${CMAKE_COMMAND} -E copy 
-		   ${ICENGLIB}/IcShader/*
-		   ${BUILD_EXE_DIR}/IcShader
-			)
-
-add_custom_command(TARGET IcEngDemo POST_BUILD
-                   COMMAND ${CMAKE_COMMAND} -E copy_directory
-		${ICENGDEMO}/data/IcDemo
-		 ${BUILD_EXE_DIR}/IcDemo)
 
 

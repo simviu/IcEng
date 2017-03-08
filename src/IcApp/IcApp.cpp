@@ -22,6 +22,11 @@ namespace Ic3d
     {
       //  setInstance(this);
     };
+    IcApp::~IcApp()
+    {
+        logInfo("IcApp::~IcApp()");
+    }
+
     //----------------------------
     //  singleton
     //----------------------------
@@ -38,55 +43,35 @@ namespace Ic3d
     }
 
     //----------------------------
-    //  addWindow/clearWindow
+    //  get winMng singleton
+    //----------------------------
+    ctl::Sp<IcWinMng> IcApp::getWinMng()
+    {
+        return IcWinMng::getInstance();
+    }
+    //----------------------------
+    // onInit()/onRelease()
+    //----------------------------
+    void IcApp::onInit()
+    {
+        logInfo("IcApp::onInit()");
+    };
+    void IcApp::onRelease()
+    {
+        logInfo("IcApp::onRelease()");
+    };
+
+    //----------------------------
+    //  addWindow
     //----------------------------
     void IcApp::addWindow(ctl::Sp<IcWindow> pWin)
     {
         auto pMng = IcWinMng::getInstance();
         pMng->addWindow(pWin);
     }
-    void IcApp::clearWindows()
-    {
-        auto pMng = IcWinMng::getInstance();
-        pMng->clearWindows();
-    }
 
-    //----------------------------
-    //  onScreenSize
-    //----------------------------
-    ctl::Sp<IcWindow> IcApp::getWindow(int idx)
-    {
-        auto pMng = IcWinMng::getInstance();
-        return pMng->getWindow(idx);
-    }
-
-    //----------------------------
-    //  onScreenSize
-    //----------------------------
-    void IcApp::onScreenSize(const ctl::TSize& sz)
-    {
-        auto pMng = IcWinMng::getInstance();
-        pMng->onScreenSize(sz);
-    }
-
-
-    //----------------------------------
-    //  windows
-    //----------------------------------
-    void IcApp::drawUpdateWindows(float deltaT)
-    {
-        // TODO: IcWinMng into IcApp
-        auto pMng = Ic3d::IcWinMng::getInstance();
-        pMng->drawUpdate(deltaT);
-       
-    }
-    void IcApp::initWindows()
-    {
-        auto pMng = Ic3d::IcWinMng::getInstance();
-        pMng->initWindows();
-      
-    }
-  
+ 
+    
     
 
 }

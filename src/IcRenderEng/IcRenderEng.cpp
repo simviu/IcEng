@@ -82,6 +82,8 @@ namespace Ic3d
     }
     void IcRenderEng::onFrameEnd()
     {
+
+
  
     }
     
@@ -101,9 +103,7 @@ namespace Ic3d
 			return false;
 		}
 		m_pCurRenderAdp = pAdp;
- 		logInfo("IcRenderEng::initEng() : GL cmd 1");
 		glEnable(GL_DEPTH_TEST);
- 		logInfo("IcRenderEng::initEng() : GL cmd 2");
 		glEnable(GL_TEXTURE_2D);
 		glActiveTexture(GL_TEXTURE0);
 		glEnable(GL_BLEND);
@@ -122,6 +122,17 @@ namespace Ic3d
 		logInfo("IcEng::initEng() Done OK.");
 		return true;
 	}
+    //--------------------------------------------------------------
+    //	releaseEng
+    //--------------------------------------------------------------
+    void IcRenderEng::releaseEng()
+    {
+        logInfo("IcRenderEng::releaseEng()");
+		m_pCurRenderAdp =nullptr;
+        logInfo("IcRenderEng::releaseEng() done.");
+     
+    }
+
 	//--------------------------------------------------------------
 	//	setViewPort
 	//--------------------------------------------------------------

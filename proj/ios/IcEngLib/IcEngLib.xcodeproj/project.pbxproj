@@ -40,6 +40,7 @@
 		9C7AD3E81DF11751008968FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C7AD3E71DF11751008968FC /* Assets.xcassets */; };
 		9C7AD3EB1DF11751008968FC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C7AD3E91DF11751008968FC /* LaunchScreen.storyboard */; };
 		9C9FED781E54367400CA0C32 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C9FED761E54366900CA0C32 /* GLKit.framework */; };
+		9CF557B31E6FB0C200AF7621 /* IcData in Resources */ = {isa = PBXBuildFile; fileRef = 9CF557B21E6FB0C200AF7621 /* IcData */; };
 		9CF606EF1E248B8F008A662C /* ctlBinBuf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF606BE1E248B8F008A662C /* ctlBinBuf.cpp */; };
 		9CF606F01E248B8F008A662C /* ctlBinBuf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF606BE1E248B8F008A662C /* ctlBinBuf.cpp */; };
 		9CF606F11E248B8F008A662C /* ctlImg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF606BF1E248B8F008A662C /* ctlImg.cpp */; };
@@ -96,7 +97,6 @@
 		9CF607261E248B8F008A662C /* IcRenderEngText.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF606DB1E248B8F008A662C /* IcRenderEngText.cpp */; };
 		9CF607271E248B8F008A662C /* IcShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF606DC1E248B8F008A662C /* IcShader.cpp */; };
 		9CF607281E248B8F008A662C /* IcShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF606DC1E248B8F008A662C /* IcShader.cpp */; };
-		9CF607421E248C5B008A662C /* IcShader in Resources */ = {isa = PBXBuildFile; fileRef = 9CF607411E248C5B008A662C /* IcShader */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -147,6 +147,7 @@
 		9C8CC3F31DEE8808002583F2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		9C9FED761E54366900CA0C32 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.2.sdk/System/Library/Frameworks/GLKit.framework; sourceTree = DEVELOPER_DIR; };
 		9CAE4F1F1DCB201B003F7B38 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		9CF557B21E6FB0C200AF7621 /* IcData */ = {isa = PBXFileReference; lastKnownFileType = folder; name = IcData; path = ../../../IcData; sourceTree = "<group>"; };
 		9CF606BE1E248B8F008A662C /* ctlBinBuf.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ctlBinBuf.cpp; sourceTree = "<group>"; };
 		9CF606BF1E248B8F008A662C /* ctlImg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ctlImg.cpp; sourceTree = "<group>"; };
 		9CF606C01E248B8F008A662C /* ctlLog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ctlLog.cpp; sourceTree = "<group>"; };
@@ -176,7 +177,6 @@
 		9CF606DB1E248B8F008A662C /* IcRenderEngText.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcRenderEngText.cpp; sourceTree = "<group>"; };
 		9CF606DC1E248B8F008A662C /* IcShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcShader.cpp; sourceTree = "<group>"; };
 		9CF606EE1E248B8F008A662C /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		9CF607411E248C5B008A662C /* IcShader */ = {isa = PBXFileReference; lastKnownFileType = folder; name = IcShader; path = ../../../IcShader; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -387,7 +387,7 @@
 		9CF607401E248C45008A662C /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				9CF607411E248C5B008A662C /* IcShader */,
+				9CF557B21E6FB0C200AF7621 /* IcData */,
 			);
 			name = Resource;
 			sourceTree = "<group>";
@@ -479,9 +479,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9CF557B31E6FB0C200AF7621 /* IcData in Resources */,
 				9C5806301E53F3E900E61F85 /* IcViewController.xib in Resources */,
 				9C7AD3EB1DF11751008968FC /* LaunchScreen.storyboard in Resources */,
-				9CF607421E248C5B008A662C /* IcShader in Resources */,
 				9C7AD3E81DF11751008968FC /* Assets.xcassets in Resources */,
 				9C7AD3E61DF11751008968FC /* Main.storyboard in Resources */,
 			);

@@ -4,7 +4,7 @@ PROJECT(ICENG_LIB)
 IF( NOT CMAKE_BUILD_TYPE )
    SET( CMAKE_BUILD_TYPE Debug )
 ENDIF()
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall -D ${CMAKE_BUILD_TYPE}")
 #########################################################
 # FIND GLUT
 #########################################################
@@ -38,8 +38,9 @@ endif(NOT OPENGL_FOUND)
 #########################################################
 set(ICENGLIB "${CMAKE_CURRENT_SOURCE_DIR}/../../../../IcEng")
 set(ICENGBUILD "${CMAKE_CURRENT_SOURCE_DIR}/../../../IcEngBuild")
-set(BUILD_LIB_DIR "${ICENGBUILD}/linux/lib/${CMAKE_BUILD_TYPE}")
-set(BUILD_EXE_DIR "${ICENGBUILD}/linux/bin/${CMAKE_BUILD_TYPE}")
+
+set(BUILD_LIB_DIR "${ICENGBUILD}/linux/lib/${CMAKE_HOST_SYSTEM_PROCESSOR}/${CMAKE_BUILD_TYPE}")
+set(BUILD_EXE_DIR "${ICENGBUILD}/linux/bin/${CMAKE_HOST_SYSTEM_PROCESSOR}/${CMAKE_BUILD_TYPE}")
 
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${BUILD_LIB_DIR}")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${BUILD_EXE_DIR}")
@@ -98,20 +99,13 @@ add_custom_command(TARGET IcEngTest PRE_BUILD
                    COMMAND ${CMAKE_COMMAND} -E make_directory 
 		   ${BUILD_LIB_DIR} 
 		   ${BUILD_EXE_DIR} 
-		   ${BUILD_EXE_DIR}/IcShader
  		)
 
-add_custom_command(TARGET IcEngTest POST_BUILD
-                   COMMAND ${CMAKE_COMMAND} -E copy 
-		   ${ICENGLIB}/IcShader/*
-		   ${BUILD_EXE_DIR}/IcShader
-			)
-
-add_custom_command(TARGET IcEng POST_BUILD
-                   COMMAND ${CMAKE_COMMAND} -E copy 
-		   $<TARGET_FILE:IcEng>
-		   ${BUILD_LIB_DIR}
-			)
+#add_custom_command(TARGET IcEng POST_BUILD
+#                   COMMAND ${CMAKE_COMMAND} -E copy 
+#		   $<TARGET_FILE:IcEng>
+#		   ${BUILD_LIB_DIR}
+#			)
 
 
 

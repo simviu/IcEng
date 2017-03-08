@@ -7,17 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9CC25D741E6EBF2C0041C815 /* DemoApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CC25D631E6EBF2C0041C815 /* DemoApp.cpp */; };
+		9CC25D751E6EBF2C0041C815 /* DemoBasic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CC25D651E6EBF2C0041C815 /* DemoBasic.cpp */; };
+		9CC25D761E6EBF2C0041C815 /* DemoLights.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CC25D661E6EBF2C0041C815 /* DemoLights.cpp */; };
+		9CC25D771E6EBF2C0041C815 /* DemoModelCreate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CC25D671E6EBF2C0041C815 /* DemoModelCreate.cpp */; };
+		9CC25D781E6EBF2C0041C815 /* DemoNestedTrans.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CC25D681E6EBF2C0041C815 /* DemoNestedTrans.cpp */; };
+		9CC25D791E6EBF2C0041C815 /* DemoScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CC25D691E6EBF2C0041C815 /* DemoScene.cpp */; };
+		9CC25D7C1E6EBF2C0041C815 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CC25D731E6EBF2C0041C815 /* main.cpp */; };
 		9CEC56D21DCB3E8500A9E864 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CEC56D11DCB3E8500A9E864 /* GLUT.framework */; };
 		9CEC56D41DCB3E8B00A9E864 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CEC56D31DCB3E8B00A9E864 /* OpenGL.framework */; };
-		9CF606AF1E248603008A662C /* DemoBasic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF606961E248603008A662C /* DemoBasic.cpp */; };
-		9CF606B01E248603008A662C /* DemoLights.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF606981E248603008A662C /* DemoLights.cpp */; };
-		9CF606B11E248603008A662C /* DemoModelCreate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF6069A1E248603008A662C /* DemoModelCreate.cpp */; };
-		9CF606B31E248603008A662C /* DemoNestedTrans.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF6069E1E248603008A662C /* DemoNestedTrans.cpp */; };
-		9CF606B41E248603008A662C /* DemoScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF606A01E248603008A662C /* DemoScene.cpp */; };
-		9CF606B61E248603008A662C /* DemoApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF606A41E248603008A662C /* DemoApp.cpp */; };
-		9CF606B91E248603008A662C /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF606AD1E248603008A662C /* main.cpp */; };
-		9CF606BA1E2488BB008A662C /* IcShader in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9CF606921E2485E2008A662C /* IcShader */; };
-		9CF606BB1E2488BE008A662C /* IcDemo in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9CF606911E2485CE008A662C /* IcDemo */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -27,8 +25,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
-				9CF606BA1E2488BB008A662C /* IcShader in CopyFiles */,
-				9CF606BB1E2488BE008A662C /* IcDemo in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -36,19 +32,17 @@
 
 /* Begin PBXFileReference section */
 		9CAE52931DCB26F4003F7B38 /* IcEngDemo */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = IcEngDemo; sourceTree = BUILT_PRODUCTS_DIR; };
+		9CC25D631E6EBF2C0041C815 /* DemoApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DemoApp.cpp; sourceTree = "<group>"; };
+		9CC25D641E6EBF2C0041C815 /* DemoApp.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DemoApp.hpp; sourceTree = "<group>"; };
+		9CC25D651E6EBF2C0041C815 /* DemoBasic.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DemoBasic.cpp; sourceTree = "<group>"; };
+		9CC25D661E6EBF2C0041C815 /* DemoLights.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DemoLights.cpp; sourceTree = "<group>"; };
+		9CC25D671E6EBF2C0041C815 /* DemoModelCreate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DemoModelCreate.cpp; sourceTree = "<group>"; };
+		9CC25D681E6EBF2C0041C815 /* DemoNestedTrans.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DemoNestedTrans.cpp; sourceTree = "<group>"; };
+		9CC25D691E6EBF2C0041C815 /* DemoScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DemoScene.cpp; sourceTree = "<group>"; };
+		9CC25D6A1E6EBF2C0041C815 /* DemoScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoScene.h; sourceTree = "<group>"; };
+		9CC25D731E6EBF2C0041C815 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		9CEC56D11DCB3E8500A9E864 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
 		9CEC56D31DCB3E8B00A9E864 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
-		9CF606911E2485CE008A662C /* IcDemo */ = {isa = PBXFileReference; lastKnownFileType = folder; name = IcDemo; path = ../../../demo/data/IcDemo; sourceTree = "<group>"; };
-		9CF606921E2485E2008A662C /* IcShader */ = {isa = PBXFileReference; lastKnownFileType = folder; name = IcShader; path = ../../../IcShader; sourceTree = "<group>"; };
-		9CF606961E248603008A662C /* DemoBasic.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DemoBasic.cpp; sourceTree = "<group>"; };
-		9CF606981E248603008A662C /* DemoLights.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DemoLights.cpp; sourceTree = "<group>"; };
-		9CF6069A1E248603008A662C /* DemoModelCreate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DemoModelCreate.cpp; sourceTree = "<group>"; };
-		9CF6069E1E248603008A662C /* DemoNestedTrans.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DemoNestedTrans.cpp; sourceTree = "<group>"; };
-		9CF606A01E248603008A662C /* DemoScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DemoScene.cpp; sourceTree = "<group>"; };
-		9CF606A11E248603008A662C /* DemoScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoScene.h; sourceTree = "<group>"; };
-		9CF606A41E248603008A662C /* DemoApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DemoApp.cpp; sourceTree = "<group>"; };
-		9CF606A51E248603008A662C /* DemoApp.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DemoApp.hpp; sourceTree = "<group>"; };
-		9CF606AD1E248603008A662C /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,8 +61,7 @@
 		9CAE528A1DCB26F4003F7B38 = {
 			isa = PBXGroup;
 			children = (
-				9CF606931E248603008A662C /* src */,
-				9CEC56D91DCB3FB600A9E864 /* Resource */,
+				9CC25D621E6EBF2C0041C815 /* demo */,
 				9CAE52941DCB26F4003F7B38 /* Products */,
 				9CEC56CD1DCB3C7E00A9E864 /* Frameworks */,
 			);
@@ -82,6 +75,31 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		9CC25D621E6EBF2C0041C815 /* demo */ = {
+			isa = PBXGroup;
+			children = (
+				9CC25D631E6EBF2C0041C815 /* DemoApp.cpp */,
+				9CC25D641E6EBF2C0041C815 /* DemoApp.hpp */,
+				9CC25D651E6EBF2C0041C815 /* DemoBasic.cpp */,
+				9CC25D661E6EBF2C0041C815 /* DemoLights.cpp */,
+				9CC25D671E6EBF2C0041C815 /* DemoModelCreate.cpp */,
+				9CC25D681E6EBF2C0041C815 /* DemoNestedTrans.cpp */,
+				9CC25D691E6EBF2C0041C815 /* DemoScene.cpp */,
+				9CC25D6A1E6EBF2C0041C815 /* DemoScene.h */,
+				9CC25D721E6EBF2C0041C815 /* pc */,
+			);
+			name = demo;
+			path = ../../../src/demo;
+			sourceTree = "<group>";
+		};
+		9CC25D721E6EBF2C0041C815 /* pc */ = {
+			isa = PBXGroup;
+			children = (
+				9CC25D731E6EBF2C0041C815 /* main.cpp */,
+			);
+			path = pc;
+			sourceTree = "<group>";
+		};
 		9CEC56CD1DCB3C7E00A9E864 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -89,40 +107,6 @@
 				9CEC56D11DCB3E8500A9E864 /* GLUT.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		9CEC56D91DCB3FB600A9E864 /* Resource */ = {
-			isa = PBXGroup;
-			children = (
-				9CF606921E2485E2008A662C /* IcShader */,
-				9CF606911E2485CE008A662C /* IcDemo */,
-			);
-			name = Resource;
-			sourceTree = "<group>";
-		};
-		9CF606931E248603008A662C /* src */ = {
-			isa = PBXGroup;
-			children = (
-				9CF606961E248603008A662C /* DemoBasic.cpp */,
-				9CF606981E248603008A662C /* DemoLights.cpp */,
-				9CF6069A1E248603008A662C /* DemoModelCreate.cpp */,
-				9CF6069E1E248603008A662C /* DemoNestedTrans.cpp */,
-				9CF606A01E248603008A662C /* DemoScene.cpp */,
-				9CF606A11E248603008A662C /* DemoScene.h */,
-				9CF606A41E248603008A662C /* DemoApp.cpp */,
-				9CF606A51E248603008A662C /* DemoApp.hpp */,
-				9CF606AC1E248603008A662C /* pc */,
-			);
-			name = src;
-			path = ../../../demo/src;
-			sourceTree = "<group>";
-		};
-		9CF606AC1E248603008A662C /* pc */ = {
-			isa = PBXGroup;
-			children = (
-				9CF606AD1E248603008A662C /* main.cpp */,
-			);
-			path = pc;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -184,13 +168,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9CF606B01E248603008A662C /* DemoLights.cpp in Sources */,
-				9CF606B91E248603008A662C /* main.cpp in Sources */,
-				9CF606B41E248603008A662C /* DemoScene.cpp in Sources */,
-				9CF606B31E248603008A662C /* DemoNestedTrans.cpp in Sources */,
-				9CF606B11E248603008A662C /* DemoModelCreate.cpp in Sources */,
-				9CF606AF1E248603008A662C /* DemoBasic.cpp in Sources */,
-				9CF606B61E248603008A662C /* DemoApp.cpp in Sources */,
+				9CC25D761E6EBF2C0041C815 /* DemoLights.cpp in Sources */,
+				9CC25D741E6EBF2C0041C815 /* DemoApp.cpp in Sources */,
+				9CC25D7C1E6EBF2C0041C815 /* main.cpp in Sources */,
+				9CC25D781E6EBF2C0041C815 /* DemoNestedTrans.cpp in Sources */,
+				9CC25D791E6EBF2C0041C815 /* DemoScene.cpp in Sources */,
+				9CC25D771E6EBF2C0041C815 /* DemoModelCreate.cpp in Sources */,
+				9CC25D751E6EBF2C0041C815 /* DemoBasic.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -238,7 +222,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = ../../../../IcEng/inc;
-				LIBRARY_SEARCH_PATHS = ../../../IcEngBuild/mac/lib/Debug;
+				LIBRARY_SEARCH_PATHS = "../../../IcEngBuild/mac/lib/${ARCHS}/${CONFIGURATION}";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OBJROOT = ../../../IcEngBuild/mac/tmp;
@@ -283,7 +267,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = ../../../../IcEng/inc;
-				LIBRARY_SEARCH_PATHS = ../../../IcEngBuild/mac/lib/Release;
+				LIBRARY_SEARCH_PATHS = "../../../IcEngBuild/mac/lib/${ARCHS}/${CONFIGURATION}";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OBJROOT = ../../../IcEngBuild/mac/tmp;
@@ -297,8 +281,9 @@
 			buildSettings = {
 				DEVELOPMENT_TEAM = XG76D5W2B7;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				OTHER_LDFLAGS = "-lIcEngLib";
+				OTHER_LDFLAGS = "-lIcEng";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SYMROOT = "../../../IcEngBuild/mac/bin/${ARCHS}";
 			};
 			name = Debug;
 		};
@@ -307,8 +292,9 @@
 			buildSettings = {
 				DEVELOPMENT_TEAM = XG76D5W2B7;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				OTHER_LDFLAGS = "-lIcEngLib";
+				OTHER_LDFLAGS = "-lIcEng";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SYMROOT = "../../../IcEngBuild/mac/bin/${ARCHS}";
 			};
 			name = Release;
 		};

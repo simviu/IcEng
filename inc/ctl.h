@@ -23,6 +23,9 @@
 #include <sstream>
 #include <assert.h>
 #include <iostream>
+#include <atomic>
+
+
 #define _USE_MATH_DEFINES
 #include <math.h>
 #include <thread>
@@ -115,7 +118,7 @@ namespace ctl {
 	protected:
         static LogHandler* m_pLogHandler;
 		//---- Log Level Default
-#if DEBUG
+#if DEBUG | NDEBUG | Debug
 		TE_logLevel m_curLogLvl=L_DBG;
 #else
 		TE_logLevel m_curLogLvl=L_INFO;

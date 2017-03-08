@@ -141,8 +141,11 @@ namespace Ic3d
         //------------------------
         void onQuit()
         {
+            // TODO: call request release on IcWinMng
             m_winSlotAry.clear();
-            exit(0);
+            IcApp::getInstance()->getWinMng()->releaseWindows();
+            IcApp::getInstance()->onRelease();
+            exit(1);
         };
 
         //--------------------------
@@ -168,7 +171,11 @@ namespace Ic3d
         void cbk_reshape(GLint w, GLint h)
         {
             //---- Check init glew
-            GlewHelper::checkInitGlew();
+			if (!GlewHelper::checkInitGlew())
+			{
+				logErr("Glew Init Failed, OpenGL shader not supported.");
+				onQuit();
+			}
  
             //---- Reshape Window
             auto pSlot = getCurWinSlot();
@@ -177,7 +184,7 @@ namespace Ic3d
             if(pIcWin==nullptr) return;
             if(!pSlot->m_hasInit)
             {
-                pIcWin->onInit();
+             //   pIcWin->reqInit();
                 pSlot->m_hasInit = true;
             }
             
@@ -350,13 +357,20 @@ namespace Ic3d
     //----------------------------------
     //  IcApp::runCmdLine
     //----------------------------------
-    int IcApp::runCmdLine(int argc, char **argv)
+    int IcApp::runCmdLine(int argc, char **argv, const string& sResPath)
     {
         setInstance(this);
+		m_cfg.m_sPathRes = sResPath;
+
         auto pMng = ctl::makeSp<IcWinMngGlut>();
         IcWinMng::setInstance(pMng);
-        pMng->initMng(argc, argv);
+		if (!pMng->initMng(argc, argv))
+		{
+			logErr("OpenGL Windows Manager on this machine init failed.");
+			return 1;
+		}
         onInit();
+        pMng->initWindows();
         pMng->startMainLoop();
         return true;
     }

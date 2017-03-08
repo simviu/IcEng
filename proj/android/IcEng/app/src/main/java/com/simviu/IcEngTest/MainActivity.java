@@ -10,9 +10,9 @@ import com.simviu.IcEng.IcEngJNI;
 public class MainActivity extends Activity {
     // Used to load the 'native-lib' library on application startup.
     static {
-        System.loadLibrary("IcEngTest");
+ //       System.loadLibrary("IcAppJNI");
     }
-    static native void initIcApp(String sPathCache);
+ //   static native void createIcApp();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,11 +20,9 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         //---- Create IcApp at very beginning
-        String sPathCache = getCacheDir().toString();
-        initIcApp(sPathCache);
-
-        //----- Copy asset
-        IcEngJNI.copyAssetDir(this, "IcShader");
+   //     createIcApp();
+        //---- Init IcApp with JNI
+        IcEngJNI.initIcApp(this);
 
 
     }

@@ -1,14 +1,8 @@
 package com.simviu.IcEngDemo;
 
 import android.app.Activity;
-import android.os.Environment;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.TextView;
-
-import com.simviu.IcEng.IcEngJNI;
-import com.simviu.IcEng.IcAssetHelper;
 import com.simviu.IcEng.IcEngView;
 
 public class DemoActivity  extends Activity{

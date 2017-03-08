@@ -25,10 +25,20 @@ namespace Ic3d {
     public:
         //---- JNI util
         static std::string jstr2str(JNIEnv * env, jstring jstr);
-        static void initIcApp(IcApp* pApp,
-                              const std::string& sPathRes,
+        static void setIcAppInstance(IcApp* pApp);
+        static void initIcApp(const std::string& sPathRes,
                               const std::string& sPathDoc);
     };
 }
+//--------------------------------------------
+//  Define Macro
+//--------------------------------------------
+#define IMPLEMENT_ICAPP(T) \
+static T l_app; \
+extern "C" JNIEXPORT void JNICALL Java_com_simviu_IcEng_IcEngJNI_createIcApp(JNIEnv * env,  jobject obj) \
+{ \
+    Ic3d::IcEngJNI::setIcAppInstance(&l_app); \
+} \
+
 
 #endif /* IcEngJNI_h */

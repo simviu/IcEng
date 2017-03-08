@@ -43,12 +43,13 @@ const static GLfloat K_bkColor[4] = {0.2, 0.4, 0.9, 1.0};
     if(m_pIcApp==nullptr) return;
     IcApp::setInstance(m_pIcApp);
 
-    //---- Set App Res/Doc Path
-    NSString* nsRes = [[NSBundle mainBundle] resourcePath];
-    NSString *nsDoc = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-
     auto& cfg = m_pIcApp->m_cfg;
-    cfg.m_sPathRes = string([nsRes UTF8String]) +"/";
+    //---- Set App Res Path
+    NSString* nsRes = [[NSBundle mainBundle] resourcePath];
+    cfg.m_sPathRes = string([nsRes UTF8String]) +"/IcData/";
+
+    //---- Set App Doc Path
+    NSString *nsDoc = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     cfg.m_sPathDoc = string([nsDoc UTF8String]) +"/";
 }
 //--------------------------------------
@@ -77,6 +78,7 @@ const static GLfloat K_bkColor[4] = {0.2, 0.4, 0.9, 1.0};
 	view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
 	[self setupGL];
 }
+
 //--------------------------------------
 //  getScaledViewRect
 //--------------------------------------
@@ -99,7 +101,13 @@ const static GLfloat K_bkColor[4] = {0.2, 0.4, 0.9, 1.0};
 {
     auto pApp = m_pIcApp;
     if(pApp==nullptr) return;
-    pApp->initWindows();
+    pApp->getWinMng()->initWindows();
+}
+-(void)Ic3d_onReleaseWindow
+{
+    auto pApp = m_pIcApp;
+    if(pApp==nullptr) return;
+    pApp->getWinMng()->releaseWindows();
 }
 //--------------------------------------
 //  Ic3d_onInit
@@ -110,7 +118,7 @@ const static GLfloat K_bkColor[4] = {0.2, 0.4, 0.9, 1.0};
     if(pApp==nullptr) return;
     auto sz = viewRect.size;
     //---- convert to ctl::TSize from CGSize
-    pApp->onScreenSize(ctl::TSize(sz.width, sz.height));
+    pApp->getWinMng()->onScreenSize(ctl::TSize(sz.width, sz.height));
 };
 //--------------------------------------
 //  Ic3d_onInit
@@ -119,7 +127,7 @@ const static GLfloat K_bkColor[4] = {0.2, 0.4, 0.9, 1.0};
 {
     auto pApp = m_pIcApp;
     if(pApp==nullptr) return;
-    pApp->drawUpdateWindows(deltaT);
+    pApp->getWinMng()->drawUpdate(deltaT);
 };
 
 //--------------------------------------
@@ -194,7 +202,8 @@ const static GLfloat K_bkColor[4] = {0.2, 0.4, 0.9, 1.0};
 - (void)tearDownGL
 {
 	[EAGLContext setCurrentContext:self.context];
-	
+    [self Ic3d_onReleaseWindow];
+
 }
 
 #pragma mark - GLKView and GLKViewController delegate methods

@@ -15,5 +15,6 @@
 int main(int argc, char **argv)
 {
     MyTestApp app;
-    return app.runCmdLine(argc, argv);
+    int ret = app.runCmdLine(argc, argv, "../../../../../IcData/");
+	return ret;
 }

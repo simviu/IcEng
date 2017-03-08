@@ -31,10 +31,62 @@ using namespace Ic3d;
 #define  LOGI(...)  __android_log_print(ANDROID_LOG_INFO,LOG_TAG,__VA_ARGS__)
 #define  LOGE(...)  __android_log_print(ANDROID_LOG_ERROR,LOG_TAG,__VA_ARGS__)
 
+
 //------------------------------------------
-//  IcAppJNI.onInit()
+//  Android Log handler to replace ctl::Log
 //------------------------------------------
-extern "C" JNIEXPORT void JNICALL Java_com_simviu_IcEng_IcEngJNI_onInitWindow(JNIEnv * env, jobject obj)
+struct LogHandlerJNI : LogHandler
+{
+    virtual void logMsgBase(const std::string& sMsg) override
+    { LOGI("%s", sMsg.c_str()); };
+
+};
+static LogHandlerJNI l_logHandlerJNI;
+
+
+
+//------------------------------------------
+//  IcEngJNI::initIcApp()
+//------------------------------------------
+void IcEngJNI::setIcAppInstance(IcApp* pApp)
+{
+    //---- Set logHandler
+    ctl::LogHandler::setCurHandler(&l_logHandlerJNI);
+    if(pApp== nullptr) return;
+    IcApp::setInstance(pApp);
+}
+
+//------------------------------------------
+//  IcEngJNI::initIcApp()
+//------------------------------------------
+void IcEngJNI::initIcApp(const std::string& sPathRes,
+                         const std::string& sPathDoc)
+{
+
+    auto pApp = IcApp::getInstance();
+
+    //---- Init App
+    logInfo("------------------------------------------");
+    logInfo("IcEngJNI::initIcApp:[0x"+v2hex(pApp)+"]");
+    auto& cfg = pApp->m_cfg;
+    cfg.m_sPathRes = sPathRes +"/";
+    cfg.m_sPathDoc = sPathDoc +"/";
+    pApp->onInit();
+}
+
+
+//------------------------------------------
+//  JNI interfcae
+//------------------------------------------
+extern "C" JNIEXPORT void JNICALL Java_com_simviu_IcEng_IcEngJNI_initIcAppWithDir(JNIEnv * env, jobject obj,
+                                                                            jstring jsPathRes, jstring jsPathDoc)
+{
+
+    std::string sPathRes = IcEngJNI::jstr2str(env, jsPathRes);
+    std::string sPathDoc = IcEngJNI::jstr2str(env, jsPathDoc);
+    IcEngJNI::initIcApp(sPathRes, sPathDoc);
+}
+extern "C" JNIEXPORT void JNICALL Java_com_simviu_IcEng_IcEngJNI_initWindow(JNIEnv * env, jobject obj)
 {
     //---- Init App
     auto pApp = IcApp::getInstance();
@@ -43,28 +95,37 @@ extern "C" JNIEXPORT void JNICALL Java_com_simviu_IcEng_IcEngJNI_onInitWindow(JN
         LOGI("Error: JNI IcEngJNI_onInit(): IcApp instance empty\n");
         return;
     }
-    pApp->initWindows();
+    pApp->getWinMng()->initWindows();
 }
 
 //------------------------------------------
+//  IcAppJNI.onReleaseWindow()
+//------------------------------------------
+extern "C" JNIEXPORT void JNICALL Java_com_simviu_IcEng_IcEngJNI_releaseWindow(JNIEnv * env, jobject obj)
+{
+    //---- Init App
+    auto pApp = IcApp::getInstance();
+    pApp->getWinMng()->releaseWindows();
+}
+//------------------------------------------
 //  IcAppJNI.onScreenSize()
 //------------------------------------------
-extern "C" JNIEXPORT void JNICALL Java_com_simviu_IcEng_IcEngJNI_onScreenSize(JNIEnv * env, jobject obj,
+extern "C" JNIEXPORT void JNICALL Java_com_simviu_IcEng_IcEngJNI_setScreenSize(JNIEnv * env, jobject obj,
                                                                               jint width, jint height)
 {
     auto pApp = IcApp::getInstance();
     if(pApp== nullptr) return;
-    pApp->onScreenSize(ctl::TSize(width, height));
+    pApp->getWinMng()->onScreenSize(ctl::TSize(width, height));
 }
 
 //------------------------------------------
 //  IcAppJNI.step()
 //------------------------------------------
-extern "C" JNIEXPORT void JNICALL Java_com_simviu_IcEng_IcEngJNI_onDrawUpdate(JNIEnv * env, jobject obj, jfloat deltaT)
+extern "C" JNIEXPORT void JNICALL Java_com_simviu_IcEng_IcEngJNI_drawUpdate(JNIEnv * env, jobject obj, jfloat deltaT)
 {
     auto pApp = IcApp::getInstance();
     if(pApp== nullptr) return;
-    pApp->drawUpdateWindows(deltaT);
+    pApp->getWinMng()->drawUpdate(deltaT);
 }
 
 //------------------------------------------
@@ -107,32 +168,4 @@ std::string IcEngJNI::jstr2str(JNIEnv * env, jstring jstr)
     (*env).ReleaseStringUTFChars(jstr, cstr);
     return str;
 }
-//------------------------------------------
-//  Android Log handler to replace ctl::Log
-//------------------------------------------
-struct LogHandlerJNI : LogHandler
-{
-    virtual void logMsgBase(const std::string& sMsg) override
-    { LOGI("%s", sMsg.c_str()); };
 
-};
-static LogHandlerJNI l_logHandlerJNI;
-
-//------------------------------------------
-//  IcEngJNI::initIcApp()
-//------------------------------------------
-void IcEngJNI::initIcApp(IcApp* pApp,
-                        const std::string& sPathRes,
-                        const std::string& sPathDoc)
-{
-    if(pApp== nullptr) return;
-    IcApp::setInstance(pApp);
-    //---- Set logHandler
-    ctl::LogHandler::setCurHandler(&l_logHandlerJNI);
-
-    //---- set path
-    auto& cfg = pApp->m_cfg;
-    cfg.m_sPathRes = sPathRes +"/";
-    cfg.m_sPathDoc = sPathDoc +"/";
-    pApp->onInit();
-}

@@ -16,27 +16,13 @@ import com.simviu.IcEng.IcEngView;
 import java.util.StringTokenizer;
 
 public class DemoListActivity extends ListActivity {
-    // Used to load the 'native-lib' library on application startup.
-    static {
-        System.loadLibrary("IcEngDemo");
-    }
-
-    IcEngView m_icEngView = null;
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //---- Create IcEngView
-        m_icEngView = new IcEngView(this);
-
-
         //---- Init App at very beginning
-        String sPathCache = getCacheDir().toString();
-        initIcApp(sPathCache);
-        IcEngJNI.copyAssetDir(this, "IcShader");
-        IcEngJNI.copyAssetDir(this, "IcDemo");
+        IcEngJNI.initIcApp(this);
 
 
         //----- Build List
@@ -70,6 +56,5 @@ public class DemoListActivity extends ListActivity {
         });
 
     }
-    static native void initIcApp(String sPathCache);
 
 }

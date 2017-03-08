@@ -13,6 +13,7 @@
 #define _ICUBE_H
 
 #include "IcRenderAdp.h"
+#include <atomic>
 
 //---- TODO: Ic3d->IcEng
 namespace Ic3d {
@@ -83,7 +84,7 @@ namespace Ic3d {
 		bool isValid()const
 		{	if(m_pRenderAdp==nullptr) return false;
 			return m_pRenderAdp->m_isValid; };
-		IcTexture(){};
+		IcTexture();
 		IcTexture(const std::string& fname);
 		IcTexture(const ctl::IcImg& img);
 		virtual ~IcTexture(){};
@@ -92,9 +93,8 @@ namespace Ic3d {
 				m_pRenderAdp->render(); };
 
 	protected:
-		ctl::Sp<const CRenderAdp::CTexAdp>	m_pRenderAdp = initWithDfltAdp();
+		ctl::Sp<const CRenderAdp::CTexAdp>	m_pRenderAdp = nullptr;
 		bool m_isValid = false;
-		decltype(m_pRenderAdp) initWithDfltAdp();
 	};
 	
 	
@@ -353,7 +353,6 @@ namespace Ic3d {
 	public:
 		IcScene();
 		virtual ~IcScene() {};
-        virtual void onInit(){ m_hasInit = true; };
         virtual void onUpdate(double deltaT)
         {    if(m_pCallBk_onUpdate!=nullptr) m_pCallBk_onUpdate(deltaT); };
 		virtual void onDraw();
@@ -379,9 +378,9 @@ namespace Ic3d {
         void setTargetTexture(ctl::Sp<IcTexture> pTex)
             { m_pTargetTex = pTex; };
         void addSubScn(ctl::Sp<IcScene> pScn){ m_subScns.add(pScn);};
-        bool hasInit()const{ return m_hasInit; };
-        void setHasInit(bool b){ m_hasInit = b; };
+
 	protected:
+		virtual void onInit(){};
         void renderObjRecur(const IcCamera& cam,
                             const IcObject& obj,
                             const TMat4& matModelParent) const;
@@ -392,7 +391,7 @@ namespace Ic3d {
         ctl::SpAry<IcText>      m_texts;
         ctl::SpAry<IcScene>     m_subScns;
 		size_t	m_frmCnt = 0;   // TODO: Move to IcWindow
-        bool    m_hasInit = false;
+        std::atomic<bool>	    m_hasInit{false};
 
         void drawLights();
 	//	void initCamera(const ctl::TRect& viewRect);
@@ -429,12 +428,14 @@ namespace Ic3d {
         IcWinMng(){};
         virtual ~IcWinMng(){};
         virtual void addWindow(ctl::Sp<IcWindow> pWin){ m_winAry.add(pWin); };
-		virtual void clearWindows(){  m_winAry.clear(); };
         virtual ctl::TSize getScreenSize(){ return m_screenSize; };
         virtual bool onScreenSize(const ctl::TSize& screenSize);
-        virtual void initWindows();
+        
         virtual void drawUpdate(float deltaT);
+        virtual void initWindows();
+        virtual void releaseWindows();
         virtual void startMainLoop(){};
+        
         virtual ctl::Sp<IcWindow> getWindow(int idx){ return m_winAry[idx]; } ;
         virtual void onQuit();
         virtual bool initMng(int argc, char **argv){return false;};
@@ -464,7 +465,6 @@ namespace Ic3d {
     {
     public:
         IcWindow(){};
-        virtual void onInit();
         virtual void onDrawUpdate(float deltaT);
         virtual void onWindowSize(const ctl::TSize& size);
         void addScene(ctl::Sp<IcScene> pScn);
@@ -487,11 +487,20 @@ namespace Ic3d {
         };
         TCfg m_cfg;
         ctl::SpAry<IcScene>& getScnAry(){ return m_scnAry; };
+        void initWindow();
+        void releaseWindow();
+
     protected:
-        ctl::SpAry<IcScene> m_scnAry;
+        //---- Derive onInit() to create/add your scenes.
+        virtual void onInit();
+		//---- Derive onRelease to release openGL res, usually that's not necessary.
+		// It's automatically handled by IcWindow::onRelease()
+		virtual void onRelease();
+		ctl::SpAry<IcScene> m_scnAry;
         std::mutex          m_mtx_draw;
-        bool	m_isDrawing = false;
-        
+        std::atomic<bool>	m_isDrawing{false};
+        std::atomic<bool>   m_hasInit{false};
+  
     };
     //-----------------------------------------------
     //	IcApp
@@ -500,7 +509,7 @@ namespace Ic3d {
     {
     public:
         IcApp();
-        virtual ~IcApp(){};
+        virtual ~IcApp();
         struct TCfg
         {
             std::string m_sPathRes;
@@ -509,19 +518,13 @@ namespace Ic3d {
         TCfg m_cfg;
 
 		//---- Always Override onInit()
-        virtual void onInit() {};
-        void addWindow(ctl::Sp<IcWindow> pWin);
-		void clearWindows();
-        ctl::Sp<IcWindow> getWindow(int idx);
-        void onScreenSize(const ctl::TSize& sz);
-        void initWithScn(ctl::Sp<IcScene> pScn);
-		//---- This 2 functions implicitly called by
-		// high level windows system of corresponding platform.
-		// Do not call it from users.
-		void initWindows();
-        void drawUpdateWindows(float deltaT);
+        virtual void onInit() ;
+        virtual void onRelease();
         
-		//---- Singleton
+        void addWindow(ctl::Sp<IcWindow> pWin);
+        ctl::Sp<IcWinMng> getWinMng();
+
+ 		//---- Singleton
         static void setInstance(IcApp* pApp);
         static IcApp* getInstance();
         //-----------------
@@ -536,7 +539,7 @@ namespace Ic3d {
         // runCmd()
         //-----------------
         // For PC, not mobile
-        int runCmdLine(int argc, char **argv);
+        int runCmdLine(int argc, char **argv, const std::string& sResPath);
     protected:
     };
      
@@ -545,6 +548,11 @@ namespace Ic3d {
 	//-----------------------------------------
 	class IcEng
 	{
+    protected:
+        ctl::Sp<const CRenderAdp::CTexAdp>   m_pDfltTexAdp = nullptr;
+        std::atomic<bool>    m_hasInit{false};
+        std::atomic<bool>    m_isEnabled{false};
+
 	public:
 		IcEng(){};
 		virtual ~IcEng(){};
@@ -552,6 +560,7 @@ namespace Ic3d {
         {
         }m_cfg;
         bool initEng(const std::string& sPathShader);
+        void releaseEng();
         void clearScreen(const TColor& bkColor);
         static ctl::Sp<IcEng> getInstance();
         void onFrameStart();
@@ -559,10 +568,9 @@ namespace Ic3d {
         bool hasInit() const { return m_hasInit; };
         bool isEnabled()const{ return m_isEnabled; };
         ctl::Sp<CRenderAdp> getCurRenderAdp();
-    protected:
-        bool    m_hasInit = false;
-        bool    m_isEnabled = false;
-	};
+        decltype(m_pDfltTexAdp) getDfltTexAdp();
+        
+ 	};
 	
 }//namespace Ic3d
 #endif // _ICUBE_H

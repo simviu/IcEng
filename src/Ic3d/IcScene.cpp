@@ -36,7 +36,9 @@ namespace Ic3d
 	//---------------------------------------------
 	void IcScene::onWindowSize(const ctl::TSize& winSize)
 	{
-        auto sz = winSize;
+        const auto& sz = winSize;
+        logInfo("IcScene::onWindowSize() ["+
+                    v2s(sz.w) + "x"+ v2s(sz.h)+"]");
         m_cfg.m_viewRect = TRect(TPos(0,0), sz);
         const auto& camCfg = m_cfg.m_camCfg;
         
@@ -110,15 +112,28 @@ namespace Ic3d
 	//-----------------------------------------
 	void IcScene::onDraw()
 	{
-        
+        //----------------------
+        // Check IcEng
+        auto pEng = IcEng::getInstance();
+        if(!pEng->isEnabled()) return;
+        //----------------------
+        // Check onInit()
+        //----------------------
+        if(!m_hasInit)
+        {
+            onInit();
+            m_hasInit = true;
+            return;
+        }
+
+
         //----------------------
 		static int dbgFrmCnt=0;
 		dbgFrmCnt ++;
 		auto pRE= IcRenderEng::getInstance();
         pRE->setViewPort(m_cfg.m_viewRect);
         //---- Set fog
-        auto pEng = IcRenderEng::getInstance();
-        auto pAdp = pEng->getCurRenderAdp();
+        auto pAdp = pRE->getCurRenderAdp();
         pAdp->setFog(m_cfg.m_fogPara);
 		
 		//-----------------
