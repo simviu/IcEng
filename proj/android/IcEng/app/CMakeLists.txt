@@ -17,13 +17,13 @@ include_directories(
 
 link_directories(${ICENGBUILD_BIN})
 
-add_library(IcEngTest SHARED
+add_library(IcAppJNI SHARED
     		${ICENGLIB}/src/test/MyTestApp.cpp
-            src/main/cpp/native-lib.cpp
+            src/main/cpp/IcAppJNI.cpp
 			)
 
 # add lib dependencies
-target_link_libraries(IcEngTest
+target_link_libraries(IcAppJNI
                       IcEng
                       android
                       log

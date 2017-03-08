@@ -30,8 +30,8 @@ android {
     task copyIcShader(type: Copy) {
         println("Run task : copyIcShader() ")
         println("projectDir=[$projectDir]")
-        from "$projectDir/../../../../IcData/IcShader"
-        into "$projectDir/src/main/assets/IcShader"
+        from "$projectDir/../../../../IcData"
+        into "$projectDir/src/main/assets/IcData/"
     }
 
     preBuild.dependsOn(copyIcShader)

@@ -13,9 +13,9 @@ add_definitions (-D_HAS_EXCEPTIONS=1)
 include_directories(${ICENGLIB}/inc ${ICENGLIB}/inc/core ${ICENGDEMO})
 link_directories(${ICENGBUILD_BIN})
 
-add_library(IcEngDemo SHARED
+add_library(IcAppJNI SHARED
     #------ IcEngDemo src
-	src/main/cpp/native-lib.cpp
+	src/main/cpp/IcAppJNI.cpp
     ${ICENGDEMO}/DemoScene.cpp
     ${ICENGDEMO}/DemoBasic.cpp
     ${ICENGDEMO}/DemoLights.cpp
@@ -27,7 +27,7 @@ add_library(IcEngDemo SHARED
 
 
 # add lib dependencies
-target_link_libraries(IcEngDemo
+target_link_libraries(IcAppJNI
                       IcEng
                       android
                       log

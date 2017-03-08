@@ -153,7 +153,7 @@ public class IcEngView extends GLSurfaceView {
         }
 
         public void destroyContext(EGL10 egl, EGLDisplay display, EGLContext context) {
-            IcEngJNI.onReleaseWindow();
+            IcEngJNI.releaseWindow();
             egl.eglDestroyContext(display, context);
         }
     }
@@ -373,7 +373,7 @@ public class IcEngView extends GLSurfaceView {
             float dt = (float)dtI/1000f;
             if(mTime==0) dt = K_initDeltaT;
 
-          IcEngJNI.onDrawUpdate(dt);
+          IcEngJNI.drawUpdate(dt);
         //    m_renderCallBack.IcEng_onDrawUpdate(dt);
 
             mTime = tCur;
@@ -381,11 +381,11 @@ public class IcEngView extends GLSurfaceView {
 
         public void onSurfaceChanged(GL10 gl, int width, int height) {
             IcEngJNI.debugPrint("JNI print from IcEngView::onSurfaceChanged()");
-            IcEngJNI.onScreenSize(width, height);
+            IcEngJNI.setScreenSize(width, height);
         }
 
         public void onSurfaceCreated(GL10 gl, EGLConfig config) {
-            IcEngJNI.onInitWindow();
+            IcEngJNI.initWindow();
         }
     }
 }

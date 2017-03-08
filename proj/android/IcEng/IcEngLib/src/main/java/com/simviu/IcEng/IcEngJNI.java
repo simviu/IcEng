@@ -24,20 +24,33 @@ public class IcEngJNI {
 
      static {
          System.loadLibrary("IcEng");
+         System.loadLibrary("IcAppJNI");
      }
 
     /**
      * @param width the current view width
      * @param height the current view height
      */
-     public static native void onInitWindow();
-     public static native void onReleaseWindow();
-     public static native void onScreenSize(int width, int height);
-     public static native void onDrawUpdate(float deltaT);
+     static native void createIcApp();
+
+     public static native void initIcAppWithDir(String sPathRes, String sPathDoc);
+     public static native void initWindow();
+     public static native void releaseWindow();
+     public static native void setScreenSize(int width, int height);
+     public static native void drawUpdate(float deltaT);
      public static native void debugPrint(String sMsg);
      public static native String sendAppCmd(String sCmd);
 
-    //-----  Utils
+     public static void initIcApp(Context context)
+     {
+         createIcApp();
+         String sPathCache = context.getCacheDir().toString();
+         String sPathRes = sPathCache + "/IcData/";
+         String sPathDoc = sPathCache;
+         initIcAppWithDir(sPathRes, sPathDoc);
+         copyAssetDir(context, "IcData");
+     }
+     //-----  Utils
      public static void copyAssetDir(Context context, String sPath)
      {
         IcAssetHelper hlpr = new IcAssetHelper(context);

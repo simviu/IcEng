@@ -25,8 +25,8 @@ namespace Ic3d {
     public:
         //---- JNI util
         static std::string jstr2str(JNIEnv * env, jstring jstr);
-        static void initIcApp(IcApp* pApp,
-                              const std::string& sPathRes,
+        static void setIcAppInstance(IcApp* pApp);
+        static void initIcApp(const std::string& sPathRes,
                               const std::string& sPathDoc);
     };
 }

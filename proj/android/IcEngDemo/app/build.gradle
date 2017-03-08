@@ -35,25 +35,21 @@ android {
         }
     }
 
-    task copyIcShader(type: Copy){
-        println("Run task : copyIcShader()")
-        from "$projectDir/../../../../IcData/IcShader"
-        into "$projectDir/src/main/assets/IcShader"
-    }
     task copyData(type: Copy){
-        println("Run task : copyData() ")
-        from "$projectDir/../../../../IcData/IcDemo"
-        into 'src/main/assets/IcDemo/'
+        println("Run task : copyData()")
+        from "$projectDir/../../../../IcData/"
+        into "$projectDir/src/main/assets/IcData/"
     }
+
+
     task copyIcEngLib(type: Copy){
         println("Run task : copyIcEngLib() ")
-        from "$projectDir/../../../../../IcEng/IcEngBuild/android/lib/debug/"
+        from "$projectDir/../../../../IcEngBuild/android/lib/debug/"
         into 'src/main/jniLibs'
     }
 
 
     preBuild.dependsOn(copyIcEngLib)
-    preBuild.dependsOn(copyIcShader)
     preBuild.dependsOn(copyData)
 
 

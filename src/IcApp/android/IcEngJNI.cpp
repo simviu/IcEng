@@ -43,17 +43,27 @@ struct LogHandlerJNI : LogHandler
 };
 static LogHandlerJNI l_logHandlerJNI;
 
+
+
 //------------------------------------------
 //  IcEngJNI::initIcApp()
 //------------------------------------------
-void IcEngJNI::initIcApp(IcApp* pApp,
-                         const std::string& sPathRes,
-                         const std::string& sPathDoc)
+void IcEngJNI::setIcAppInstance(IcApp* pApp)
 {
     //---- Set logHandler
     ctl::LogHandler::setCurHandler(&l_logHandlerJNI);
     if(pApp== nullptr) return;
     IcApp::setInstance(pApp);
+}
+
+//------------------------------------------
+//  IcEngJNI::initIcApp()
+//------------------------------------------
+void IcEngJNI::initIcApp(const std::string& sPathRes,
+                         const std::string& sPathDoc)
+{
+
+    auto pApp = IcApp::getInstance();
 
     //---- Init App
     logInfo("------------------------------------------");
@@ -66,9 +76,17 @@ void IcEngJNI::initIcApp(IcApp* pApp,
 
 
 //------------------------------------------
-//  IcAppJNI.onInit()
+//  JNI interfcae
 //------------------------------------------
-extern "C" JNIEXPORT void JNICALL Java_com_simviu_IcEng_IcEngJNI_onInitWindow(JNIEnv * env, jobject obj)
+extern "C" JNIEXPORT void JNICALL Java_com_simviu_IcEng_IcEngJNI_initIcAppWithDir(JNIEnv * env, jobject obj,
+                                                                            jstring jsPathRes, jstring jsPathDoc)
+{
+
+    std::string sPathRes = IcEngJNI::jstr2str(env, jsPathRes);
+    std::string sPathDoc = IcEngJNI::jstr2str(env, jsPathDoc);
+    IcEngJNI::initIcApp(sPathRes, sPathDoc);
+}
+extern "C" JNIEXPORT void JNICALL Java_com_simviu_IcEng_IcEngJNI_initWindow(JNIEnv * env, jobject obj)
 {
     //---- Init App
     auto pApp = IcApp::getInstance();
@@ -83,7 +101,7 @@ extern "C" JNIEXPORT void JNICALL Java_com_simviu_IcEng_IcEngJNI_onInitWindow(JN
 //------------------------------------------
 //  IcAppJNI.onReleaseWindow()
 //------------------------------------------
-extern "C" JNIEXPORT void JNICALL Java_com_simviu_IcEng_IcEngJNI_onReleaseWindow(JNIEnv * env, jobject obj)
+extern "C" JNIEXPORT void JNICALL Java_com_simviu_IcEng_IcEngJNI_releaseWindow(JNIEnv * env, jobject obj)
 {
     //---- Init App
     auto pApp = IcApp::getInstance();
@@ -92,7 +110,7 @@ extern "C" JNIEXPORT void JNICALL Java_com_simviu_IcEng_IcEngJNI_onReleaseWindow
 //------------------------------------------
 //  IcAppJNI.onScreenSize()
 //------------------------------------------
-extern "C" JNIEXPORT void JNICALL Java_com_simviu_IcEng_IcEngJNI_onScreenSize(JNIEnv * env, jobject obj,
+extern "C" JNIEXPORT void JNICALL Java_com_simviu_IcEng_IcEngJNI_setScreenSize(JNIEnv * env, jobject obj,
                                                                               jint width, jint height)
 {
     auto pApp = IcApp::getInstance();
@@ -103,7 +121,7 @@ extern "C" JNIEXPORT void JNICALL Java_com_simviu_IcEng_IcEngJNI_onScreenSize(JN
 //------------------------------------------
 //  IcAppJNI.step()
 //------------------------------------------
-extern "C" JNIEXPORT void JNICALL Java_com_simviu_IcEng_IcEngJNI_onDrawUpdate(JNIEnv * env, jobject obj, jfloat deltaT)
+extern "C" JNIEXPORT void JNICALL Java_com_simviu_IcEng_IcEngJNI_drawUpdate(JNIEnv * env, jobject obj, jfloat deltaT)
 {
     auto pApp = IcApp::getInstance();
     if(pApp== nullptr) return;
