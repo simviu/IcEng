@@ -96,16 +96,16 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>../../../../IcEng/IcEngBuild/windows/dep/glWinLib/inc;../../../../IcEng/inc/core;../../../../IcEng/inc</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../winDepLib/inc;../../../../IcEng/inc/core;../../../../IcEng/inc</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>../../../../IcEng/IcEngBuild/windows/dep/glWinLib/lib/$(Platform);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../winDepLib/lib/$(Platform);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>glew32s.lib;freeglut.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /Y /R /E /C /I /F  ..\..\..\..\IcEng\IcEngBuild\windows\dep\glWinLib\dll\$(Platform)\*.dll  $(OutDir)
+      <Command>xcopy /Y /R /E /C /I /F  ..\winDepLib\dll\$(Platform)\*.dll  $(OutDir)
 
 </Command>
     </PostBuildEvent>
@@ -117,16 +117,16 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>../../../../IcEng/IcEngBuild/windows/dep/glWinLib/inc;../../../../IcEng/inc/core;../../../../IcEng/inc</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../winDepLib/inc;../../../../IcEng/inc/core;../../../../IcEng/inc</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>../../../../IcEng/IcEngBuild/windows/dep/glWinLib/lib/$(Platform);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../winDepLib/lib/$(Platform);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>glew32s.lib;freeglut.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /Y /R /E /C /I /F  ..\..\..\..\IcEng\IcEngBuild\windows\dep\glWinLib\dll\$(Platform)\*.dll  $(OutDir)
+      <Command>xcopy /Y /R /E /C /I /F  ..\winDepLib\dll\$(Platform)\*.dll  $(OutDir)
 
 </Command>
     </PostBuildEvent>
@@ -140,18 +140,18 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>../../../../IcEng/IcEngBuild/windows/dep/glWinLib/inc;../../../../IcEng/inc/core;../../../../IcEng/inc</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../winDepLib/inc;../../../../IcEng/inc/core;../../../../IcEng/inc</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>../../../../IcEng/IcEngBuild/windows/dep/glWinLib/lib/$(Platform);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../winDepLib/lib/$(Platform);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>glew32s.lib;freeglut.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /Y /R /E /C /I /F  ..\..\..\..\IcEng\IcEngBuild\windows\dep\glWinLib\dll\$(Platform)\*.dll  $(OutDir)
+      <Command>xcopy /Y /R /E /C /I /F  ..\winDepLib\dll\$(Platform)\*.dll  $(OutDir)
 
 </Command>
     </PostBuildEvent>
@@ -165,18 +165,18 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>../../../../IcEng/IcEngBuild/windows/dep/glWinLib/inc;../../../../IcEng/inc/core;../../../../IcEng/inc</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../winDepLib/inc;../../../../IcEng/inc/core;../../../../IcEng/inc</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>../../../../IcEng/IcEngBuild/windows/dep/glWinLib/lib/$(Platform);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../winDepLib/lib/$(Platform);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>glew32s.lib;freeglut.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /Y /R /E /C /I /F  ..\..\..\..\IcEng\IcEngBuild\windows\dep\glWinLib\dll\$(Platform)\*.dll  $(OutDir)
+      <Command>xcopy /Y /R /E /C /I /F  ..\winDepLib\dll\$(Platform)\*.dll  $(OutDir)
 
 </Command>
     </PostBuildEvent>
