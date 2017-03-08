@@ -1208,9 +1208,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		9C53F6BA1DCB14FB006EAF17 /* IcEngLib */ = {
+		9C53F6BA1DCB14FB006EAF17 /* IcEng */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9C53F6C61DCB14FB006EAF17 /* Build configuration list for PBXNativeTarget "IcEngLib" */;
+			buildConfigurationList = 9C53F6C61DCB14FB006EAF17 /* Build configuration list for PBXNativeTarget "IcEng" */;
 			buildPhases = (
 				9C53F6B71DCB14FB006EAF17 /* Sources */,
 				9C53F6B81DCB14FB006EAF17 /* Frameworks */,
@@ -1220,7 +1220,7 @@
 			);
 			dependencies = (
 			);
-			name = IcEngLib;
+			name = IcEng;
 			productName = IcEngLib;
 			productReference = 9C53F6BB1DCB14FB006EAF17 /* libIcEngLib.a */;
 			productType = "com.apple.product-type.library.static";
@@ -1280,7 +1280,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				9C53F6BA1DCB14FB006EAF17 /* IcEngLib */,
+				9C53F6BA1DCB14FB006EAF17 /* IcEng */,
 				9C8CC3AD1DEE8115002583F2 /* IcEngTest */,
 				9C108D6B1E03B18200E0E1DF /* All */,
 			);
@@ -1378,7 +1378,7 @@
 /* Begin PBXTargetDependency section */
 		9C108D721E03B1A700E0E1DF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 9C53F6BA1DCB14FB006EAF17 /* IcEngLib */;
+			target = 9C53F6BA1DCB14FB006EAF17 /* IcEng */;
 			targetProxy = 9C108D711E03B1A700E0E1DF /* PBXContainerItemProxy */;
 		};
 		9C108D741E03B1AC00E0E1DF /* PBXTargetDependency */ = {
@@ -1583,7 +1583,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9C53F6C61DCB14FB006EAF17 /* Build configuration list for PBXNativeTarget "IcEngLib" */ = {
+		9C53F6C61DCB14FB006EAF17 /* Build configuration list for PBXNativeTarget "IcEng" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9C53F6C71DCB14FB006EAF17 /* Debug */,

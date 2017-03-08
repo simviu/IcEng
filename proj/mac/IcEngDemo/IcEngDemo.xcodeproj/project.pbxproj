@@ -281,7 +281,7 @@
 			buildSettings = {
 				DEVELOPMENT_TEAM = XG76D5W2B7;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				OTHER_LDFLAGS = "-lIcEngLib";
+				OTHER_LDFLAGS = "-lIcEng";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SYMROOT = "../../../IcEngBuild/mac/bin/${ARCHS}";
 			};
@@ -292,7 +292,7 @@
 			buildSettings = {
 				DEVELOPMENT_TEAM = XG76D5W2B7;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				OTHER_LDFLAGS = "-lIcEngLib";
+				OTHER_LDFLAGS = "-lIcEng";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SYMROOT = "../../../IcEngBuild/mac/bin/${ARCHS}";
 			};
