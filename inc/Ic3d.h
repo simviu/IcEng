@@ -539,7 +539,7 @@ namespace Ic3d {
         // runCmd()
         //-----------------
         // For PC, not mobile
-        int runCmdLine(int argc, char **argv);
+        int runCmdLine(int argc, char **argv, const std::string& sResPath);
     protected:
     };
      

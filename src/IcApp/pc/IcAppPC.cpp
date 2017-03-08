@@ -145,7 +145,7 @@ namespace Ic3d
             m_winSlotAry.clear();
             IcApp::getInstance()->getWinMng()->releaseWindows();
             IcApp::getInstance()->onRelease();
-            exit(0);
+            exit(1);
         };
 
         //--------------------------
@@ -357,9 +357,11 @@ namespace Ic3d
     //----------------------------------
     //  IcApp::runCmdLine
     //----------------------------------
-    int IcApp::runCmdLine(int argc, char **argv)
+    int IcApp::runCmdLine(int argc, char **argv, const string& sResPath)
     {
         setInstance(this);
+		m_cfg.m_sPathRes = sResPath;
+
         auto pMng = ctl::makeSp<IcWinMngGlut>();
         IcWinMng::setInstance(pMng);
 		if (!pMng->initMng(argc, argv))

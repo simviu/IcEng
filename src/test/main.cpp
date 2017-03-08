@@ -15,7 +15,6 @@
 int main(int argc, char **argv)
 {
     MyTestApp app;
-    app.m_cfg.m_sPathRes = "../../../../../IcData/";
-    int ret = app.runCmdLine(argc, argv);
+    int ret = app.runCmdLine(argc, argv, "../../../../../IcData/");
 	return ret;
 }

@@ -105,9 +105,7 @@
       <AdditionalDependencies>IcEngLib.lib;freeglut.lib;glew32s.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /Y /R /E /C /I  ..\..\..\..\IcEng\IcEngBuild\dep\glWinLib\dll\$(Platform)\*.dll  $(OutDir)
-
-</Command>
+      <Command>xcopy /Y /R /E /C /I  ..\..\..\IcEngBuild\windows\dep\glWinLib\dll\$(Platform)\*.dll  $(OutDir) </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -126,9 +124,7 @@
       <AdditionalDependencies>IcEngLib.lib;freeglut.lib;glew32s.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /Y /R /E /C /I  ..\..\..\..\IcEng\IcEngBuild\dep\glWinLib\dll\$(Platform)\*.dll  $(OutDir)
-
-</Command>
+      <Command>xcopy /Y /R /E /C /I  ..\..\..\IcEngBuild\windows\dep\glWinLib\dll\$(Platform)\*.dll  $(OutDir) </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -151,9 +147,7 @@
       <AdditionalDependencies>IcEngLib.lib;freeglut.lib;glew32s.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /Y /R /E /C /I  ..\..\..\..\IcEng\IcEngBuild\dep\glWinLib\dll\$(Platform)\*.dll  $(OutDir)
-
-</Command>
+      <Command>xcopy /Y /R /E /C /I  ..\..\..\IcEngBuild\windows\dep\glWinLib\dll\$(Platform)\*.dll  $(OutDir) </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -176,9 +170,7 @@
       <AdditionalDependencies>IcEngLib.lib;freeglut.lib;glew32s.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /Y /R /E /C /I  ..\..\..\..\IcEng\IcEngBuild\dep\glWinLib\dll\$(Platform)\*.dll  $(OutDir)
-
-</Command>
+      <Command>xcopy /Y /R /E /C /I  ..\..\..\IcEngBuild\windows\dep\glWinLib\dll\$(Platform)\*.dll  $(OutDir) </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
