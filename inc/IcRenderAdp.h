@@ -180,6 +180,8 @@ namespace Ic3d
 		int GetUniformLocation(const std::string sName) const;
 		void bindShader() const;
 		void unbindShader() const;
+        //---- For Render to Texture
+        void bindFragDataLocation(unsigned int colorNum, const std::string& sName) const;
 
 	private:
 		void loadShaderFile(const char* sVertexSource, const char* sFragmentSource);
