@@ -94,9 +94,9 @@ namespace Ic3d
         //----- Draw this
         TMat4 matModel = matModelParent * obj.calcMat();
         CRenderAdp::TRenderMatrix rm;
-        rm.m_matProj  = cam.getProjMat();
         rm.m_matModel = matModel;
         rm.m_matView  = cam.getViewMat();
+        rm.m_matProj  = cam.getProjMat();
         pAdp->applyMatrix(rm);
         obj.draw();
         
@@ -132,7 +132,10 @@ namespace Ic3d
 		dbgFrmCnt ++;
 		auto pRE= IcRenderEng::getInstance();
         pRE->setViewPort(m_cfg.m_viewRect);
+
+        //----------------------
         //---- Set fog
+        //----------------------
         auto pAdp = pRE->getCurRenderAdp();
         pAdp->setFog(m_cfg.m_fogPara);
 		

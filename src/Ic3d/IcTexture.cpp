@@ -26,14 +26,16 @@ namespace Ic3d
 
 
 	//--------------------------------------
-	//	IcTexture
+	//	loadFile
 	//--------------------------------------
-	IcTexture::IcTexture(const string& sFile)
+    bool IcTexture::loadFile(const std::string& sFile)
 	{
         auto pEng = IcRenderEng::getInstance();
         auto pAdp = pEng->getCurRenderAdp();
-        if(pAdp==nullptr) return;
+        if(pAdp==nullptr) return false;
 		m_pRenderAdp = pAdp->createTextureAdp(sFile);
+        if(m_pRenderAdp==nullptr) return false;
+        return m_pRenderAdp->m_isValid;
 	}
 	//--------------------------------------
 	//	IcTexture

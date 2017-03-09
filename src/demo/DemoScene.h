@@ -109,6 +109,15 @@ public:
     virtual void onInit() override;
 };
 
+//-----------------------------
+//	DemoRenderToTex
+//-----------------------------
+class DemoRenderToTex : public DemoScene
+{
+public:
+    virtual void onInit() override;
+};
+
 
 
 
