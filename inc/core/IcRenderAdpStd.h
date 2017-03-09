@@ -149,6 +149,11 @@ namespace Ic3d
         virtual void render() const override;
         void setTexRepeat(bool b){ m_isRepeat = b; };
         
+        //---- For render texture
+        virtual bool setAsRenderTarget(const ctl::TSize& size) override;
+        virtual void startRenderOn() const override;
+        virtual void finishRenderOn() const override;
+       
     protected:
         
         void importFromBuf(const ctl::TSize& size,
@@ -182,6 +187,15 @@ namespace Ic3d
         bool loadFile(const std::string& fname);
         bool loadFilePVR(const std::string& fname);
         bool loadFileOther(const std::string& fname);
+        
+        //---- For Render Texture
+        struct T_R2T_cfg
+        {
+            unsigned int m_frmBufId = 0;
+            unsigned int m_depthBufId = 0;
+ 
+        };
+        T_R2T_cfg m_R2T_cfg;
     };
     //-----------------------------------------
     //	IcRenderAdpStd
@@ -202,6 +216,8 @@ namespace Ic3d
         virtual ctl::Sp<CMeshAdp> createMeshAdp(const TMeshData& rMshd) const override;
         virtual ctl::Sp<CTexAdp> createTextureAdp(const ctl::IcImg& rImg) const override;
         virtual ctl::Sp<CTexAdp> createTextureAdp(const std::string& sFile) const override;
+        virtual ctl::Sp<CTexAdp> createRenderTextureAdp(const ctl::TSize& size) const override;
+        
         virtual void applyMaterial(const TMaterial& mat)  const override;
         TShaderSp getCurShader() const{ return m_pShader; };
         void setCurShader(TShaderSp p){ m_pShader = p; };

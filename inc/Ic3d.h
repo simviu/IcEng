@@ -84,7 +84,7 @@ namespace Ic3d {
 	public:
 		bool isValid()const
 		{	if(m_pRenderAdp==nullptr) return false;
-			return m_pRenderAdp->m_isValid; };
+			return m_pRenderAdp->isValid(); };
 		IcTexture();
         IcTexture(const std::string& sFile){ loadFile(sFile); };
 		IcTexture(const ctl::IcImg& img);
@@ -93,11 +93,27 @@ namespace Ic3d {
 		{	 if(m_pRenderAdp!=nullptr)
 				m_pRenderAdp->render(); };
         bool loadFile(const std::string& fname);
+        
+        //---- Render Texture
+        virtual bool setAsRenderTarget(const ctl::TSize& size);
+        virtual void startRenderOn() const;
+        virtual void finishRenderOn() const;
 
 	protected:
-		ctl::Sp<const CRenderAdp::CTexAdp>	m_pRenderAdp = nullptr;
+		ctl::Sp<CRenderAdp::CTexAdp>	m_pRenderAdp = nullptr;
 		bool m_isValid = false;
 	};
+    //-----------------------------------------
+    //	IcRenderTexture
+    //-----------------------------------------
+    class IcRenderTexture : public IcTexture
+    {
+    public:
+        IcRenderTexture();
+        using IcTexture::IcTexture;
+        void startRenderOn();
+        void finsihRenderOn();
+    };
 	
 	
 	//-----------------------------------------
@@ -552,7 +568,7 @@ namespace Ic3d {
 	class IcEng
 	{
     protected:
-        ctl::Sp<const CRenderAdp::CTexAdp>   m_pDfltTexAdp = nullptr;
+        ctl::Sp<CRenderAdp::CTexAdp>   m_pDfltTexAdp = nullptr;
         std::atomic<bool>    m_hasInit{false};
         std::atomic<bool>    m_isEnabled{false};
 

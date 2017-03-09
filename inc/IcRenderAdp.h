@@ -206,15 +206,26 @@ namespace Ic3d
 		//---- Texture Adp
 		struct CTexAdp {
 			virtual void render() const{};
+            bool isValid() const{ return m_isValid; };
+
+            //---- For render texture
+            virtual bool setAsRenderTarget(const ctl::TSize& size){ return false; };
+            virtual void startRenderOn() const{};
+            virtual void finishRenderOn() const{};
+        protected:
 			bool m_isRepeat = false;
 			bool m_isValid = false;
 		};
-        
-        //---- Factory
+        //---- Render Texture Adp
+        struct CRenderTexAdp : public CTexAdp{
+        };
+       
+        //---- Factory, TODO: Simplify
         virtual ctl::Sp<CMeshAdp> createMeshAdp(const TMeshData& rMshd) const = 0;
         virtual ctl::Sp<CTexAdp> createTextureAdp(const ctl::IcImg& rImg) const = 0;
         virtual ctl::Sp<CTexAdp> createTextureAdp(const std::string& sFile) const = 0;
-        
+        virtual ctl::Sp<CTexAdp> createRenderTextureAdp(const ctl::TSize& size) const = 0;
+
         //---- Lighting
         virtual void setLight(const TLight& light,
                               const TVec3& ecPos,   // Light pos in eye space

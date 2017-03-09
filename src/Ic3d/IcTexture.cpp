@@ -35,7 +35,7 @@ namespace Ic3d
         if(pAdp==nullptr) return false;
 		m_pRenderAdp = pAdp->createTextureAdp(sFile);
         if(m_pRenderAdp==nullptr) return false;
-        return m_pRenderAdp->m_isValid;
+        return m_pRenderAdp->isValid();
 	}
 	//--------------------------------------
 	//	IcTexture
@@ -47,6 +47,27 @@ namespace Ic3d
         if(pAdp==nullptr) return;
 		m_pRenderAdp = pAdp->createTextureAdp(rImg);
 	}
+    //--------------------------------------
+    //	Render Texture
+    //--------------------------------------
+    bool IcTexture::setAsRenderTarget(const ctl::TSize& size)
+    {
+        if(m_pRenderAdp==nullptr) return false;
+        return m_pRenderAdp->setAsRenderTarget(size);
+        
+    }
+    void IcTexture::startRenderOn() const
+    {
+        if(m_pRenderAdp==nullptr) return;
+        m_pRenderAdp->startRenderOn();
+    
+    }
+    void IcTexture::finishRenderOn() const
+    {
+        if(m_pRenderAdp==nullptr) return;
+        m_pRenderAdp->finishRenderOn();
+    }
+
 	
 } // namespace Ic3d
 

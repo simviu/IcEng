@@ -134,15 +134,7 @@ namespace Ic3d
 	//----------------------------------------------------
 	void CTexAdpStd::render() const
 	{
-		static int prevTexId = -1;
-		
-		//---- Optimize for not draw if previously drawed.
-        // TODO: move to IcTexture
-		if(prevTexId==m_texId)
-			return;
-		prevTexId = m_texId;
-		
-		//-----------------------------------------------
+
 		glBindTexture(GL_TEXTURE_2D, m_texId);
 		if(m_isRepeat)
 		{
@@ -197,6 +189,67 @@ namespace Ic3d
 		
 		
 	}
+    //------------------------------------------------
+    //	setAsRenderTarget
+    //------------------------------------------------
+    // Ref : http://www.opengl-tutorial.org/intermediate-tutorials/tutorial-14-render-to-texture/
+    bool CTexAdpStd::setAsRenderTarget(const ctl::TSize& size)
+    {
+        m_size = size;
+        //---- Gen FrameBuf
+        auto& cfg = m_R2T_cfg;
+        cfg.m_frmBufId = 0;
+        glGenFramebuffers(1, &cfg.m_frmBufId);
+        glBindFramebuffer(GL_FRAMEBUFFER, cfg.m_frmBufId);
+        
+        //---- Normal Texture setup
+        m_texId = genTexId();
+        glBindTexture(GL_TEXTURE_2D, m_texId);
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA,
+                     size.w, size.h,
+                     0, GL_RGBA, GL_UNSIGNED_BYTE,
+                     0);    // last para is empty buffer ptr
+        // Poor filtering. Needed !
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+
+        //----------------------
+        // Also need depth buffer
+        //-------------------------
+        // The depth buffer
+        glGenRenderbuffers(1, &cfg.m_depthBufId);
+        glBindRenderbuffer(GL_RENDERBUFFER, cfg.m_depthBufId);
+        glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT, size.w, size.h);
+        glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER,
+                                  cfg.m_depthBufId);
+        //-------------------------
+        // Configure as render target
+        //-------------------------
+        // Set "renderedTexture" as our colour attachement #0
+        glFramebufferTextureEXT(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, m_texId, 0);
+        
+        // Set the list of draw buffers.
+        GLenum DrawBuffers[1] = {GL_COLOR_ATTACHMENT0};
+        glDrawBuffers(1, DrawBuffers); // "1" is the size of DrawBuffers
+        
+         // Always check that our framebuffer is ok
+        if(glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+            return false;
+        
+        return true;
+    }
+    //------------------------------------------------
+    //	startRenderOn/finishRenderOn
+    //------------------------------------------------
+    void CTexAdpStd::startRenderOn() const
+    {
+        //---- Note: this call should be at before glViewPort
+        glBindFramebuffer(GL_FRAMEBUFFER, m_R2T_cfg.m_frmBufId);
+    }
+    void CTexAdpStd::finishRenderOn() const
+    {
+        
+    }
 
 } // namespace Ic3d
 

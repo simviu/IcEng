@@ -125,7 +125,11 @@ namespace Ic3d
             m_hasInit = true;
             return;
         }
-
+        //----------------------
+        // Check Render To texture
+        //----------------------
+        if(m_pTargetTex!=nullptr)
+            m_pTargetTex->startRenderOn();
 
         //----------------------
 		static int dbgFrmCnt=0;
@@ -160,6 +164,12 @@ namespace Ic3d
         for(auto pScn : m_subScns.getAry())
             pScn->onDraw();
        
+        //----------------------
+        // Check Render To texture (finish)
+        //----------------------
+        if(m_pTargetTex!=nullptr)
+            m_pTargetTex->finishRenderOn();
+        
         m_frmCnt ++;
 	}
 } // namespace Ic3d
