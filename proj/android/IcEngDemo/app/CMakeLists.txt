@@ -19,6 +19,7 @@ add_library(IcAppJNI SHARED
     ${ICENGDEMO}/DemoScene.cpp
     ${ICENGDEMO}/DemoBasic.cpp
     ${ICENGDEMO}/DemoLights.cpp
+    ${ICENGDEMO}/DemoRenderToTex.cpp
     ${ICENGDEMO}/DemoModelCreate.cpp
     ${ICENGDEMO}/DemoNestedTrans.cpp
     ${ICENGDEMO}/DemoApp.cpp

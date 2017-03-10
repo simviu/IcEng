@@ -165,7 +165,7 @@ namespace Ic3d
 		//-----------------------------------------------
 		if(m_isTexMipMap)
 		{
-			glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAX_ANISOTROPY_EXT, 1.0);	// TODO: could be 2.0
+		//	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAX_ANISOTROPY_EXT, 1.0);	// TODO: could be 2.0
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
 			//		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
@@ -230,6 +230,7 @@ namespace Ic3d
     // Ref : http://www.opengl-tutorial.org/intermediate-tutorials/tutorial-14-render-to-texture/
     bool CTexAdpStd::setAsRenderTarget()
     {
+
         //   m_size = calcValidSizeSquare(sizeIn);
         //---- Save original frame buffer
         glGetIntegerv(GL_FRAMEBUFFER_BINDING, &m_R2T_cfg.m_frmBufIdOri);
@@ -268,15 +269,19 @@ namespace Ic3d
         // Configure as render target
         //-------------------------
         // Set "renderedTexture" as our colour attachement #0
-#if TARGET_OS_IPHONE
+//#if TARGET_OS_IPHONE
         glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_texId, 0);
-#else
-        glFramebufferTextureEXT(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, m_texId, 0);
-#endif
+//#else
+//        glFramebufferTextureEXT(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, m_texId, 0);
+//#endif
         // Set the list of draw buffers.
         GLenum DrawBuffers[1] = {GL_COLOR_ATTACHMENT0};
+
+#if ANDROID	// Requre OpenGL ES3 for android. TODO: not yet GL3,
+        // but, maybe completely not needed. ( This code was for shader layout originaly)
+#else
         glDrawBuffers(1, DrawBuffers); // "1" is the size of DrawBuffers
-        
+#endif
         //---- Restore original frame buffer
         glBindFramebuffer(GL_FRAMEBUFFER, m_R2T_cfg.m_frmBufIdOri);
    
