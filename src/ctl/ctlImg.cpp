@@ -87,6 +87,14 @@ namespace ctl {
 		return isOK;
 	}
 
+    //------------------------------------------
+    //	copy
+    //------------------------------------------
+    void IcImg::copy(const IcImg& img)
+    {
+        setSize(img.size());
+        m_buf.copy(img.getBuf());
+    }
 
 	//------------------------------------------
 	//	ImgHelper

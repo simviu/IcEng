@@ -21,6 +21,7 @@ varying vec2 v_texCo;
 varying vec3 v_ecNormal;
 varying vec4 v_ecVert;
 
+
 #define K_MAX_LIGHTS 16
 
 //-------------------------

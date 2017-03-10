@@ -140,15 +140,19 @@ namespace Ic3d
     class CTexAdpStd : public CRenderAdp::CTexAdp
     {
     public:
+        using CTexAdp::CTexAdp;
         CTexAdpStd(const std::string& fname){ loadFile(fname); };
         CTexAdpStd(){};
         CTexAdpStd(const ctl::IcImg& img);
         virtual ~CTexAdpStd();
-        std::string	m_sName;
-        ctl::TSize	m_size;
-        virtual void render() const override;
+         virtual void render() const override;
         void setTexRepeat(bool b){ m_isRepeat = b; };
         
+        //---- For render texture
+        virtual bool setAsRenderTarget() override;
+        virtual void startRenderOn() override;
+        virtual void finishRenderOn() override;
+       
     protected:
         
         void importFromBuf(const ctl::TSize& size,
@@ -182,6 +186,20 @@ namespace Ic3d
         bool loadFile(const std::string& fname);
         bool loadFilePVR(const std::string& fname);
         bool loadFileOther(const std::string& fname);
+        
+        //--- Texture size should be (2^n X 2^n)
+        ctl::TSize calcValidSizeSquare(const ctl::TSize& sizeOri);
+        
+        //---- For Render Texture
+        struct T_R2T_cfg
+        {
+            bool m_isValid = false;
+            unsigned int m_frmBufId = 0;
+            int m_frmBufIdOri = 0; // The origin frame buffer to save
+            unsigned int m_depthBufId = 0;
+
+        };
+        T_R2T_cfg m_R2T_cfg;
     };
     //-----------------------------------------
     //	IcRenderAdpStd
@@ -202,6 +220,8 @@ namespace Ic3d
         virtual ctl::Sp<CMeshAdp> createMeshAdp(const TMeshData& rMshd) const override;
         virtual ctl::Sp<CTexAdp> createTextureAdp(const ctl::IcImg& rImg) const override;
         virtual ctl::Sp<CTexAdp> createTextureAdp(const std::string& sFile) const override;
+        virtual ctl::Sp<CTexAdp> createTextureAdp(const ctl::TSize& size) const override;
+        
         virtual void applyMaterial(const TMaterial& mat)  const override;
         TShaderSp getCurShader() const{ return m_pShader; };
         void setCurShader(TShaderSp p){ m_pShader = p; };

@@ -43,7 +43,8 @@ namespace Ic3d {
         void getSubMesh(TMeshData& mesh,
                         size_t faceStrt, size_t N) const;
        
-        void createPlaneXZ(const ctl::TRect& rect, const ctl::TRect& texRect);
+        void createPlaneXZ(const ctl::TRect& rect,
+                           const ctl::TRect& texRect = {0,0,1,1});
         void createCube(const TVec3& sz, const TVec3& ofst);
         void createSphere(float R, int N_stack, int N_slice);
         void createCylinder(float R, float height); // TODO : Implement
@@ -83,19 +84,37 @@ namespace Ic3d {
 	public:
 		bool isValid()const
 		{	if(m_pRenderAdp==nullptr) return false;
-			return m_pRenderAdp->m_isValid; };
+			return m_pRenderAdp->isValid(); };
 		IcTexture();
-		IcTexture(const std::string& fname);
+        IcTexture(const ctl::TSize& sz);
+        IcTexture(const std::string& sFile){ loadFile(sFile); };
 		IcTexture(const ctl::IcImg& img);
 		virtual ~IcTexture(){};
 		virtual void draw() const
 		{	 if(m_pRenderAdp!=nullptr)
 				m_pRenderAdp->render(); };
+        bool loadFile(const std::string& fname);
+        ctl::TSize getSize() const;
 
+        //---- Render Texture
+        bool setAsRenderTarget();
+        void startRenderOn() const;
+        void finishRenderOn() const;
 	protected:
-		ctl::Sp<const CRenderAdp::CTexAdp>	m_pRenderAdp = nullptr;
+		ctl::Sp<CRenderAdp::CTexAdp>	m_pRenderAdp = nullptr;
 		bool m_isValid = false;
 	};
+    //-----------------------------------------
+    //	IcRenderTexture
+    //-----------------------------------------
+    class IcRenderTexture : public IcTexture
+    {
+    public:
+        IcRenderTexture();
+        using IcTexture::IcTexture;
+        void startRenderOn();
+        void finsihRenderOn();
+    };
 	
 	
 	//-----------------------------------------
@@ -135,11 +154,7 @@ namespace Ic3d {
         IcModel(ctl::Sp<const IcMesh> pMsh) { setMesh(pMsh); };
 		IcModel(const std::string& sFile){ loadFile(sFile); };
 		IcModel(){};
-        IcModel(ctl::Sp<const IcMesh>       pMesh,
-                ctl::Sp<const IcTexture>    pTex,
-                ctl::Sp<const IcMaterial>   pMat)
-        :m_pMesh(pMesh), m_pTex(pTex), m_pMat(pMat){};
-        
+               
         bool loadFile(const std::string& sFile);
 		virtual ~IcModel(){};
 		
@@ -148,6 +163,10 @@ namespace Ic3d {
 		void addChildModel(ctl::Sp<const IcModel> p) { m_childModels.add(p); };
         
         //---- Mesh/Material/Texture setter/getter
+        void setMshMtlTex(ctl::Sp<const IcMesh>       pMesh,
+                          ctl::Sp<const IcTexture>    pTex,
+                          ctl::Sp<const IcMaterial>   pMat)
+            {m_pMesh=pMesh; m_pTex=pTex; m_pMat=pMat; };
 		void setMesh        (ctl::Sp<const IcMesh> p        ){ m_pMesh = p; };
 		void setMaterial    (ctl::Sp<const IcMaterial> p    ){ m_pMat = p;  };
 		void setTexture     (ctl::Sp<const IcTexture> p     ){ m_pTex = p;  };
@@ -366,18 +385,20 @@ namespace Ic3d {
         //---- Configuration
         struct TCfg
         {
-            ctl::TRect      m_viewRect;
             IcCamera::TCfg  m_camCfg;
-            TFogPara        m_fogPara;
+            ctl::TRect  m_viewRect;
+            TFogPara    m_fogPara;
+            bool        m_enClrScrn = false;
+            TColor      m_bkColor{0.2,0.5,0.7,1.0};
+            bool        m_enAutoResize = true;
         };
         TCfg m_cfg;
         
         //---- On Update call back function
         typedef std::function<void(float deltaT)> TFuncOnUpdate;
         void setOnUpdatCallBack(TFuncOnUpdate func);
-        void setTargetTexture(ctl::Sp<IcTexture> pTex)
-            { m_pTargetTex = pTex; };
-        void addSubScn(ctl::Sp<IcScene> pScn){ m_subScns.add(pScn);};
+        void setRenderToTexture(ctl::Sp<IcTexture> pTex);
+        void addSubScn(ctl::Sp<IcScene> pScn);
 
 	protected:
 		virtual void onInit(){};
@@ -399,6 +420,7 @@ namespace Ic3d {
         TFuncOnUpdate m_pCallBk_onUpdate = nullptr;
         //---- TODO: Not implemented yet
         ctl::Sp<IcTexture> m_pTargetTex = nullptr;
+        
 	};
     
     //----------------------------
@@ -549,7 +571,7 @@ namespace Ic3d {
 	class IcEng
 	{
     protected:
-        ctl::Sp<const CRenderAdp::CTexAdp>   m_pDfltTexAdp = nullptr;
+        ctl::Sp<CRenderAdp::CTexAdp>   m_pDfltTexAdp = nullptr;
         std::atomic<bool>    m_hasInit{false};
         std::atomic<bool>    m_isEnabled{false};
 

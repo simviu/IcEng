@@ -41,8 +41,11 @@ void DemoModelCreate::onInit()
    
     
     //---- Build model by mesh/material/texture.
-    auto pModel0 = makeSp<IcModel>(pMeshSphr,   pTex0, pMatSphr );
-    auto pModel1 = makeSp<IcModel>(pMeshSphr,   pTex1, pMatSphr );
+    auto pModel0 = makeSp<IcModel>();
+    
+    pModel0->setMshMtlTex(pMeshSphr, pTex0, pMatSphr );
+    auto pModel1 = makeSp<IcModel>();
+     pModel1->setMshMtlTex(pMeshSphr,   pTex1, pMatSphr );
     
     auto pObj0 = makeSp<IcObject>(pModel0);
     auto pObj1 = makeSp<IcObject>(pModel1);
