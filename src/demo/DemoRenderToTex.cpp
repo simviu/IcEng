@@ -34,8 +34,7 @@ void DemoRenderToTex::onUpdate(double deltaT)
     
     if(m_pScn0!=nullptr)
         m_camMng.onUpdate(deltaT, *m_pScn0->getCamera());
- //   if(m_pScn1!=nullptr)
-   //     m_camMng.onUpdate(deltaT, *m_pScn1->getCamera());
+ 
 }
 
 //----------------------------------------------
@@ -63,6 +62,7 @@ void DemoRenderToTex::onInit()
         pScn->setRenderToTexture(pTex);
         m_pRenderTex = pTex;
         addSubScn(pScn);
+        pScn->m_cfg.m_enClrScrn = true; 
         m_pScn0 = pScn;
     }
     

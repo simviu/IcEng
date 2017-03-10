@@ -384,9 +384,11 @@ namespace Ic3d {
         //---- Configuration
         struct TCfg
         {
-            ctl::TRect      m_viewRect;
             IcCamera::TCfg  m_camCfg;
-            TFogPara        m_fogPara;
+            ctl::TRect  m_viewRect;
+            TFogPara    m_fogPara;
+            bool        m_enClrScrn = false;
+            TColor      m_bkColor{0.2,0.5,0.7,1.0};
         };
         TCfg m_cfg;
         

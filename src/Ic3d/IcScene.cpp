@@ -162,6 +162,11 @@ namespace Ic3d
 		dbgFrmCnt ++;
 		auto pRE= IcRenderEng::getInstance();
         pRE->setViewPort(m_cfg.m_viewRect);
+        //----------------------
+        // Check clear Screen
+        //----------------------
+        if(m_cfg.m_enClrScrn)
+            pEng->clearScreen(m_cfg.m_bkColor);
 
         //----------------------
         //---- Set fog
