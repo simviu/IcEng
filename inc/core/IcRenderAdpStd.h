@@ -149,7 +149,7 @@ namespace Ic3d
         void setTexRepeat(bool b){ m_isRepeat = b; };
         
         //---- For render texture
-        virtual bool setAsRenderTarget(const ctl::TSize& size) override;
+        virtual bool setAsRenderTarget() override;
         virtual void startRenderOn() override;
         virtual void finishRenderOn() override;
        
@@ -220,7 +220,7 @@ namespace Ic3d
         virtual ctl::Sp<CMeshAdp> createMeshAdp(const TMeshData& rMshd) const override;
         virtual ctl::Sp<CTexAdp> createTextureAdp(const ctl::IcImg& rImg) const override;
         virtual ctl::Sp<CTexAdp> createTextureAdp(const std::string& sFile) const override;
-        virtual ctl::Sp<CTexAdp> createRenderTextureAdp(const ctl::TSize& size) const override;
+        virtual ctl::Sp<CTexAdp> createTextureAdp(const ctl::TSize& size) const override;
         
         virtual void applyMaterial(const TMaterial& mat)  const override;
         TShaderSp getCurShader() const{ return m_pShader; };

@@ -45,14 +45,26 @@ namespace Ic3d
         //---- TODO: move to drawUpdate()?
 		m_pCamera->setFrustum(sz, camCfg);
         
-        //---- Set Render texture
-        if(m_pTargetTex!=nullptr)
-            m_pTargetTex->setAsRenderTarget(winSize);
-        
         //---- Recursive call sub scenes
         for(auto pScn : m_subScns.getAry())
-            pScn->onWindowSize(winSize);
+        {
+            if(pScn->m_cfg.m_enAutoResize)
+                pScn->onWindowSize(winSize);
+        }
 	}
+    //---------------------------------------------
+    //	setRenderToTexture
+    //---------------------------------------------
+    void IcScene::setRenderToTexture(ctl::Sp<IcTexture> pTex)
+    {
+        if(pTex==nullptr) return;
+        auto sz = pTex->getSize();
+        m_cfg.m_viewRect = TRect(TPos(0,0), sz);
+        m_pTargetTex = pTex;
+        pTex->setAsRenderTarget();
+        onWindowSize(sz);
+        m_cfg.m_enAutoResize = false; // Disable auto resize
+    };
 
     /*
 	//---------------------------------------------

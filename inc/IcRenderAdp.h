@@ -205,13 +205,16 @@ namespace Ic3d
 		struct CMeshAdp { virtual void render() const{}; };
 		//---- Texture Adp
 		struct CTexAdp {
+            CTexAdp(){};
+            CTexAdp(const ctl::TSize& sz):m_size(sz){};
 			virtual void render() const{};
             bool isValid() const{ return m_isValid; };
 
             //---- For render texture
-            virtual bool setAsRenderTarget(const ctl::TSize& size){ return false; };
+            virtual bool setAsRenderTarget(){ return false; };
             virtual void startRenderOn() {};
             virtual void finishRenderOn() {};
+            ctl::TSize getSize()const{ return m_size; };
         protected:
             std::string	m_sName;
             ctl::TSize	m_size{128,128};
@@ -226,7 +229,7 @@ namespace Ic3d
         virtual ctl::Sp<CMeshAdp> createMeshAdp(const TMeshData& rMshd) const = 0;
         virtual ctl::Sp<CTexAdp> createTextureAdp(const ctl::IcImg& rImg) const = 0;
         virtual ctl::Sp<CTexAdp> createTextureAdp(const std::string& sFile) const = 0;
-        virtual ctl::Sp<CTexAdp> createRenderTextureAdp(const ctl::TSize& size) const = 0;
+        virtual ctl::Sp<CTexAdp> createTextureAdp(const ctl::TSize& size) const = 0;
 
         //---- Lighting
         virtual void setLight(const TLight& light,

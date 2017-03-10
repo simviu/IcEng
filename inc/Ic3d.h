@@ -86,6 +86,7 @@ namespace Ic3d {
 		{	if(m_pRenderAdp==nullptr) return false;
 			return m_pRenderAdp->isValid(); };
 		IcTexture();
+        IcTexture(const ctl::TSize& sz);
         IcTexture(const std::string& sFile){ loadFile(sFile); };
 		IcTexture(const ctl::IcImg& img);
 		virtual ~IcTexture(){};
@@ -93,12 +94,12 @@ namespace Ic3d {
 		{	 if(m_pRenderAdp!=nullptr)
 				m_pRenderAdp->render(); };
         bool loadFile(const std::string& fname);
-        
-        //---- Render Texture
-        virtual bool setAsRenderTarget(const ctl::TSize& size);
-        virtual void startRenderOn() const;
-        virtual void finishRenderOn() const;
+        ctl::TSize getSize() const;
 
+        //---- Render Texture
+        bool setAsRenderTarget();
+        void startRenderOn() const;
+        void finishRenderOn() const;
 	protected:
 		ctl::Sp<CRenderAdp::CTexAdp>	m_pRenderAdp = nullptr;
 		bool m_isValid = false;
@@ -389,14 +390,14 @@ namespace Ic3d {
             TFogPara    m_fogPara;
             bool        m_enClrScrn = false;
             TColor      m_bkColor{0.2,0.5,0.7,1.0};
+            bool        m_enAutoResize = true;
         };
         TCfg m_cfg;
         
         //---- On Update call back function
         typedef std::function<void(float deltaT)> TFuncOnUpdate;
         void setOnUpdatCallBack(TFuncOnUpdate func);
-        void setRenderToTexture(ctl::Sp<IcTexture> pTex)
-            { m_pTargetTex = pTex; };
+        void setRenderToTexture(ctl::Sp<IcTexture> pTex);
         void addSubScn(ctl::Sp<IcScene> pScn);
 
 	protected:

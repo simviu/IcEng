@@ -23,6 +23,14 @@ namespace Ic3d
 	{
 		m_pRenderAdp =  IcEng::getInstance()->getDfltTexAdp();
 	}
+    IcTexture::IcTexture(const ctl::TSize& sz)
+    {
+        auto pEng = IcRenderEng::getInstance();
+        auto pAdp = pEng->getCurRenderAdp();
+        if(pAdp==nullptr) return;
+        m_pRenderAdp = pAdp->createTextureAdp(sz);
+
+    }
 
 
 	//--------------------------------------
@@ -48,12 +56,22 @@ namespace Ic3d
 		m_pRenderAdp = pAdp->createTextureAdp(rImg);
 	}
     //--------------------------------------
+    //	IcTexture
+    //--------------------------------------
+    TSize IcTexture::getSize() const
+    {
+        if(m_pRenderAdp==nullptr) return TSize(0,0);
+        return m_pRenderAdp->getSize();
+
+    }
+
+    //--------------------------------------
     //	Render Texture
     //--------------------------------------
-    bool IcTexture::setAsRenderTarget(const ctl::TSize& size)
+    bool IcTexture::setAsRenderTarget()
     {
         if(m_pRenderAdp==nullptr) return false;
-        return m_pRenderAdp->setAsRenderTarget(size);
+        return m_pRenderAdp->setAsRenderTarget();
         
     }
     void IcTexture::startRenderOn() const

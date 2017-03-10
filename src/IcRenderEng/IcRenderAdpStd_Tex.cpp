@@ -228,9 +228,9 @@ namespace Ic3d
     //	setAsRenderTarget
     //------------------------------------------------
     // Ref : http://www.opengl-tutorial.org/intermediate-tutorials/tutorial-14-render-to-texture/
-    bool CTexAdpStd::setAsRenderTarget(const ctl::TSize& sizeIn)
+    bool CTexAdpStd::setAsRenderTarget()
     {
-        m_size = calcValidSizeSquare(sizeIn);
+     //   m_size = calcValidSizeSquare(sizeIn);
         //---- Save original frame buffer
         glGetIntegerv(GL_FRAMEBUFFER_BINDING, &m_R2T_cfg.m_frmBufIdOri);
         //---- Gen FrameBuf

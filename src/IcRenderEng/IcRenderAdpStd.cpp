@@ -90,10 +90,9 @@ namespace Ic3d {
     {
         return ctl::makeSp<CTexAdpStd>(sFile);
     }
-    ctl::Sp<CRenderAdp::CTexAdp> IcRenderAdpStd::createRenderTextureAdp(const ctl::TSize& size) const
+    ctl::Sp<CRenderAdp::CTexAdp> IcRenderAdpStd::createTextureAdp(const ctl::TSize& size) const
     {
-        auto pAdp = ctl::makeSp<CTexAdpStd>();
-        pAdp->setAsRenderTarget(size);
+        auto pAdp = ctl::makeSp<CTexAdpStd>(size);
         return pAdp;
     }
 
