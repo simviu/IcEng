@@ -230,9 +230,10 @@ namespace Ic3d
     // Ref : http://www.opengl-tutorial.org/intermediate-tutorials/tutorial-14-render-to-texture/
     bool CTexAdpStd::setAsRenderTarget()
     {
-     //   m_size = calcValidSizeSquare(sizeIn);
+        //   m_size = calcValidSizeSquare(sizeIn);
         //---- Save original frame buffer
         glGetIntegerv(GL_FRAMEBUFFER_BINDING, &m_R2T_cfg.m_frmBufIdOri);
+
         //---- Gen FrameBuf
         auto& cfg = m_R2T_cfg;
         cfg.m_frmBufId = 0;
@@ -246,7 +247,7 @@ namespace Ic3d
                      m_size.w, m_size.h,
                      0, GL_RGBA, GL_UNSIGNED_BYTE,
                      0);    // last para is empty buffer ptr
-    //    glBindTexture(GL_TEXTURE_2D, 0);    // unbind it for safe
+        glBindTexture(GL_TEXTURE_2D, 0);    // unbind it for safe
         // Poor filtering. Needed !
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
@@ -255,12 +256,14 @@ namespace Ic3d
         // Also need depth buffer
         //-------------------------
         // The depth buffer
+        /*
         glGenRenderbuffers(1, &cfg.m_depthBufId);
         glBindRenderbuffer(GL_RENDERBUFFER, cfg.m_depthBufId);
         glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT,
                               m_size.w, m_size.h);
         glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER,
                                   cfg.m_depthBufId);
+         */
         //-------------------------
         // Configure as render target
         //-------------------------
@@ -274,6 +277,9 @@ namespace Ic3d
         GLenum DrawBuffers[1] = {GL_COLOR_ATTACHMENT0};
         glDrawBuffers(1, DrawBuffers); // "1" is the size of DrawBuffers
         
+        //---- Restore original frame buffer
+        glBindFramebuffer(GL_FRAMEBUFFER, m_R2T_cfg.m_frmBufIdOri);
+   
          // Always check that our framebuffer is ok
         if(glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
             return false;
@@ -285,7 +291,6 @@ namespace Ic3d
     //------------------------------------------------
     void CTexAdpStd::startRenderOn()
     {
- 
         //---- Note: this call should be at before glViewPort
         glBindFramebuffer(GL_FRAMEBUFFER, m_R2T_cfg.m_frmBufId);
     }
