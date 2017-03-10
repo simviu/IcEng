@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9C46DBF51E72634F002019D4 /* DemoRenderToTex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C46DBF41E72634F002019D4 /* DemoRenderToTex.cpp */; };
 		9CEC54B81DCB3A3E00A9E864 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CEC54B71DCB3A3E00A9E864 /* main.m */; };
 		9CEC54BB1DCB3A3E00A9E864 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CEC54BA1DCB3A3E00A9E864 /* AppDelegate.m */; };
 		9CEC54BE1DCB3A3E00A9E864 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CEC54BD1DCB3A3E00A9E864 /* ViewController.m */; };
@@ -40,6 +41,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		9C46DBF41E72634F002019D4 /* DemoRenderToTex.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DemoRenderToTex.cpp; sourceTree = "<group>"; };
 		9CEC54B41DCB3A3E00A9E864 /* IcEngDemoIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IcEngDemoIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CEC54B71DCB3A3E00A9E864 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		9CEC54B91DCB3A3E00A9E864 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 		9CF557B41E6FB23000AF7621 /* demo */ = {
 			isa = PBXGroup;
 			children = (
+				9C46DBF41E72634F002019D4 /* DemoRenderToTex.cpp */,
 				9CF557B51E6FB23000AF7621 /* DemoApp.cpp */,
 				9CF557B61E6FB23000AF7621 /* DemoApp.hpp */,
 				9CF557B71E6FB23000AF7621 /* DemoBasic.cpp */,
@@ -248,6 +251,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9CEC54BE1DCB3A3E00A9E864 /* ViewController.m in Sources */,
+				9C46DBF51E72634F002019D4 /* DemoRenderToTex.cpp in Sources */,
 				9CEC54BB1DCB3A3E00A9E864 /* AppDelegate.m in Sources */,
 				9CF557C61E6FB23000AF7621 /* DemoApp.cpp in Sources */,
 				9CF557C81E6FB23000AF7621 /* DemoLights.cpp in Sources */,

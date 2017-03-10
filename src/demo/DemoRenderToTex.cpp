@@ -62,7 +62,7 @@ void DemoRenderToTex::onInit()
         pScn->setRenderToTexture(pTex);
         m_pRenderTex = pTex;
         addSubScn(pScn);
-        pScn->m_cfg.m_enClrScrn = true; 
+        pScn->m_cfg.m_enClrScrn = true;
         m_pScn0 = pScn;
     }
     
@@ -74,9 +74,10 @@ void DemoRenderToTex::onInit()
         mshd.createPlaneXZ(TRect(0,0,2,2));
         auto pMsh = makeSp<IcMesh>(mshd);
         auto pMtl = makeSp<IcMaterial>();
-   //     auto pTex = makeSp<IcTexture>();
-    //    pTex->loadFile(sPathRes + K_sFile_dbgTex);
+        
+   //   auto pTex = makeSp<IcTexture>(); auto pTex = m_pRenderTex;  // Debug
         auto pTex = m_pRenderTex;
+        
         auto pModel = makeSp<IcModel>();
         pModel->setMshMtlTex(pMsh, pTex, pMtl);
         auto pObj = makeSp<IcObject>(pModel);

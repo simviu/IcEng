@@ -186,7 +186,9 @@ namespace ctl {
         T w=0, h=0;
         bool operator == (const TSizeT& d)const
             { return (d.w==w)&&(d.h==h);};
-        std::string toStr() const{ return v2s<T>(w) + "," + v2s<T>(h); }
+        std::string toStr() const{ return v2s<T>(w) + "," + v2s<T>(h); };
+        bool operator != (const TSizeT& d)const{ return !(d==(*this)); };
+
     };
     typedef TSizeT<float> TSize;
     typedef TSizeT<double> TSizeHP;
@@ -303,7 +305,7 @@ namespace ctl {
         };
         static void addFormatAdp(const std::string& sExtList,
                                  ctl::Sp<CFormatAdp> pAdp);
-        
+        void copy(const IcImg& img);
     private:
         ctl::BinBuf	m_buf;
         TSize		m_size;

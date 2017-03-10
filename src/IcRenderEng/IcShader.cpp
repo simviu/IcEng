@@ -152,13 +152,7 @@ namespace Ic3d
         m_isValid = true;
     }
     
-    //----------------------------------
-    //  bind/unbind
-    //----------------------------------
-   void IcShader::bindFragDataLocation(unsigned int colorNum, const string& sName) const
-    {
-        glBindFragDataLocationEXT(m_uProgram, colorNum, sName.c_str());
-    }
+ 
     //----------------------------------
     //  bind/unbind
     //----------------------------------

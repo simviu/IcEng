@@ -180,9 +180,7 @@ namespace Ic3d
 		int GetUniformLocation(const std::string sName) const;
 		void bindShader() const;
 		void unbindShader() const;
-        //---- For Render to Texture
-        void bindFragDataLocation(unsigned int colorNum, const std::string& sName) const;
-
+ 
 	private:
 		void loadShaderFile(const char* sVertexSource, const char* sFragmentSource);
 		void buildShader();
@@ -212,9 +210,11 @@ namespace Ic3d
 
             //---- For render texture
             virtual bool setAsRenderTarget(const ctl::TSize& size){ return false; };
-            virtual void startRenderOn() const{};
-            virtual void finishRenderOn() const{};
+            virtual void startRenderOn() {};
+            virtual void finishRenderOn() {};
         protected:
+            std::string	m_sName;
+            ctl::TSize	m_size{128,128};
 			bool m_isRepeat = false;
 			bool m_isValid = false;
 		};
