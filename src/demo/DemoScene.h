@@ -116,6 +116,15 @@ class DemoRenderToTex : public DemoScene
 {
 public:
     virtual void onInit() override;
+    virtual void onDraw() override;
+    virtual void onUpdate(double deltaT) override;
+//    virtual void onWindowSize(const ctl::TSize& winSize);
+
+protected:
+    ctl::Sp<Ic3d::IcScene> m_pScn0 = nullptr;
+    ctl::Sp<Ic3d::IcScene> m_pScn1 = nullptr;
+    ctl::Sp<Ic3d::IcTexture> m_pRenderTex = nullptr;
+    
 };
 
 

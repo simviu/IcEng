@@ -395,7 +395,7 @@ namespace Ic3d {
         void setOnUpdatCallBack(TFuncOnUpdate func);
         void setRenderToTexture(ctl::Sp<IcTexture> pTex)
             { m_pTargetTex = pTex; };
-        void addSubScn(ctl::Sp<IcScene> pScn){ m_subScns.add(pScn);};
+        void addSubScn(ctl::Sp<IcScene> pScn);
 
 	protected:
 		virtual void onInit(){};

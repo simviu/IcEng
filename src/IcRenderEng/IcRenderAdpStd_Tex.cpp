@@ -248,7 +248,7 @@ namespace Ic3d
     }
     void CTexAdpStd::finishRenderOn() const
     {
-        
+        glBindFramebuffer(GL_FRAMEBUFFER, 0);
     }
 
 } // namespace Ic3d

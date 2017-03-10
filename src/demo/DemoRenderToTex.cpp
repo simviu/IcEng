@@ -18,7 +18,28 @@ static const string K_sModel = "IcDemo/MixShapes/MixShapes.obj";
 static const string K_sFile_dbgTex = "IcDemo/planets/tex_mars.png";
 
 //----------------------------------------------
-//  DemoBasic::onInit
+//  DemoRenderToTex::onDraw
+//----------------------------------------------
+void DemoRenderToTex::onDraw()
+{
+    DemoScene::onDraw();
+    // for debug
+}
+//----------------------------------------------
+//  DemoRenderToTex::onInit
+//----------------------------------------------
+void DemoRenderToTex::onUpdate(double deltaT)
+{
+    DemoScene::onUpdate(deltaT);
+    
+    if(m_pScn0!=nullptr)
+        m_camMng.onUpdate(deltaT, *m_pScn0->getCamera());
+ //   if(m_pScn1!=nullptr)
+   //     m_camMng.onUpdate(deltaT, *m_pScn1->getCamera());
+}
+
+//----------------------------------------------
+//  DemoRenderToTex::onInit
 //----------------------------------------------
 void DemoRenderToTex::onInit()
 {
@@ -27,29 +48,41 @@ void DemoRenderToTex::onInit()
     
     string sPathRes = DemoScene::m_cfg.m_sPathRes;
     //--- Load Objectif
-    if(0)
+    if(1)
     {
+        auto pScn = makeSp<IcScene>();
+        
         string sFile = sPathRes + K_sModel;
         auto pModel = makeSp<IcModel>(sFile);
         auto pObj   = makeSp<IcObject>(pModel);
         // Add this obj to Scene, will be rendered
-        addObj(pObj);
+        pScn->addObj(pObj);
+        
+        //---- Set to render Texture
+        auto pTex = makeSp<IcTexture>();
+        pScn->setRenderToTexture(pTex);
+        m_pRenderTex = pTex;
+        addSubScn(pScn);
+        m_pScn0 = pScn;
     }
     
     //---- Create Plane has texture
     if(1)
     {
+        auto pScn = makeSp<IcScene>();
         IcMeshData mshd;
         mshd.createPlaneXZ(TRect(0,0,2,2));
         auto pMsh = makeSp<IcMesh>(mshd);
         auto pMtl = makeSp<IcMaterial>();
-        auto pTex = makeSp<IcTexture>();
-        pTex->loadFile(sPathRes + K_sFile_dbgTex);
+   //     auto pTex = makeSp<IcTexture>();
+    //    pTex->loadFile(sPathRes + K_sFile_dbgTex);
+        auto pTex = m_pRenderTex;
         auto pModel = makeSp<IcModel>();
         pModel->setMshMtlTex(pMsh, pTex, pMtl);
-        addObj(makeSp<IcObject>(pModel));
+        auto pObj = makeSp<IcObject>(pModel);
+        pScn->addObj(pObj);
+        addSubScn(pScn);
+        m_pScn1 = pScn;
     }
-    
-    
-    
 }
+
