@@ -16,7 +16,7 @@ namespace Ic3d
 	using namespace ctl;
 
     
-    const static TVec3 K_camDfltPos(2,5,10);
+    const static TVec3 K_camDfltPos(1,3,5);
     const static TVec3 K_camLookAt(0,0,0);
     const static TVec3 K_camUpVec(0,1,0);
    //-----------------------------------------

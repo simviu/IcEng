@@ -253,38 +253,46 @@ namespace Ic3d
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 
-        //----------------------
+        //-------------------------
         // Also need depth buffer
         //-------------------------
         // The depth buffer
-        /*
-        glGenRenderbuffers(1, &cfg.m_depthBufId);
-        glBindRenderbuffer(GL_RENDERBUFFER, cfg.m_depthBufId);
-        glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT,
-                              m_size.w, m_size.h);
-        glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER,
-                                  cfg.m_depthBufId);
-         */
+        if(cfg.m_enDepth)
+        {
+            glGetIntegerv(GL_RENDERBUFFER_BINDING, &cfg.m_depthBufIdOri);
+            glGenRenderbuffers(1, &cfg.m_depthBufId);
+            glBindRenderbuffer(GL_RENDERBUFFER, cfg.m_depthBufId);
+            glRenderbufferStorage(GL_RENDERBUFFER,
+                                  GL_DEPTH_COMPONENT16,
+                                  m_size.w, m_size.h);
+            glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT,
+                                      GL_RENDERBUFFER, cfg.m_depthBufId);
+        }
+        
         //-------------------------
         // Configure as render target
         //-------------------------
         // Set "renderedTexture" as our colour attachement #0
-//#if TARGET_OS_IPHONE
         glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_texId, 0);
-//#else
-//        glFramebufferTextureEXT(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, m_texId, 0);
-//#endif
-        // Set the list of draw buffers.
-        GLenum DrawBuffers[1] = {GL_COLOR_ATTACHMENT0};
 
-#if ANDROID	// Requre OpenGL ES3 for android. TODO: not yet GL3,
-        // but, maybe completely not needed. ( This code was for shader layout originaly)
+        //-------------------------
+        // Draw Buffer
+        //-------------------------
+        // TODO: Maybe completely not needed. ( This code was for shader layout originaly)
+#if ANDROID	// TODO: Requre OpenGL ES3 for android. TODO: not yet GL3,
 #else
+        GLenum DrawBuffers[1] = {GL_COLOR_ATTACHMENT0};
         glDrawBuffers(1, DrawBuffers); // "1" is the size of DrawBuffers
 #endif
+        //----------------------
+        // Restore Buffer
+        //-------------------------
         //---- Restore original frame buffer
         glBindFramebuffer(GL_FRAMEBUFFER, m_R2T_cfg.m_frmBufIdOri);
    
+        //----------------------
+        // Done
+        //-------------------------
          // Always check that our framebuffer is ok
         if(glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
             return false;
@@ -296,14 +304,28 @@ namespace Ic3d
     //------------------------------------------------
     void CTexAdpStd::startRenderOn()
     {
+        auto& cfg = m_R2T_cfg;
+        if(!cfg.m_isValid) return;
         //---- Note: this call should be at before glViewPort
-        glBindFramebuffer(GL_FRAMEBUFFER, m_R2T_cfg.m_frmBufId);
+        glBindFramebuffer(GL_FRAMEBUFFER, cfg.m_frmBufId);
+        
+        //---- DepthBuf
+        if(cfg.m_enDepth)
+            glBindRenderbuffer(GL_RENDERBUFFER, cfg.m_depthBufId);
+
+        
     }
     void CTexAdpStd::finishRenderOn()
     {
+        auto& cfg = m_R2T_cfg;
+        if(!cfg.m_isValid) return;
         glBindFramebuffer(GL_FRAMEBUFFER, m_R2T_cfg.m_frmBufIdOri);
-      //glBindFramebuffer(GL_FRAMEBUFFER, 0);
-    }
+        
+        //---- DepthBuf
+        if(cfg.m_enDepth)
+            glBindRenderbuffer(GL_RENDERBUFFER, cfg.m_depthBufIdOri);
+
+   }
 
 } // namespace Ic3d
 
