@@ -257,34 +257,38 @@ namespace Ic3d
         // Also need depth buffer
         //-------------------------
         // The depth buffer
-        /*
+        
         glGenRenderbuffers(1, &cfg.m_depthBufId);
         glBindRenderbuffer(GL_RENDERBUFFER, cfg.m_depthBufId);
         glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT,
                               m_size.w, m_size.h);
         glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER,
                                   cfg.m_depthBufId);
-         */
+        
         //-------------------------
         // Configure as render target
         //-------------------------
         // Set "renderedTexture" as our colour attachement #0
-//#if TARGET_OS_IPHONE
         glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_texId, 0);
-//#else
-//        glFramebufferTextureEXT(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, m_texId, 0);
-//#endif
-        // Set the list of draw buffers.
-        GLenum DrawBuffers[1] = {GL_COLOR_ATTACHMENT0};
 
-#if ANDROID	// Requre OpenGL ES3 for android. TODO: not yet GL3,
-        // but, maybe completely not needed. ( This code was for shader layout originaly)
+        //-------------------------
+        // Draw Buffer
+        //-------------------------
+        // TODO: Maybe completely not needed. ( This code was for shader layout originaly)
+#if ANDROID	// TODO: Requre OpenGL ES3 for android. TODO: not yet GL3,
 #else
+        GLenum DrawBuffers[1] = {GL_COLOR_ATTACHMENT0};
         glDrawBuffers(1, DrawBuffers); // "1" is the size of DrawBuffers
 #endif
+        //----------------------
+        // Restore Buffer
+        //-------------------------
         //---- Restore original frame buffer
         glBindFramebuffer(GL_FRAMEBUFFER, m_R2T_cfg.m_frmBufIdOri);
    
+        //----------------------
+        // Done
+        //-------------------------
          // Always check that our framebuffer is ok
         if(glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
             return false;
@@ -302,7 +306,6 @@ namespace Ic3d
     void CTexAdpStd::finishRenderOn()
     {
         glBindFramebuffer(GL_FRAMEBUFFER, m_R2T_cfg.m_frmBufIdOri);
-      //glBindFramebuffer(GL_FRAMEBUFFER, 0);
     }
 
 } // namespace Ic3d
