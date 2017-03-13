@@ -101,11 +101,11 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>../../../../IcEng/IcEngBuild/windows/dep/glWinLib/lib/$(Platform);../../../../IcEng/IcEngBuild/windows/lib/$(Platform)/$(Configuration)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../winDepLib/lib/$(Platform);../../../../IcEng/IcEngBuild/windows/lib/$(Platform)/$(Configuration)</AdditionalLibraryDirectories>
       <AdditionalDependencies>IcEngLib.lib;freeglut.lib;glew32s.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /Y /R /E /C /I  ..\..\..\IcEngBuild\windows\dep\glWinLib\dll\$(Platform)\*.dll  $(OutDir) </Command>
+      <Command>xcopy /Y /R /E /C /I  ..\winDepLib\dll\$(Platform)\*.dll  $(OutDir) </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -120,11 +120,11 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>../../../../IcEng/IcEngBuild/windows/dep/glWinLib/lib/$(Platform);../../../../IcEng/IcEngBuild/windows/lib/$(Platform)/$(Configuration)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../winDepLib/lib/$(Platform);../../../../IcEng/IcEngBuild/windows/lib/$(Platform)/$(Configuration)</AdditionalLibraryDirectories>
       <AdditionalDependencies>IcEngLib.lib;freeglut.lib;glew32s.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /Y /R /E /C /I  ..\..\..\IcEngBuild\windows\dep\glWinLib\dll\$(Platform)\*.dll  $(OutDir) </Command>
+      <Command>xcopy /Y /R /E /C /I  ..\winDepLib\dll\$(Platform)\*.dll  $(OutDir) </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -143,11 +143,11 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>../../../../IcEng/IcEngBuild/windows/dep/glWinLib/lib/$(Platform);../../../../IcEng/IcEngBuild/windows/lib/$(Platform)/$(Configuration)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../winDepLib/lib/$(Platform);../../../../IcEng/IcEngBuild/windows/lib/$(Platform)/$(Configuration)</AdditionalLibraryDirectories>
       <AdditionalDependencies>IcEngLib.lib;freeglut.lib;glew32s.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /Y /R /E /C /I  ..\..\..\IcEngBuild\windows\dep\glWinLib\dll\$(Platform)\*.dll  $(OutDir) </Command>
+      <Command>xcopy /Y /R /E /C /I  ..\winDepLib\dll\$(Platform)\*.dll  $(OutDir) </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -166,11 +166,11 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>../../../../IcEng/IcEngBuild/windows/dep/glWinLib/lib/$(Platform);../../../../IcEng/IcEngBuild/windows/lib/$(Platform)/$(Configuration)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../winDepLib/lib/$(Platform);../../../../IcEng/IcEngBuild/windows/lib/$(Platform)/$(Configuration)</AdditionalLibraryDirectories>
       <AdditionalDependencies>IcEngLib.lib;freeglut.lib;glew32s.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /Y /R /E /C /I  ..\..\..\IcEngBuild\windows\dep\glWinLib\dll\$(Platform)\*.dll  $(OutDir) </Command>
+      <Command>xcopy /Y /R /E /C /I  ..\winDepLib\dll\$(Platform)\*.dll  $(OutDir) </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -188,6 +188,7 @@
     <ClCompile Include="..\..\..\src\demo\DemoLights.cpp" />
     <ClCompile Include="..\..\..\src\demo\DemoModelCreate.cpp" />
     <ClCompile Include="..\..\..\src\demo\DemoNestedTrans.cpp" />
+    <ClCompile Include="..\..\..\src\demo\DemoRenderToTex.cpp" />
     <ClCompile Include="..\..\..\src\demo\DemoScene.cpp" />
     <ClCompile Include="..\..\..\src\demo\pc\main.cpp" />
     <ClCompile Include="stdafx.cpp" />
