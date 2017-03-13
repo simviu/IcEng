@@ -35,22 +35,32 @@ namespace Ic3d
 	//	onWindowSize()
 	//---------------------------------------------
 	void IcScene::onWindowSize(const ctl::TSize& winSize)
+    {
+        if(!m_cfg.m_enAutoResize) return;
+        //---- Recalc Scene Rect
+        const auto& w = winSize.w;
+        const auto& h = winSize.h;
+        const auto& rn = m_cfg.m_viewRectNorm;
+        TPos npos0 = TPos(rn.pos0.x * w, rn.pos0.y * h);
+        TPos npos1 = TPos(rn.pos1.x * w, rn.pos1.y * h);
+        TRect r{npos0, npos1};
+        setViewRect(r);
+        //---- Recursive call sub scenes
+        for(auto pScn : m_subScns.getAry())
+            pScn->onWindowSize(winSize);
+    }
+    //---------------------------------------------
+    //	setViewRect
+    //---------------------------------------------
+    void IcScene::setViewRect(const ctl::TRect& r)
 	{
-        const auto& sz = winSize;
-        logInfo("IcScene::onWindowSize() ["+
-                    v2s(sz.w) + "x"+ v2s(sz.h)+"]");
-        m_cfg.m_viewRect = TRect(TPos(0,0), sz);
+        logInfo("IcScene::setViewRect() ["+r.toStr()+"]");
+        m_cfg.m_viewRect = r;
         const auto& camCfg = m_cfg.m_camCfg;
         
         //---- TODO: move to drawUpdate()?
-		m_pCamera->setFrustum(sz, camCfg);
+		m_pCamera->setFrustum(r.getSize(), camCfg);
         
-        //---- Recursive call sub scenes
-        for(auto pScn : m_subScns.getAry())
-        {
-            if(pScn->m_cfg.m_enAutoResize)
-                pScn->onWindowSize(winSize);
-        }
 	}
     //---------------------------------------------
     //	setRenderToTexture
@@ -59,10 +69,9 @@ namespace Ic3d
     {
         if(pTex==nullptr) return;
         auto sz = pTex->getSize();
-        m_cfg.m_viewRect = TRect(TPos(0,0), sz);
+        setViewRect(TRect(TPos(0,0), sz));
         m_pTargetTex = pTex;
         pTex->setAsRenderTarget();
-        onWindowSize(sz);
         m_cfg.m_enAutoResize = false; // Disable auto resize
     };
 

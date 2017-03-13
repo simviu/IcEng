@@ -386,11 +386,12 @@ namespace Ic3d {
         struct TCfg
         {
             IcCamera::TCfg  m_camCfg;
-            ctl::TRect  m_viewRect;
             TFogPara    m_fogPara;
             bool        m_enClrScrn = false;
             TColor      m_bkColor{0.2,0.5,0.7,1.0};
             bool        m_enAutoResize = true;
+            ctl::TRect  m_viewRect;
+            ctl::TRect  m_viewRectNorm{0,0,1,1};    // Normalized view Rect
         };
         TCfg m_cfg;
         
@@ -399,7 +400,7 @@ namespace Ic3d {
         void setOnUpdatCallBack(TFuncOnUpdate func);
         void setRenderToTexture(ctl::Sp<IcTexture> pTex);
         void addSubScn(ctl::Sp<IcScene> pScn);
-
+        void setViewRect(const ctl::TRect& r);
 	protected:
 		virtual void onInit(){};
         void renderObjRecur(const IcCamera& cam,

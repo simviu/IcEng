@@ -70,10 +70,7 @@ namespace Ic3d
         //    based on normalized coordinator, etc.
         m_cfg.m_size = size;
         for(auto pScn : m_scnAry.getAry())
-        {
-            if(pScn->m_cfg.m_enAutoResize)
-                pScn->onWindowSize(size);
-        }
+            pScn->onWindowSize(size);
     }
     //-------------------------------------------
     //	initWindow()/releaseWindow()
