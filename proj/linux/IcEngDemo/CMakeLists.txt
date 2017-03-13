@@ -57,6 +57,7 @@ add_executable(IcEngDemo
 	${ICENGDEMO}/DemoBasic.cpp
 	${ICENGDEMO}/DemoLights.cpp
 	${ICENGDEMO}/DemoModelCreate.cpp
+	${ICENGDEMO}/DemoRenderToTex.cpp
 	${ICENGDEMO}/DemoNestedTrans.cpp
 	${ICENGDEMO}/DemoScene.cpp
 	)
