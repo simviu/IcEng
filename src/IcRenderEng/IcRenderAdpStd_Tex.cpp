@@ -234,7 +234,6 @@ namespace Ic3d
         //   m_size = calcValidSizeSquare(sizeIn);
         //---- Save original frame buffer
         glGetIntegerv(GL_FRAMEBUFFER_BINDING, &m_R2T_cfg.m_frmBufIdOri);
-        glGetIntegerv(GL_RENDERBUFFER_BINDING, &m_R2T_cfg.m_depthBufIdOri);
 
         //---- Gen FrameBuf
         auto& cfg = m_R2T_cfg;
@@ -254,15 +253,17 @@ namespace Ic3d
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 
-        //----------------------
+        //-------------------------
         // Also need depth buffer
         //-------------------------
         // The depth buffer
         if(cfg.m_enDepth)
         {
+            glGetIntegerv(GL_RENDERBUFFER_BINDING, &cfg.m_depthBufIdOri);
             glGenRenderbuffers(1, &cfg.m_depthBufId);
             glBindRenderbuffer(GL_RENDERBUFFER, cfg.m_depthBufId);
-            glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT,
+            glRenderbufferStorage(GL_RENDERBUFFER,
+                                  GL_DEPTH_COMPONENT16,
                                   m_size.w, m_size.h);
             glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT,
                                       GL_RENDERBUFFER, cfg.m_depthBufId);
@@ -303,13 +304,28 @@ namespace Ic3d
     //------------------------------------------------
     void CTexAdpStd::startRenderOn()
     {
+        auto& cfg = m_R2T_cfg;
+        if(!cfg.m_isValid) return;
         //---- Note: this call should be at before glViewPort
-        glBindFramebuffer(GL_FRAMEBUFFER, m_R2T_cfg.m_frmBufId);
+        glBindFramebuffer(GL_FRAMEBUFFER, cfg.m_frmBufId);
+        
+        //---- DepthBuf
+        if(cfg.m_enDepth)
+            glBindRenderbuffer(GL_RENDERBUFFER, cfg.m_depthBufId);
+
+        
     }
     void CTexAdpStd::finishRenderOn()
     {
+        auto& cfg = m_R2T_cfg;
+        if(!cfg.m_isValid) return;
         glBindFramebuffer(GL_FRAMEBUFFER, m_R2T_cfg.m_frmBufIdOri);
-    }
+        
+        //---- DepthBuf
+        if(cfg.m_enDepth)
+            glBindRenderbuffer(GL_RENDERBUFFER, cfg.m_depthBufIdOri);
+
+   }
 
 } // namespace Ic3d
 

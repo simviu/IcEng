@@ -198,7 +198,7 @@ namespace Ic3d
             unsigned int m_depthBufId = 0;
             int m_frmBufIdOri = 0; // The origin frame buffer to save
             int m_depthBufIdOri = 0; // The origin depth buffer to save
-            bool m_enDepth = false;
+            bool m_enDepth = true;
 
         };
         T_R2T_cfg m_R2T_cfg;
