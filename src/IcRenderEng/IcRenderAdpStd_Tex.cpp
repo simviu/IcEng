@@ -234,6 +234,7 @@ namespace Ic3d
         //   m_size = calcValidSizeSquare(sizeIn);
         //---- Save original frame buffer
         glGetIntegerv(GL_FRAMEBUFFER_BINDING, &m_R2T_cfg.m_frmBufIdOri);
+        glGetIntegerv(GL_RENDERBUFFER_BINDING, &m_R2T_cfg.m_depthBufIdOri);
 
         //---- Gen FrameBuf
         auto& cfg = m_R2T_cfg;
@@ -257,13 +258,15 @@ namespace Ic3d
         // Also need depth buffer
         //-------------------------
         // The depth buffer
-        
-        glGenRenderbuffers(1, &cfg.m_depthBufId);
-        glBindRenderbuffer(GL_RENDERBUFFER, cfg.m_depthBufId);
-        glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT,
-                              m_size.w, m_size.h);
-        glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER,
-                                  cfg.m_depthBufId);
+        if(cfg.m_enDepth)
+        {
+            glGenRenderbuffers(1, &cfg.m_depthBufId);
+            glBindRenderbuffer(GL_RENDERBUFFER, cfg.m_depthBufId);
+            glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT,
+                                  m_size.w, m_size.h);
+            glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT,
+                                      GL_RENDERBUFFER, cfg.m_depthBufId);
+        }
         
         //-------------------------
         // Configure as render target
