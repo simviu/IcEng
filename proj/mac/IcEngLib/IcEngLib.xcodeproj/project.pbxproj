@@ -35,6 +35,10 @@
 		9C5A2F241E53043500655840 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C5A2F221E53042C00655840 /* main.cpp */; };
 		9C8CC3E31DEE81ED002583F2 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CAE4F1F1DCB201B003F7B38 /* OpenGL.framework */; };
 		9C8CC3ED1DEE862D002583F2 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C8CC3EC1DEE862D002583F2 /* GLUT.framework */; };
+		9C9EC93E1E779C4F00A568B6 /* IcSceneVr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C9EC93A1E779C4F00A568B6 /* IcSceneVr.cpp */; };
+		9C9EC93F1E779C4F00A568B6 /* IcSceneVr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C9EC93A1E779C4F00A568B6 /* IcSceneVr.cpp */; };
+		9C9EC9421E779C4F00A568B6 /* IcWindowVr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C9EC93D1E779C4F00A568B6 /* IcWindowVr.cpp */; };
+		9C9EC9431E779C4F00A568B6 /* IcWindowVr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C9EC93D1E779C4F00A568B6 /* IcWindowVr.cpp */; };
 		9CAE4F201DCB201B003F7B38 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CAE4F1F1DCB201B003F7B38 /* OpenGL.framework */; };
 		9CF604951E24804C008A662C /* ctlBinBuf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF604641E24804B008A662C /* ctlBinBuf.cpp */; };
 		9CF604961E24804C008A662C /* ctlBinBuf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF604641E24804B008A662C /* ctlBinBuf.cpp */; };
@@ -274,10 +278,13 @@
 		9C3E25EF1E52E8B300B1C17E /* IcWinMngIOS.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcWinMngIOS.cpp; sourceTree = "<group>"; };
 		9C3E25F11E52E8B300B1C17E /* IcAppPC.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcAppPC.cpp; sourceTree = "<group>"; };
 		9C3E26011E52ED0B00B1C17E /* IcApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcApp.cpp; sourceTree = "<group>"; };
-		9C53F6BB1DCB14FB006EAF17 /* libIcEngLib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIcEngLib.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C53F6BB1DCB14FB006EAF17 /* libIcEngLib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libIcEngLib.a; path = libIcEng.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C5A2F221E53042C00655840 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		9C8CC3AE1DEE8115002583F2 /* IcEngTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = IcEngTest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C8CC3EC1DEE862D002583F2 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
+		9C9EC93A1E779C4F00A568B6 /* IcSceneVr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcSceneVr.cpp; sourceTree = "<group>"; };
+		9C9EC93D1E779C4F00A568B6 /* IcWindowVr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcWindowVr.cpp; sourceTree = "<group>"; };
+		9C9EC9461E77AE7000A568B6 /* IcVR.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IcVR.h; sourceTree = "<group>"; };
 		9CAE4F1F1DCB201B003F7B38 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		9CF604641E24804B008A662C /* ctlBinBuf.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ctlBinBuf.cpp; sourceTree = "<group>"; };
 		9CF604651E24804B008A662C /* ctlImg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ctlImg.cpp; sourceTree = "<group>"; };
@@ -651,6 +658,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		9C9EC9391E779C4F00A568B6 /* IcVR */ = {
+			isa = PBXGroup;
+			children = (
+				9C9EC93A1E779C4F00A568B6 /* IcSceneVr.cpp */,
+				9C9EC93D1E779C4F00A568B6 /* IcWindowVr.cpp */,
+			);
+			path = IcVR;
+			sourceTree = "<group>";
+		};
 		9CAE4F1E1DCB201B003F7B38 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -663,6 +679,7 @@
 		9CF604621E24804B008A662C /* src */ = {
 			isa = PBXGroup;
 			children = (
+				9C9EC9391E779C4F00A568B6 /* IcVR */,
 				9C3E25E61E52E8B300B1C17E /* IcApp */,
 				9CF604631E24804B008A662C /* ctl */,
 				9CF6046C1E24804B008A662C /* Ic3d */,
@@ -735,6 +752,7 @@
 		9CF604E71E248125008A662C /* inc */ = {
 			isa = PBXGroup;
 			children = (
+				9C9EC9461E77AE7000A568B6 /* IcVR.h */,
 				9CF604E81E248125008A662C /* core */,
 				9CF604EE1E248125008A662C /* ctl.h */,
 				9CF604EF1E248125008A662C /* glm */,
@@ -1296,6 +1314,8 @@
 				9CF604A51E24804C008A662C /* Ic3d.cpp in Sources */,
 				9CF6049D1E24804C008A662C /* ctlTest.cpp in Sources */,
 				9CF6060A1E248125008A662C /* glm.cpp in Sources */,
+				9C9EC93E1E779C4F00A568B6 /* IcSceneVr.cpp in Sources */,
+				9C9EC9421E779C4F00A568B6 /* IcWindowVr.cpp in Sources */,
 				9CF604CB1E24804C008A662C /* IcRenderEngText.cpp in Sources */,
 				9CF604CD1E24804C008A662C /* IcShader.cpp in Sources */,
 				9CF604BD1E24804C008A662C /* IcUtil.cpp in Sources */,
@@ -1337,6 +1357,7 @@
 				9CF604C21E24804C008A662C /* IcRenderAdpStd.cpp in Sources */,
 				9C3E25F91E52E8B300B1C17E /* IcWinMng.cpp in Sources */,
 				9C5A2F241E53043500655840 /* main.cpp in Sources */,
+				9C9EC93F1E779C4F00A568B6 /* IcSceneVr.cpp in Sources */,
 				9CF604A61E24804C008A662C /* Ic3d.cpp in Sources */,
 				9CF6049E1E24804C008A662C /* ctlTest.cpp in Sources */,
 				9CF604CC1E24804C008A662C /* IcRenderEngText.cpp in Sources */,
@@ -1366,6 +1387,7 @@
 				9CF604A41E24804C008A662C /* lodepng.cpp in Sources */,
 				9CF604A01E24804C008A662C /* ctlTest_img.cpp in Sources */,
 				9CF604B61E24804C008A662C /* IcModelLoaderObj.cpp in Sources */,
+				9C9EC9431E779C4F00A568B6 /* IcWindowVr.cpp in Sources */,
 				9CF604A21E24804C008A662C /* ctlUtil.cpp in Sources */,
 				9CF604C61E24804C008A662C /* IcRenderAdpStd_Tex.cpp in Sources */,
 				9C33E5231E3F4CF600DEC713 /* IcText.cpp in Sources */,
