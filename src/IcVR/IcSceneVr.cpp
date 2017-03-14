@@ -1,93 +1,76 @@
 //
-//  IcSceneVr.cpp
+//  IcSceneVR.cpp
 //  IcEngLib
 //
-//  Created by Sherman Chen on 1/19/17.
-//  Copyright (c) 2016 Simviu Technology Inc.
+//  Created by Sherman Chen on 3/14/17.
+//  Copyright (c) 2017 Simviu Technology Inc.
 //  All rights reserved.
 //  http://www.simviu.com/dev
 //
+//
 
-#include "IcVR.h"
 
-namespace Ic3d {
+
+#include "Ic3d.h"
+
+namespace Ic3d
+{
     using namespace ctl;
     using namespace std;
-    const static bool  K_dbgEnCamObj = false; // Display a cube infront of eye
-    const static float K_dbgCamObjFwd = 0.3; // eye L/R distance
-    const static TVec3 K_dbgCamObjSz(0.01, 0.01, 0.01);
-    const static float K_camDist = 0.1; // eye L/R distance
+    //--------------------------------------
+    // VRScnMain
+    //--------------------------------------
+    void IcWindowVR::VRScnMain::onInit()
+    {
+        IcScene::onInit();
+    }
+    void IcWindowVR::VRScnMain::setVRTex(ctl::Sp<IcTexture> pTexL,
+                                         ctl::Sp<IcTexture> pTexR)
+    {
+        m_pTex[0] = pTexL;
+        m_pTex[1] = pTexR;
+    }
+    void IcWindowVR::VRScnMain::onDraw()
+    {
+        //---- Draw L/R, onto different Tex
+        for(int i=0;i<2;i++)
+        {
+            setRenderToTexture(m_pTex[i]);
+            IcScene::onDraw();
+        }
+    }
+    //--------------------------------------
+    // VRScnDisp
+    //--------------------------------------
+    void IcWindowVR::VRScnDisp::onInit()
+    {
+        IcScene::onInit();
+        const static float w = 1;
+        const static float z = 1;
+        //---- Create Distortion Mesh
+        IcMeshData mshd; mshd.createPlaneXZ(TRect(-w/2,-w/2,w,w));
+        m_pDistMesh = makeSp<IcMesh>(mshd);
+        
+        //---- Create display distortion plane
+        for(int i=0;i<2;i++)
+        {
+            auto pObj = makeSp<IcObject>();
+            pObj->setPos(TVec3(-w/2, 0, -z));
+            m_pObjPlane[i] = pObj;
+            addObj(pObj);
+        }
+    }
+    void IcWindowVR::VRScnDisp::setVRTex(ctl::Sp<IcTexture> pTexL,
+                                         ctl::Sp<IcTexture> pTexR)
+    {
+        for(int i=0;i<2;i++)
+        {
+            auto pTex = (i==0)? pTexL : pTexR;
+            auto pModel = makeSp<IcModel>();
+            pModel->setMesh(m_pDistMesh);
+            pModel->setTexture(pTex);
+            m_pObjPlane[i]->setModel(pModel);
+        }
+    }
   
-    //---------------------------------------
-    //  VrCamMng::onInit
-    //---------------------------------------
-    void IcSceneVr::VrCamMng::setScnCam(TCamSp pCam)
-    {
-        m_pCam = pCam;
-        
-        //---- Build Dbg Obj
-        if(K_dbgEnCamObj)
-        {
-            IcMeshData mshd; mshd.createCube(K_dbgCamObjSz, TVec3(0,0,0));
-            auto pModel = ctl::makeSp<IcModel>(mshd);
-            m_pDbgObj = ctl::makeSp<IcObject>(pModel);
-        }
-    }
-    //---------------------------------------
-    //  VrCamMng::updateCam
-    //---------------------------------------
-    void IcSceneVr::VrCamMng::updateCam(const Ic3d::TVec3& camPos,
-                                        const Ic3d::TQuat& camRot)
-    {
-        
-        //---- Set Camera
-        float dv = (m_isLeft)? -K_camDist/2 : K_camDist/2;  // L/R
-        TVec3 dpos = TVec3(dv,0,0);
-        auto& cam = *m_pCam;
-        dpos = camRot * dpos;
-        dpos += camPos;
-        cam.setPos(dpos);
-        cam.setQuat(camRot);
-        //cam.lookAt(posLookAt, upVec);  // tmp debug
-        cam.updateViewMat();
-        
-        //---- For dbg
-        if(K_dbgEnCamObj && m_pDbgObj!=nullptr)
-        {
-            TVec3 dbgPos(0,0,-K_dbgCamObjFwd);    // In front of eyes;
-            dbgPos = camRot * dbgPos;
-            dbgPos += dpos;
-            m_pDbgObj->setPos(dbgPos);
-        }
-    }
-    //---------------------------------------
-    //  IcSceneVr::IcSceneVr
-    //---------------------------------------
-    IcSceneVr::IcSceneVr(bool isLeft):
-        IcSceneVr_IF(isLeft),
-        m_camMng(isLeft)
-    {
-        auto pCam = getCamera();
-        m_camMng.setScnCam(pCam);
-    }
-
-    //---------------------------------------
-    //  VrCamMng::onInit
-    //---------------------------------------
-    void IcSceneVr::onInit()
-    {
-        IcSceneVr_IF::onInit();
-        //---- Debug
-        if(K_dbgEnCamObj)
-            addObj(m_camMng.getDbgObj());
-    }
-    //---------------------------------------
-    //  VrCamMng::onInit
-    //---------------------------------------
-    void IcSceneVr::updateCam(const Ic3d::TVec3& camPos,
-                              const Ic3d::TQuat& camRot)
-    {
-        m_camMng.updateCam(camPos, camRot);
-    }
-
 }

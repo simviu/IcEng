@@ -9,7 +9,7 @@
 #ifndef VRDemoApp_hpp
 #define VRDemoApp_hpp
 
-#include "IcVR.h"
+#include "Ic3d.h"
 
 //--------------------------------------
 //  VRDemoApp

@@ -59,6 +59,7 @@ void DemoRenderToTex::onInit()
         
         //---- Set to render Texture
         auto pTex = makeSp<IcTexture>(TSize(2048, 2048));
+        pTex->setAsRenderTarget();
         pScn->setRenderToTexture(pTex);
         m_pRenderTex = pTex;
         addSubScn(pScn);

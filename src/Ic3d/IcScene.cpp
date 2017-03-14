@@ -54,7 +54,6 @@ namespace Ic3d
     //---------------------------------------------
     void IcScene::setViewRect(const ctl::TRect& r)
 	{
-        logInfo("IcScene::setViewRect() ["+r.toStr()+"]");
         m_cfg.m_viewRect = r;
         const auto& camCfg = m_cfg.m_camCfg;
         
@@ -71,8 +70,8 @@ namespace Ic3d
         auto sz = pTex->getSize();
         setViewRect(TRect(TPos(0,0), sz));
         m_pTargetTex = pTex;
-        pTex->setAsRenderTarget();
-        m_cfg.m_enAutoResize = false; // Disable auto resize
+    //    pTex->setAsRenderTarget();    // call this outside
+    //    m_cfg.m_enAutoResize = false; // Disable auto resize, set outside
     };
 
     /*

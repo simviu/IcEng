@@ -104,20 +104,8 @@ namespace Ic3d {
 		ctl::Sp<CRenderAdp::CTexAdp>	m_pRenderAdp = nullptr;
 		bool m_isValid = false;
 	};
+ 
     //-----------------------------------------
-    //	IcRenderTexture
-    //-----------------------------------------
-    class IcRenderTexture : public IcTexture
-    {
-    public:
-        IcRenderTexture();
-        using IcTexture::IcTexture;
-        void startRenderOn();
-        void finsihRenderOn();
-    };
-	
-	
-	//-----------------------------------------
 	//	IcMesh
 	//-----------------------------------------
 	// A Mesh is part of model (sub-object) with
@@ -525,6 +513,55 @@ namespace Ic3d {
         std::atomic<bool>   m_hasInit{false};
   
     };
+ 
+    //-----------------------------------------------
+    //	IcWindowVR
+    //-----------------------------------------------
+    class IcWindowVR : public IcWindow
+    {
+    public:
+        virtual void onInit() override;
+        virtual void onWindowSize(const ctl::TSize& winSize) override;
+        //-----------------------
+        //	VRScnMain
+        //-----------------------
+        class VRScnMain : public IcScene
+        {
+        public:
+            virtual void onInit() override;
+            virtual void onDraw() override;
+            void setVRTex(ctl::Sp<IcTexture> pTexL,
+                          ctl::Sp<IcTexture> pTexR);
+        protected:
+            //---- The render target texture of L/R
+            ctl::Sp<IcTexture> m_pTex[2]{nullptr, nullptr};
+            void renderOneSide(bool isR);
+        };
+        //-----------------------
+        //	VRScnDisp
+        //-----------------------
+        //---- A display Scene contain 2 quad,
+        // use rendered texture from main scene
+        class VRScnDisp : public IcScene
+        {
+        public:
+            virtual void onInit() override;
+            void setVRTex(ctl::Sp<IcTexture> pTexL,
+                          ctl::Sp<IcTexture> pTexR);
+        protected:
+            //---- Distortion mesh
+            ctl::Sp<IcMesh> m_pDistMesh = nullptr;
+            ctl::Sp<IcObject> m_pObjPlane[2]{nullptr, nullptr};
+        };
+        void setMainScn(ctl::Sp<VRScnMain> pScn);
+        
+    protected:
+        ctl::Sp<VRScnMain>      m_pScnMain = nullptr;
+        ctl::Sp<VRScnDisp>      m_pScnDisp = nullptr;
+
+    };
+    
+
     //-----------------------------------------------
     //	IcApp
     //-----------------------------------------------
