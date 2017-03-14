@@ -33,9 +33,11 @@ public:
         auto pObj   = ctl::makeSp<IcObject>(pModel);
         // Add this obj to Scene, will be rendered
         addObj(pObj);
-        
-
-        
+ 
+    };
+    virtual void onDraw() override
+    {
+        VRScnMain::onDraw();
     };
 };
 
@@ -50,6 +52,6 @@ void VRDemoApp::onInit()
     
     auto pWin = makeSp<IcWindowVR>();
     auto pScn = makeSp<VRDemoScn>();
-    pWin->setMainScn(pScn);
+    pWin->initWithMainScn(pScn);
     addWindow(pWin);
 }

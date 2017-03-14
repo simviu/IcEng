@@ -206,7 +206,6 @@ namespace Ic3d
 		//---- Texture Adp
 		struct CTexAdp {
             CTexAdp(){};
-            CTexAdp(const ctl::TSize& sz):m_size(sz){};
 			virtual void render() const{};
             bool isValid() const{ return m_isValid; };
 

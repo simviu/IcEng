@@ -24,18 +24,15 @@ namespace Ic3d
     {
         IcScene::onInit();
     }
-    void IcWindowVR::VRScnMain::setVRTex(ctl::Sp<IcTexture> pTexL,
-                                         ctl::Sp<IcTexture> pTexR)
-    {
-        m_pTex[0] = pTexL;
-        m_pTex[1] = pTexR;
-    }
+ 
     void IcWindowVR::VRScnMain::onDraw()
     {
+        if(m_pCntxt==nullptr) return;
         //---- Draw L/R, onto different Tex
         for(int i=0;i<2;i++)
         {
-            setRenderToTexture(m_pTex[i]);
+            auto pTex = m_pCntxt->getTex(i);
+            setRenderToTexture(pTex);
             IcScene::onDraw();
         }
     }
@@ -45,6 +42,14 @@ namespace Ic3d
     void IcWindowVR::VRScnDisp::onInit()
     {
         IcScene::onInit();
+     }
+    //--------------------------------------
+    //  VRScnDisp
+    //--------------------------------------
+    void IcWindowVR::VRScnDisp::reInit()
+    {
+        if(m_pCntxt==nullptr) return;
+        clearObjs();
         const static float w = 1;
         const static float z = 1;
         //---- Create Distortion Mesh
@@ -54,23 +59,21 @@ namespace Ic3d
         //---- Create display distortion plane
         for(int i=0;i<2;i++)
         {
-            auto pObj = makeSp<IcObject>();
-            pObj->setPos(TVec3(-w/2, 0, -z));
-            m_pObjPlane[i] = pObj;
-            addObj(pObj);
-        }
-    }
-    void IcWindowVR::VRScnDisp::setVRTex(ctl::Sp<IcTexture> pTexL,
-                                         ctl::Sp<IcTexture> pTexR)
-    {
-        for(int i=0;i<2;i++)
-        {
-            auto pTex = (i==0)? pTexL : pTexR;
+            auto pTex = m_pCntxt->getTex(i);
             auto pModel = makeSp<IcModel>();
             pModel->setMesh(m_pDistMesh);
             pModel->setTexture(pTex);
-            m_pObjPlane[i]->setModel(pModel);
+            auto pObj = makeSp<IcObject>(pModel);
+            pObj->setPos(TVec3(-w/2, 0, -z));
+            m_pObjPlane[i]=pObj;
+            addObj(pObj);
         }
+        //---- Set Camera
+        auto& cam = *getCamera();
+        cam.setPos(TVec3(0,5,0));
+        cam.lookAt(TVec3(0,0,0), TVec3(0,0,1));
+        
     }
-  
+    
+ 
 }

@@ -523,6 +523,21 @@ namespace Ic3d {
         virtual void onInit() override;
         virtual void onWindowSize(const ctl::TSize& winSize) override;
         //-----------------------
+        //	VRContext
+        //-----------------------
+        // VR related data is here
+        class VRContext
+        {
+        protected:
+            //---- The render target texture of L/R
+            ctl::Sp<IcTexture> m_pTex[2]{nullptr, nullptr};
+        public:
+            decltype(m_pTex[0]) getTex(bool isR) { return m_pTex[isR]; };
+            void onWindowSize(const ctl::TSize& winSize);
+        };
+        typedef ctl::Sp<VRContext> T_VRCntxSp;
+        T_VRCntxSp m_pVRContext{ctl::makeSp<VRContext>()};
+        //-----------------------
         //	VRScnMain
         //-----------------------
         class VRScnMain : public IcScene
@@ -530,11 +545,9 @@ namespace Ic3d {
         public:
             virtual void onInit() override;
             virtual void onDraw() override;
-            void setVRTex(ctl::Sp<IcTexture> pTexL,
-                          ctl::Sp<IcTexture> pTexR);
-        protected:
-            //---- The render target texture of L/R
-            ctl::Sp<IcTexture> m_pTex[2]{nullptr, nullptr};
+            void setContext(T_VRCntxSp p){m_pCntxt = p;};
+       protected:
+            T_VRCntxSp m_pCntxt = nullptr;
             void renderOneSide(bool isR);
         };
         //-----------------------
@@ -546,14 +559,16 @@ namespace Ic3d {
         {
         public:
             virtual void onInit() override;
-            void setVRTex(ctl::Sp<IcTexture> pTexL,
-                          ctl::Sp<IcTexture> pTexR);
+            void setContext(T_VRCntxSp p){m_pCntxt = p;};
+            void reInit();
+
         protected:
+            T_VRCntxSp m_pCntxt = nullptr;
             //---- Distortion mesh
             ctl::Sp<IcMesh> m_pDistMesh = nullptr;
             ctl::Sp<IcObject> m_pObjPlane[2]{nullptr, nullptr};
-        };
-        void setMainScn(ctl::Sp<VRScnMain> pScn);
+       };
+        void initWithMainScn(ctl::Sp<VRScnMain> pScn);
         
     protected:
         ctl::Sp<VRScnMain>      m_pScnMain = nullptr;
