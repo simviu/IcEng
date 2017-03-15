@@ -40,6 +40,20 @@ public:
         VRScnMain::onDraw();
     };
 };
+//--------------------------------------
+//  VRDemoWin
+//--------------------------------------
+class VRDemoWin : public IcWindowVR
+{
+public:
+    virtual void onInit() override
+    {
+        IcWindowVR::onInit();
+        auto pScn = makeSp<VRDemoScn>();
+        initWithMainScn(pScn);
+    };
+};
+
 
 
 //--------------------------------------
@@ -51,7 +65,5 @@ void VRDemoApp::onInit()
     l_sPathRes = m_cfg.m_sPathRes;
     
     auto pWin = makeSp<IcWindowVR>();
-    auto pScn = makeSp<VRDemoScn>();
-    pWin->initWithMainScn(pScn);
     addWindow(pWin);
 }

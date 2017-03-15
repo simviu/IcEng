@@ -504,7 +504,7 @@ namespace Ic3d {
     protected:
         //---- Derive onInit() to create/add your scenes.
         virtual void onInit();
-		//---- Derive onRelease to release openGL res, usually that's not necessary.
+ 		//---- Derive onRelease to release openGL res, usually that's not necessary.
 		// It's automatically handled by IcWindow::onRelease()
 		virtual void onRelease();
 		ctl::SpAry<IcScene> m_scnAry;

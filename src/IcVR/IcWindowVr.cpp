@@ -25,7 +25,7 @@ namespace Ic3d
         float w = winSize.w;
         float h = winSize.h;
         
-       //---- Only orientation landscape is OK for VR L/R screen
+        //---- Only orientation landscape is OK for VR L/R screen
         if(w<h) return;
         float l = w/2;
         if(l<h) l= h;   // biggest as possible even cropped
@@ -43,9 +43,6 @@ namespace Ic3d
     void IcWindowVR::onInit()
     {
         IcWindow::onInit();
-        if(m_pVRContext!=nullptr)
-            m_pVRContext->onWindowSize(m_cfg.m_size);
-        m_pScnDisp->reInit();
         
 
     }
@@ -70,7 +67,10 @@ namespace Ic3d
     void IcWindowVR::onWindowSize(const ctl::TSize& winSize)
     {
        IcWindow::onWindowSize(winSize);
-   
+        if(m_pVRContext!=nullptr)
+            m_pVRContext->onWindowSize(m_cfg.m_size);
+        m_pScnDisp->reInit();
+        
     }
    
 }
