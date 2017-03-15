@@ -35,10 +35,7 @@ public:
         addObj(pObj);
  
     };
-    virtual void onDraw() override
-    {
-        VRScnMain::onDraw();
-    };
+ 
 };
 //--------------------------------------
 //  VRDemoWin

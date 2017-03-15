@@ -521,7 +521,6 @@ namespace Ic3d {
     {
     public:
         virtual void onInit() override;
-        virtual void onWindowSize(const ctl::TSize& winSize) override;
         //-----------------------
         //	VRContext
         //-----------------------

@@ -58,15 +58,5 @@ namespace Ic3d
         m_pScnMain->setContext(m_pVRContext);
         m_pScnDisp->setContext(m_pVRContext);
    }
-    //--------------------------------------
-    //  onWindowSize
-    //--------------------------------------
-    void IcWindowVR::onWindowSize(const ctl::TSize& winSize)
-    {
-        if(m_pVRContext==nullptr) return;
-        m_pVRContext->onWindowSize(winSize);
-        
-        IcWindow::onWindowSize(winSize);
-    }
    
 }

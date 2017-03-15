@@ -46,6 +46,10 @@ namespace Ic3d
     void IcWindowVR::VRScnDisp::onWindowSize(const ctl::TSize& winSize)
     {
         IcScene::onWindowSize(winSize);
+        
+        if(m_pCntxt==nullptr) return;
+        m_pCntxt->onWindowSize(winSize);
+        
         reInit();
     }
     //--------------------------------------
@@ -56,7 +60,7 @@ namespace Ic3d
         if(m_pCntxt==nullptr) return;
         clearObjs();
         const static float w = 1;
-        const static float z = 1;
+        const static float h = 2;
         //---- Create Distortion Mesh
         IcMeshData mshd; mshd.createPlaneXZ(TRect(-w/2,-w/2,w,w));
         m_pDistMesh = makeSp<IcMesh>(mshd);
@@ -69,14 +73,14 @@ namespace Ic3d
             pModel->setMesh(m_pDistMesh);
             pModel->setTexture(pTex);
             auto pObj = makeSp<IcObject>(pModel);
-            pObj->setPos(TVec3(-w/2, 0, -z));
+            pObj->setPos(TVec3(w*((float)i-0.5), 0, 0));
             m_pObjPlane[i]=pObj;
             addObj(pObj);
         }
         //---- Set Camera
         auto& cam = *getCamera();
-        cam.setPos(TVec3(0,5,0));
-        cam.lookAt(TVec3(0,0,0), TVec3(0,0,1));
+        cam.setPos(TVec3(0,h,0));
+        cam.lookAt(TVec3(0,0,0), TVec3(0,0,-1));
         
     }
     
