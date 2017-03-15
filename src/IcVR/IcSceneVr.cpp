@@ -19,6 +19,7 @@ namespace Ic3d
     using namespace std;
     const static float K_dispQuad_w = 1;
     const static float K_dispCamHeight = 2; // Temp, TODO: change to ortho cam view
+    const static float K_camDist = 0.1; // eye L/R distance
     //--------------------------------------
     // VRScnMain
     //--------------------------------------
@@ -31,12 +32,26 @@ namespace Ic3d
     {
         if(m_pCntxt==nullptr) return;
         //---- Draw L/R, onto different Tex
+        auto& cam = *getCamera();
+        const TVec3 camPosOri = cam.getPos();
+        const TQuat camRot = cam.getQuat();
         for(int i=0;i<2;i++)
         {
+            //---- Update Tex
             auto pTex = m_pCntxt->getTex(i);
             setRenderToTexture(pTex);
+            
+            //---- Shift cam pos L/R a little
+            float dv = (i==0)? -K_camDist/2 : K_camDist/2;  // L/R
+            TVec3 dpos = TVec3(dv,0,0);
+            dpos = camRot * dpos;
+            dpos += camPosOri;
+            cam.setPos(dpos);
+            cam.updateViewMat();
+            //---- Draw one side
             IcScene::onDraw();
         }
+        cam.setPos(camPosOri);
     }
     //--------------------------------------
     // VRScnDisp
