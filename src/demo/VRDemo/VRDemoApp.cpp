@@ -64,6 +64,6 @@ void VRDemoApp::onInit()
     IcApp::onInit();
     l_sPathRes = m_cfg.m_sPathRes;
     
-    auto pWin = makeSp<IcWindowVR>();
+    auto pWin = makeSp<VRDemoWin>();
     addWindow(pWin);
 }

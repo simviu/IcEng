@@ -20,7 +20,6 @@ namespace Ic3d
     //--------------------------------------
     void IcWindowVR::VRContext::onWindowSize(const ctl::TSize& winSize)
     {
-        
         //---- Create Render To Tex
         float w = winSize.w;
         float h = winSize.h;
@@ -43,8 +42,6 @@ namespace Ic3d
     void IcWindowVR::onInit()
     {
         IcWindow::onInit();
-        
-
     }
     //--------------------------------------
     //  setMainScn
@@ -66,11 +63,10 @@ namespace Ic3d
     //--------------------------------------
     void IcWindowVR::onWindowSize(const ctl::TSize& winSize)
     {
-       IcWindow::onWindowSize(winSize);
-        if(m_pVRContext!=nullptr)
-            m_pVRContext->onWindowSize(m_cfg.m_size);
-        m_pScnDisp->reInit();
+        if(m_pVRContext==nullptr) return;
+        m_pVRContext->onWindowSize(winSize);
         
+        IcWindow::onWindowSize(winSize);
     }
    
 }

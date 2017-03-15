@@ -43,6 +43,11 @@ namespace Ic3d
     {
         IcScene::onInit();
      }
+    void IcWindowVR::VRScnDisp::onWindowSize(const ctl::TSize& winSize)
+    {
+        IcScene::onWindowSize(winSize);
+        reInit();
+    }
     //--------------------------------------
     //  VRScnDisp
     //--------------------------------------
