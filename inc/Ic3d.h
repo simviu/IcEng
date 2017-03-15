@@ -104,20 +104,8 @@ namespace Ic3d {
 		ctl::Sp<CRenderAdp::CTexAdp>	m_pRenderAdp = nullptr;
 		bool m_isValid = false;
 	};
+ 
     //-----------------------------------------
-    //	IcRenderTexture
-    //-----------------------------------------
-    class IcRenderTexture : public IcTexture
-    {
-    public:
-        IcRenderTexture();
-        using IcTexture::IcTexture;
-        void startRenderOn();
-        void finsihRenderOn();
-    };
-	
-	
-	//-----------------------------------------
 	//	IcMesh
 	//-----------------------------------------
 	// A Mesh is part of model (sub-object) with
@@ -516,7 +504,7 @@ namespace Ic3d {
     protected:
         //---- Derive onInit() to create/add your scenes.
         virtual void onInit();
-		//---- Derive onRelease to release openGL res, usually that's not necessary.
+ 		//---- Derive onRelease to release openGL res, usually that's not necessary.
 		// It's automatically handled by IcWindow::onRelease()
 		virtual void onRelease();
 		ctl::SpAry<IcScene> m_scnAry;
@@ -525,6 +513,70 @@ namespace Ic3d {
         std::atomic<bool>   m_hasInit{false};
   
     };
+ 
+    //-----------------------------------------------
+    //	IcWindowVR
+    //-----------------------------------------------
+    class IcWindowVR : public IcWindow
+    {
+    public:
+        virtual void onInit() override;
+        virtual void onWindowSize(const ctl::TSize& winSize) override;
+        //-----------------------
+        //	VRContext
+        //-----------------------
+        // VR related data is here
+        class VRContext
+        {
+        protected:
+            //---- The render target texture of L/R
+            ctl::Sp<IcTexture> m_pTex[2]{nullptr, nullptr};
+        public:
+            decltype(m_pTex[0]) getTex(bool isR) { return m_pTex[isR]; };
+            void onWindowSize(const ctl::TSize& winSize);
+        };
+        typedef ctl::Sp<VRContext> T_VRCntxSp;
+        T_VRCntxSp m_pVRContext{ctl::makeSp<VRContext>()};
+        //-----------------------
+        //	VRScnMain
+        //-----------------------
+        class VRScnMain : public IcScene
+        {
+        public:
+            virtual void onInit() override;
+            virtual void onDraw() override;
+            void setContext(T_VRCntxSp p){m_pCntxt = p;};
+       protected:
+            T_VRCntxSp m_pCntxt = nullptr;
+            void renderOneSide(bool isR);
+        };
+        //-----------------------
+        //	VRScnDisp
+        //-----------------------
+        //---- A display Scene contain 2 quad,
+        // use rendered texture from main scene
+        class VRScnDisp : public IcScene
+        {
+        public:
+            virtual void onInit() override;
+            void setContext(T_VRCntxSp p){m_pCntxt = p;};
+            void reInit();
+
+        protected:
+            T_VRCntxSp m_pCntxt = nullptr;
+            //---- Distortion mesh
+            ctl::Sp<IcMesh> m_pDistMesh = nullptr;
+            ctl::Sp<IcObject> m_pObjPlane[2]{nullptr, nullptr};
+       };
+        void initWithMainScn(ctl::Sp<VRScnMain> pScn);
+        
+    protected:
+        ctl::Sp<VRScnMain>      m_pScnMain = nullptr;
+        ctl::Sp<VRScnDisp>      m_pScnDisp = nullptr;
+
+    };
+    
+
     //-----------------------------------------------
     //	IcApp
     //-----------------------------------------------

@@ -142,6 +142,7 @@ namespace Ic3d
     public:
         using CTexAdp::CTexAdp;
         CTexAdpStd(const std::string& fname){ loadFile(fname); };
+        CTexAdpStd(const ctl::TSize& sz);
         CTexAdpStd(){};
         CTexAdpStd(const ctl::IcImg& img);
         virtual ~CTexAdpStd();

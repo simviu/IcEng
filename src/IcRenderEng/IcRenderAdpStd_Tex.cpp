@@ -45,7 +45,14 @@ namespace Ic3d
         importFromBuf(img.size(), img.getBuf());
 		putTexIntoGL();
 	}
-	
+    //----------------------------------------------------
+    //	CTexAdpStd
+    //----------------------------------------------------
+    CTexAdpStd::CTexAdpStd(const ctl::TSize& sz)
+    {
+        m_size = calcValidSizeSquare(sz);
+    }
+
 	//----------------------------------------------------
 	//	loadFile
 	//----------------------------------------------------
