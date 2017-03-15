@@ -260,6 +260,7 @@ namespace Ic3d {
 		IcCamera(){};
 		virtual ~IcCamera(){};
 		void drawObj(const IcObject& rootObj) const;
+        // TODO: 1) let it auto, 2) Mat valid bit in IcObject::setPos/Quat/Scale
         void updateViewMat();
         //---- Camera Cfg
         struct TCfg
@@ -521,6 +522,8 @@ namespace Ic3d {
     {
     public:
         virtual void onInit() override;
+        virtual void onMouseMove(int x, int y) override;
+
         //-----------------------
         //	VRContext
         //-----------------------
@@ -567,12 +570,27 @@ namespace Ic3d {
             //---- Distortion mesh
             ctl::Sp<IcMesh> m_pDistMesh = nullptr;
             ctl::Sp<IcObject> m_pObjPlane[2]{nullptr, nullptr};
-       };
+        };
         void initWithMainScn(ctl::Sp<VRScnMain> pScn);
         
+    //-----------------------
     protected:
         ctl::Sp<VRScnMain>      m_pScnMain = nullptr;
         ctl::Sp<VRScnDisp>      m_pScnDisp = nullptr;
+        //------------------------
+        //  MouseHelper
+        //------------------------
+        // simulate cam tilte by mouse
+        class CMouseHelper
+        {
+        public:
+            TQuat onMouseMove(int x, int y);
+        protected:
+            TEuler  m_camAtt;
+            TVec2   m_mousePrevPos;
+            bool    m_isFirst = true;
+        };
+        CMouseHelper m_mouseHelper;
 
     };
     

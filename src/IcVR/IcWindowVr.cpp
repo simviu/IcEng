@@ -15,6 +15,27 @@ namespace Ic3d
     using namespace ctl;
     using namespace std;
     
+    const static TEuler K_mouseCoef{0.02,0.02,0.02};
+
+    //---------------------------------------
+    //  IcWindowVR::CMouseHelper
+    //---------------------------------------
+    TQuat IcWindowVR::CMouseHelper::onMouseMove(int x, int y)
+    {
+        TVec2 pos(x,y);
+        if(m_isFirst) m_mousePrevPos = pos;
+        m_isFirst = false;
+        auto dPos = pos - m_mousePrevPos;
+        m_camAtt.p += dPos.y * K_mouseCoef.p;
+        m_camAtt.y += dPos.x * K_mouseCoef.y;
+        
+        //---- Pitch in +/-90 degree
+        dClamp<decltype(m_camAtt.p)>(m_camAtt.p, -M_PI/2.0, M_PI/2.0);
+        m_mousePrevPos = pos;
+        return m_camAtt.toQuat();
+    }
+    
+    
     //--------------------------------------
     //  onWindowSize
     //--------------------------------------
@@ -35,6 +56,21 @@ namespace Ic3d
             m_pTex[i]->setAsRenderTarget();
         }
     }
+    //---------------------------------------
+    //  IcWindowVR::onMouseMove
+    //---------------------------------------
+    void IcWindowVR::onMouseMove(int x, int y)
+    {
+        IcWindow::onMouseMove(x, y);
+        
+        //---- Use mouse simulate camera attitude
+        if(m_pScnMain==nullptr) return;
+        auto q = m_mouseHelper.onMouseMove(x, y);
+        auto pCam = m_pScnMain->getCamera();
+        pCam->setQuat(q);
+        pCam->updateViewMat();
+    }
+ 
     
     //--------------------------------------
     //  onInit
