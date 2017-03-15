@@ -19,7 +19,7 @@ namespace Ic3d
     using namespace std;
     const static float K_dispQuad_w = 1;
     const static float K_dispCamHeight = 2; // Temp, TODO: change to ortho cam view
-
+    const static float K_dispMeshGridN = 100;   // 100x100
     //--------------------------------------
     // VRScnMain
     //--------------------------------------
@@ -81,9 +81,7 @@ namespace Ic3d
         if(m_pCntxt==nullptr) return;
         clearObjs();
         //---- Create Distortion Mesh
-        const float w = K_dispQuad_w;
-        IcMeshData mshd; mshd.createPlaneXZ(TRect(-w/2,-w/2,w,w));
-        m_pDistMesh = makeSp<IcMesh>(mshd);
+        m_pDistMesh = createDistortMesh();
         
         //---- Create display distortion plane
         for(int i=0;i<2;i++)
@@ -104,6 +102,16 @@ namespace Ic3d
         cam.lookAt(TVec3(0,0,0), TVec3(0,0,-1));
         
     }
-    
+    //-----------
+    auto IcWindowVR::VRScnDisp::createDistortMesh()->decltype(m_pDistMesh)
+    {
+        const int N = K_dispMeshGridN;
+        const float w = K_dispQuad_w;
+        IcMeshData mshd;
+        mshd.createGridXZ(TRect(TPos(-w/2, -w/2), TSize(w, w)), N, N);
+        auto pMsh = makeSp<IcMesh>(mshd);
+        return pMsh;
+    }
+  
  
 }

@@ -565,18 +565,19 @@ namespace Ic3d {
         // use rendered texture from main scene
         class VRScnDisp : public IcScene
         {
-        public:
-            virtual void onInit() override;
-            virtual void onWindowSize(const ctl::TSize& winSize) override;
-            void setContext(T_VRCntxSp p){m_pCntxt = p;};
-            void reInit();
-
         protected:
             T_VRCntxSp m_pCntxt = nullptr;
             //---- Distortion mesh
             ctl::Sp<IcMesh> m_pDistMesh = nullptr;
             ctl::Sp<IcObject> m_pObjPlane[2]{nullptr, nullptr};
-        };
+        public:
+            virtual void onInit() override;
+            virtual void onWindowSize(const ctl::TSize& winSize) override;
+            void setContext(T_VRCntxSp p){m_pCntxt = p;};
+            void reInit();
+            decltype(m_pDistMesh) createDistortMesh();
+            
+         };
         void initWithMainScn(ctl::Sp<VRScnMain> pScn);
         
     //-----------------------
