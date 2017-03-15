@@ -17,6 +17,8 @@ namespace Ic3d
 {
     using namespace ctl;
     using namespace std;
+    const static float K_dispQuad_w = 1;
+    const static float K_dispCamHeight = 2; // Temp, TODO: change to ortho cam view
     //--------------------------------------
     // VRScnMain
     //--------------------------------------
@@ -42,15 +44,17 @@ namespace Ic3d
     void IcWindowVR::VRScnDisp::onInit()
     {
         IcScene::onInit();
-     }
+        
+  
+    }
     void IcWindowVR::VRScnDisp::onWindowSize(const ctl::TSize& winSize)
     {
         IcScene::onWindowSize(winSize);
         
         if(m_pCntxt==nullptr) return;
         m_pCntxt->onWindowSize(winSize);
-        
         reInit();
+       
     }
     //--------------------------------------
     //  VRScnDisp
@@ -59,15 +63,15 @@ namespace Ic3d
     {
         if(m_pCntxt==nullptr) return;
         clearObjs();
-        const static float w = 1;
-        const static float h = 2;
         //---- Create Distortion Mesh
+        const float w = K_dispQuad_w;
         IcMeshData mshd; mshd.createPlaneXZ(TRect(-w/2,-w/2,w,w));
         m_pDistMesh = makeSp<IcMesh>(mshd);
         
         //---- Create display distortion plane
         for(int i=0;i<2;i++)
         {
+            const float w = K_dispQuad_w;
             auto pTex = m_pCntxt->getTex(i);
             auto pModel = makeSp<IcModel>();
             pModel->setMesh(m_pDistMesh);
@@ -79,7 +83,7 @@ namespace Ic3d
         }
         //---- Set Camera
         auto& cam = *getCamera();
-        cam.setPos(TVec3(0,h,0));
+        cam.setPos(TVec3(0,K_dispCamHeight,0));
         cam.lookAt(TVec3(0,0,0), TVec3(0,0,-1));
         
     }
