@@ -60,10 +60,13 @@ void DemoRenderToTex::onInit()
         //---- Set to render Texture
         auto pTex = makeSp<IcTexture>(TSize(2048, 2048));
         pTex->setAsRenderTarget();
-        pScn->setRenderToTexture(pTex);
         m_pRenderTex = pTex;
-        addSubScn(pScn);
+
+        pScn->setRenderToTexture(pTex);
         pScn->m_cfg.m_enClrScrn = true;
+        pScn->m_cfg.m_enAutoResize = false;
+        
+        addSubScn(pScn);
         m_pScn0 = pScn;
     }
     

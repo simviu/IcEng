@@ -150,8 +150,6 @@
 		9C8CC3F11DEE87B3002583F2 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		9C8CC3F31DEE8808002583F2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		9C9EC9271E779BF500A568B6 /* IcSceneVr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcSceneVr.cpp; sourceTree = "<group>"; };
-		9C9EC9281E779BF500A568B6 /* IcSceneVr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IcSceneVr.h; sourceTree = "<group>"; };
-		9C9EC9291E779BF500A568B6 /* IcVR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IcVR.h; sourceTree = "<group>"; };
 		9C9EC92A1E779BF500A568B6 /* IcWindowVr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcWindowVr.cpp; sourceTree = "<group>"; };
 		9C9FED761E54366900CA0C32 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.2.sdk/System/Library/Frameworks/GLKit.framework; sourceTree = DEVELOPER_DIR; };
 		9CAE4F1F1DCB201B003F7B38 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
@@ -310,8 +308,6 @@
 			isa = PBXGroup;
 			children = (
 				9C9EC9271E779BF500A568B6 /* IcSceneVr.cpp */,
-				9C9EC9281E779BF500A568B6 /* IcSceneVr.h */,
-				9C9EC9291E779BF500A568B6 /* IcVR.h */,
 				9C9EC92A1E779BF500A568B6 /* IcWindowVr.cpp */,
 			);
 			path = IcVR;
