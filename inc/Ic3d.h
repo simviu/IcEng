@@ -523,7 +523,11 @@ namespace Ic3d {
     public:
         virtual void onInit() override;
         virtual void onMouseMove(int x, int y) override;
-
+        struct T_VRCfg
+        {
+            float K_eyeDist = 0.3;
+        };
+        T_VRCfg m_VRCfg;
         //-----------------------
         //	VRContext
         //-----------------------
@@ -534,11 +538,13 @@ namespace Ic3d {
             //---- The render target texture of L/R
             ctl::Sp<IcTexture> m_pTex[2]{nullptr, nullptr};
         public:
+            VRContext(const T_VRCfg& rCfg):m_rCfg(rCfg){};
             decltype(m_pTex[0]) getTex(bool isR) { return m_pTex[isR]; };
             void onWindowSize(const ctl::TSize& winSize);
+            const T_VRCfg& m_rCfg;
         };
         typedef ctl::Sp<VRContext> T_VRCntxSp;
-        T_VRCntxSp m_pVRContext{ctl::makeSp<VRContext>()};
+        T_VRCntxSp m_pVRContext = ctl::makeSp<VRContext>(m_VRCfg);
         //-----------------------
         //	VRScnMain
         //-----------------------
