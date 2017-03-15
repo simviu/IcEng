@@ -526,6 +526,9 @@ namespace Ic3d {
         struct T_VRCfg
         {
             float K_eyeDist = 0.3;
+            //---- Distortion coef
+            float K_distortion_k2 = -0.01;
+            float K_distortion_k4 = 0.002;
         };
         T_VRCfg m_VRCfg;
         //-----------------------

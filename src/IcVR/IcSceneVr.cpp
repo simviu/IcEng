@@ -105,10 +105,35 @@ namespace Ic3d
     //-----------
     auto IcWindowVR::VRScnDisp::createDistortMesh()->decltype(m_pDistMesh)
     {
+        if(m_pCntxt==nullptr) return nullptr;
+        
         const int N = K_dispMeshGridN;
         const float w = K_dispQuad_w;
+        const auto& cfg = m_pCntxt->m_rCfg;
+        const float K2 = cfg.K_distortion_k2;
+        const float K4 = cfg.K_distortion_k2;
+        
+        
         IcMeshData mshd;
         mshd.createGridXZ(TRect(TPos(-w/2, -w/2), TSize(w, w)), N, N);
+        auto& verts = mshd.m_verts;
+        
+        //---- Re-pos verts
+        for(int i=0;i<N+1;i++)    // Row
+            for(int j=0;j<N+1;j++)    // Col
+            {
+                size_t k = i*N + j;
+                TVec3 v; verts.getAt(k, v);
+                
+                float r = glm::length(v);
+                float r2 = r*r;
+                float r_ds = 1 + K2 *r2 + K4*r2*r2; // distorted
+                if(r==0) continue;  // abnormal
+                float ds = r_ds/r;
+                TVec3 v_ds(v.x*ds, 0, v.z*ds);
+                verts.setAt(k, v_ds);
+            }
+        
         auto pMsh = makeSp<IcMesh>(mshd);
         return pMsh;
     }
