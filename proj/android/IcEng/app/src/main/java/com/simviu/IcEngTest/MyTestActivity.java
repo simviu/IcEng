@@ -1,6 +1,7 @@
 package com.simviu.IcEngTest;
 
 import android.app.Activity;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.widget.FrameLayout;
 
@@ -15,7 +16,7 @@ public class MyTestActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_test);
         m_IcEngView = (IcEngView)findViewById(R.id.id_ic_eng_view);
-
+        m_IcEngView.initWithContext(this);
     }
 
 

@@ -34,6 +34,10 @@ package com.simviu.IcEng;
 import com.simviu.IcEng.IcEngJNI;
 import android.content.Context;
 import android.graphics.PixelFormat;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.opengl.GLSurfaceView;
 import android.os.Environment;
 import android.util.AttributeSet;
@@ -45,6 +49,8 @@ import javax.microedition.khronos.egl.EGLContext;
 import javax.microedition.khronos.egl.EGLDisplay;
 import javax.microedition.khronos.opengles.GL10;
 import com.simviu.IcEng.IcEngJNI;
+
+import static android.content.Context.SENSOR_SERVICE;
 
 /**
  * A simple GLSurfaceView sub-class that demonstrate how to perform
@@ -64,7 +70,19 @@ import com.simviu.IcEng.IcEngJNI;
  *   that matches it exactly (with regards to red/green/blue/alpha channels
  *   bit depths). Failure to do so would result in an EGL_BAD_MATCH error.
  */
-public class IcEngView extends GLSurfaceView {
+public class IcEngView extends GLSurfaceView implements GLSurfaceView.Renderer{
+    private SensorManager m_sensorManager = null;
+
+    //-------------------------------------
+    // initWithContext
+    //-------------------------------------
+    private Context m_context = null;
+    public void initWithContext(Context cntx)
+    {
+        m_context = cntx;
+        m_sensorManager = (SensorManager)cntx.getSystemService(SENSOR_SERVICE);
+
+    }
     //-------------------------------------
     // RendererCallBack
     //-------------------------------------
@@ -77,6 +95,9 @@ public class IcEngView extends GLSurfaceView {
     //----- This is needed for inflating from XML
     public IcEngView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        //---- Other init
+
+        //---- EGL
         setEGLContextClientVersion(2);
         setPreserveEGLContextOnPause(true);
         init(true, 8, 0);
@@ -96,11 +117,13 @@ public class IcEngView extends GLSurfaceView {
     //-------------------------------------
     private static String TAG = "GL2JNIView";
     private static final boolean DEBUG = false;
-    private RendererCallBack m_renderCallBack = null;
+  //  private RendererCallBack m_renderCallBack = null;
+    /*
     public void setRenderCallBack(RendererCallBack rcb)
     {
         m_renderCallBack = rcb;
     }
+    */
 
 
     /*
@@ -138,7 +161,8 @@ public class IcEngView extends GLSurfaceView {
                              new ConfigChooser(5, 6, 5, 0, depth, stencil) );
 
         /* Set the renderer responsible for frame rendering */
-        setRenderer(new Renderer(m_renderCallBack));
+     //   setRenderer(new Renderer());
+        setRenderer(this);
     }
 
     private static class ContextFactory implements GLSurfaceView.EGLContextFactory {
@@ -364,9 +388,7 @@ public class IcEngView extends GLSurfaceView {
     //---------------------------------------------
     //  Renderer implements
     //---------------------------------------------
-    private static class Renderer implements GLSurfaceView.Renderer {
-        public Renderer(RendererCallBack renderCB){ m_renderCallBack = renderCB; }
-        private RendererCallBack m_renderCallBack = null;
+ //   private static class Renderer implements GLSurfaceView.Renderer {
         public void onDrawFrame(GL10 gl) {
             long tCur = System.currentTimeMillis();
             long dtI = tCur - mTime;
@@ -377,6 +399,8 @@ public class IcEngView extends GLSurfaceView {
         //    m_renderCallBack.IcEng_onDrawUpdate(dt);
 
             mTime = tCur;
+
+
         }
 
         public void onSurfaceChanged(GL10 gl, int width, int height) {
@@ -387,5 +411,11 @@ public class IcEngView extends GLSurfaceView {
         public void onSurfaceCreated(GL10 gl, EGLConfig config) {
             IcEngJNI.initWindow();
         }
-    }
+
+        public void updateDeviceStatus()
+        {
+
+        }
+
+ //   }
 }
