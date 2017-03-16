@@ -158,6 +158,19 @@ extern "C" JNIEXPORT jstring JNICALL Java_com_simviu_IcEng_IcEngJNI_sendAppCmd(J
 }
 
 //------------------------------------------
+//  updateDeviceAttitude
+//------------------------------------------
+extern "C" JNIEXPORT void JNICALL Java_com_simviu_IcEng_IcEngJNI_updateDeviceAttitude(JNIEnv * env, jobject obj,
+                                                                                         jfloat p, jfloat r, jfloat y)
+{
+    auto pApp = IcApp::getInstance();
+    if(pApp== nullptr) return;
+    auto pWin = pApp->getWinMng()->getWindow(0);
+    if(pWin== nullptr) return;
+    pWin->onDeviceAttitude(TVec3(p,y,r));
+
+}
+//------------------------------------------
 //  util jstr2str()
 //------------------------------------------
 std::string IcEngJNI::jstr2str(JNIEnv * env, jstring jstr)

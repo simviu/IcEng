@@ -41,6 +41,10 @@ public class IcEngJNI {
      public static native void debugPrint(String sMsg);
      public static native String sendAppCmd(String sCmd);
 
+    //---- Device Status
+    //--- Pitch/Roll/Yaw
+    public static native void updateDeviceAttitude(float p, float r, float y);
+
      public static void initIcApp(Context context)
      {
          createIcApp();

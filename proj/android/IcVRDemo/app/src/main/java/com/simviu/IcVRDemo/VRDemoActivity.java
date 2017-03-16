@@ -15,6 +15,7 @@ public class VRDemoActivity extends Activity {
         super.onCreate(icicle);
         setContentView(R.layout.activity_vrdemo);
         m_icEngView = (IcEngView)findViewById(R.id.id_ic_eng_view);
+        m_icEngView.initWithContext(this);
     }
 
     @Override protected void onPause() {

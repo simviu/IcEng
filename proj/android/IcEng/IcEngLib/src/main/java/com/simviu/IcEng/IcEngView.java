@@ -72,25 +72,35 @@ import static android.content.Context.SENSOR_SERVICE;
  */
 public class IcEngView extends GLSurfaceView implements GLSurfaceView.Renderer,
         SensorEventListener{
+
+    //---- Device sensor
     private SensorManager m_sensorMngr = null;
-    private Sensor m_sensorAcc = null;
-    private Sensor m_sensorMag = null;
-    //-------------------------------------
+    private class TSensorData
+    {
+        final float[] m_att = new float[3];
+        final float[] m_acc = new float[3];
+        final float[] m_mag = new float[3];
+
+    };
+    TSensorData m_sensorData = new TSensorData();
+     //-------------------------------------
     // initWithContext
     //-------------------------------------
     private Context m_context = null;
     public void initWithContext(Context cntx)
     {
+
+        //---- Device Sensor
         m_context = cntx;
         m_sensorMngr = (SensorManager)cntx.getSystemService(SENSOR_SERVICE);
-        m_sensorAcc = m_sensorMngr.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-        m_sensorMag = m_sensorMngr.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
+        Sensor acc = m_sensorMngr.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        Sensor mag = m_sensorMngr.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
 
 
 
-        m_sensorMngr.registerListener(this, m_sensorAcc,
+        m_sensorMngr.registerListener(this, acc,
                 SensorManager.SENSOR_DELAY_NORMAL, SensorManager.SENSOR_DELAY_UI);
-        m_sensorMngr.registerListener(this, m_sensorMag,
+        m_sensorMngr.registerListener(this, mag,
                 SensorManager.SENSOR_DELAY_NORMAL, SensorManager.SENSOR_DELAY_UI);
 
     }
@@ -107,13 +117,13 @@ public class IcEngView extends GLSurfaceView implements GLSurfaceView.Renderer,
     // consider storing these readings as unit vectors.
     @Override
     public void onSensorChanged(SensorEvent event) {
-        if (event.sensor == Sensor.TYPE_ACCELEROMETER) {
-            System.arraycopy(event.values, 0, mAccelerometerReading,
-                    0, mAccelerometerReading.length);
+        if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
+            System.arraycopy(event.values, 0, m_sensorData.m_acc,
+                    0, m_sensorData.m_acc.length);
         }
-        else if (event.sensor == Sensor.TYPE_MAGNETIC_FIELD) {
-            System.arraycopy(event.values, 0, mMagnetometerReading,
-                    0, mMagnetometerReading.length);
+        else if (event.sensor.getType() == Sensor.TYPE_MAGNETIC_FIELD) {
+            System.arraycopy(event.values, 0, m_sensorData.m_mag,
+                    0, m_sensorData.m_mag.length);
         }
     }
 
@@ -449,12 +459,13 @@ public class IcEngView extends GLSurfaceView implements GLSurfaceView.Renderer,
         public void updateDeviceStatus()
         {
             final float[] matR = new float[9];
-            m_sensorManager.getRotationMatrix(matR, null,
-                    m_accSensor, magnetometerReading);
+            m_sensorMngr.getRotationMatrix(matR, null,
+                    m_sensorData.m_acc, m_sensorData.m_mag);
 
             // Express the updated rotation matrix as three orientation angles.
             final float[] att = new float[3];
-            m_sensorManager.getOrientation(matR, att);
+            m_sensorMngr.getOrientation(matR, att);
+            IcEngJNI.updateDeviceAttitude(att[0], att[1], att[2]);
         }
 
  //   }
