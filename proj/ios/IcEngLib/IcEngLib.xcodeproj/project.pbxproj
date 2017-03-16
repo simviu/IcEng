@@ -124,7 +124,7 @@
 		9C36EB3F1E2F161D00F1DB3D /* lodepng.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lodepng.h; path = ../../../inc/core/lodepng.h; sourceTree = "<group>"; };
 		9C36EB401E2F161D00F1DB3D /* OpenGLinc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OpenGLinc.h; path = ../../../inc/core/OpenGLinc.h; sourceTree = "<group>"; };
 		9C36EB411E2F1B3E00F1DB3D /* IcViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IcViewController.h; path = ../../../inc/IcViewController.h; sourceTree = "<group>"; };
-		9C53F6CD1DCB18F8006EAF17 /* libIcEngLib_iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIcEngLib_iOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C53F6CD1DCB18F8006EAF17 /* libIcEng.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIcEng.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C5806191E53F3E900E61F85 /* IcEngJNI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcEngJNI.cpp; sourceTree = "<group>"; };
 		9C58061B1E53F3E900E61F85 /* IcApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcApp.cpp; sourceTree = "<group>"; };
 		9C58061C1E53F3E900E61F85 /* IcWindow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcWindow.cpp; sourceTree = "<group>"; };
@@ -245,7 +245,7 @@
 		9C53F6BC1DCB14FB006EAF17 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9C53F6CD1DCB18F8006EAF17 /* libIcEngLib_iOS.a */,
+				9C53F6CD1DCB18F8006EAF17 /* libIcEng.a */,
 				9C7AD3D91DF11751008968FC /* IcEngTestApp.app */,
 			);
 			name = Products;
@@ -411,9 +411,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		9C53F6CC1DCB18F8006EAF17 /* IcEngLib_iOS */ = {
+		9C53F6CC1DCB18F8006EAF17 /* IcEng */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9C53F6D31DCB18F8006EAF17 /* Build configuration list for PBXNativeTarget "IcEngLib_iOS" */;
+			buildConfigurationList = 9C53F6D31DCB18F8006EAF17 /* Build configuration list for PBXNativeTarget "IcEng" */;
 			buildPhases = (
 				9C53F6C91DCB18F8006EAF17 /* Sources */,
 				9C53F6CA1DCB18F8006EAF17 /* Frameworks */,
@@ -422,9 +422,9 @@
 			);
 			dependencies = (
 			);
-			name = IcEngLib_iOS;
+			name = IcEng;
 			productName = IcEngLib_iOS;
-			productReference = 9C53F6CD1DCB18F8006EAF17 /* libIcEngLib_iOS.a */;
+			productReference = 9C53F6CD1DCB18F8006EAF17 /* libIcEng.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		9C7AD3D81DF11751008968FC /* IcEngTestApp */ = {
@@ -483,7 +483,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				9C53F6CC1DCB18F8006EAF17 /* IcEngLib_iOS */,
+				9C53F6CC1DCB18F8006EAF17 /* IcEng */,
 				9C7AD3D81DF11751008968FC /* IcEngTestApp */,
 				9C108D6B1E03B18200E0E1DF /* All */,
 			);
@@ -851,7 +851,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9C53F6D31DCB18F8006EAF17 /* Build configuration list for PBXNativeTarget "IcEngLib_iOS" */ = {
+		9C53F6D31DCB18F8006EAF17 /* Build configuration list for PBXNativeTarget "IcEng" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9C53F6D41DCB18F8006EAF17 /* Debug */,

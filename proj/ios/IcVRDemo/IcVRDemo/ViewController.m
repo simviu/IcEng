@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "VRDemoVCon.h"
 
 @interface ViewController ()
 
@@ -26,4 +27,8 @@
 }
 
 
+- (IBAction)onBtn_VRDemo:(id)sender {
+    VRDemoVCon* vcon = [[VRDemoVCon alloc] init];
+    [self presentViewController:vcon animated:NO completion:nil];
+}
 @end

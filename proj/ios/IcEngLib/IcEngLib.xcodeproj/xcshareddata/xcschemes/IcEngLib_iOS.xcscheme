@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "9C53F6CC1DCB18F8006EAF17"
-               BuildableName = "libIcEngLib_iOS.a"
-               BlueprintName = "IcEngLib_iOS"
+               BuildableName = "libIcEng.a"
+               BlueprintName = "IcEng"
                ReferencedContainer = "container:IcEngLib.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -46,8 +46,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9C53F6CC1DCB18F8006EAF17"
-            BuildableName = "libIcEngLib_iOS.a"
-            BlueprintName = "IcEngLib_iOS"
+            BuildableName = "libIcEng.a"
+            BlueprintName = "IcEng"
             ReferencedContainer = "container:IcEngLib.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -64,8 +64,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9C53F6CC1DCB18F8006EAF17"
-            BuildableName = "libIcEngLib_iOS.a"
-            BlueprintName = "IcEngLib_iOS"
+            BuildableName = "libIcEng.a"
+            BlueprintName = "IcEng"
             ReferencedContainer = "container:IcEngLib.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9C26673B1E7A44CF00F37A29 /* VRDemoVCon.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9C2667391E7A44CF00F37A29 /* VRDemoVCon.mm */; };
+		9C26673C1E7A44CF00F37A29 /* VRDemoVCon.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C26673A1E7A44CF00F37A29 /* VRDemoVCon.xib */; };
+		9C26673F1E7A45BB00F37A29 /* VRDemoApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C26673D1E7A45BB00F37A29 /* VRDemoApp.cpp */; };
+		9C2667481E7A49C400F37A29 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C2667471E7A49C400F37A29 /* GLKit.framework */; };
+		9C26674A1E7A4AEC00F37A29 /* IcData in Resources */ = {isa = PBXBuildFile; fileRef = 9C2667491E7A4AEC00F37A29 /* IcData */; };
 		9C83B54C1E7A42F0001A296A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C83B54B1E7A42F0001A296A /* main.m */; };
 		9C83B54F1E7A42F0001A296A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C83B54E1E7A42F0001A296A /* AppDelegate.m */; };
 		9C83B5521E7A42F0001A296A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C83B5511E7A42F0001A296A /* ViewController.m */; };
@@ -16,6 +21,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9C2667381E7A44CF00F37A29 /* VRDemoVCon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VRDemoVCon.h; sourceTree = "<group>"; };
+		9C2667391E7A44CF00F37A29 /* VRDemoVCon.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = VRDemoVCon.mm; sourceTree = "<group>"; };
+		9C26673A1E7A44CF00F37A29 /* VRDemoVCon.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VRDemoVCon.xib; sourceTree = "<group>"; };
+		9C26673D1E7A45BB00F37A29 /* VRDemoApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = VRDemoApp.cpp; path = ../../../src/demo/VRDemo/VRDemoApp.cpp; sourceTree = "<group>"; };
+		9C26673E1E7A45BB00F37A29 /* VRDemoApp.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = VRDemoApp.hpp; path = ../../../src/demo/VRDemo/VRDemoApp.hpp; sourceTree = "<group>"; };
+		9C2667471E7A49C400F37A29 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		9C2667491E7A4AEC00F37A29 /* IcData */ = {isa = PBXFileReference; lastKnownFileType = folder; name = IcData; path = ../../../IcData; sourceTree = "<group>"; };
 		9C83B5471E7A42F0001A296A /* IcVRDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IcVRDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C83B54B1E7A42F0001A296A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		9C83B54D1E7A42F0001A296A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -33,17 +45,46 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C2667481E7A49C400F37A29 /* GLKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9C2667401E7A45C000F37A29 /* VRDemo */ = {
+			isa = PBXGroup;
+			children = (
+				9C26673D1E7A45BB00F37A29 /* VRDemoApp.cpp */,
+				9C26673E1E7A45BB00F37A29 /* VRDemoApp.hpp */,
+			);
+			name = VRDemo;
+			sourceTree = "<group>";
+		};
+		9C2667411E7A45D000F37A29 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				9C2667491E7A4AEC00F37A29 /* IcData */,
+			);
+			name = Resource;
+			sourceTree = "<group>";
+		};
+		9C2667461E7A49C400F37A29 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9C2667471E7A49C400F37A29 /* GLKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		9C83B53E1E7A42F0001A296A = {
 			isa = PBXGroup;
 			children = (
+				9C2667411E7A45D000F37A29 /* Resource */,
+				9C2667401E7A45C000F37A29 /* VRDemo */,
 				9C83B5491E7A42F0001A296A /* IcVRDemo */,
 				9C83B5481E7A42F0001A296A /* Products */,
+				9C2667461E7A49C400F37A29 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -67,6 +108,9 @@
 				9C83B5581E7A42F0001A296A /* LaunchScreen.storyboard */,
 				9C83B55B1E7A42F0001A296A /* Info.plist */,
 				9C83B54A1E7A42F0001A296A /* Supporting Files */,
+				9C2667381E7A44CF00F37A29 /* VRDemoVCon.h */,
+				9C2667391E7A44CF00F37A29 /* VRDemoVCon.mm */,
+				9C26673A1E7A44CF00F37A29 /* VRDemoVCon.xib */,
 			);
 			path = IcVRDemo;
 			sourceTree = "<group>";
@@ -138,8 +182,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C26674A1E7A4AEC00F37A29 /* IcData in Resources */,
 				9C83B55A1E7A42F0001A296A /* LaunchScreen.storyboard in Resources */,
 				9C83B5571E7A42F0001A296A /* Assets.xcassets in Resources */,
+				9C26673C1E7A44CF00F37A29 /* VRDemoVCon.xib in Resources */,
 				9C83B5551E7A42F0001A296A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -153,6 +199,8 @@
 			files = (
 				9C83B5521E7A42F0001A296A /* ViewController.m in Sources */,
 				9C83B54F1E7A42F0001A296A /* AppDelegate.m in Sources */,
+				9C26673F1E7A45BB00F37A29 /* VRDemoApp.cpp in Sources */,
+				9C26673B1E7A44CF00F37A29 /* VRDemoVCon.mm in Sources */,
 				9C83B54C1E7A42F0001A296A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -219,7 +267,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = ../../../inc;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LIBRARY_SEARCH_PATHS = "../../../IcEngBuild/ios/lib/${CONFIGURATION}";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -261,7 +311,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = ../../../inc;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LIBRARY_SEARCH_PATHS = "../../../IcEngBuild/ios/lib/${CONFIGURATION}";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -276,6 +328,7 @@
 				DEVELOPMENT_TEAM = XG76D5W2B7;
 				INFOPLIST_FILE = IcVRDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "-lIcEng";
 				PRODUCT_BUNDLE_IDENTIFIER = com.simviu.test.skydive.IcVRDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -288,6 +341,7 @@
 				DEVELOPMENT_TEAM = XG76D5W2B7;
 				INFOPLIST_FILE = IcVRDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "-lIcEng";
 				PRODUCT_BUNDLE_IDENTIFIER = com.simviu.test.skydive.IcVRDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -312,6 +366,7 @@
 				9C83B5601E7A42F0001A296A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
