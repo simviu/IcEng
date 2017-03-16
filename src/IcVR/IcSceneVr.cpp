@@ -19,7 +19,7 @@ namespace Ic3d
     using namespace std;
     const static float K_dispQuad_w = 1;
     const static float K_dispCamHeight = 2; // Temp, TODO: change to ortho cam view
-    const static float K_dispMeshGridN = 100;   // 100x100
+    const static float K_dispMeshGridN = 10;   // 100x100
     //--------------------------------------
     // VRScnMain
     //--------------------------------------
@@ -111,7 +111,7 @@ namespace Ic3d
         const float w = K_dispQuad_w;
         const auto& cfg = m_pCntxt->m_rCfg;
         const float K2 = cfg.K_distortion_k2;
-        const float K4 = cfg.K_distortion_k2;
+        const float K4 = cfg.K_distortion_k4;
         
         
         IcMeshData mshd;
@@ -122,15 +122,13 @@ namespace Ic3d
         for(int i=0;i<N+1;i++)    // Row
             for(int j=0;j<N+1;j++)    // Col
             {
-                size_t k = i*N + j;
+                size_t k = i*(N+1) + j;
                 TVec3 v; verts.getAt(k, v);
                 
                 float r = glm::length(v);
                 float r2 = r*r;
-                float r_ds = 1 + K2 *r2 + K4*r2*r2; // distorted
-                if(r==0) continue;  // abnormal
-                float ds = r_ds/r;
-                TVec3 v_ds(v.x*ds, 0, v.z*ds);
+                float r_ds = 1 + K2*r2 + K4*r2*r2; // distorted
+                TVec3 v_ds(v.x*r_ds, 0, v.z*r_ds);
                 verts.setAt(k, v_ds);
             }
         
