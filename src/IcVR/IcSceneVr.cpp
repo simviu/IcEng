@@ -19,7 +19,7 @@ namespace Ic3d
     using namespace std;
     const static float K_dispQuad_w = 1;
     const static float K_dispCamHeight = 2; // Temp, TODO: change to ortho cam view
-    const static float K_dispMeshGridN = 10;   // 100x100
+    const static float K_dispMeshGridN = 100;   // 100x100
     //--------------------------------------
     // VRScnMain
     //--------------------------------------
