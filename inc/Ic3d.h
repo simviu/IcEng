@@ -376,7 +376,7 @@ namespace Ic3d {
         {
             IcCamera::TCfg  m_camCfg;
             TFogPara    m_fogPara;
-            bool        m_enClrScrn = false;
+            bool        m_enClrScrn = true;
             TColor      m_bkColor{0.2,0.5,0.7,1.0};
             bool        m_enAutoResize = true;
             ctl::TRect  m_viewRect;
