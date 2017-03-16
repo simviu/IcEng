@@ -498,7 +498,7 @@ namespace Ic3d {
         //-----------------
         struct TCfg
         {
-            TColor  m_bkColor = TColor(0.2, 0.5, 0.9, 1.0);
+            TColor  m_bkColor = TColor(0,0,0,1);
             ctl::TSize   m_size;
             ctl::TPos    m_pos;
         };

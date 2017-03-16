@@ -15,6 +15,7 @@
 			);
 			dependencies = (
 				9C108D761E03B1EF00E0E1DF /* PBXTargetDependency */,
+				9C2262711E7A53CC00FE2154 /* PBXTargetDependency */,
 			);
 			name = All;
 			productName = All;
@@ -112,6 +113,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 9C7AD3D81DF11751008968FC;
 			remoteInfo = IcEngTest_iOS;
+		};
+		9C2262701E7A53CC00FE2154 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9C53F6B31DCB14FB006EAF17 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9C53F6CC1DCB18F8006EAF17;
+			remoteInfo = IcEng;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -622,6 +630,11 @@
 			isa = PBXTargetDependency;
 			target = 9C7AD3D81DF11751008968FC /* IcEngTestApp */;
 			targetProxy = 9C108D751E03B1EF00E0E1DF /* PBXContainerItemProxy */;
+		};
+		9C2262711E7A53CC00FE2154 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9C53F6CC1DCB18F8006EAF17 /* IcEng */;
+			targetProxy = 9C2262701E7A53CC00FE2154 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
