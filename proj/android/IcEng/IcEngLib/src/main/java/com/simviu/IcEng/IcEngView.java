@@ -70,9 +70,11 @@ import static android.content.Context.SENSOR_SERVICE;
  *   that matches it exactly (with regards to red/green/blue/alpha channels
  *   bit depths). Failure to do so would result in an EGL_BAD_MATCH error.
  */
-public class IcEngView extends GLSurfaceView implements GLSurfaceView.Renderer{
-    private SensorManager m_sensorManager = null;
-
+public class IcEngView extends GLSurfaceView implements GLSurfaceView.Renderer,
+        SensorEventListener{
+    private SensorManager m_sensorMngr = null;
+    private Sensor m_sensorAcc = null;
+    private Sensor m_sensorMag = null;
     //-------------------------------------
     // initWithContext
     //-------------------------------------
@@ -80,9 +82,41 @@ public class IcEngView extends GLSurfaceView implements GLSurfaceView.Renderer{
     public void initWithContext(Context cntx)
     {
         m_context = cntx;
-        m_sensorManager = (SensorManager)cntx.getSystemService(SENSOR_SERVICE);
+        m_sensorMngr = (SensorManager)cntx.getSystemService(SENSOR_SERVICE);
+        m_sensorAcc = m_sensorMngr.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        m_sensorMag = m_sensorMngr.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
+
+
+
+        m_sensorMngr.registerListener(this, m_sensorAcc,
+                SensorManager.SENSOR_DELAY_NORMAL, SensorManager.SENSOR_DELAY_UI);
+        m_sensorMngr.registerListener(this, m_sensorMag,
+                SensorManager.SENSOR_DELAY_NORMAL, SensorManager.SENSOR_DELAY_UI);
 
     }
+    //-------------------------------------
+    // Sensor Call back
+    //-------------------------------------
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+        // Do something here if sensor accuracy changes.
+        // You must implement this callback in your code.
+    }
+    // Get readings from accelerometer and magnetometer. To simplify calculations,
+    // consider storing these readings as unit vectors.
+    @Override
+    public void onSensorChanged(SensorEvent event) {
+        if (event.sensor == Sensor.TYPE_ACCELEROMETER) {
+            System.arraycopy(event.values, 0, mAccelerometerReading,
+                    0, mAccelerometerReading.length);
+        }
+        else if (event.sensor == Sensor.TYPE_MAGNETIC_FIELD) {
+            System.arraycopy(event.values, 0, mMagnetometerReading,
+                    0, mMagnetometerReading.length);
+        }
+    }
+
     //-------------------------------------
     // RendererCallBack
     //-------------------------------------
@@ -400,7 +434,7 @@ public class IcEngView extends GLSurfaceView implements GLSurfaceView.Renderer{
 
             mTime = tCur;
 
-
+            updateDeviceStatus();
         }
 
         public void onSurfaceChanged(GL10 gl, int width, int height) {
@@ -414,7 +448,13 @@ public class IcEngView extends GLSurfaceView implements GLSurfaceView.Renderer{
 
         public void updateDeviceStatus()
         {
+            final float[] matR = new float[9];
+            m_sensorManager.getRotationMatrix(matR, null,
+                    m_accSensor, magnetometerReading);
 
+            // Express the updated rotation matrix as three orientation angles.
+            final float[] att = new float[3];
+            m_sensorManager.getOrientation(matR, att);
         }
 
  //   }
