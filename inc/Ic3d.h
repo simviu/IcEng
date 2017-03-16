@@ -488,6 +488,11 @@ namespace Ic3d {
         virtual void onKeyboard(unsigned char key); // TODO: int
         virtual void onMouseClick(TE_MouseButton btn, bool isUp, int x, int y){};
         virtual void onMouseMove(int x, int y){};
+        
+        //-----------------
+        // Mobile Input
+        //-----------------
+        virtual void onDeviceAttitude(const TVec3& att){};
         //-----------------
         // Configuration
         //-----------------
@@ -523,6 +528,7 @@ namespace Ic3d {
     public:
         virtual void onInit() override;
         virtual void onMouseMove(int x, int y) override;
+        virtual void onDeviceAttitude(const TVec3& att) override;
         struct T_VRCfg
         {
             float K_eyeDist = 0.3;

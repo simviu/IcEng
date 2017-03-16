@@ -71,7 +71,28 @@ namespace Ic3d
         pCam->updateViewMat();
     }
  
-    
+    //--------------------------------------
+    //  onDeviceAttitude
+    //--------------------------------------
+    void IcWindowVR::onDeviceAttitude(const TVec3& att)
+    {
+        if(m_pScnMain==nullptr) return;
+        
+        //---- iPhone attitude translate to VR cam rotation:
+        // 1) iPhone attitude = 0 when face up, use q0 to reverse
+        // 2) Euler assignment :
+        //      iPhone      : is CMAttitude(yaw->Z,pitch->X,roll->Y)
+        //      glm Euler   : is TVec(x,y,z) = {pitch, yaw, roll}
+        //      VR : pitch->Y, yaw->X, roll->Z
+        Ic3d::TQuat q0(TVec3(deg2rad(-90),0,0)); // rot phone face up
+        Ic3d::TQuat q1(att); // exchange axis
+        
+        auto pCam = m_pScnMain->getCamera();
+        pCam->setQuat(q0*q1);
+        pCam->updateViewMat();
+        
+    }
+   
     //--------------------------------------
     //  onInit
     //--------------------------------------

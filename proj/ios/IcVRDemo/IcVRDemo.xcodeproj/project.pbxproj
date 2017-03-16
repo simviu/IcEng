@@ -12,6 +12,7 @@
 		9C26673F1E7A45BB00F37A29 /* VRDemoApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C26673D1E7A45BB00F37A29 /* VRDemoApp.cpp */; };
 		9C2667481E7A49C400F37A29 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C2667471E7A49C400F37A29 /* GLKit.framework */; };
 		9C26674A1E7A4AEC00F37A29 /* IcData in Resources */ = {isa = PBXBuildFile; fileRef = 9C2667491E7A4AEC00F37A29 /* IcData */; };
+		9C26674F1E7A506600F37A29 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C26674E1E7A506600F37A29 /* CoreMotion.framework */; };
 		9C83B54C1E7A42F0001A296A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C83B54B1E7A42F0001A296A /* main.m */; };
 		9C83B54F1E7A42F0001A296A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C83B54E1E7A42F0001A296A /* AppDelegate.m */; };
 		9C83B5521E7A42F0001A296A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C83B5511E7A42F0001A296A /* ViewController.m */; };
@@ -28,6 +29,7 @@
 		9C26673E1E7A45BB00F37A29 /* VRDemoApp.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = VRDemoApp.hpp; path = ../../../src/demo/VRDemo/VRDemoApp.hpp; sourceTree = "<group>"; };
 		9C2667471E7A49C400F37A29 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		9C2667491E7A4AEC00F37A29 /* IcData */ = {isa = PBXFileReference; lastKnownFileType = folder; name = IcData; path = ../../../IcData; sourceTree = "<group>"; };
+		9C26674E1E7A506600F37A29 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		9C83B5471E7A42F0001A296A /* IcVRDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IcVRDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C83B54B1E7A42F0001A296A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		9C83B54D1E7A42F0001A296A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -45,6 +47,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C26674F1E7A506600F37A29 /* CoreMotion.framework in Frameworks */,
 				9C2667481E7A49C400F37A29 /* GLKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -72,6 +75,7 @@
 		9C2667461E7A49C400F37A29 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9C26674E1E7A506600F37A29 /* CoreMotion.framework */,
 				9C2667471E7A49C400F37A29 /* GLKit.framework */,
 			);
 			name = Frameworks;
