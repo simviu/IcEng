@@ -77,11 +77,7 @@ public class IcEngView extends GLSurfaceView implements GLSurfaceView.Renderer,
     private SensorManager m_sensorMngr = null;
     private class TSensorData
     {
-        final float[] m_att = new float[3];
-        final float[] m_acc = new float[3];
-        final float[] m_mag = new float[3];
         final float[] m_rot = new float[4];
-
     };
     TSensorData m_sensorData = new TSensorData();
      //-------------------------------------
@@ -94,16 +90,8 @@ public class IcEngView extends GLSurfaceView implements GLSurfaceView.Renderer,
         //---- Device Sensor
         m_context = cntx;
         m_sensorMngr = (SensorManager)cntx.getSystemService(SENSOR_SERVICE);
-        Sensor acc = m_sensorMngr.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-        Sensor mag = m_sensorMngr.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
         Sensor rot = m_sensorMngr.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR);
 
-
-
-        m_sensorMngr.registerListener(this, acc,
-                SensorManager.SENSOR_DELAY_NORMAL, SensorManager.SENSOR_DELAY_UI);
-        m_sensorMngr.registerListener(this, mag,
-                SensorManager.SENSOR_DELAY_NORMAL, SensorManager.SENSOR_DELAY_UI);
         m_sensorMngr.registerListener(this, rot,
                 SensorManager.SENSOR_DELAY_NORMAL, SensorManager.SENSOR_DELAY_UI);
 
@@ -121,15 +109,8 @@ public class IcEngView extends GLSurfaceView implements GLSurfaceView.Renderer,
     // consider storing these readings as unit vectors.
     @Override
     public void onSensorChanged(SensorEvent event) {
-        if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
-            System.arraycopy(event.values, 0, m_sensorData.m_acc,
-                    0, m_sensorData.m_acc.length);
-        }
-        else if (event.sensor.getType() == Sensor.TYPE_MAGNETIC_FIELD) {
-            System.arraycopy(event.values, 0, m_sensorData.m_mag,
-                    0, m_sensorData.m_mag.length);
-        }
-        else if (event.sensor.getType() == Sensor.TYPE_ROTATION_VECTOR) {
+
+        if (event.sensor.getType() == Sensor.TYPE_ROTATION_VECTOR) {
             System.arraycopy(event.values, 0, m_sensorData.m_rot,
                     0, m_sensorData.m_rot.length);
         }
@@ -466,21 +447,9 @@ public class IcEngView extends GLSurfaceView implements GLSurfaceView.Renderer,
 
         public void updateDeviceStatus()
         {
-            final float[] matR = new float[9];
-            m_sensorMngr.getRotationMatrix(matR, null,
-                    m_sensorData.m_acc, m_sensorData.m_mag);
-
-            // Express the updated rotation matrix as three orientation angles.
-            final float[] att = new float[3];
-            m_sensorMngr.getOrientation(matR, att);
-            // we need pass into p,y,r (glm::TVec3 euler)
-            // The result att is :
-            //      Portrait  : (Yaw, Pitch, Roll)
-            //      Landscape : (Yaw, Roll, Pitch)
-       //     IcEngJNI.updateDeviceAttitude(-att[2], -att[0], -att[1]);
+            //---- Note , the quaternion y,x axis need exchange.( Refer doc.)
             final float [] r = m_sensorData.m_rot;
             IcEngJNI.updateDeviceRot(r[0], r[2], r[1], r[3]);
         }
 
- //   }
 }
