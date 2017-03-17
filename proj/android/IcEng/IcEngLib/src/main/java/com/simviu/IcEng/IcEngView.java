@@ -93,7 +93,7 @@ public class IcEngView extends GLSurfaceView implements GLSurfaceView.Renderer,
         Sensor rot = m_sensorMngr.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR);
 
         m_sensorMngr.registerListener(this, rot,
-                SensorManager.SENSOR_DELAY_NORMAL, SensorManager.SENSOR_DELAY_UI);
+                SensorManager.SENSOR_DELAY_FASTEST, SensorManager.SENSOR_DELAY_FASTEST);
 
     }
     //-------------------------------------
