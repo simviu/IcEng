@@ -61,7 +61,7 @@ namespace Ic3d
     void IcWindowVR::VRScnDisp::onInit()
     {
         IcScene::onInit();
-        
+        m_cfg.m_bkColor = TColor(0,0,0,1);
   
     }
     void IcWindowVR::VRScnDisp::onWindowSize(const ctl::TSize& winSize)

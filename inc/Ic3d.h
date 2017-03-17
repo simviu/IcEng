@@ -493,6 +493,7 @@ namespace Ic3d {
         // Mobile Input
         //-----------------
         virtual void onDeviceAttitude(const TVec3& att){};
+		virtual void onDeviceRot(const TQuat& q){};
         //-----------------
         // Configuration
         //-----------------
@@ -528,6 +529,7 @@ namespace Ic3d {
     public:
         virtual void onInit() override;
         virtual void onMouseMove(int x, int y) override;
+		virtual void onDeviceRot(const TQuat& q) override;
         virtual void onDeviceAttitude(const TVec3& att) override;
         struct T_VRCfg
         {

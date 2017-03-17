@@ -43,7 +43,7 @@ public class IcEngJNI {
 
     //---- Device Status
     //--- Pitch/Roll/Yaw
-    public static native void updateDeviceAttitude(float p, float r, float y);
+    public static native void updateDeviceRot(float x, float y, float z, float w);
 
      public static void initIcApp(Context context)
      {

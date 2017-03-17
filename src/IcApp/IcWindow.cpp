@@ -25,14 +25,14 @@ namespace Ic3d
     //-------------------------------------------
     void IcWindow::addScene(ctl::Sp<IcScene> pScn)
     {
-        logInfo("IcWindow::addScene() ["+v2s(m_scnAry.size())+"]");
+        logDbg("IcWindow::addScene() ["+v2s(m_scnAry.size())+"]");
         m_scnAry.add(pScn);
         pScn->onWindowSize(m_cfg.m_size);
     };
     
     void IcWindow::removeAllScene()
     {
-        logInfo("IcWindow::removeAllScene() -- "+
+        logDbg("IcWindow::removeAllScene() -- "+
                         v2s(m_scnAry.size())+" scenes");
         m_scnAry.clear();
     }
@@ -42,14 +42,15 @@ namespace Ic3d
     //-------------------------------------------
     void IcWindow::onInit()
     {
-        
+        logDbg("IcWindow::onInit()");
+
     }
     //-------------------------------------------
     //	onRelease
     //-------------------------------------------
     void IcWindow::onRelease()
     {
-        logInfo("IcWindow::onRelease()");
+        logDbg("IcWindow::onRelease()");
         removeAllScene();
     }
     //-------------------------------------------
@@ -57,7 +58,7 @@ namespace Ic3d
     //-------------------------------------------
     void IcWindow::onWindowSize(const ctl::TSize& size)
     {
-        logInfo("IcWindow::onWindowSize() ["+
+        logDbg("IcWindow::onWindowSize() ["+
             v2s(size.w) + "x"+ v2s(size.h) +"]");
         // In default, call onWindowSize().
         // TODO:
@@ -72,7 +73,7 @@ namespace Ic3d
     //-------------------------------------------
     void IcWindow::initWindow()
     {
-        logInfo("IcWindow::initWindow()");
+        logDbg("IcWindow::initWindow()");
         
         //--- Init Eng
         auto pEng = IcEng::getInstance();

@@ -54,11 +54,11 @@ namespace Ic3d
     //----------------------------
     void IcApp::onInit()
     {
-        logInfo("IcApp::onInit()");
+        logDbg("IcApp::onInit()");
     };
     void IcApp::onRelease()
     {
-        logInfo("IcApp::onRelease()");
+        logDbg("IcApp::onRelease()");
     };
 
     //----------------------------
