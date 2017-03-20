@@ -30,15 +30,24 @@ public:
         //--- Load Object
         string sFile = l_sPathRes + K_sModel;
         auto pModel = ctl::makeSp<IcModel>(sFile);
-        auto pObj   = ctl::makeSp<IcObject>(pModel);
-        // Add this obj to Scene, will be rendered
-        addObj(pObj);
+        
+        //---- Let's create losts of it (NxNxN)
+        const int N = 4;
+        const float w = 10;
+        for(int x=0;x<N;x++)
+            for(int y=0;y<N;y++)
+                for(int z=0;z<N;z++)
+                {
+                    auto pObj   = ctl::makeSp<IcObject>(pModel);
+                    TVec3 pos((x-N/2)*w, (y-N/2)*w, (z-N/2)*w);
+                    pObj->setPos(pos);
+                    addObj(pObj);
+                    
+                }
+        
+  
+    };
  
-    };
-    virtual void onDraw() override
-    {
-        VRScnMain::onDraw();
-    };
 };
 //--------------------------------------
 //  VRDemoWin

@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "4B7986939C29E2D282F2BDB87A19D308905A12A1",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "02F14A5701BB7C3E4E8F5AFFD600F95AE676056F" : 9223372036854775807,
+    "4B7986939C29E2D282F2BDB87A19D308905A12A1" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "96E9DA47-7357-44C2-829D-41A0CFC8D575",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "02F14A5701BB7C3E4E8F5AFFD600F95AE676056F" : "",
+    "4B7986939C29E2D282F2BDB87A19D308905A12A1" : "IcEng\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "IcVRDemo",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "proj\/ios\/IcVRDemo\/IcVRDemo.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "\/Volumes\/WORK\/shareDir\/vmWork\/GitRepo\/SkyDev",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "02F14A5701BB7C3E4E8F5AFFD600F95AE676056F"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "git.assembla.com:iceng.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "4B7986939C29E2D282F2BDB87A19D308905A12A1"
+    }
+  ]
+}

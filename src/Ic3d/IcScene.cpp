@@ -72,6 +72,7 @@ namespace Ic3d
         m_pTargetTex = pTex;
     //  pTex->setAsRenderTarget();    // call this outside
         m_cfg.m_enAutoResize = false; // Disable auto resize, set outside
+        m_cfg.m_enClrScrn = true;
     };
 
     /*

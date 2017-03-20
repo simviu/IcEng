@@ -260,6 +260,7 @@ namespace Ic3d {
 		IcCamera(){};
 		virtual ~IcCamera(){};
 		void drawObj(const IcObject& rootObj) const;
+        // TODO: 1) let it auto, 2) Mat valid bit in IcObject::setPos/Quat/Scale
         void updateViewMat();
         //---- Camera Cfg
         struct TCfg
@@ -375,7 +376,7 @@ namespace Ic3d {
         {
             IcCamera::TCfg  m_camCfg;
             TFogPara    m_fogPara;
-            bool        m_enClrScrn = false;
+            bool        m_enClrScrn = true;
             TColor      m_bkColor{0.2,0.5,0.7,1.0};
             bool        m_enAutoResize = true;
             ctl::TRect  m_viewRect;
@@ -487,12 +488,17 @@ namespace Ic3d {
         virtual void onKeyboard(unsigned char key); // TODO: int
         virtual void onMouseClick(TE_MouseButton btn, bool isUp, int x, int y){};
         virtual void onMouseMove(int x, int y){};
+        
+        //-----------------
+        // Mobile Input
+        //-----------------
+		virtual void onDeviceRot(const TQuat& q){};
         //-----------------
         // Configuration
         //-----------------
         struct TCfg
         {
-            TColor  m_bkColor = TColor(0.2, 0.5, 0.9, 1.0);
+            TColor  m_bkColor = TColor(0,0,0,1);
             ctl::TSize   m_size;
             ctl::TPos    m_pos;
         };
@@ -521,7 +527,16 @@ namespace Ic3d {
     {
     public:
         virtual void onInit() override;
-        virtual void onWindowSize(const ctl::TSize& winSize) override;
+        virtual void onMouseMove(int x, int y) override;
+		virtual void onDeviceRot(const TQuat& q) override;
+        struct T_VRCfg
+        {
+            float K_eyeDist = 0.3;
+            //---- Distortion coef
+            float K_distortion_k2 = -0.4;
+            float K_distortion_k4 = -0.04;
+        };
+        T_VRCfg m_VRCfg;
         //-----------------------
         //	VRContext
         //-----------------------
@@ -532,11 +547,13 @@ namespace Ic3d {
             //---- The render target texture of L/R
             ctl::Sp<IcTexture> m_pTex[2]{nullptr, nullptr};
         public:
+            VRContext(const T_VRCfg& rCfg):m_rCfg(rCfg){};
             decltype(m_pTex[0]) getTex(bool isR) { return m_pTex[isR]; };
             void onWindowSize(const ctl::TSize& winSize);
+            const T_VRCfg& m_rCfg;
         };
         typedef ctl::Sp<VRContext> T_VRCntxSp;
-        T_VRCntxSp m_pVRContext{ctl::makeSp<VRContext>()};
+        T_VRCntxSp m_pVRContext = ctl::makeSp<VRContext>(m_VRCfg);
         //-----------------------
         //	VRScnMain
         //-----------------------
@@ -557,23 +574,39 @@ namespace Ic3d {
         // use rendered texture from main scene
         class VRScnDisp : public IcScene
         {
-        public:
-            virtual void onInit() override;
-            virtual void onWindowSize(const ctl::TSize& winSize) override;
-            void setContext(T_VRCntxSp p){m_pCntxt = p;};
-            void reInit();
-
         protected:
             T_VRCntxSp m_pCntxt = nullptr;
             //---- Distortion mesh
             ctl::Sp<IcMesh> m_pDistMesh = nullptr;
             ctl::Sp<IcObject> m_pObjPlane[2]{nullptr, nullptr};
-       };
+        public:
+            virtual void onInit() override;
+            virtual void onWindowSize(const ctl::TSize& winSize) override;
+            void setContext(T_VRCntxSp p){m_pCntxt = p;};
+            void reInit();
+            decltype(m_pDistMesh) createDistortMesh();
+            
+         };
         void initWithMainScn(ctl::Sp<VRScnMain> pScn);
         
+    //-----------------------
     protected:
         ctl::Sp<VRScnMain>      m_pScnMain = nullptr;
         ctl::Sp<VRScnDisp>      m_pScnDisp = nullptr;
+        //------------------------
+        //  MouseHelper
+        //------------------------
+        // simulate cam tilte by mouse
+        class CMouseHelper
+        {
+        public:
+            TQuat onMouseMove(int x, int y);
+        protected:
+            TEuler  m_camAtt;
+            TVec2   m_mousePrevPos;
+            bool    m_isFirst = true;
+        };
+        CMouseHelper m_mouseHelper;
 
     };
     

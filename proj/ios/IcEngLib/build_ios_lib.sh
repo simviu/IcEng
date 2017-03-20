@@ -1,7 +1,7 @@
 #---- This script build and bundle iOS build lib of simulator/device 
 # into one fat Universal lib. 
 
-MY_PRODUCT="IcEngLib_iOS"
+MY_PRODUCT="IcEng"
 DIR_BUNDLE="${BUILD_DIR}/lib/${CONFIGURATION}"
 FILE_BUNDLE="${DIR_BUNDLE}/lib${MY_PRODUCT}.a"
 FILE_LIB_DEV="${BUILD_DIR}/tmp/${CONFIGURATION}-iphoneos/lib${MY_PRODUCT}.a"
