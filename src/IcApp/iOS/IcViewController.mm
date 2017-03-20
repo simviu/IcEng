@@ -236,11 +236,12 @@ const static GLfloat K_bkColor[4] = {0.2, 0.4, 0.9, 1.0};
          //      iPhone      : is CMAttitude(yaw->Z,pitch->X,roll->Y)
          //      glm Euler   : is TVec(x,y,z) = {pitch, yaw, roll}
          //      VR : pitch->Y, yaw->X, roll->Z
-         TVec3 v_att = TVec3(att.roll, -att.pitch, att.yaw);
+         TQuat q(TVec3(att.roll, -att.pitch, att.yaw));
+         Ic3d::TQuat q0(TVec3(deg2rad(-90),0,0)); // rot phone face up
 
          auto pWin = m_pIcApp->getWinMng()->getWindow(0);
          if(pWin!=nullptr)
-             pWin->onDeviceAttitude(v_att);
+             pWin->onDeviceRot(q0*q);
      }];
 }
 
