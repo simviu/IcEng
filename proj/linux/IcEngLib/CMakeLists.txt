@@ -39,8 +39,8 @@ endif(NOT OPENGL_FOUND)
 set(ICENGLIB "${CMAKE_CURRENT_SOURCE_DIR}/../../../../IcEng")
 set(ICENGBUILD "${CMAKE_CURRENT_SOURCE_DIR}/../../../IcEngBuild")
 
-set(BUILD_LIB_DIR "${ICENGBUILD}/linux/lib/${CMAKE_HOST_SYSTEM_PROCESSOR}/${CMAKE_BUILD_TYPE}")
-set(BUILD_EXE_DIR "${ICENGBUILD}/linux/bin/${CMAKE_HOST_SYSTEM_PROCESSOR}/${CMAKE_BUILD_TYPE}")
+set(BUILD_LIB_DIR "${ICENGBUILD}/linux/lib/${CMAKE_SYSTEM_PROCESSOR}/${CMAKE_BUILD_TYPE}")
+set(BUILD_EXE_DIR "${ICENGBUILD}/linux/bin/${CMAKE_SYSTEM_PROCESSOR}/${CMAKE_BUILD_TYPE}")
 
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${BUILD_LIB_DIR}")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${BUILD_EXE_DIR}")
@@ -81,6 +81,8 @@ add_library(IcEng SHARED
 			${ICENGLIB}/src/Ic3d/IcText.cpp
 			${ICENGLIB}/src/Ic3d/IcTexture.cpp
 			${ICENGLIB}/src/Ic3d/IcUtil.cpp
+			${ICENGLIB}/src/IcVR/IcSceneVR.cpp
+			${ICENGLIB}/src/IcVR/IcWindowVR.cpp
 			${ICENGLIB}/src/IcApp/IcApp.cpp
 			${ICENGLIB}/src/IcApp/IcWindow.cpp
 			${ICENGLIB}/src/IcApp/IcWinMng.cpp
