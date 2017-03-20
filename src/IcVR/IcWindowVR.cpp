@@ -75,9 +75,10 @@ namespace Ic3d
     //--------------------------------------
     void IcWindowVR::onDeviceRot(const TQuat& q)
     {
-        Ic3d::TQuat q0(TVec3(deg2rad(-90),0,0)); // rot phone face up
+        Ic3d::TQuat q0(TVec3(deg2rad(90),0,0)); // rot phone face up
         auto pCam = m_pScnMain->getCamera();
-        pCam->setQuat(q0*q);
+        TQuat qCam = glm::inverse(q);
+        pCam->setQuat(q0*qCam);
         pCam->updateViewMat();
     }
 

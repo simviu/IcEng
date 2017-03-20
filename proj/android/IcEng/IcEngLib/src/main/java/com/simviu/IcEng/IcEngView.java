@@ -449,7 +449,7 @@ public class IcEngView extends GLSurfaceView implements GLSurfaceView.Renderer,
         {
             //---- Note , the quaternion y,x axis need exchange.( Refer doc.)
             final float [] r = m_sensorData.m_rot;
-            IcEngJNI.updateDeviceRot(r[0], r[1], r[2], r[3]);
+            IcEngJNI.updateDeviceRot(r[0], r[2], r[1], r[3]);
         }
 
 }

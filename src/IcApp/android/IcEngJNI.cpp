@@ -167,10 +167,7 @@ extern "C" JNIEXPORT void JNICALL Java_com_simviu_IcEng_IcEngJNI_updateDeviceRot
     if(pApp== nullptr) return;
     auto pWin = pApp->getWinMng()->getWindow(0);
     if(pWin== nullptr) return;
-
-    //---- Preprocess Android device's orientation
-    TQuat q = glm::inverse(TQuat(x,w,y,z));
-    pWin->onDeviceRot(q);
+    pWin->onDeviceRot(TQuat(x,y,w,z));
 
 }
 //------------------------------------------
