@@ -167,8 +167,9 @@ extern "C" JNIEXPORT void JNICALL Java_com_simviu_IcEng_IcEngJNI_updateDeviceRot
     if(pApp== nullptr) return;
     auto pWin = pApp->getWinMng()->getWindow(0);
     if(pWin== nullptr) return;
-    TQuat q = glm::inverse(TQuat(x,y,w,z));
-    pWin->onDeviceRot(q);
+    Ic3d::TQuat q0(TVec3(deg2rad(90),0,0)); // rot phone face up
+    TQuat q = glm::inverse(TQuat(x,z,w,y));
+    pWin->onDeviceRot(q0*q);
 
 }
 //------------------------------------------
