@@ -167,7 +167,8 @@ extern "C" JNIEXPORT void JNICALL Java_com_simviu_IcEng_IcEngJNI_updateDeviceRot
     if(pApp== nullptr) return;
     auto pWin = pApp->getWinMng()->getWindow(0);
     if(pWin== nullptr) return;
-    pWin->onDeviceRot(TQuat(x,y,w,z));
+    TQuat q = glm::inverse(TQuat(x,y,w,z));
+    pWin->onDeviceRot(q);
 
 }
 //------------------------------------------

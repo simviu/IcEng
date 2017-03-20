@@ -77,8 +77,7 @@ namespace Ic3d
     {
         Ic3d::TQuat q0(TVec3(deg2rad(90),0,0)); // rot phone face up
         auto pCam = m_pScnMain->getCamera();
-        TQuat qCam = glm::inverse(q);
-        pCam->setQuat(q0*qCam);
+        pCam->setQuat(q0*q);
         pCam->updateViewMat();
     }
 
