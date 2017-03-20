@@ -26,13 +26,14 @@ namespace Ic3d
         if(m_isFirst) m_mousePrevPos = pos;
         m_isFirst = false;
         auto dPos = pos - m_mousePrevPos;
-        m_camAtt.p += dPos.y * K_mouseCoef.p;
-        m_camAtt.y += dPos.x * K_mouseCoef.y;
+        m_camAtt.p -= dPos.y * K_mouseCoef.p;
+        m_camAtt.y -= dPos.x * K_mouseCoef.y;
         
         //---- Pitch in +/-90 degree
         dClamp<decltype(m_camAtt.p)>(m_camAtt.p, -M_PI/2.0, M_PI/2.0);
         m_mousePrevPos = pos;
-        return m_camAtt.toQuat();
+        TQuat q = (m_camAtt.toQuat());
+        return q;
     }
     
     

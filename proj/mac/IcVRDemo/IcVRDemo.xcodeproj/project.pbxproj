@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9C9EC9541E77AEF400A568B6 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C9EC9531E77AEF400A568B6 /* main.cpp */; };
+		9C9CF4A41E7F997300F32036 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C9CF4A31E7F997300F32036 /* main.cpp */; };
 		9C9EC95D1E77B0F800A568B6 /* VRDemoApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C9EC95B1E77B0F800A568B6 /* VRDemoApp.cpp */; };
 		9C9EC9601E77B1F500A568B6 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C9EC95F1E77B1F500A568B6 /* GLUT.framework */; };
 		9C9EC9621E77B1FB00A568B6 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C9EC9611E77B1FB00A568B6 /* OpenGL.framework */; };
@@ -26,8 +26,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		9C9CF4A31E7F997300F32036 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		9C9EC9501E77AEF400A568B6 /* IcVRDemo */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = IcVRDemo; sourceTree = BUILT_PRODUCTS_DIR; };
-		9C9EC9531E77AEF400A568B6 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		9C9EC95B1E77B0F800A568B6 /* VRDemoApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VRDemoApp.cpp; sourceTree = "<group>"; };
 		9C9EC95C1E77B0F800A568B6 /* VRDemoApp.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = VRDemoApp.hpp; sourceTree = "<group>"; };
 		9C9EC95F1E77B1F500A568B6 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
@@ -47,11 +47,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9C9CF4A21E7F997300F32036 /* pc */ = {
+			isa = PBXGroup;
+			children = (
+				9C9CF4A31E7F997300F32036 /* main.cpp */,
+			);
+			path = pc;
+			sourceTree = "<group>";
+		};
 		9C9EC9471E77AEF400A568B6 = {
 			isa = PBXGroup;
 			children = (
 				9C9EC95A1E77B0DD00A568B6 /* VRDemo */,
-				9C9EC9521E77AEF400A568B6 /* IcVRDemo */,
 				9C9EC9511E77AEF400A568B6 /* Products */,
 				9C9EC95E1E77B1F400A568B6 /* Frameworks */,
 			);
@@ -65,17 +72,10 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		9C9EC9521E77AEF400A568B6 /* IcVRDemo */ = {
-			isa = PBXGroup;
-			children = (
-				9C9EC9531E77AEF400A568B6 /* main.cpp */,
-			);
-			path = IcVRDemo;
-			sourceTree = "<group>";
-		};
 		9C9EC95A1E77B0DD00A568B6 /* VRDemo */ = {
 			isa = PBXGroup;
 			children = (
+				9C9CF4A21E7F997300F32036 /* pc */,
 				9C9EC95B1E77B0F800A568B6 /* VRDemoApp.cpp */,
 				9C9EC95C1E77B0F800A568B6 /* VRDemoApp.hpp */,
 			);
@@ -150,8 +150,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C9CF4A41E7F997300F32036 /* main.cpp in Sources */,
 				9C9EC95D1E77B0F800A568B6 /* VRDemoApp.cpp in Sources */,
-				9C9EC9541E77AEF400A568B6 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
