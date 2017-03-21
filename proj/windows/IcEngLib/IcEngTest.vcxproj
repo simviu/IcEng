@@ -217,6 +217,8 @@
     <ClCompile Include="..\..\..\src\IcRenderEng\IcRenderEng.cpp" />
     <ClCompile Include="..\..\..\src\IcRenderEng\IcRenderEngText.cpp" />
     <ClCompile Include="..\..\..\src\IcRenderEng\IcShader.cpp" />
+    <ClCompile Include="..\..\..\src\IcVR\IcSceneVR.cpp" />
+    <ClCompile Include="..\..\..\src\IcVR\IcWindowVR.cpp" />
     <ClCompile Include="..\..\..\src\test\main.cpp" />
     <ClCompile Include="..\..\..\src\test\MyTestApp.cpp" />
   </ItemGroup>

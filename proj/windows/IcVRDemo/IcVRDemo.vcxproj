@@ -96,7 +96,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>../../../../IcEng/src/demo;../../../../IcEng/inc</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../../IcEng/src/demo/VRDemo;../../../../IcEng/inc</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -115,7 +115,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>../../../../IcEng/src/demo;../../../../IcEng/inc</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../../IcEng/src/demo/VRDemo;../../../../IcEng/inc</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -136,7 +136,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>../../../../IcEng/src/demo;../../../../IcEng/inc</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../../IcEng/src/demo/VRDemo;../../../../IcEng/inc</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -159,7 +159,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>../../../../IcEng/src/demo;../../../../IcEng/inc</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../../IcEng/src/demo/VRDemo;../../../../IcEng/inc</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -177,20 +177,13 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\src\demo\DemoApp.hpp" />
-    <ClInclude Include="..\..\..\src\demo\DemoScene.h" />
+    <ClInclude Include="..\..\..\src\demo\VRDemo\VRDemoApp.hpp" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\src\demo\DemoApp.cpp" />
-    <ClCompile Include="..\..\..\src\demo\DemoBasic.cpp" />
-    <ClCompile Include="..\..\..\src\demo\DemoLights.cpp" />
-    <ClCompile Include="..\..\..\src\demo\DemoModelCreate.cpp" />
-    <ClCompile Include="..\..\..\src\demo\DemoNestedTrans.cpp" />
-    <ClCompile Include="..\..\..\src\demo\DemoRenderToTex.cpp" />
-    <ClCompile Include="..\..\..\src\demo\DemoScene.cpp" />
-    <ClCompile Include="..\..\..\src\demo\pc\main.cpp" />
+    <ClCompile Include="..\..\..\src\demo\VRDemo\pc\main.cpp" />
+    <ClCompile Include="..\..\..\src\demo\VRDemo\VRDemoApp.cpp" />
     <ClCompile Include="stdafx.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
