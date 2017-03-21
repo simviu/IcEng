@@ -201,6 +201,8 @@
     <ClCompile Include="..\..\..\src\IcRenderEng\IcRenderEng.cpp" />
     <ClCompile Include="..\..\..\src\IcRenderEng\IcRenderEngText.cpp" />
     <ClCompile Include="..\..\..\src\IcRenderEng\IcShader.cpp" />
+    <ClCompile Include="..\..\..\src\IcVR\IcSceneVR.cpp" />
+    <ClCompile Include="..\..\..\src\IcVR\IcWindowVR.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

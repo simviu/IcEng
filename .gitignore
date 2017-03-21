@@ -6,3 +6,6 @@ proj/windows/IcEngDemo/.vs/IcEngDemo/v14/.suo
 proj/windows/IcEngDemo/IcEngDemo.VC.db
 proj/windows/IcEngLib/IcEngLib.VC.VC.opendb
 proj/windows/winDepLib/
+proj/windows/IcVRDemo/.vs/
+proj/windows/IcVRDemo/IcVRDemo.VC.db
+proj/windows/IcVRDemo/IcVRDemo/IcVRDemo.vcxproj.filters

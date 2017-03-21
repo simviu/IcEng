@@ -15,7 +15,7 @@ namespace Ic3d
     using namespace ctl;
     using namespace std;
     
-    const static TEuler K_mouseCoef{0.02,0.02,0.02};
+    const static TEuler K_mouseCoef{0.02f,0.02f,0.02f};
 
     //---------------------------------------
     //  IcWindowVR::CMouseHelper
