@@ -1,25 +1,18 @@
 # Overview
-I-Cube 3D Engine (IcEng) is an open source, light weight OpenGL/C++ 3D graphics Engine. It's designed with simple structure and interface to fit small cross platform 3D application. It can also serve as OpenGL example, or foundation code base that you can develop your own 3D engine upon.
+I-Cube 3D Engine (IcEng) is an open source, light weight OpenGL/C++ 3D graphics/VR Engine. It's designed with simple structure and interface to fit small cross platform 3D application. It can also serve as OpenGL example, or foundation code base that you can develop your own 3D engine upon.
 The source or binary are provided with free BSD license, so you can use this engine on personal or commercial project with no restriction. See License section.
 For more information check website http://www.simviu.com/dev.
 
-#Features
+# Features
 * C++ 0x11 code, OpenGL 2.0 shader.
 * Cross Platform ( Mac/Windows/Linux/iOS/Android ), project file provided.
 * Auto memory and resource management with C++ 0x11 std::shared_ptr.
 * Model loading with Waveform .OBJ file. ( More format in future )
 * Basic lighting, material.
 * Abstract C++ wrapper class with OpenGL function hidden.
-* Support Google CardBoard VR.(Coming soon...)
+* Support Google CardBoard VR.
 
-#TODO
-* Windows Visual C++ project file need fix
-* Android GL context re-creation issue
-* Google Cardboard VR add-on
-* More doucuments
-* Some other issues
-
-#Architecture
+# Architecture
 * The IcEng applications are wrapped in IcApp/IcWindow/IcScene structure. 
 * There is only one IcApp instance(singleton). 
 * An IcApp application can contain several IcWindow. 
@@ -31,18 +24,18 @@ For more information check website http://www.simviu.com/dev.
 
 In most case your simple 3d application has one IcWindow and one IcScene. For iOS/Android mobile App, there is only one window.
 
-#Document
+# Document
 More info check IcEng/doc/IcEng_Manual.pdf
 
-#Pre-Build Binary
+# Pre-Build Binary
 Pre-Build binary are provided in :
 https://github.com/simviu/IcEngBuild
 
-#License
+# License
 Check BSD license :
 https://en.wikipedia.org/wiki/BSD_licenses
 
-#Dependencies
+# Dependencies
 IcEng have a few dependencies, but all included in this repo.
 You can update them with latest version by yourself.
 * glm : GLM is a C++ mathematics library for graphics software, MIT license(Free). ( https://www.opengl.org/sdk/libs/GLM/ ) 
@@ -56,10 +49,10 @@ from IcEngBuild([https://github.com/simviu/IcEngBuild]), unzip and put inside Ic
 Or you can download yourself, but re-orgnized the files in the same directory structures. 
 This is for convinience of Visual Studio Project Setting.
 
-#Contact
+# Contact
 support@simviu.com
 
-#ScreenShots
+# ScreenShots
 | ...                                    | ...                                    |
 | ---------------------------------------|:--------------------------------------:|
 | ![alt tag](doc/ScreenShots/1.png)      | ![alt tag](doc/ScreenShots/2.png)      |
