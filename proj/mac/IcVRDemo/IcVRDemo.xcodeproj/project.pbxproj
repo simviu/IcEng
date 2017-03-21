@@ -249,7 +249,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OBJROOT = "../../../IcEngBuild/mac/tmp/${ARCHS}/${CONFIGURATION}";
 				SDKROOT = macosx;
-				SYMROOT = "../../../IcEngBuild/mac/bin/${ARCHS}/${CONFIGURATION}";
+				SYMROOT = "../../../IcEngBuild/mac/bin/${ARCHS}";
 			};
 			name = Release;
 		};

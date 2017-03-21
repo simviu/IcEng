@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9C46DBF51E72634F002019D4 /* DemoRenderToTex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C46DBF41E72634F002019D4 /* DemoRenderToTex.cpp */; };
+		9CBC33641E80E5ED002E2A80 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CBC33631E80E5ED002E2A80 /* CoreMotion.framework */; };
 		9CEC54B81DCB3A3E00A9E864 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CEC54B71DCB3A3E00A9E864 /* main.m */; };
 		9CEC54BB1DCB3A3E00A9E864 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CEC54BA1DCB3A3E00A9E864 /* AppDelegate.m */; };
 		9CEC54BE1DCB3A3E00A9E864 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CEC54BD1DCB3A3E00A9E864 /* ViewController.m */; };
@@ -42,6 +43,7 @@
 
 /* Begin PBXFileReference section */
 		9C46DBF41E72634F002019D4 /* DemoRenderToTex.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DemoRenderToTex.cpp; sourceTree = "<group>"; };
+		9CBC33631E80E5ED002E2A80 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.2.sdk/System/Library/Frameworks/CoreMotion.framework; sourceTree = DEVELOPER_DIR; };
 		9CEC54B41DCB3A3E00A9E864 /* IcEngDemoIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IcEngDemoIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CEC54B71DCB3A3E00A9E864 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		9CEC54B91DCB3A3E00A9E864 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -76,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9CBC33641E80E5ED002E2A80 /* CoreMotion.framework in Frameworks */,
 				9CF607CC1E2492C7008A662C /* GLKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -129,6 +132,7 @@
 		9CEC56CD1DCB3C7E00A9E864 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9CBC33631E80E5ED002E2A80 /* CoreMotion.framework */,
 				9CF607CB1E2492C7008A662C /* GLKit.framework */,
 				9CEC56D51DCB3F5D00A9E864 /* Foundation.framework */,
 			);
