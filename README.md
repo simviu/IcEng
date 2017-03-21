@@ -26,10 +26,18 @@ In most case your simple 3d application has one IcWindow and one IcScene. For iO
 
 # Document
 More info check IcEng/doc/IcEng_Manual.pdf
+(... under construction ... )
 
 # Pre-Build Binary
 Pre-Build binary are provided in :
 https://github.com/simviu/IcEngBuild
+
+# VR
+VR demo can be found in project IcVRDemo, in all platforms.
+On iOS/Android, the VR demo can be put into Google Cardboard or similar headset VR box.
+For Occulus or other PC VR headset, the device need to support external monitor mode,
+and the orientation of headset should feed in via their API, by calling 
+IcWindow::onDeviceRot() function.
 
 # License
 Check BSD license :
