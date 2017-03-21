@@ -129,8 +129,8 @@ namespace Ic3d{
                 //--- Texture
                 float u = tgsz.w*x + tp0.x;
                 float v = tgsz.h*y + tp0.y;
-                  u = 1 - u;    // TODO: HackHack
-            //    v = 1 - v;    // TODO: to be verified
+            //    u = 1 - u;    // TODO: HackHack
+                v = 1 - v;    // TODO: to be verified
 
                 //---- Vert, normal and TexCo
                 addVert({vx,vy,vz});

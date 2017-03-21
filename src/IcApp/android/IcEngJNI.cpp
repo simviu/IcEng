@@ -66,8 +66,8 @@ void IcEngJNI::initIcApp(const std::string& sPathRes,
     auto pApp = IcApp::getInstance();
 
     //---- Init App
-    logInfo("------------------------------------------");
-    logInfo("IcEngJNI::initIcApp:[0x"+v2hex(pApp)+"]");
+    logDbg("------------------------------------------");
+    logDbg("IcEngJNI::initIcApp:[0x"+v2hex(pApp)+"]");
     auto& cfg = pApp->m_cfg;
     cfg.m_sPathRes = sPathRes +"/";
     cfg.m_sPathDoc = sPathDoc +"/";
@@ -157,6 +157,21 @@ extern "C" JNIEXPORT jstring JNICALL Java_com_simviu_IcEng_IcEngJNI_sendAppCmd(J
     return (*env).NewStringUTF(sRet.c_str());
 }
 
+//------------------------------------------
+//  updateDeviceAttitude
+//------------------------------------------
+extern "C" JNIEXPORT void JNICALL Java_com_simviu_IcEng_IcEngJNI_updateDeviceRot(JNIEnv * env, jobject obj,
+                                                                                jfloat x, jfloat y, jfloat z, jfloat w)
+{
+    auto pApp = IcApp::getInstance();
+    if(pApp== nullptr) return;
+    auto pWin = pApp->getWinMng()->getWindow(0);
+    if(pWin== nullptr) return;
+    Ic3d::TQuat q0(TVec3(deg2rad(90),0,0)); // rot phone face up
+    TQuat q = glm::inverse(TQuat(x,z,w,y));
+    pWin->onDeviceRot(q0*q);
+
+}
 //------------------------------------------
 //  util jstr2str()
 //------------------------------------------

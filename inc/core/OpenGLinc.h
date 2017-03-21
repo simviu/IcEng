@@ -23,14 +23,8 @@
 
 //------- iPhone
 #if TARGET_OS_IPHONE
-	//------- OpenGL
-	#ifdef USE_OPENGL1
-		#include <OpenGLES/ES1/gl.h>
-		#include <OpenGLES/ES1/glext.h>
-	#else
-		#include <OpenGLES/ES2/gl.h>
-		#include <OpenGLES/ES2/glext.h>
-	#endif
+    #include <OpenGLES/ES3/gl.h>
+    #include <OpenGLES/ES3/glext.h>
 //------- Glut
 #else
 	//---- Use GLUT for none iOS

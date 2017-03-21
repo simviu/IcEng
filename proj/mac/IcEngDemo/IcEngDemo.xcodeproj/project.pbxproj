@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9CB91D911E71156E00FFF5DF /* DemoRenderToTex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CB91D901E71156E00FFF5DF /* DemoRenderToTex.cpp */; };
 		9CC25D741E6EBF2C0041C815 /* DemoApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CC25D631E6EBF2C0041C815 /* DemoApp.cpp */; };
 		9CC25D751E6EBF2C0041C815 /* DemoBasic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CC25D651E6EBF2C0041C815 /* DemoBasic.cpp */; };
 		9CC25D761E6EBF2C0041C815 /* DemoLights.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CC25D661E6EBF2C0041C815 /* DemoLights.cpp */; };
@@ -32,6 +33,7 @@
 
 /* Begin PBXFileReference section */
 		9CAE52931DCB26F4003F7B38 /* IcEngDemo */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = IcEngDemo; sourceTree = BUILT_PRODUCTS_DIR; };
+		9CB91D901E71156E00FFF5DF /* DemoRenderToTex.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DemoRenderToTex.cpp; sourceTree = "<group>"; };
 		9CC25D631E6EBF2C0041C815 /* DemoApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DemoApp.cpp; sourceTree = "<group>"; };
 		9CC25D641E6EBF2C0041C815 /* DemoApp.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DemoApp.hpp; sourceTree = "<group>"; };
 		9CC25D651E6EBF2C0041C815 /* DemoBasic.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DemoBasic.cpp; sourceTree = "<group>"; };
@@ -84,6 +86,7 @@
 				9CC25D661E6EBF2C0041C815 /* DemoLights.cpp */,
 				9CC25D671E6EBF2C0041C815 /* DemoModelCreate.cpp */,
 				9CC25D681E6EBF2C0041C815 /* DemoNestedTrans.cpp */,
+				9CB91D901E71156E00FFF5DF /* DemoRenderToTex.cpp */,
 				9CC25D691E6EBF2C0041C815 /* DemoScene.cpp */,
 				9CC25D6A1E6EBF2C0041C815 /* DemoScene.h */,
 				9CC25D721E6EBF2C0041C815 /* pc */,
@@ -173,6 +176,7 @@
 				9CC25D7C1E6EBF2C0041C815 /* main.cpp in Sources */,
 				9CC25D781E6EBF2C0041C815 /* DemoNestedTrans.cpp in Sources */,
 				9CC25D791E6EBF2C0041C815 /* DemoScene.cpp in Sources */,
+				9CB91D911E71156E00FFF5DF /* DemoRenderToTex.cpp in Sources */,
 				9CC25D771E6EBF2C0041C815 /* DemoModelCreate.cpp in Sources */,
 				9CC25D751E6EBF2C0041C815 /* DemoBasic.cpp in Sources */,
 			);

@@ -15,6 +15,7 @@
 			);
 			dependencies = (
 				9C108D761E03B1EF00E0E1DF /* PBXTargetDependency */,
+				9C2262711E7A53CC00FE2154 /* PBXTargetDependency */,
 			);
 			name = All;
 			productName = All;
@@ -22,6 +23,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		9C26674C1E7A500F00F37A29 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C26674B1E7A500F00F37A29 /* CoreMotion.framework */; };
+		9C26674D1E7A502500F37A29 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C26674B1E7A500F00F37A29 /* CoreMotion.framework */; };
 		9C5806281E53F3E900E61F85 /* IcApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C58061B1E53F3E900E61F85 /* IcApp.cpp */; };
 		9C5806291E53F3E900E61F85 /* IcApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C58061B1E53F3E900E61F85 /* IcApp.cpp */; };
 		9C58062A1E53F3E900E61F85 /* IcWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C58061C1E53F3E900E61F85 /* IcWindow.cpp */; };
@@ -39,6 +42,10 @@
 		9C7AD3E61DF11751008968FC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C7AD3E41DF11751008968FC /* Main.storyboard */; };
 		9C7AD3E81DF11751008968FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C7AD3E71DF11751008968FC /* Assets.xcassets */; };
 		9C7AD3EB1DF11751008968FC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C7AD3E91DF11751008968FC /* LaunchScreen.storyboard */; };
+		9C9EC92B1E779BF500A568B6 /* IcSceneVR.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C9EC9271E779BF500A568B6 /* IcSceneVR.cpp */; };
+		9C9EC92C1E779BF500A568B6 /* IcSceneVR.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C9EC9271E779BF500A568B6 /* IcSceneVR.cpp */; };
+		9C9EC92D1E779BF500A568B6 /* IcWindowVR.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C9EC92A1E779BF500A568B6 /* IcWindowVR.cpp */; };
+		9C9EC92E1E779BF500A568B6 /* IcWindowVR.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C9EC92A1E779BF500A568B6 /* IcWindowVR.cpp */; };
 		9C9FED781E54367400CA0C32 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C9FED761E54366900CA0C32 /* GLKit.framework */; };
 		9CF557B31E6FB0C200AF7621 /* IcData in Resources */ = {isa = PBXBuildFile; fileRef = 9CF557B21E6FB0C200AF7621 /* IcData */; };
 		9CF606EF1E248B8F008A662C /* ctlBinBuf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CF606BE1E248B8F008A662C /* ctlBinBuf.cpp */; };
@@ -107,9 +114,17 @@
 			remoteGlobalIDString = 9C7AD3D81DF11751008968FC;
 			remoteInfo = IcEngTest_iOS;
 		};
+		9C2262701E7A53CC00FE2154 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9C53F6B31DCB14FB006EAF17 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9C53F6CC1DCB18F8006EAF17;
+			remoteInfo = IcEng;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9C26674B1E7A500F00F37A29 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.2.sdk/System/Library/Frameworks/CoreMotion.framework; sourceTree = DEVELOPER_DIR; };
 		9C36EB361E2F15FA00F1DB3D /* ctl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ctl.h; path = ../../../inc/ctl.h; sourceTree = "<group>"; };
 		9C36EB371E2F15FA00F1DB3D /* Ic3d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Ic3d.h; path = ../../../inc/Ic3d.h; sourceTree = "<group>"; };
 		9C36EB381E2F15FA00F1DB3D /* IcRenderAdp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IcRenderAdp.h; path = ../../../inc/IcRenderAdp.h; sourceTree = "<group>"; };
@@ -120,7 +135,7 @@
 		9C36EB3F1E2F161D00F1DB3D /* lodepng.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lodepng.h; path = ../../../inc/core/lodepng.h; sourceTree = "<group>"; };
 		9C36EB401E2F161D00F1DB3D /* OpenGLinc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OpenGLinc.h; path = ../../../inc/core/OpenGLinc.h; sourceTree = "<group>"; };
 		9C36EB411E2F1B3E00F1DB3D /* IcViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IcViewController.h; path = ../../../inc/IcViewController.h; sourceTree = "<group>"; };
-		9C53F6CD1DCB18F8006EAF17 /* libIcEngLib_iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIcEngLib_iOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C53F6CD1DCB18F8006EAF17 /* libIcEng.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIcEng.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C5806191E53F3E900E61F85 /* IcEngJNI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcEngJNI.cpp; sourceTree = "<group>"; };
 		9C58061B1E53F3E900E61F85 /* IcApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcApp.cpp; sourceTree = "<group>"; };
 		9C58061C1E53F3E900E61F85 /* IcWindow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcWindow.cpp; sourceTree = "<group>"; };
@@ -145,6 +160,8 @@
 		9C8CC3EE1DEE86A2002583F2 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		9C8CC3F11DEE87B3002583F2 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		9C8CC3F31DEE8808002583F2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		9C9EC9271E779BF500A568B6 /* IcSceneVR.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcSceneVR.cpp; sourceTree = "<group>"; };
+		9C9EC92A1E779BF500A568B6 /* IcWindowVR.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcWindowVR.cpp; sourceTree = "<group>"; };
 		9C9FED761E54366900CA0C32 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.2.sdk/System/Library/Frameworks/GLKit.framework; sourceTree = DEVELOPER_DIR; };
 		9CAE4F1F1DCB201B003F7B38 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		9CF557B21E6FB0C200AF7621 /* IcData */ = {isa = PBXFileReference; lastKnownFileType = folder; name = IcData; path = ../../../IcData; sourceTree = "<group>"; };
@@ -184,6 +201,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C26674C1E7A500F00F37A29 /* CoreMotion.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -191,6 +209,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C26674D1E7A502500F37A29 /* CoreMotion.framework in Frameworks */,
 				9C9FED781E54367400CA0C32 /* GLKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -239,7 +258,7 @@
 		9C53F6BC1DCB14FB006EAF17 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9C53F6CD1DCB18F8006EAF17 /* libIcEngLib_iOS.a */,
+				9C53F6CD1DCB18F8006EAF17 /* libIcEng.a */,
 				9C7AD3D91DF11751008968FC /* IcEngTestApp.app */,
 			);
 			name = Products;
@@ -298,9 +317,19 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		9C9EC9261E779BF500A568B6 /* IcVR */ = {
+			isa = PBXGroup;
+			children = (
+				9C9EC9271E779BF500A568B6 /* IcSceneVR.cpp */,
+				9C9EC92A1E779BF500A568B6 /* IcWindowVR.cpp */,
+			);
+			path = IcVR;
+			sourceTree = "<group>";
+		};
 		9CAE4F1E1DCB201B003F7B38 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9C26674B1E7A500F00F37A29 /* CoreMotion.framework */,
 				9C9FED761E54366900CA0C32 /* GLKit.framework */,
 				9C8CC3F31DEE8808002583F2 /* CoreGraphics.framework */,
 				9C8CC3F11DEE87B3002583F2 /* CoreImage.framework */,
@@ -315,6 +344,7 @@
 		9CF606BC1E248B8F008A662C /* src */ = {
 			isa = PBXGroup;
 			children = (
+				9C9EC9261E779BF500A568B6 /* IcVR */,
 				9C5806171E53F3E900E61F85 /* IcApp */,
 				9CF606BD1E248B8F008A662C /* ctl */,
 				9CF606C61E248B8F008A662C /* Ic3d */,
@@ -395,9 +425,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		9C53F6CC1DCB18F8006EAF17 /* IcEngLib_iOS */ = {
+		9C53F6CC1DCB18F8006EAF17 /* IcEng */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9C53F6D31DCB18F8006EAF17 /* Build configuration list for PBXNativeTarget "IcEngLib_iOS" */;
+			buildConfigurationList = 9C53F6D31DCB18F8006EAF17 /* Build configuration list for PBXNativeTarget "IcEng" */;
 			buildPhases = (
 				9C53F6C91DCB18F8006EAF17 /* Sources */,
 				9C53F6CA1DCB18F8006EAF17 /* Frameworks */,
@@ -406,9 +436,9 @@
 			);
 			dependencies = (
 			);
-			name = IcEngLib_iOS;
+			name = IcEng;
 			productName = IcEngLib_iOS;
-			productReference = 9C53F6CD1DCB18F8006EAF17 /* libIcEngLib_iOS.a */;
+			productReference = 9C53F6CD1DCB18F8006EAF17 /* libIcEng.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		9C7AD3D81DF11751008968FC /* IcEngTestApp */ = {
@@ -467,7 +497,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				9C53F6CC1DCB18F8006EAF17 /* IcEngLib_iOS */,
+				9C53F6CC1DCB18F8006EAF17 /* IcEng */,
 				9C7AD3D81DF11751008968FC /* IcEngTestApp */,
 				9C108D6B1E03B18200E0E1DF /* All */,
 			);
@@ -522,6 +552,7 @@
 				9CF607051E248B8F008A662C /* IcMaterial.cpp in Sources */,
 				9CF606EF1E248B8F008A662C /* ctlBinBuf.cpp in Sources */,
 				9CF607031E248B8F008A662C /* IcLight.cpp in Sources */,
+				9C9EC92B1E779BF500A568B6 /* IcSceneVR.cpp in Sources */,
 				9CF606F11E248B8F008A662C /* ctlImg.cpp in Sources */,
 				9CF607211E248B8F008A662C /* IcRenderAdpStd_TexPVR.cpp in Sources */,
 				9CF607131E248B8F008A662C /* IcScene.cpp in Sources */,
@@ -534,6 +565,7 @@
 				9CF6070D1E248B8F008A662C /* IcModel.cpp in Sources */,
 				9CF606F51E248B8F008A662C /* ctlStr.cpp in Sources */,
 				9CF6071D1E248B8F008A662C /* IcRenderAdpStd_Mesh.cpp in Sources */,
+				9C9EC92D1E779BF500A568B6 /* IcWindowVR.cpp in Sources */,
 				9CF607011E248B8F008A662C /* IcCamera.cpp in Sources */,
 				9C58062A1E53F3E900E61F85 /* IcWindow.cpp in Sources */,
 				9CF607071E248B8F008A662C /* IcMesh.cpp in Sources */,
@@ -553,6 +585,7 @@
 				9CF607021E248B8F008A662C /* IcCamera.cpp in Sources */,
 				9C58062D1E53F3E900E61F85 /* IcWinMng.cpp in Sources */,
 				9CF606FC1E248B8F008A662C /* ctlUtil.cpp in Sources */,
+				9C9EC92C1E779BF500A568B6 /* IcSceneVR.cpp in Sources */,
 				9CF6070A1E248B8F008A662C /* IcMeshDataCreate.cpp in Sources */,
 				9CF607041E248B8F008A662C /* IcLight.cpp in Sources */,
 				9CF607221E248B8F008A662C /* IcRenderAdpStd_TexPVR.cpp in Sources */,
@@ -582,6 +615,7 @@
 				9CF607161E248B8F008A662C /* IcTexture.cpp in Sources */,
 				9CF606FE1E248B8F008A662C /* lodepng.cpp in Sources */,
 				9CF607241E248B8F008A662C /* IcRenderEng.cpp in Sources */,
+				9C9EC92E1E779BF500A568B6 /* IcWindowVR.cpp in Sources */,
 				9CF606F61E248B8F008A662C /* ctlStr.cpp in Sources */,
 				9CF607081E248B8F008A662C /* IcMesh.cpp in Sources */,
 				9CF606FA1E248B8F008A662C /* ctlTest_img.cpp in Sources */,
@@ -596,6 +630,11 @@
 			isa = PBXTargetDependency;
 			target = 9C7AD3D81DF11751008968FC /* IcEngTestApp */;
 			targetProxy = 9C108D751E03B1EF00E0E1DF /* PBXContainerItemProxy */;
+		};
+		9C2262711E7A53CC00FE2154 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9C53F6CC1DCB18F8006EAF17 /* IcEng */;
+			targetProxy = 9C2262701E7A53CC00FE2154 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -831,7 +870,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9C53F6D31DCB18F8006EAF17 /* Build configuration list for PBXNativeTarget "IcEngLib_iOS" */ = {
+		9C53F6D31DCB18F8006EAF17 /* Build configuration list for PBXNativeTarget "IcEng" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9C53F6D41DCB18F8006EAF17 /* Debug */,

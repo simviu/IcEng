@@ -12,6 +12,7 @@
 #import "IcViewController.h"
 #import <OpenGLES/ES2/glext.h>
 #include "Ic3d.h"
+#import <CoreMotion/CoreMotion.h>
 
 using namespace ctl;
 using namespace Ic3d;
@@ -23,6 +24,7 @@ const static GLfloat K_bkColor[4] = {0.2, 0.4, 0.9, 1.0};
 	bool m_hasInit;
     bool m_reqViewSizeChange;
     IcApp*  m_pIcApp;
+    CMMotionManager *   m_motionMng;
 }
 
 @property (strong, nonatomic) EAGLContext *context;
@@ -60,6 +62,9 @@ const static GLfloat K_bkColor[4] = {0.2, 0.4, 0.9, 1.0};
 	[super viewDidLoad];
 	m_hasInit = false;
     m_reqViewSizeChange = false;
+    
+    //---- Init Motion Manage
+    [self initMotionMng];
     
     //---- Make sure IcApp Init before GL context,
     // For cross platform consistence.
@@ -212,6 +217,34 @@ const static GLfloat K_bkColor[4] = {0.2, 0.4, 0.9, 1.0};
 {
     // this is handled by drawInRect
 }
+
+-(void)initMotionMng
+{
+    m_motionMng = [[CMMotionManager alloc] init];
+    m_motionMng.accelerometerUpdateInterval = .2;
+    m_motionMng.gyroUpdateInterval = .2;
+    m_motionMng.deviceMotionUpdateInterval = 1.0/60.0;
+    
+    [m_motionMng startDeviceMotionUpdatesToQueue:[NSOperationQueue currentQueue] withHandler:
+     ^(CMDeviceMotion *motion, NSError *error)
+     {
+         if(m_pIcApp==nullptr) return;
+         const auto att = motion.attitude;
+         //---- iPhone attitude translate to VR cam rotation:
+         // 1) iPhone attitude = 0 when face up, use q0 to reverse
+         // 2) Euler assignment :
+         //      iPhone      : is CMAttitude(yaw->Z,pitch->X,roll->Y)
+         //      glm Euler   : is TVec(x,y,z) = {pitch, yaw, roll}
+         //      VR : pitch->Y, yaw->X, roll->Z
+         TQuat q(TVec3(att.roll, -att.pitch, att.yaw));
+         Ic3d::TQuat q0(TVec3(deg2rad(-90),0,0)); // rot phone face up
+
+         auto pWin = m_pIcApp->getWinMng()->getWindow(0);
+         if(pWin!=nullptr)
+             pWin->onDeviceRot(q0*q);
+     }];
+}
+
 
 //--------------------------------------
 //  drawInRect

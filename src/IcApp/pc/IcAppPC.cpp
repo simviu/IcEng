@@ -184,7 +184,7 @@ namespace Ic3d
             if(pIcWin==nullptr) return;
             if(!pSlot->m_hasInit)
             {
-             //   pIcWin->reqInit();
+                pIcWin->initWindow();
                 pSlot->m_hasInit = true;
             }
             
@@ -370,7 +370,6 @@ namespace Ic3d
 			return 1;
 		}
         onInit();
-        pMng->initWindows();
         pMng->startMainLoop();
         return true;
     }

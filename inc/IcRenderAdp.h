@@ -180,7 +180,7 @@ namespace Ic3d
 		int GetUniformLocation(const std::string sName) const;
 		void bindShader() const;
 		void unbindShader() const;
-
+ 
 	private:
 		void loadShaderFile(const char* sVertexSource, const char* sFragmentSource);
 		void buildShader();
@@ -205,16 +205,31 @@ namespace Ic3d
 		struct CMeshAdp { virtual void render() const{}; };
 		//---- Texture Adp
 		struct CTexAdp {
+            CTexAdp(){};
 			virtual void render() const{};
+            bool isValid() const{ return m_isValid; };
+
+            //---- For render texture
+            virtual bool setAsRenderTarget(){ return false; };
+            virtual void startRenderOn() {};
+            virtual void finishRenderOn() {};
+            ctl::TSize getSize()const{ return m_size; };
+        protected:
+            std::string	m_sName;
+            ctl::TSize	m_size{128,128};
 			bool m_isRepeat = false;
 			bool m_isValid = false;
 		};
-        
-        //---- Factory
+        //---- Render Texture Adp
+        struct CRenderTexAdp : public CTexAdp{
+        };
+       
+        //---- Factory, TODO: Simplify
         virtual ctl::Sp<CMeshAdp> createMeshAdp(const TMeshData& rMshd) const = 0;
         virtual ctl::Sp<CTexAdp> createTextureAdp(const ctl::IcImg& rImg) const = 0;
         virtual ctl::Sp<CTexAdp> createTextureAdp(const std::string& sFile) const = 0;
-        
+        virtual ctl::Sp<CTexAdp> createTextureAdp(const ctl::TSize& size) const = 0;
+
         //---- Lighting
         virtual void setLight(const TLight& light,
                               const TVec3& ecPos,   // Light pos in eye space

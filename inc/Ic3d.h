@@ -43,7 +43,8 @@ namespace Ic3d {
         void getSubMesh(TMeshData& mesh,
                         size_t faceStrt, size_t N) const;
        
-        void createPlaneXZ(const ctl::TRect& rect, const ctl::TRect& texRect);
+        void createPlaneXZ(const ctl::TRect& rect,
+                           const ctl::TRect& texRect = {0,0,1,1});
         void createCube(const TVec3& sz, const TVec3& ofst);
         void createSphere(float R, int N_stack, int N_slice);
         void createCylinder(float R, float height); // TODO : Implement
@@ -83,22 +84,28 @@ namespace Ic3d {
 	public:
 		bool isValid()const
 		{	if(m_pRenderAdp==nullptr) return false;
-			return m_pRenderAdp->m_isValid; };
+			return m_pRenderAdp->isValid(); };
 		IcTexture();
-		IcTexture(const std::string& fname);
+        IcTexture(const ctl::TSize& sz);
+        IcTexture(const std::string& sFile){ loadFile(sFile); };
 		IcTexture(const ctl::IcImg& img);
 		virtual ~IcTexture(){};
 		virtual void draw() const
 		{	 if(m_pRenderAdp!=nullptr)
 				m_pRenderAdp->render(); };
+        bool loadFile(const std::string& fname);
+        ctl::TSize getSize() const;
 
+        //---- Render Texture
+        bool setAsRenderTarget();
+        void startRenderOn() const;
+        void finishRenderOn() const;
 	protected:
-		ctl::Sp<const CRenderAdp::CTexAdp>	m_pRenderAdp = nullptr;
+		ctl::Sp<CRenderAdp::CTexAdp>	m_pRenderAdp = nullptr;
 		bool m_isValid = false;
 	};
-	
-	
-	//-----------------------------------------
+ 
+    //-----------------------------------------
 	//	IcMesh
 	//-----------------------------------------
 	// A Mesh is part of model (sub-object) with
@@ -135,11 +142,7 @@ namespace Ic3d {
         IcModel(ctl::Sp<const IcMesh> pMsh) { setMesh(pMsh); };
 		IcModel(const std::string& sFile){ loadFile(sFile); };
 		IcModel(){};
-        IcModel(ctl::Sp<const IcMesh>       pMesh,
-                ctl::Sp<const IcTexture>    pTex,
-                ctl::Sp<const IcMaterial>   pMat)
-        :m_pMesh(pMesh), m_pTex(pTex), m_pMat(pMat){};
-        
+               
         bool loadFile(const std::string& sFile);
 		virtual ~IcModel(){};
 		
@@ -148,6 +151,10 @@ namespace Ic3d {
 		void addChildModel(ctl::Sp<const IcModel> p) { m_childModels.add(p); };
         
         //---- Mesh/Material/Texture setter/getter
+        void setMshMtlTex(ctl::Sp<const IcMesh>       pMesh,
+                          ctl::Sp<const IcTexture>    pTex,
+                          ctl::Sp<const IcMaterial>   pMat)
+            {m_pMesh=pMesh; m_pTex=pTex; m_pMat=pMat; };
 		void setMesh        (ctl::Sp<const IcMesh> p        ){ m_pMesh = p; };
 		void setMaterial    (ctl::Sp<const IcMaterial> p    ){ m_pMat = p;  };
 		void setTexture     (ctl::Sp<const IcTexture> p     ){ m_pTex = p;  };
@@ -253,6 +260,7 @@ namespace Ic3d {
 		IcCamera(){};
 		virtual ~IcCamera(){};
 		void drawObj(const IcObject& rootObj) const;
+        // TODO: 1) let it auto, 2) Mat valid bit in IcObject::setPos/Quat/Scale
         void updateViewMat();
         //---- Camera Cfg
         struct TCfg
@@ -366,19 +374,22 @@ namespace Ic3d {
         //---- Configuration
         struct TCfg
         {
-            ctl::TRect      m_viewRect;
             IcCamera::TCfg  m_camCfg;
-            TFogPara        m_fogPara;
+            TFogPara    m_fogPara;
+            bool        m_enClrScrn = true;
+            TColor      m_bkColor{0.2,0.5,0.7,1.0};
+            bool        m_enAutoResize = true;
+            ctl::TRect  m_viewRect;
+            ctl::TRect  m_viewRectNorm{0,0,1,1};    // Normalized view Rect
         };
         TCfg m_cfg;
         
         //---- On Update call back function
         typedef std::function<void(float deltaT)> TFuncOnUpdate;
         void setOnUpdatCallBack(TFuncOnUpdate func);
-        void setTargetTexture(ctl::Sp<IcTexture> pTex)
-            { m_pTargetTex = pTex; };
-        void addSubScn(ctl::Sp<IcScene> pScn){ m_subScns.add(pScn);};
-
+        void setRenderToTexture(ctl::Sp<IcTexture> pTex);
+        void addSubScn(ctl::Sp<IcScene> pScn);
+        void setViewRect(const ctl::TRect& r);
 	protected:
 		virtual void onInit(){};
         void renderObjRecur(const IcCamera& cam,
@@ -399,6 +410,7 @@ namespace Ic3d {
         TFuncOnUpdate m_pCallBk_onUpdate = nullptr;
         //---- TODO: Not implemented yet
         ctl::Sp<IcTexture> m_pTargetTex = nullptr;
+        
 	};
     
     //----------------------------
@@ -476,12 +488,17 @@ namespace Ic3d {
         virtual void onKeyboard(unsigned char key); // TODO: int
         virtual void onMouseClick(TE_MouseButton btn, bool isUp, int x, int y){};
         virtual void onMouseMove(int x, int y){};
+        
+        //-----------------
+        // Mobile Input
+        //-----------------
+		virtual void onDeviceRot(const TQuat& q){};
         //-----------------
         // Configuration
         //-----------------
         struct TCfg
         {
-            TColor  m_bkColor = TColor(0.2, 0.5, 0.9, 1.0);
+            TColor  m_bkColor = TColor(0,0,0,1);
             ctl::TSize   m_size;
             ctl::TPos    m_pos;
         };
@@ -493,7 +510,7 @@ namespace Ic3d {
     protected:
         //---- Derive onInit() to create/add your scenes.
         virtual void onInit();
-		//---- Derive onRelease to release openGL res, usually that's not necessary.
+ 		//---- Derive onRelease to release openGL res, usually that's not necessary.
 		// It's automatically handled by IcWindow::onRelease()
 		virtual void onRelease();
 		ctl::SpAry<IcScene> m_scnAry;
@@ -502,6 +519,98 @@ namespace Ic3d {
         std::atomic<bool>   m_hasInit{false};
   
     };
+ 
+    //-----------------------------------------------
+    //	IcWindowVR
+    //-----------------------------------------------
+    class IcWindowVR : public IcWindow
+    {
+    public:
+        virtual void onInit() override;
+        virtual void onMouseMove(int x, int y) override;
+		virtual void onDeviceRot(const TQuat& q) override;
+        struct T_VRCfg
+        {
+            float K_eyeDist = 0.3;
+            //---- Distortion coef
+            float K_distortion_k2 = -0.4;
+            float K_distortion_k4 = -0.04;
+        };
+        T_VRCfg m_VRCfg;
+        //-----------------------
+        //	VRContext
+        //-----------------------
+        // VR related data is here
+        class VRContext
+        {
+        protected:
+            //---- The render target texture of L/R
+            ctl::Sp<IcTexture> m_pTex[2]{nullptr, nullptr};
+        public:
+            VRContext(const T_VRCfg& rCfg):m_rCfg(rCfg){};
+            decltype(m_pTex[0]) getTex(bool isR) { return m_pTex[isR]; };
+            void onWindowSize(const ctl::TSize& winSize);
+            const T_VRCfg& m_rCfg;
+        };
+        typedef ctl::Sp<VRContext> T_VRCntxSp;
+        T_VRCntxSp m_pVRContext = ctl::makeSp<VRContext>(m_VRCfg);
+        //-----------------------
+        //	VRScnMain
+        //-----------------------
+        class VRScnMain : public IcScene
+        {
+        public:
+            virtual void onInit() override;
+            virtual void onDraw() override;
+            void setContext(T_VRCntxSp p){m_pCntxt = p;};
+       protected:
+            T_VRCntxSp m_pCntxt = nullptr;
+            void renderOneSide(bool isR);
+        };
+        //-----------------------
+        //	VRScnDisp
+        //-----------------------
+        //---- A display Scene contain 2 quad,
+        // use rendered texture from main scene
+        class VRScnDisp : public IcScene
+        {
+        protected:
+            T_VRCntxSp m_pCntxt = nullptr;
+            //---- Distortion mesh
+            ctl::Sp<IcMesh> m_pDistMesh = nullptr;
+            ctl::Sp<IcObject> m_pObjPlane[2]{nullptr, nullptr};
+        public:
+            virtual void onInit() override;
+            virtual void onWindowSize(const ctl::TSize& winSize) override;
+            void setContext(T_VRCntxSp p){m_pCntxt = p;};
+            void reInit();
+            decltype(m_pDistMesh) createDistortMesh();
+            
+         };
+        void initWithMainScn(ctl::Sp<VRScnMain> pScn);
+        
+    //-----------------------
+    protected:
+        ctl::Sp<VRScnMain>      m_pScnMain = nullptr;
+        ctl::Sp<VRScnDisp>      m_pScnDisp = nullptr;
+        //------------------------
+        //  MouseHelper
+        //------------------------
+        // simulate cam tilte by mouse
+        class CMouseHelper
+        {
+        public:
+            TQuat onMouseMove(int x, int y);
+        protected:
+            TEuler  m_camAtt;
+            TVec2   m_mousePrevPos;
+            bool    m_isFirst = true;
+        };
+        CMouseHelper m_mouseHelper;
+
+    };
+    
+
     //-----------------------------------------------
     //	IcApp
     //-----------------------------------------------
@@ -549,7 +658,7 @@ namespace Ic3d {
 	class IcEng
 	{
     protected:
-        ctl::Sp<const CRenderAdp::CTexAdp>   m_pDfltTexAdp = nullptr;
+        ctl::Sp<CRenderAdp::CTexAdp>   m_pDfltTexAdp = nullptr;
         std::atomic<bool>    m_hasInit{false};
         std::atomic<bool>    m_isEnabled{false};
 

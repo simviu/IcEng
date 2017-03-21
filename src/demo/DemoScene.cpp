@@ -28,6 +28,7 @@ static std::vector<DemoScene::DemoItem> l_demoAry {
     {"Nested Transform"},   // 1
     {"Model Create"},       // 2
     {"Lights"},             // 3
+    {"Render To Texture"},  // 4
 };
 size_t DemoScene::getDemoNum()
 {
@@ -50,6 +51,7 @@ ctl::Sp<IcScene> DemoScene::createDemoScn(int sel)
         case 1: pScn = ctl::makeSp<DemoNestedTrans>();  break;
         case 2: pScn = ctl::makeSp<DemoModelCreate>();  break;
         case 3: pScn = ctl::makeSp<DemoLights>();       break;
+        case 4: pScn = ctl::makeSp<DemoRenderToTex>();  break;
         default:
             break;
     }

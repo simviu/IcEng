@@ -25,14 +25,14 @@ namespace Ic3d
     //-------------------------------------------
     void IcWindow::addScene(ctl::Sp<IcScene> pScn)
     {
-        logInfo("IcWindow::addScene() ["+v2s(m_scnAry.size())+"]");
+        logDbg("IcWindow::addScene() ["+v2s(m_scnAry.size())+"]");
         m_scnAry.add(pScn);
         pScn->onWindowSize(m_cfg.m_size);
     };
     
     void IcWindow::removeAllScene()
     {
-        logInfo("IcWindow::removeAllScene() -- "+
+        logDbg("IcWindow::removeAllScene() -- "+
                         v2s(m_scnAry.size())+" scenes");
         m_scnAry.clear();
     }
@@ -42,19 +42,15 @@ namespace Ic3d
     //-------------------------------------------
     void IcWindow::onInit()
     {
-        logInfo("IcWindow::onInit()");
-        //--- Init Eng
-        auto pEng = IcEng::getInstance();
-        string sPathRes = IcApp::getInstance()->m_cfg.m_sPathRes;
-        pEng->initEng(sPathRes + K_sSubPath_shader);
-        
+        logDbg("IcWindow::onInit()");
+
     }
     //-------------------------------------------
     //	onRelease
     //-------------------------------------------
     void IcWindow::onRelease()
     {
-        logInfo("IcWindow::onRelease()");
+        logDbg("IcWindow::onRelease()");
         removeAllScene();
     }
     //-------------------------------------------
@@ -62,7 +58,7 @@ namespace Ic3d
     //-------------------------------------------
     void IcWindow::onWindowSize(const ctl::TSize& size)
     {
-        logInfo("IcWindow::onWindowSize() ["+
+        logDbg("IcWindow::onWindowSize() ["+
             v2s(size.w) + "x"+ v2s(size.h) +"]");
         // In default, call onWindowSize().
         // TODO:
@@ -77,12 +73,24 @@ namespace Ic3d
     //-------------------------------------------
     void IcWindow::initWindow()
     {
+        logDbg("IcWindow::initWindow()");
+        
+        //--- Init Eng
+        auto pEng = IcEng::getInstance();
+        string sPathRes = IcApp::getInstance()->m_cfg.m_sPathRes;
+        pEng->initEng(sPathRes + K_sSubPath_shader);
+        
+        //---- Call virtual onInit()
+        onInit();
+        
         //---- Request onInit(), will be called inside drawUpdate()
         m_hasInit = false;
     }
     void IcWindow::releaseWindow()
     {
+        //---- Call virtual onRelease()
         onRelease();
+        
         //---- Release Eng
         auto pEng = IcEng::getInstance();
         pEng->releaseEng();
@@ -100,6 +108,7 @@ namespace Ic3d
         //-------------
         // Check Init
         //-------------
+        /*
         if(!m_hasInit)
         {
             onInit();
@@ -107,6 +116,7 @@ namespace Ic3d
             m_isDrawing = false;
             return;
         }
+         */
         //-------------
         // Frame Start
         //-------------

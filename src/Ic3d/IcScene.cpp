@@ -16,8 +16,8 @@ namespace Ic3d
 	using namespace ctl;
 
     
-    const static TVec3 K_camDfltPos(0,0,0);
-    const static TVec3 K_camLookAt(0,0,-1);
+    const static TVec3 K_camDfltPos(1,3,5);
+    const static TVec3 K_camLookAt(0,0,0);
     const static TVec3 K_camUpVec(0,1,0);
    //-----------------------------------------
     //	IcScene
@@ -35,16 +35,45 @@ namespace Ic3d
 	//	onWindowSize()
 	//---------------------------------------------
 	void IcScene::onWindowSize(const ctl::TSize& winSize)
+    {
+        if(!m_cfg.m_enAutoResize) return;
+        //---- Recalc Scene Rect
+        const auto& w = winSize.w;
+        const auto& h = winSize.h;
+        const auto& rn = m_cfg.m_viewRectNorm;
+        TPos npos0 = TPos(rn.pos0.x * w, rn.pos0.y * h);
+        TPos npos1 = TPos(rn.pos1.x * w, rn.pos1.y * h);
+        TRect r{npos0, npos1};
+        setViewRect(r);
+        //---- Recursive call sub scenes
+        for(auto pScn : m_subScns.getAry())
+            pScn->onWindowSize(winSize);
+    }
+    //---------------------------------------------
+    //	setViewRect
+    //---------------------------------------------
+    void IcScene::setViewRect(const ctl::TRect& r)
 	{
-        const auto& sz = winSize;
-        logInfo("IcScene::onWindowSize() ["+
-                    v2s(sz.w) + "x"+ v2s(sz.h)+"]");
-        m_cfg.m_viewRect = TRect(TPos(0,0), sz);
+        m_cfg.m_viewRect = r;
         const auto& camCfg = m_cfg.m_camCfg;
         
         //---- TODO: move to drawUpdate()?
-		m_pCamera->setFrustum(sz, camCfg);
+		m_pCamera->setFrustum(r.getSize(), camCfg);
+        
 	}
+    //---------------------------------------------
+    //	setRenderToTexture
+    //---------------------------------------------
+    void IcScene::setRenderToTexture(ctl::Sp<IcTexture> pTex)
+    {
+        if(pTex==nullptr) return;
+        auto sz = pTex->getSize();
+        setViewRect(TRect(TPos(0,0), sz));
+        m_pTargetTex = pTex;
+    //  pTex->setAsRenderTarget();    // call this outside
+        m_cfg.m_enAutoResize = false; // Disable auto resize, set outside
+        m_cfg.m_enClrScrn = true;
+    };
 
     /*
 	//---------------------------------------------
@@ -94,9 +123,9 @@ namespace Ic3d
         //----- Draw this
         TMat4 matModel = matModelParent * obj.calcMat();
         CRenderAdp::TRenderMatrix rm;
-        rm.m_matProj  = cam.getProjMat();
         rm.m_matModel = matModel;
         rm.m_matView  = cam.getViewMat();
+        rm.m_matProj  = cam.getProjMat();
         pAdp->applyMatrix(rm);
         obj.draw();
         
@@ -105,7 +134,14 @@ namespace Ic3d
         for(auto pObj : childs.all())
             renderObjRecur(cam, *pObj, matModel);
     }
-    
+    //-----------------------------------------
+    //  addSubScn
+    //-----------------------------------------
+    void IcScene::addSubScn(ctl::Sp<IcScene> pScn)
+    {
+        pScn->onWindowSize(m_cfg.m_viewRect.getSize());
+        m_subScns.add(pScn);
+    };
 	
 	//-----------------------------------------
 	//	onDraw
@@ -125,14 +161,37 @@ namespace Ic3d
             m_hasInit = true;
             return;
         }
+        //-----------------
+        //	Check Sub Scenes
+        //-----------------
+        if(m_subScns.size()>0)
+        {
+            for(auto pScn : m_subScns.getAry())
+                pScn->onDraw();
+            //---- Will not draw this scene if has sub-scenes
+            return;
+        }
 
+        //----------------------
+        // Check Render To texture
+        //----------------------
+        if(m_pTargetTex!=nullptr)
+            m_pTargetTex->startRenderOn();
 
         //----------------------
 		static int dbgFrmCnt=0;
 		dbgFrmCnt ++;
 		auto pRE= IcRenderEng::getInstance();
         pRE->setViewPort(m_cfg.m_viewRect);
+        //----------------------
+        // Check clear Screen
+        //----------------------
+        if(m_cfg.m_enClrScrn)
+            pEng->clearScreen(m_cfg.m_bkColor);
+
+        //----------------------
         //---- Set fog
+        //----------------------
         auto pAdp = pRE->getCurRenderAdp();
         pAdp->setFog(m_cfg.m_fogPara);
 		
@@ -151,12 +210,13 @@ namespace Ic3d
         //-----------------
         for(auto pText : m_texts.getAry())
             pText->onDraw();
-        //-----------------
-        //	Draw Sub Scenes
-        //-----------------
-        for(auto pScn : m_subScns.getAry())
-            pScn->onDraw();
        
+        //----------------------
+        // Check Render To texture (finish)
+        //----------------------
+        if(m_pTargetTex!=nullptr)
+            m_pTargetTex->finishRenderOn();
+        
         m_frmCnt ++;
 	}
 } // namespace Ic3d
