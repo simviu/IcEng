@@ -24,7 +24,8 @@ void DemoBasic::onInit()
     IcScene::onInit();
     
     //--- Load Object
-    string sPathRes = DemoScene::m_cfg.m_sPathRes;
+    const auto& cfg = IcApp::getInstance()->m_cfg;
+    string sPathRes = cfg.m_sPathRes;
     string sFile = sPathRes + K_sModel;
     auto pModel = ctl::makeSp<IcModel>(sFile);
     auto pObj   = ctl::makeSp<IcObject>(pModel);

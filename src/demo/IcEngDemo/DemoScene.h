@@ -27,11 +27,6 @@
 class DemoScene : public Ic3d::IcScene
 {
 public:
-    struct TCfg
-    {
-        std::string m_sPathRes;
-    };
-    static TCfg m_cfg;
     virtual void onUpdate(double deltaT) override;
     
     //---- DemoItem
@@ -128,6 +123,17 @@ protected:
 };
 
 
+//-----------------------------
+//	DemoFog
+//-----------------------------
+class DemoFog : public DemoScene
+{
+public:
+    virtual void onInit() override;
+     
+protected:
+    void loadScene();
+};
 
 
 #endif /* DemoScene_h */

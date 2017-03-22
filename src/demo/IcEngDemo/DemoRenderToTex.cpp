@@ -45,7 +45,8 @@ void DemoRenderToTex::onInit()
     //--- Always call parent class onInit()
     IcScene::onInit();
     
-    string sPathRes = DemoScene::m_cfg.m_sPathRes;
+    const auto& cfg = IcApp::getInstance()->m_cfg;
+    string sPathRes = cfg.m_sPathRes;
     //--- Load Objectif
     if(1)
     {

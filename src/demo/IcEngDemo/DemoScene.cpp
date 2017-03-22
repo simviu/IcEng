@@ -14,7 +14,6 @@ using namespace std;
 using namespace ctl;
 using namespace Ic3d;
 
-DemoScene::TCfg DemoScene::m_cfg;
 const static float K_camRotSpd = 1;
 const static float K_camDistH = 20;
 const static float K_camHeight = 8;
@@ -28,7 +27,8 @@ static std::vector<DemoScene::DemoItem> l_demoAry {
     {"Nested Transform"},   // 1
     {"Model Create"},       // 2
     {"Lights"},             // 3
-    {"Render To Texture"},  // 4
+    {"Fog"},                // 4
+    {"Render To Texture"},  // 5
 };
 size_t DemoScene::getDemoNum()
 {
@@ -51,7 +51,8 @@ ctl::Sp<IcScene> DemoScene::createDemoScn(int sel)
         case 1: pScn = ctl::makeSp<DemoNestedTrans>();  break;
         case 2: pScn = ctl::makeSp<DemoModelCreate>();  break;
         case 3: pScn = ctl::makeSp<DemoLights>();       break;
-        case 4: pScn = ctl::makeSp<DemoRenderToTex>();  break;
+        case 4: pScn = ctl::makeSp<DemoFog>();          break;
+        case 5: pScn = ctl::makeSp<DemoRenderToTex>();  break;
         default:
             break;
     }
