@@ -6,11 +6,12 @@ For more information check website http://www.simviu.com/dev.
 # Features
 * C++ 0x11 code, OpenGL 2.0 shader.
 * Cross Platform ( Mac/Windows/Linux/iOS/Android ), project file provided.
-* Auto memory and resource management with C++ 0x11 std::shared_ptr.
+* Auto memory and resource management with C++ 0x11 shared pointer.
 * Model loading with Waveform .OBJ file. ( More format in future )
-* Basic lighting, material.
+* Basic lighting, material, and fog.
+* Render to texture.
 * Abstract C++ wrapper class with OpenGL function hidden.
-* Support Google CardBoard VR.
+* VR rendering with lense distortion, for Google Cardboard, or VR device as PC extended monitor.
 
 # Architecture
 * The IcEng applications are wrapped in IcApp/IcWindow/IcScene structure. 
