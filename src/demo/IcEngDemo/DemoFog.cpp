@@ -27,6 +27,8 @@ void DemoFog::onInit()
     IcScene::onInit();
     
     //--- Init Fog
+    m_cfg.m_fogPara.m_color = TColor(1,1,1,1);
+    m_cfg.m_fogPara.m_K_linear = 0.1;
     
     //--- Load Scene
     loadScene();
