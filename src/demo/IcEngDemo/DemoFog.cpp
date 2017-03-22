@@ -17,7 +17,7 @@ static const string K_sModel = "IcDemo/MixShapes/MixShapes.obj";
 static const int K_objAry_N = 10;   // NxNxN of objs
 static const int K_objAry_W = 10.0;  // Width of objs
 static const int K_objAry_H = 20.0;  // Height of objs
-
+static const TColor K_fogAndBkColor(0.4, 0.6, 0.7, 1); // BK color
 //----------------------------------------------
 //  onInit
 //----------------------------------------------
@@ -27,9 +27,11 @@ void DemoFog::onInit()
     IcScene::onInit();
     
     //--- Init Fog
-    m_cfg.m_fogPara.m_color = TColor(1,1,1,1);
-    m_cfg.m_fogPara.m_K_linear = 0.1;
-    
+    m_cfg.m_bkColor = K_fogAndBkColor;
+    m_cfg.m_fogPara.m_color = K_fogAndBkColor;
+    m_cfg.m_fogPara.m_K_linear = 0.005;
+    m_cfg.m_fogPara.m_K_exp = 0.002;
+
     //--- Load Scene
     loadScene();
     
