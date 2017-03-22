@@ -24,7 +24,8 @@ void DemoModelCreate::onInit()
     IcScene::onInit();
     
     //--- Load Sphere mesh
-    string sPathRes = DemoScene::m_cfg.m_sPathRes;
+    const auto& cfg = IcApp::getInstance()->m_cfg;
+    string sPathRes = cfg.m_sPathRes;
     std::string sPath = sPathRes + K_sPath_demo;
 
     //---- Sphere Mesh

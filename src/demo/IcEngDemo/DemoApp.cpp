@@ -81,10 +81,7 @@ void DemoApp::reqSetDemo(int sel)
 void DemoApp::onInit()
 {
     IcApp::onInit();
-    
-    // Copy res path
-    DemoScene::m_cfg.m_sPathRes = m_cfg.m_sPathRes; // TODO: Simplify
-    
+
     logInfo("DemoApp::onInit()");
     m_pDemoWin = makeSp<DemoWindow>();
     addWindow(m_pDemoWin);

@@ -282,6 +282,8 @@
 		9C5A2F221E53042C00655840 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		9C8CC3AE1DEE8115002583F2 /* IcEngTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = IcEngTest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C8CC3EC1DEE862D002583F2 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
+		9CACD59A1E822F6300AF02C6 /* IcShaderFrag.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = IcShaderFrag.vsh; sourceTree = "<group>"; };
+		9CACD59B1E822F6300AF02C6 /* IcShaderVert.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = IcShaderVert.vsh; sourceTree = "<group>"; };
 		9CAE4F1F1DCB201B003F7B38 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		9CD3A4391E77E845000C7CD2 /* IcSceneVR.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcSceneVR.cpp; sourceTree = "<group>"; };
 		9CD3A43C1E77E904000C7CD2 /* IcWindowVR.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcWindowVR.cpp; sourceTree = "<group>"; };
@@ -640,6 +642,7 @@
 		9C53F6B21DCB14FB006EAF17 = {
 			isa = PBXGroup;
 			children = (
+				9CACD5991E822F6300AF02C6 /* IcShader */,
 				9CF6068E1E2481A6008A662C /* Resource */,
 				9CF604E71E248125008A662C /* inc */,
 				9CF604621E24804B008A662C /* src */,
@@ -664,6 +667,16 @@
 				9CD3A43C1E77E904000C7CD2 /* IcWindowVR.cpp */,
 			);
 			path = IcVR;
+			sourceTree = "<group>";
+		};
+		9CACD5991E822F6300AF02C6 /* IcShader */ = {
+			isa = PBXGroup;
+			children = (
+				9CACD59A1E822F6300AF02C6 /* IcShaderFrag.vsh */,
+				9CACD59B1E822F6300AF02C6 /* IcShaderVert.vsh */,
+			);
+			name = IcShader;
+			path = ../../../IcData/IcShader;
 			sourceTree = "<group>";
 		};
 		9CAE4F1E1DCB201B003F7B38 /* Frameworks */ = {
