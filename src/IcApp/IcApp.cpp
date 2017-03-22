@@ -69,8 +69,16 @@ namespace Ic3d
         auto pMng = IcWinMng::getInstance();
         pMng->addWindow(pWin);
     }
+    //----------------------------
+    //  util
+    //----------------------------
+    std::string IcApp::getResPath()
+    {
+        auto pApp = getInstance();
+        if(pApp==nullptr) return "";
+        return pApp->m_cfg.m_sPathRes;
+    }
 
- 
     
     
 

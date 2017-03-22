@@ -365,6 +365,8 @@ namespace Ic3d {
         {    if(m_pCallBk_onUpdate!=nullptr) m_pCallBk_onUpdate(deltaT); };
 		virtual void onDraw();
 		virtual void onWindowSize(const ctl::TSize& winSize);
+        virtual void renderThis();
+        virtual void renderSubScns();
         void addObj(ctl::Sp<IcObject> p){ m_rootObj.addChildObj(p); };
         void addText(ctl::Sp<IcText> p){ m_texts.add(p); };
         void clearObjs(){ m_rootObj.clearChildObjs(); };
@@ -649,6 +651,10 @@ namespace Ic3d {
         //-----------------
         // For PC, not mobile
         int runCmdLine(int argc, char **argv, const std::string& sResPath);
+        //-----------------
+        // misc util
+        //-----------------
+        static std::string getResPath();
     protected:
     };
      

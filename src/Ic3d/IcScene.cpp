@@ -142,6 +142,56 @@ namespace Ic3d
         pScn->onWindowSize(m_cfg.m_viewRect.getSize());
         m_subScns.add(pScn);
     };
+    
+    //-----------------------------------------
+    //	renderSubScns
+    //-----------------------------------------
+    // Called by onDraw()
+    void IcScene::renderSubScns()
+    {
+        for(auto pScn : m_subScns.getAry())
+            pScn->onDraw();
+    }
+  
+    //-----------------------------------------
+    //	renderThis
+    //-----------------------------------------
+    // Called by onDraw()
+    void IcScene::renderThis()
+    {
+        
+        auto pRE= IcRenderEng::getInstance();
+        pRE->setViewPort(m_cfg.m_viewRect);
+        //----------------------
+        // Check clear Screen
+        //----------------------
+        if(m_cfg.m_enClrScrn)
+            pRE->clearScreen(m_cfg.m_bkColor);
+        
+        //----------------------
+        //---- Set fog
+        //----------------------
+        auto pAdp = pRE->getCurRenderAdp();
+        pAdp->setFog(m_cfg.m_fogPara);
+        
+        //-----------------
+        //	Draw Light
+        //-----------------
+        drawLights();
+        
+        //-----------------
+        //	Draw Obj
+        //-----------------
+        //	m_pCamera->drawObj(m_rootObj);
+        renderObjRecur(*m_pCamera, m_rootObj, TMat4());
+        //-----------------
+        //	Draw Text
+        //-----------------
+        for(auto pText : m_texts.getAry())
+            pText->onDraw();
+        
+        
+    }
 	
 	//-----------------------------------------
 	//	onDraw
@@ -161,17 +211,7 @@ namespace Ic3d
             m_hasInit = true;
             return;
         }
-        //-----------------
-        //	Check Sub Scenes
-        //-----------------
-        if(m_subScns.size()>0)
-        {
-            for(auto pScn : m_subScns.getAry())
-                pScn->onDraw();
-            //---- Will not draw this scene if has sub-scenes
-            return;
-        }
-
+ 
         //----------------------
         // Check Render To texture
         //----------------------
@@ -179,38 +219,11 @@ namespace Ic3d
             m_pTargetTex->startRenderOn();
 
         //----------------------
-		static int dbgFrmCnt=0;
-		dbgFrmCnt ++;
-		auto pRE= IcRenderEng::getInstance();
-        pRE->setViewPort(m_cfg.m_viewRect);
+        // Render
         //----------------------
-        // Check clear Screen
-        //----------------------
-        if(m_cfg.m_enClrScrn)
-            pEng->clearScreen(m_cfg.m_bkColor);
-
-        //----------------------
-        //---- Set fog
-        //----------------------
-        auto pAdp = pRE->getCurRenderAdp();
-        pAdp->setFog(m_cfg.m_fogPara);
-		
-		//-----------------
-		//	Draw Light
-		//-----------------
-        drawLights();
-        
-		//-----------------
-		//	Draw Obj
-		//-----------------
-	//	m_pCamera->drawObj(m_rootObj);
-        renderObjRecur(*m_pCamera, m_rootObj, TMat4());
-        //-----------------
-        //	Draw Text
-        //-----------------
-        for(auto pText : m_texts.getAry())
-            pText->onDraw();
-       
+        if(m_subScns.size()>0)
+                renderSubScns();
+        else    renderThis();
         //----------------------
         // Check Render To texture (finish)
         //----------------------
