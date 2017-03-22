@@ -135,7 +135,8 @@ vec4 calcColor(TMaterial mtl, TLight light, vec3 ecNormal, vec4 ecVert)
     TMaterial ml = light.mat;   // Light Material
     float d = distance(light.pos, ecVert.xyz);
     float li = 1.0/(1.0+ light.Kd2 * pow(d,2.0)) * spotCoef ;// Light Attenuetion
-    vec4 c = mtl.amb * ml.amb * li + df * mtl.dfs * ml.dfs* li + sf * mtl.spc * ml.spc * li + mtl.ems;
+    vec4 c = mtl.amb * ml.amb * li + df * mtl.dfs * ml.dfs* li +
+                sf * mtl.spc * ml.spc * li + mtl.ems;
     return c;
     
 }
