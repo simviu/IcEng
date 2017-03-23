@@ -43,18 +43,30 @@ namespace Ic3d
 	//-------------------------------------------
 	//	setFrustum
 	//-------------------------------------------
+    /*
 	void IcCamera::setFrustum(const ctl::TSize& viewSize,
 							  const TCfg& cfg)
 	{
-		if(viewSize.h ==0) return;
-		//----- Consider the landscape mode
-        // Note:
-		float fx = cfg.m_zNear * tanf(deg2rad(cfg.m_FOV)/2.0);
-		float fy = fx*viewSize.h/viewSize.w;
-		
-		m_matProj = CameraHelper::setFrustum_LRBT(-fx, fx, -fy, fy,
-												  cfg.m_zNear, cfg.m_zFar);
 	}
+     */
+    
+    //-------------------------------------------
+    //	getProjMat
+    //-------------------------------------------
+    TMat4   IcCamera::getProjMat()const
+    {
+        const auto& sz = m_cfg.m_viewSize;
+        if(sz.w ==0) return TMat4();
+        //----- Consider the landscape mode
+        // Note:
+        float fx = m_cfg.m_zNear * tanf(deg2rad(m_cfg.m_FOV)/2.0);
+        float fy = fx*sz.h/sz.w;
+        
+        auto mat = CameraHelper::setFrustum_LRBT(-fx, fx, -fy, fy,
+                                                 m_cfg.m_zNear, m_cfg.m_zFar);
+        return mat;
+    }
+
 	//-------------------------------------------
 	//	lookAt
 	//-------------------------------------------
@@ -94,7 +106,7 @@ namespace Ic3d
 		auto pEng = IcRenderEng::getInstance();
         auto pAdp = pEng->getCurRenderAdp();
 		CRenderAdp::TRenderMatrix rm;
-		rm.m_matProj =m_matProj;
+		rm.m_matProj =getProjMat();
 		TMat4 m;
 		m = glm::translate(m, pos);
 		rm.m_matModel = m;
@@ -116,7 +128,7 @@ namespace Ic3d
 		//----- Draw this
 		TMat4 matModel = matModelParent * obj.calcMat();
 		CRenderAdp::TRenderMatrix rm;
-		rm.m_matProj =m_matProj;
+		rm.m_matProj =getProjMat();
 		rm.m_matModel = matModel;
 		rm.m_matView = m_matView;
 		pAdp->applyMatrix(rm);

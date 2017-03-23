@@ -265,21 +265,24 @@ namespace Ic3d {
         //---- Camera Cfg
         struct TCfg
         {
-            float   m_FOV   = 50; // in degree
+            ctl::TSize m_viewSize{320, 240};
+            bool    m_isOrthogonal = false;
+            float   m_FOV   = 50;
             float   m_zNear = 0.1;
             float   m_zFar  = 1000;
         };
-		void setFrustum(const ctl::TSize& viewSize,
-						const TCfg& cfg);
+        TCfg m_cfg;
+//		void setFrustum(const ctl::TSize& viewSize,
+//						const TCfg& cfg);
 		void lookAt(const TVec3& pos,
 					const TVec3& vUp);
 		void drawText(const std::string& str,
 					  const TColor& c,
 					  const TVec3& pos);
         TMat4   getViewMat()const { return m_matView; };
-        TMat4   getProjMat()const { return m_matProj; };
+        TMat4   getProjMat()const; // { return m_matProj; };
  	protected:
-		TMat4	m_matProj;
+	//	TMat4	m_matProj;
 		TMat4	m_matView;
 		void drawObjTree(const IcObject& obj,
 						 const TMat4& matModelParent) const;
@@ -374,7 +377,7 @@ namespace Ic3d {
         //---- Configuration
         struct TCfg
         {
-            IcCamera::TCfg  m_camCfg;
+        //  IcCamera::TCfg  m_camCfg;
             TFogPara    m_fogPara;
             bool        m_enClrScrn = true;
             TColor      m_bkColor{0.2,0.5,0.7,1.0};

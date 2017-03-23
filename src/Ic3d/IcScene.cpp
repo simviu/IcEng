@@ -55,10 +55,11 @@ namespace Ic3d
     void IcScene::setViewRect(const ctl::TRect& r)
 	{
         m_cfg.m_viewRect = r;
-        const auto& camCfg = m_cfg.m_camCfg;
+   //     const auto& camCfg = m_cfg.m_camCfg;
         
         //---- TODO: move to drawUpdate()?
-		m_pCamera->setFrustum(r.getSize(), camCfg);
+	//	m_pCamera->setFrustum(r.getSize(), camCfg);
+        m_pCamera->m_cfg.m_viewSize = r.getSize();
         
 	}
     //---------------------------------------------
