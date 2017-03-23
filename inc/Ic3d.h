@@ -365,8 +365,6 @@ namespace Ic3d {
         {    if(m_pCallBk_onUpdate!=nullptr) m_pCallBk_onUpdate(deltaT); };
 		virtual void onDraw();
 		virtual void onWindowSize(const ctl::TSize& winSize);
-        virtual void renderThis();
-        virtual void renderSubScns();
         void addObj(ctl::Sp<IcObject> p){ m_rootObj.addChildObj(p); };
         void addText(ctl::Sp<IcText> p){ m_texts.add(p); };
         void clearObjs(){ m_rootObj.clearChildObjs(); };
@@ -392,7 +390,11 @@ namespace Ic3d {
         void setRenderToTexture(ctl::Sp<IcTexture> pTex);
         void addSubScn(ctl::Sp<IcScene> pScn);
         void setViewRect(const ctl::TRect& r);
+        void setCam(ctl::Sp<IcCamera> pCam){ m_pCamera = pCam; };
+        
 	protected:
+        virtual void renderThis();
+        virtual void renderSubScns();
 		virtual void onInit(){};
         void renderObjRecur(const IcCamera& cam,
                             const IcObject& obj,
