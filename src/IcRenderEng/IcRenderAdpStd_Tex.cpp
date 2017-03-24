@@ -158,7 +158,7 @@ namespace Ic3d
 	{
 
 		glBindTexture(GL_TEXTURE_2D, m_texId);
-		if(m_isRepeat)
+		if(m_cfg.m_isRepeat)
 		{
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);

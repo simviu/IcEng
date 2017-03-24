@@ -100,6 +100,8 @@ namespace Ic3d {
         bool setAsRenderTarget();
         void startRenderOn() const;
         void finishRenderOn() const;
+        ctl::Sp<CRenderAdp::CTexAdp> getRenderAdp(){ return m_pRenderAdp; };
+        
 	protected:
 		ctl::Sp<CRenderAdp::CTexAdp>	m_pRenderAdp = nullptr;
 		bool m_isValid = false;

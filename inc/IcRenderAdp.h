@@ -204,7 +204,8 @@ namespace Ic3d
 		//---- Mesh Adp
 		struct CMeshAdp { virtual void render() const{}; };
 		//---- Texture Adp
-		struct CTexAdp {
+		struct CTexAdp
+        {
             CTexAdp(){};
 			virtual void render() const{};
             bool isValid() const{ return m_isValid; };
@@ -214,10 +215,16 @@ namespace Ic3d
             virtual void startRenderOn() {};
             virtual void finishRenderOn() {};
             ctl::TSize getSize()const{ return m_size; };
+            //---- Cfg
+            struct TCfg
+            {
+                bool	m_isRepeat =true;
+            };
+            TCfg m_cfg;
+
         protected:
             std::string	m_sName;
             ctl::TSize	m_size{128,128};
-			bool m_isRepeat = false;
 			bool m_isValid = false;
 		};
         //---- Render Texture Adp
