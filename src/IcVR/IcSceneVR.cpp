@@ -115,7 +115,7 @@ namespace Ic3d
         
         
         IcMeshData mshd;
-        mshd.createGridXZ(TRect(TPos(-w/2, -w/2), TSize(w, w)), N, N);
+        mshd.createGridXZ(TRect(TPos(-w/2, -w/2), TPos(w/2, w/2)), N, N);
         auto& verts = mshd.m_verts;
         
         //---- Re-pos verts

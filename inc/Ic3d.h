@@ -33,6 +33,8 @@ namespace Ic3d {
     extern std::string toStr(const TColor& v);
  
     TQuat quatFromVecs(const TVec3& v0, const TVec3& v1);
+    template<typename T>
+    TVec2 toVec(const ctl::TPosT<T>& v){ return TVec2(v.x, v.y); };
     //-----------------------------------------------
     //	IcMeshData
     //-----------------------------------------------
@@ -44,14 +46,15 @@ namespace Ic3d {
                         size_t faceStrt, size_t N) const;
        
         void createPlaneXZ(const ctl::TRect& rect,
-                           const ctl::TRect& texRect = {0,0,1,1});
+                           const ctl::TRect& texRect = {ctl::TPos(0,1),ctl::TPos(1,0)});
         void createCube(const TVec3& sz, const TVec3& ofst);
         void createSphere(float R, int N_stack, int N_slice);
         void createCylinder(float R, float height); // TODO : Implement
         void createCone(float R, float height); // TODO : Implement
         void createGridXZ(const ctl::TRect& rect,
                           int N_x, int N_y,
-                          const ctl::TRect& texRect = ctl::TRect(0,0,1,1));
+                          const ctl::TRect& texRect =
+                          ctl::TRect(ctl::TPos(0,1),ctl::TPos(1,0)));
         
         void dbgPrint() const;
         //---- Cfg

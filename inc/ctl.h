@@ -154,7 +154,7 @@ namespace ctl {
     struct TPosT    // TODO: rename TVec2, (TVec2->IcVec2)
     {
         TPosT(){};
-        virtual ~TPosT(){};
+
         TPosT(float xi, float yi){ x=xi; y=yi; };
         T x=0, y=0;
         bool operator == (const TPosT& d)const
@@ -181,7 +181,7 @@ namespace ctl {
     struct TSizeT
     {
         TSizeT(){};
-        virtual ~TSizeT(){};
+
         TSizeT(float wi, float hi){ w=wi; h=hi; };
         T w=0, h=0;
         bool operator == (const TSizeT& d)const
@@ -202,7 +202,7 @@ namespace ctl {
         TRectT(const TPosT<T>& p0, const TPosT<T>& p1):pos0(p0), pos1(p1){};
         TRectT(const TPosT<T>& pos, const TSizeT<T>& sz)
         :pos0(pos), pos1(pos0.x+sz.w , pos0.y+sz.h){};
-        virtual ~TRectT(){};
+
         TPosT<T> pos0;
         TPosT<T> pos1;
         TSizeT<T> getSize() const

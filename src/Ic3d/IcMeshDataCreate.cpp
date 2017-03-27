@@ -112,6 +112,56 @@ namespace Ic3d{
     //-----------------------------------------------------
     //	createGridXZ
     //-----------------------------------------------------
+     void IcMeshData::createGridXZ(const TRect& rect,
+                                int N_x, int N_y,   // N_x/N_y are gird number
+                                const TRect& texRect)
+     {
+         if(N_x==0||N_y==0) return;
+         //---- Vertex
+         TVec2 v0 = toVec(rect.pos0);
+         TVec2 v1 = toVec(rect.pos1);
+         TVec2 dv = (v1-v0); dv.x/=N_x; dv.y/=N_y;
+         
+         //---- Texture
+         TVec2 t0 = toVec(texRect.pos0);
+         TVec2 t1 = toVec(texRect.pos1);
+         TVec2 dt = t1-t0; dt.x/=N_x; dt.y/=N_y;
+         
+         for(int i=0;i<N_y+1; i++)     // y
+             for(int j=0;j<N_x+1;j++)  // x
+             {
+                 //--- Vertex
+                 TVec2 v = v0;
+                 v.x += dv.x*j;
+                 v.y += dv.y*i;
+                 
+                 //---- Texture
+                 TVec2 t = t0;
+                 t.x += dt.x*j;
+                 t.y += dt.y*i;
+                
+                 //---- Vert, normal and TexCo
+                 addVert(TVec3(v.x,0,v.y));
+                 addNorm(glm::normalize(TVec3(0,1,0)));
+                 addTexCo(t);
+             }
+    
+         //---- Add Quad
+         for(int i=0;i<N_y; i++)      // Latitude
+             for(int j=0;j<N_x;j++)  // longtitude
+             {
+                 size_t i0 = (N_x+1)*(i+1) + j; size_t i1 = i0 +1;
+                 size_t i2 = (N_x+1)*i + j;     size_t i3 = i2 +1;
+                 TFaceIdx f; auto& vs = f.m_verts;
+                 vs[0]={i0, i0, i0}; vs[1]={i1, i1, i1};
+                 vs[2]={i2, i2, i2}; vs[3]={i3, i3, i3};
+                 addQuad(f, m_cfg.m_isWindingCCR);
+             }
+     }
+    //-----------------------------------------------------
+    //	createGridXZ (Ori)
+    //-----------------------------------------------------
+    /*
     void IcMeshData::createGridXZ(const TRect& rect,
                                   int N_x, int N_y,
                                   const TRect& texRect)
@@ -156,6 +206,7 @@ namespace Ic3d{
                 addQuad(f, m_cfg.m_isWindingCCR);
             }
     }
+     */
     //-----------------------------------------------------
     //	createSphere
     //-----------------------------------------------------
