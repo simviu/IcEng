@@ -31,12 +31,15 @@ void DemoLights::onInit()
     //--- Bottom plate
     {
         IcMeshData mshd;
-   //   mshd.createPlaneXZ(TRect(-10,-10, 20,20));
-        mshd.createGridXZ(TRect(-10,-10, 20,20), 16, 16);
+ //       mshd.createPlaneXY(TRect(TPos(-10,10), TPos(10,-10)));
+        mshd.createGridXY(TRect(TPos(-10,10), TPos(10,-10)), 16, 16);
+        
         auto pModel = makeSp<IcModel>(mshd);
         string sFileTex = sPathRes + K_sFile_dbgTex;
         pModel->setTexture(makeSp<IcTexture>(sFileTex));
         auto pObj = makeSp<IcObject>(pModel);
+        TQuat q(TVec3(deg2rad(-90),0,0));// Rotate -90 on x-axis
+        pObj->setQuat(q);
         addObj(pObj);
     }
     

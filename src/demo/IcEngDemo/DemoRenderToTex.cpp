@@ -76,7 +76,7 @@ void DemoRenderToTex::onInit()
     {
         auto pScn = makeSp<IcScene>();
         IcMeshData mshd;
-        mshd.createPlaneXZ(TRect(0,0,2,2));
+        mshd.createPlaneXY(TRect(TPos(-1,1), TPos(1,-1)),TRect(TPos(0,1), TPos(1,0)));
         auto pMsh = makeSp<IcMesh>(mshd);
         auto pMtl = makeSp<IcMaterial>();
         
@@ -87,6 +87,13 @@ void DemoRenderToTex::onInit()
         pModel->setMshMtlTex(pMsh, pTex, pMtl);
         auto pObj = makeSp<IcObject>(pModel);
         pScn->addObj(pObj);
+        
+        //---- set cam
+        auto pCam = pScn->getCamera();
+        pCam->setPos(TVec3(1,4,6));
+        pCam->lookAt(TVec3(0,0,0), TVec3(0,1,0));
+
+        
         addSubScn(pScn);
         m_pScn1 = pScn;
     }

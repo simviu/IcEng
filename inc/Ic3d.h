@@ -45,16 +45,16 @@ namespace Ic3d {
         void getSubMesh(TMeshData& mesh,
                         size_t faceStrt, size_t N) const;
        
-        void createPlaneXZ(const ctl::TRect& rect,
-                           const ctl::TRect& texRect = {ctl::TPos(0,1),ctl::TPos(1,0)});
         void createCube(const TVec3& sz, const TVec3& ofst);
         void createSphere(float R, int N_stack, int N_slice);
         void createCylinder(float R, float height); // TODO : Implement
         void createCone(float R, float height); // TODO : Implement
-        void createGridXZ(const ctl::TRect& rect,
+        void createPlaneXY(const ctl::TRect& rect,
+                           const ctl::TRect& texRect = {ctl::TPos(0,0),ctl::TPos(1,1)});
+        void createGridXY(const ctl::TRect& rect,
                           int N_x, int N_y,
                           const ctl::TRect& texRect =
-                          ctl::TRect(ctl::TPos(0,1),ctl::TPos(1,0)));
+                          ctl::TRect(ctl::TPos(0,0),ctl::TPos(1,1)));
         
         void dbgPrint() const;
         //---- Cfg

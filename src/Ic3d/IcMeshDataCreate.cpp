@@ -65,20 +65,20 @@ namespace Ic3d{
         }
     }
     //-----------------------------------------------------
-    //	createPlaneXZ
+    //	createPlaneXY
     //-----------------------------------------------------
+    //  ^ +y
+    //  |
+    //  |
     //  .----> +x
-    //  |
-    //  |
-    //  V +z
     //
-    //  Normal Face Up : +y
+    //  Normal Face Up : +z
     //
     //  p0 -----     0---1
     //   |     |     | / |
     //   ----- p1    2---3
     //
-    void IcMeshData::createPlaneXZ(const ctl::TRect& rect,
+    void IcMeshData::createPlaneXY(const ctl::TRect& rect,
                                    const ctl::TRect& texRect)
     {
         auto p0 = rect.pos0;
@@ -89,10 +89,10 @@ namespace Ic3d{
         
         //---- Add Vert and Tex cordinator
         const vector<TPnt> pnts = {
-            {TVec3(p0.x, 0, p0.y),TVec2(tp0.x, 1-tp0.y)},
-            {TVec3(p1.x, 0, p0.y),TVec2(tp1.x, 1-tp0.y)},
-            {TVec3(p0.x, 0, p1.y),TVec2(tp0.x, 1-tp1.y)},
-            {TVec3(p1.x, 0, p1.y),TVec2(tp1.x, 1-tp1.y)}
+            {TVec3(p0.x, p0.y, 0),TVec2(tp0.x, tp0.y)},
+            {TVec3(p1.x, p0.y, 0),TVec2(tp1.x, tp0.y)},
+            {TVec3(p0.x, p1.y, 0),TVec2(tp0.x, tp1.y)},
+            {TVec3(p1.x, p1.y, 0),TVec2(tp1.x, tp1.y)}
         };
         for(auto& pnt : pnts) {
             addVert(pnt.v);
@@ -100,7 +100,7 @@ namespace Ic3d{
         }
         
         //---- Add 1 Normal, face up
-        addNorm(TVec3(0,1,0));
+        addNorm(TVec3(0,0,1));
         TFaceIdx f; int i=0;
         for(auto& v : f.m_verts)
         {
@@ -110,21 +110,21 @@ namespace Ic3d{
         addQuad(f, m_cfg.m_isWindingCCR);
     }
     //-----------------------------------------------------
-    //	createGridXZ
+    //	createGridXY
     //-----------------------------------------------------
+    //  ^ +y
+    //  |
+    //  |
     //  .----> +x
-    //  |
-    //  |
-    //  V +z
     //
-    //  Normal Face Up : +y
+    //  Normal Face Up : +z
     //
     //  p0 -----     i0---i1
     //   |     |     |  /  |
     //   ----- p1    i2---i3
-     void IcMeshData::createGridXZ(const TRect& rect,
-                                int N_x, int N_y,   // N_x/N_y are gird number
-                                const TRect& texRect)
+     void IcMeshData::createGridXY(const TRect& rect,
+                                   int N_x, int N_y,   // N_x/N_y are gird number
+                                   const TRect& texRect)
      {
          if(N_x==0||N_y==0) return;
          //---- Vertex
@@ -154,8 +154,8 @@ namespace Ic3d{
                //  t.y = 1-t.y;
                 
                  //---- Vert, normal and TexCo
-                 addVert(TVec3(v.x,0,v.y));
-                 addNorm(glm::normalize(TVec3(0,1,0)));
+                 addVert(TVec3(v.x,v.y,0));
+                 addNorm(glm::normalize(TVec3(0,0,1)));
                  addTexCo(t);
              }
     

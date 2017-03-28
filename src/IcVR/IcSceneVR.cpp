@@ -94,6 +94,8 @@ namespace Ic3d
             auto pObj = makeSp<IcObject>(pModel);
             pObj->setPos(TVec3(w*((float)i-0.5), 0, 0));
             m_pObjPlane[i]=pObj;
+            TQuat q(TVec3(deg2rad(-90),0,0));// Rotate -90 on x-axis
+            pObj->setQuat(q);
             addObj(pObj);
         }
         //---- Set Camera
@@ -115,7 +117,8 @@ namespace Ic3d
         
         
         IcMeshData mshd;
-        mshd.createGridXZ(TRect(TPos(-w/2, -w/2), TPos(w/2, w/2)), N, N);
+        mshd.createGridXY(TRect(TPos(-w/2, w/2), TPos(w/2, -w/2)), N, N,
+                          TRect(TPos(0,1), TPos(1,0)));
         auto& verts = mshd.m_verts;
         
         //---- Re-pos verts
@@ -128,7 +131,7 @@ namespace Ic3d
                 float r = glm::length(v);
                 float r2 = r*r;
                 float r_ds = 1 + K2*r2 + K4*r2*r2; // distorted
-                TVec3 v_ds(v.x*r_ds, 0, v.z*r_ds);
+                TVec3 v_ds(v.x*r_ds,  v.y*r_ds, 0);
                 verts.setAt(k, v_ds);
             }
         
