@@ -24,11 +24,12 @@ const static float K_camHeight = 8;
 //-----------------------------------
 static std::vector<DemoScene::DemoItem> l_demoAry {
     {"Basic"},              // 0
-    {"Nested Transform"},   // 1
-    {"Model Create"},       // 2
-    {"Lights"},             // 3
-    {"Fog"},                // 4
-    {"Render To Texture"},  // 5
+    {"Texture"},            // 1
+    {"Nested Transform"},   // 2
+    {"Model Create"},       // 3
+    {"Lights"},             // 4
+    {"Fog"},                // 5
+    {"Render To Texture"},  // 6
 };
 size_t DemoScene::getDemoNum()
 {
@@ -48,11 +49,12 @@ ctl::Sp<IcScene> DemoScene::createDemoScn(int sel)
     ctl::Sp<IcScene> pScn = nullptr;
     switch (sel) {
         case 0: pScn = ctl::makeSp<DemoBasic>();        break;
-        case 1: pScn = ctl::makeSp<DemoNestedTrans>();  break;
-        case 2: pScn = ctl::makeSp<DemoModelCreate>();  break;
-        case 3: pScn = ctl::makeSp<DemoLights>();       break;
-        case 4: pScn = ctl::makeSp<DemoFog>();          break;
-        case 5: pScn = ctl::makeSp<DemoRenderToTex>();  break;
+        case 1: pScn = ctl::makeSp<DemoTexture>();      break;
+        case 2: pScn = ctl::makeSp<DemoNestedTrans>();  break;
+        case 3: pScn = ctl::makeSp<DemoModelCreate>();  break;
+        case 4: pScn = ctl::makeSp<DemoLights>();       break;
+        case 5: pScn = ctl::makeSp<DemoFog>();          break;
+        case 6: pScn = ctl::makeSp<DemoRenderToTex>();  break;
         default:
             break;
     }

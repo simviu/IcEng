@@ -112,6 +112,16 @@ namespace Ic3d{
     //-----------------------------------------------------
     //	createGridXZ
     //-----------------------------------------------------
+    //  .----> +x
+    //  |
+    //  |
+    //  V +z
+    //
+    //  Normal Face Up : +y
+    //
+    //  p0 -----     i0---i1
+    //   |     |     |  /  |
+    //   ----- p1    i2---i3
      void IcMeshData::createGridXZ(const TRect& rect,
                                 int N_x, int N_y,   // N_x/N_y are gird number
                                 const TRect& texRect)
@@ -139,6 +149,9 @@ namespace Ic3d{
                  TVec2 t = t0;
                  t.x += dt.x*j;
                  t.y += dt.y*i;
+                 // TODO: Hack, not sure why,
+                 //  suppose the y-axis of texture is implicitly reversed by OpenGl standard.
+               //  t.y = 1-t.y;
                 
                  //---- Vert, normal and TexCo
                  addVert(TVec3(v.x,0,v.y));
@@ -150,8 +163,8 @@ namespace Ic3d{
          for(int i=0;i<N_y; i++)      // Latitude
              for(int j=0;j<N_x;j++)  // longtitude
              {
-                 size_t i0 = (N_x+1)*(i+1) + j; size_t i1 = i0 +1;
-                 size_t i2 = (N_x+1)*i + j;     size_t i3 = i2 +1;
+                 size_t i0 = (N_x+1)*(i+0) + j;     size_t i1 = i0 +1;
+                 size_t i2 = (N_x+1)*(i+1) + j;     size_t i3 = i2 +1;
                  TFaceIdx f; auto& vs = f.m_verts;
                  vs[0]={i0, i0, i0}; vs[1]={i1, i1, i1};
                  vs[2]={i2, i2, i2}; vs[3]={i3, i3, i3};

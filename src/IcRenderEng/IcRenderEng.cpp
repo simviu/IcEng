@@ -23,7 +23,7 @@ namespace Ic3d
 
     static const string K_sFileVert		= "IcShaderVert.vsh";
     static const string K_sFileFrag		= "IcShaderFrag.vsh";
-    static const bool K_enCulling = false;
+    static const bool K_enCulling = true;
 	//--------------------------------------------------------------
 	//	IcRenderEng Singleton
 	//--------------------------------------------------------------

@@ -79,6 +79,14 @@ public:
     virtual void onInit() override;
 };
 //-----------------------------
+//	DemoTexture
+//-----------------------------
+class DemoTexture : public DemoScene
+{
+public:
+    virtual void onInit() override;
+};
+//-----------------------------
 //	DemoLights
 //-----------------------------
 class DemoLights : public DemoScene

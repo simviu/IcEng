@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9C2F44DF1E8A549100901720 /* DemoTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C2F44DE1E8A549100901720 /* DemoTexture.cpp */; };
 		9CACD58E1E82248900AF02C6 /* DemoApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CACD5841E82248900AF02C6 /* DemoApp.cpp */; };
 		9CACD58F1E82248900AF02C6 /* DemoBasic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CACD5861E82248900AF02C6 /* DemoBasic.cpp */; };
 		9CACD5901E82248900AF02C6 /* DemoLights.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CACD5871E82248900AF02C6 /* DemoLights.cpp */; };
@@ -33,6 +34,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		9C2F44DE1E8A549100901720 /* DemoTexture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DemoTexture.cpp; sourceTree = "<group>"; };
 		9CACD5841E82248900AF02C6 /* DemoApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DemoApp.cpp; sourceTree = "<group>"; };
 		9CACD5851E82248900AF02C6 /* DemoApp.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DemoApp.hpp; sourceTree = "<group>"; };
 		9CACD5861E82248900AF02C6 /* DemoBasic.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DemoBasic.cpp; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 				9CACD5851E82248900AF02C6 /* DemoApp.hpp */,
 				9CACD5861E82248900AF02C6 /* DemoBasic.cpp */,
 				9CACD5871E82248900AF02C6 /* DemoLights.cpp */,
+				9C2F44DE1E8A549100901720 /* DemoTexture.cpp */,
 				9CACD5881E82248900AF02C6 /* DemoModelCreate.cpp */,
 				9CACD5891E82248900AF02C6 /* DemoNestedTrans.cpp */,
 				9CACD58A1E82248900AF02C6 /* DemoRenderToTex.cpp */,
@@ -170,6 +173,7 @@
 				9CACD5901E82248900AF02C6 /* DemoLights.cpp in Sources */,
 				9CACD5941E82248900AF02C6 /* DemoScene.cpp in Sources */,
 				9CACD5931E82248900AF02C6 /* DemoRenderToTex.cpp in Sources */,
+				9C2F44DF1E8A549100901720 /* DemoTexture.cpp in Sources */,
 				9CACD58E1E82248900AF02C6 /* DemoApp.cpp in Sources */,
 				9CACD5921E82248900AF02C6 /* DemoNestedTrans.cpp in Sources */,
 				9CACD5911E82248900AF02C6 /* DemoModelCreate.cpp in Sources */,

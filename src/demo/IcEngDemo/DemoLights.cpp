@@ -14,6 +14,7 @@ using namespace std;
 using namespace ctl;
 using namespace Ic3d;
 static const string K_sModel = "IcDemo/MixShapes/MixShapes.obj";
+static const string K_sFile_dbgTex = "IcDemo/plane/dbgGrid.png";
 
 //----------------------------------------------
 //  DemoLights::onInit
@@ -23,18 +24,23 @@ void DemoLights::onInit()
     //--- Always call parent class onInit()
     IcScene::onInit();
     
+    
+    const auto& cfg = IcApp::getInstance()->m_cfg;
+    string sPathRes = cfg.m_sPathRes;
+   
     //--- Bottom plate
     {
         IcMeshData mshd;
-        mshd.createPlaneXZ(TRect(-10,-10, 20,20), TRect(0,0,1,1));
+   //   mshd.createPlaneXZ(TRect(-10,-10, 20,20));
+        mshd.createGridXZ(TRect(-10,-10, 20,20), 16, 16);
         auto pModel = makeSp<IcModel>(mshd);
+        string sFileTex = sPathRes + K_sFile_dbgTex;
+        pModel->setTexture(makeSp<IcTexture>(sFileTex));
         auto pObj = makeSp<IcObject>(pModel);
         addObj(pObj);
     }
     
     //--- Load Object
-    const auto& cfg = IcApp::getInstance()->m_cfg;
-    string sPathRes = cfg.m_sPathRes;
     string sFile = sPathRes + K_sModel;
     auto pModel = ctl::makeSp<IcModel>(sFile);
     auto pObj   = ctl::makeSp<IcObject>(pModel);
