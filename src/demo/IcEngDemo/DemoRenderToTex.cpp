@@ -76,7 +76,11 @@ void DemoRenderToTex::onInit()
     {
         auto pScn = makeSp<IcScene>();
         IcMeshData mshd;
-        mshd.createPlaneXY(TRect(TPos(-1,1), TPos(1,-1)),TRect(TPos(0,1), TPos(1,0)));
+        
+        //---- Create Plane as display quad.
+        // Note: Texture is y-reversed, as standard of OpenGL.
+        mshd.createPlaneXY(TRect(TPos(-1,1), TPos(1,-1)),
+                           TRect(TPos(0,1), TPos(1,0)));
         auto pMsh = makeSp<IcMesh>(mshd);
         auto pMtl = makeSp<IcMaterial>();
         

@@ -173,7 +173,7 @@ namespace Ic3d
         
         unsigned int genTexId();
         bool	putIntoGL(const TMipMapData& rData);
-        bool	putIntoGL_Compressed(const TMipMapData& rData);
+        bool	putIntoGL_PVR(const TMipMapData& rData);
         
         unsigned int m_texId = 0;
         int		m_PVR_format = 0;
