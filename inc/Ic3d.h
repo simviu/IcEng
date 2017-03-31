@@ -234,7 +234,7 @@ namespace Ic3d {
 		inline void setModel(ctl::Sp<const IcModel> p) { m_pModel=p;};
 		inline ctl::Sp<const IcModel>  getModel() const { return m_pModel; };
 		virtual void draw() const;
-        virtual void update(float deltaT){};
+        virtual void update(float deltaT){};    // TODO: double
 		
 		//----Child Obj
 		void addChildObj(ctl::Sp<IcObject> p){ m_childObjs.add(p); };
@@ -369,8 +369,8 @@ namespace Ic3d {
 	public:
 		IcScene();
 		virtual ~IcScene() {};
-        virtual void onUpdate(double deltaT)
-        {    if(m_pCallBk_onUpdate!=nullptr) m_pCallBk_onUpdate(deltaT); };
+        virtual void onUpdate(double deltaT);
+        
 		virtual void onDraw();
 		virtual void onWindowSize(const ctl::TSize& winSize);
         void addObj(ctl::Sp<IcObject> p){ m_rootObj.addChildObj(p); };

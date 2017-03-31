@@ -193,6 +193,16 @@ namespace Ic3d
         
         
     }
+    //-----------------------------------------
+    //	onDraw
+    //-----------------------------------------
+    void IcScene::onUpdate(double deltaT)
+    {
+        if(m_pCallBk_onUpdate!=nullptr)
+            m_pCallBk_onUpdate(deltaT);
+        for(auto pScn : m_subScns.getAry())
+            pScn->onUpdate(deltaT);
+    };
 	
 	//-----------------------------------------
 	//	onDraw
