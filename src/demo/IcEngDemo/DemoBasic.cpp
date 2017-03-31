@@ -13,7 +13,8 @@
 using namespace std;
 using namespace ctl;
 using namespace Ic3d;
-static const string K_sModel = "IcDemo/MixShapes/MixShapes.obj";
+//static const string K_sModel = "IcDemo/MixShapes/MixShapes.obj";
+static const string K_sModel = "IcDemo/monkey/monkey.obj";
 
 //----------------------------------------------
 //  DemoBasic::onInit

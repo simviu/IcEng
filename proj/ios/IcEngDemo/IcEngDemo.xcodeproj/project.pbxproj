@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9C263B141E8D10CB000ADE6D /* DemoTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C263B131E8D10CB000ADE6D /* DemoTexture.cpp */; };
+		9C263B161E8D10D0000ADE6D /* DemoFog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C263B151E8D10D0000ADE6D /* DemoFog.cpp */; };
 		9CACD56A1E8222B200AF02C6 /* IcDemoTableVCon.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9CACD5651E8222B200AF02C6 /* IcDemoTableVCon.mm */; };
 		9CACD56B1E8222B200AF02C6 /* IcDemoTableVCon.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CACD5661E8222B200AF02C6 /* IcDemoTableVCon.xib */; };
 		9CACD56C1E8222B200AF02C6 /* IcDemoViewCon.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9CACD5681E8222B200AF02C6 /* IcDemoViewCon.mm */; };
@@ -42,6 +44,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		9C263B131E8D10CB000ADE6D /* DemoTexture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DemoTexture.cpp; sourceTree = "<group>"; };
+		9C263B151E8D10D0000ADE6D /* DemoFog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DemoFog.cpp; sourceTree = "<group>"; };
 		9CACD5641E8222B200AF02C6 /* IcDemoTableVCon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IcDemoTableVCon.h; sourceTree = "<group>"; };
 		9CACD5651E8222B200AF02C6 /* IcDemoTableVCon.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = IcDemoTableVCon.mm; sourceTree = "<group>"; };
 		9CACD5661E8222B200AF02C6 /* IcDemoTableVCon.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IcDemoTableVCon.xib; sourceTree = "<group>"; };
@@ -89,6 +93,8 @@
 		9CACD5701E8222F500AF02C6 /* IcEngDemo */ = {
 			isa = PBXGroup;
 			children = (
+				9C263B151E8D10D0000ADE6D /* DemoFog.cpp */,
+				9C263B131E8D10CB000ADE6D /* DemoTexture.cpp */,
 				9CACD5711E8222F500AF02C6 /* DemoApp.cpp */,
 				9CACD5721E8222F500AF02C6 /* DemoApp.hpp */,
 				9CACD5731E8222F500AF02C6 /* DemoBasic.cpp */,
@@ -247,6 +253,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9CACD57C1E8222F500AF02C6 /* DemoBasic.cpp in Sources */,
+				9C263B141E8D10CB000ADE6D /* DemoTexture.cpp in Sources */,
 				9CACD57B1E8222F500AF02C6 /* DemoApp.cpp in Sources */,
 				9CACD57F1E8222F500AF02C6 /* DemoNestedTrans.cpp in Sources */,
 				9CACD5801E8222F500AF02C6 /* DemoRenderToTex.cpp in Sources */,
@@ -258,6 +265,7 @@
 				9CACD5811E8222F500AF02C6 /* DemoScene.cpp in Sources */,
 				9CEC54B81DCB3A3E00A9E864 /* main.m in Sources */,
 				9CACD57D1E8222F500AF02C6 /* DemoLights.cpp in Sources */,
+				9C263B161E8D10D0000ADE6D /* DemoFog.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

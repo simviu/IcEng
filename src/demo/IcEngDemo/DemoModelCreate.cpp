@@ -29,7 +29,7 @@ void DemoModelCreate::onInit()
     std::string sPath = sPathRes + K_sPath_demo;
 
     //---- Sphere Mesh
-    IcMeshData mshdSphr; mshdSphr.createSphere(1, 32, 32);
+    IcMeshData mshdSphr; mshdSphr.createSphere(1, 200, 200);
     auto pMeshSphr = ctl::makeSp<IcMesh>(mshdSphr);
     
    
@@ -57,7 +57,7 @@ void DemoModelCreate::onInit()
     pObj1->setScale(TVec3(2,2,2));  // Earth is twice bigger
     
     //---- Rotate North pole to +y
-    TQuat q(TVec3(deg2rad(-90),0,0));
+    TQuat q(TVec3(deg2rad(90),0,0));
     pObj0->setQuat(q);
     pObj1->setQuat(q);
 

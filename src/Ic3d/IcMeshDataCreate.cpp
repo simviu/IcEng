@@ -149,19 +149,20 @@ namespace Ic3d{
                  TVec2 t = t0;
                  t.x += dt.x*j;
                  t.y += dt.y*i;
-                 // TODO: Hack, not sure why,
-                 //  suppose the y-axis of texture is implicitly reversed by OpenGl standard.
-               //  t.y = 1-t.y;
-                
+                 
                  //---- Vert, normal and TexCo
                  addVert(TVec3(v.x,v.y,0));
                  addNorm(glm::normalize(TVec3(0,0,1)));
                  addTexCo(t);
+                 
+                 //---- dbg
+                 if(i==N_y-2)
+                 { int k=0; }
              }
     
          //---- Add Quad
-         for(int i=0;i<N_y; i++)      // Latitude
-             for(int j=0;j<N_x;j++)  // longtitude
+         for(int i=0;i<N_y; i++)
+             for(int j=0;j<N_x;j++)
              {
                  size_t i0 = (N_x+1)*(i+0) + j;     size_t i1 = i0 +1;
                  size_t i2 = (N_x+1)*(i+1) + j;     size_t i3 = i2 +1;
@@ -169,6 +170,9 @@ namespace Ic3d{
                  vs[0]={i0, i0, i0}; vs[1]={i1, i1, i1};
                  vs[2]={i2, i2, i2}; vs[3]={i3, i3, i3};
                  addQuad(f, m_cfg.m_isWindingCCR);
+                 //---- dbg
+                 if(i==N_y-2)
+                 { int k=0; }
              }
      }
 

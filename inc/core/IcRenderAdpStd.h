@@ -118,7 +118,7 @@ namespace Ic3d
             float nx,ny,nz;		// normal vector
         };
         //----------------------------
-        struct TTrianIdx{ unsigned short idx[3] = {0,0,0}; };//	// Triangle index for VBO
+        struct TTrianIdx{ unsigned int idx[3] = {0,0,0}; };//	// Triangle index for VBO
         //----------------------------
         size_t	m_vboPntNum =0;
         size_t	m_vboTrianIdxNum =0;

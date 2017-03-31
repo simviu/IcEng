@@ -76,9 +76,12 @@ namespace Ic3d
 				trianIdx.idx[k] = idx;
 			}
 			m_aryTrianIdx.push_back(trianIdx);
+            if(i>= N-2)
+            { int k=0; }
 		}
 		//---- vbo point
-		for(auto& vIdx : helper.m_ary.getAry())
+        size_t i=0; // dbg
+		for(const auto& vIdx : helper.m_ary.getAry())
 		{
 			TVec3 v; TVec2 t; TVec3 n;
 			rMeshData.m_verts.getAt(vIdx.m_vi, v);
@@ -87,7 +90,11 @@ namespace Ic3d
 			TVertTN vTN = {v.x, v.y, v.z,
 				t.x, t.y, n.x, n.y, n.z};
 			m_aryPoint.push_back(vTN);
-		}
+            //---- dbg
+            if(i++ > N*3 - 10)
+            { int k=0; }
+            
+        }
 		
 		genVboBufData();
 		sendBufToGL();
@@ -177,8 +184,16 @@ namespace Ic3d
 		//----------------------------------------------
 		//---- vbo idx data
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_vboTrianBufGLidx);
-		glDrawElements(GL_TRIANGLES, ((m_vboTrianIdxNum) * 3), GL_UNSIGNED_SHORT,0);
-		
+		glDrawElements(GL_TRIANGLES, ((m_vboTrianIdxNum) * 3), GL_UNSIGNED_INT,0);
+        
+        //---- Check Error
+#if DEBUG
+        GLenum err = glGetError();
+        if(err!=GL_NO_ERROR)
+        {
+            int e = 0;
+        }
+#endif
 	}
 	
 	

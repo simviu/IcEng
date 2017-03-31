@@ -32,7 +32,7 @@ void DemoLights::onInit()
     {
         IcMeshData mshd;
  //       mshd.createPlaneXY(TRect(TPos(-10,10), TPos(10,-10)));
-        mshd.createGridXY(TRect(TPos(-10,10), TPos(10,-10)), 16, 16);
+        mshd.createGridXY(TRect(TPos(-10,10), TPos(10,-10)), 200, 200);
         
         auto pModel = makeSp<IcModel>(mshd);
         string sFileTex = sPathRes + K_sFile_dbgTex;
