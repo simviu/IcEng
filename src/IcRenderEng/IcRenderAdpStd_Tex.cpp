@@ -117,7 +117,7 @@ namespace Ic3d
 		for (auto pData : m_aryMipData.getAry())
 		{
 			if(m_isTexPVR)
-					isOK &= putIntoGL_Compressed(*pData);
+					isOK &= putIntoGL_PVR(*pData);
 			else	isOK &= putIntoGL(*pData);
 			if(!isOK)
 				return false;
@@ -158,7 +158,7 @@ namespace Ic3d
 	{
 
 		glBindTexture(GL_TEXTURE_2D, m_texId);
-		if(m_isRepeat)
+		if(m_cfg.m_isRepeat)
 		{
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
@@ -188,7 +188,7 @@ namespace Ic3d
 	//------------------------------------------------
 	//	putIntoGL_Compressed
 	//------------------------------------------------
-	bool	CTexAdpStd::putIntoGL_Compressed(const TMipMapData& rData)
+	bool	CTexAdpStd::putIntoGL_PVR(const TMipMapData& rData)
 	{
 #ifdef __APPLE__
 		

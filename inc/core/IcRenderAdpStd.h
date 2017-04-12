@@ -118,7 +118,7 @@ namespace Ic3d
             float nx,ny,nz;		// normal vector
         };
         //----------------------------
-        struct TTrianIdx{ unsigned short idx[3] = {0,0,0}; };//	// Triangle index for VBO
+        struct TTrianIdx{ unsigned int idx[3] = {0,0,0}; };//	// Triangle index for VBO
         //----------------------------
         size_t	m_vboPntNum =0;
         size_t	m_vboTrianIdxNum =0;
@@ -146,9 +146,8 @@ namespace Ic3d
         CTexAdpStd(){};
         CTexAdpStd(const ctl::IcImg& img);
         virtual ~CTexAdpStd();
-         virtual void render() const override;
-        void setTexRepeat(bool b){ m_isRepeat = b; };
-        
+        virtual void render() const override;
+ 
         //---- For render texture
         virtual bool setAsRenderTarget() override;
         virtual void startRenderOn() override;
@@ -174,13 +173,12 @@ namespace Ic3d
         
         unsigned int genTexId();
         bool	putIntoGL(const TMipMapData& rData);
-        bool	putIntoGL_Compressed(const TMipMapData& rData);
+        bool	putIntoGL_PVR(const TMipMapData& rData);
         
         unsigned int m_texId = 0;
         int		m_PVR_format = 0;
         bool	m_isTexPVR =false;
         bool	m_isTexMipMap =false;
-        bool	m_isRepeat =true;
         
         ctl::SpAry<TMipMapData>	m_aryMipData;
         bool putTexIntoGL();

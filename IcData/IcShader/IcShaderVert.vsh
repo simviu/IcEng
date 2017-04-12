@@ -16,7 +16,6 @@ precision highp float;
 
 uniform mat4 u_matProj;
 uniform mat4 u_matModelView;
-
 uniform mat3 u_matNormal;
 
 attribute vec4 a_vert;

@@ -65,14 +65,20 @@ namespace Ic3d{
         }
     }
     //-----------------------------------------------------
-    //	createPlaneXZ
+    //	createPlaneXY
     //-----------------------------------------------------
+    //  ^ +y
+    //  |
+    //  |
+    //  .----> +x
+    //
+    //  Normal Face Up : +z
     //
     //  p0 -----     0---1
     //   |     |     | / |
     //   ----- p1    2---3
     //
-    void IcMeshData::createPlaneXZ(const ctl::TRect& rect,
+    void IcMeshData::createPlaneXY(const ctl::TRect& rect,
                                    const ctl::TRect& texRect)
     {
         auto p0 = rect.pos0;
@@ -83,10 +89,10 @@ namespace Ic3d{
         
         //---- Add Vert and Tex cordinator
         const vector<TPnt> pnts = {
-            {TVec3(p0.x, 0, p0.y),TVec2(tp0.x, 1-tp0.y)},
-            {TVec3(p1.x, 0, p0.y),TVec2(tp1.x, 1-tp0.y)},
-            {TVec3(p0.x, 0, p1.y),TVec2(tp0.x, 1-tp1.y)},
-            {TVec3(p1.x, 0, p1.y),TVec2(tp1.x, 1-tp1.y)}
+            {TVec3(p0.x, p0.y, 0),TVec2(tp0.x, tp0.y)},
+            {TVec3(p1.x, p0.y, 0),TVec2(tp1.x, tp0.y)},
+            {TVec3(p0.x, p1.y, 0),TVec2(tp0.x, tp1.y)},
+            {TVec3(p1.x, p1.y, 0),TVec2(tp1.x, tp1.y)}
         };
         for(auto& pnt : pnts) {
             addVert(pnt.v);
@@ -94,7 +100,7 @@ namespace Ic3d{
         }
         
         //---- Add 1 Normal, face up
-        addNorm(TVec3(0,1,0));
+        addNorm(TVec3(0,0,1));
         TFaceIdx f; int i=0;
         for(auto& v : f.m_verts)
         {
@@ -104,52 +110,72 @@ namespace Ic3d{
         addQuad(f, m_cfg.m_isWindingCCR);
     }
     //-----------------------------------------------------
-    //	createGridXZ
+    //	createGridXY
     //-----------------------------------------------------
-    void IcMeshData::createGridXZ(const TRect& rect,
-                                  int N_x, int N_y,
-                                  const TRect& texRect)
-    {
-        auto vsz = rect.getSize();
-        auto tsz = texRect.getSize();
-        TSize vgsz(vsz.w/N_x, vsz.h/N_y);   // GridSize
-        TSize tgsz(tsz.w/N_x, tsz.h/N_y);   // Texture GridSize
-        auto vp0 = vecConv(rect.pos0);
-        auto tp0 = vecConv(texRect.pos0);
-        //---- Add Vert/Normal/TexCo
-        for(int y=0;y<N_y+1; y++)     // y
-        {
-            for(int x=0;x<N_x+1;x++)  // x
-            {
-                //--- Verti
-                float vx = vgsz.w*x + vp0.x;
-                float vz = vgsz.h*y + vp0.y;
-                float vy = 0;
-                
-                //--- Texture
-                float u = tgsz.w*x + tp0.x;
-                float v = tgsz.h*y + tp0.y;
-            //    u = 1 - u;    // TODO: HackHack
-                v = 1 - v;    // TODO: to be verified
+    //  ^ +y
+    //  |
+    //  |
+    //  .----> +x
+    //
+    //  Normal Face Up : +z
+    //
+    //  p0 -----     i0---i1
+    //   |     |     |  /  |
+    //   ----- p1    i2---i3
+     void IcMeshData::createGridXY(const TRect& rect,
+                                   int N_x, int N_y,   // N_x/N_y are gird number
+                                   const TRect& texRect)
+     {
+         if(N_x==0||N_y==0) return;
+         //---- Vertex
+         TVec2 v0 = toVec(rect.pos0);
+         TVec2 v1 = toVec(rect.pos1);
+         TVec2 dv = (v1-v0); dv.x/=N_x; dv.y/=N_y;
+         
+         //---- Texture
+         TVec2 t0 = toVec(texRect.pos0);
+         TVec2 t1 = toVec(texRect.pos1);
+         TVec2 dt = t1-t0; dt.x/=N_x; dt.y/=N_y;
+         
+         for(int i=0;i<N_y+1; i++)     // y
+             for(int j=0;j<N_x+1;j++)  // x
+             {
+                 //--- Vertex
+                 TVec2 v = v0;
+                 v.x += dv.x*j;
+                 v.y += dv.y*i;
+                 
+                 //---- Texture
+                 TVec2 t = t0;
+                 t.x += dt.x*j;
+                 t.y += dt.y*i;
+                 
+                 //---- Vert, normal and TexCo
+                 addVert(TVec3(v.x,v.y,0));
+                 addNorm(glm::normalize(TVec3(0,0,1)));
+                 addTexCo(t);
+                 
+                 //---- dbg
+                 if(i==N_y-2)
+                 { int k=0; }
+             }
+    
+         //---- Add Quad
+         for(int i=0;i<N_y; i++)
+             for(int j=0;j<N_x;j++)
+             {
+                 size_t i0 = (N_x+1)*(i+0) + j;     size_t i1 = i0 +1;
+                 size_t i2 = (N_x+1)*(i+1) + j;     size_t i3 = i2 +1;
+                 TFaceIdx f; auto& vs = f.m_verts;
+                 vs[0]={i0, i0, i0}; vs[1]={i1, i1, i1};
+                 vs[2]={i2, i2, i2}; vs[3]={i3, i3, i3};
+                 addQuad(f, m_cfg.m_isWindingCCR);
+                 //---- dbg
+                 if(i==N_y-2)
+                 { int k=0; }
+             }
+     }
 
-                //---- Vert, normal and TexCo
-                addVert({vx,vy,vz});
-                addNorm(glm::normalize(TVec3(0,1,0)));
-                addTexCo({u, v});
-            }
-        }
-        //---- Add Quad
-        for(int i=0;i<N_y; i++)      // Latitude
-            for(int j=0;j<N_x;j++)  // longtitude
-            {
-                size_t i0 = (N_x+1)*(i+1) + j; size_t i1 = i0 +1;
-                size_t i2 = (N_x+1)*i + j;     size_t i3 = i2 +1;
-                TFaceIdx f; auto& vs = f.m_verts;
-                vs[0]={i0, i0, i0}; vs[1]={i1, i1, i1};
-                vs[2]={i2, i2, i2}; vs[3]={i3, i3, i3};
-                addQuad(f, m_cfg.m_isWindingCCR);
-            }
-    }
     //-----------------------------------------------------
     //	createSphere
     //-----------------------------------------------------

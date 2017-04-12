@@ -33,6 +33,8 @@ namespace Ic3d {
     extern std::string toStr(const TColor& v);
  
     TQuat quatFromVecs(const TVec3& v0, const TVec3& v1);
+    template<typename T>
+    TVec2 toVec(const ctl::TPosT<T>& v){ return TVec2(v.x, v.y); };
     //-----------------------------------------------
     //	IcMeshData
     //-----------------------------------------------
@@ -43,15 +45,16 @@ namespace Ic3d {
         void getSubMesh(TMeshData& mesh,
                         size_t faceStrt, size_t N) const;
        
-        void createPlaneXZ(const ctl::TRect& rect,
-                           const ctl::TRect& texRect = {0,0,1,1});
         void createCube(const TVec3& sz, const TVec3& ofst);
         void createSphere(float R, int N_stack, int N_slice);
         void createCylinder(float R, float height); // TODO : Implement
         void createCone(float R, float height); // TODO : Implement
-        void createGridXZ(const ctl::TRect& rect,
+        void createPlaneXY(const ctl::TRect& rect,
+                           const ctl::TRect& texRect = {ctl::TPos(0,0),ctl::TPos(1,1)});
+        void createGridXY(const ctl::TRect& rect,
                           int N_x, int N_y,
-                          const ctl::TRect& texRect = ctl::TRect(0,0,1,1));
+                          const ctl::TRect& texRect =
+                          ctl::TRect(ctl::TPos(0,0),ctl::TPos(1,1)));
         
         void dbgPrint() const;
         //---- Cfg
@@ -100,6 +103,8 @@ namespace Ic3d {
         bool setAsRenderTarget();
         void startRenderOn() const;
         void finishRenderOn() const;
+        ctl::Sp<CRenderAdp::CTexAdp> getRenderAdp(){ return m_pRenderAdp; };
+        
 	protected:
 		ctl::Sp<CRenderAdp::CTexAdp>	m_pRenderAdp = nullptr;
 		bool m_isValid = false;
@@ -229,7 +234,7 @@ namespace Ic3d {
 		inline void setModel(ctl::Sp<const IcModel> p) { m_pModel=p;};
 		inline ctl::Sp<const IcModel>  getModel() const { return m_pModel; };
 		virtual void draw() const;
-        virtual void update(float deltaT){};
+        virtual void update(float deltaT){};    // TODO: double
 		
 		//----Child Obj
 		void addChildObj(ctl::Sp<IcObject> p){ m_childObjs.add(p); };
@@ -265,21 +270,24 @@ namespace Ic3d {
         //---- Camera Cfg
         struct TCfg
         {
-            float   m_FOV   = 50; // in degree
+            ctl::TSize m_viewSize{320, 240};
+            bool    m_isOrthogonal = false;
+            float   m_FOV   = 50;
             float   m_zNear = 0.1;
             float   m_zFar  = 1000;
         };
-		void setFrustum(const ctl::TSize& viewSize,
-						const TCfg& cfg);
+        TCfg m_cfg;
+//		void setFrustum(const ctl::TSize& viewSize,
+//						const TCfg& cfg);
 		void lookAt(const TVec3& pos,
 					const TVec3& vUp);
 		void drawText(const std::string& str,
 					  const TColor& c,
 					  const TVec3& pos);
         TMat4   getViewMat()const { return m_matView; };
-        TMat4   getProjMat()const { return m_matProj; };
+        TMat4   getProjMat()const; // { return m_matProj; };
  	protected:
-		TMat4	m_matProj;
+	//	TMat4	m_matProj;
 		TMat4	m_matView;
 		void drawObjTree(const IcObject& obj,
 						 const TMat4& matModelParent) const;
@@ -361,8 +369,8 @@ namespace Ic3d {
 	public:
 		IcScene();
 		virtual ~IcScene() {};
-        virtual void onUpdate(double deltaT)
-        {    if(m_pCallBk_onUpdate!=nullptr) m_pCallBk_onUpdate(deltaT); };
+        virtual void onUpdate(double deltaT);
+        
 		virtual void onDraw();
 		virtual void onWindowSize(const ctl::TSize& winSize);
         void addObj(ctl::Sp<IcObject> p){ m_rootObj.addChildObj(p); };
@@ -374,7 +382,7 @@ namespace Ic3d {
         //---- Configuration
         struct TCfg
         {
-            IcCamera::TCfg  m_camCfg;
+        //  IcCamera::TCfg  m_camCfg;
             TFogPara    m_fogPara;
             bool        m_enClrScrn = true;
             TColor      m_bkColor{0.2,0.5,0.7,1.0};
@@ -390,7 +398,11 @@ namespace Ic3d {
         void setRenderToTexture(ctl::Sp<IcTexture> pTex);
         void addSubScn(ctl::Sp<IcScene> pScn);
         void setViewRect(const ctl::TRect& r);
+        void setCam(ctl::Sp<IcCamera> pCam){ m_pCamera = pCam; };
+        
 	protected:
+        virtual void renderThis();
+        virtual void renderSubScns();
 		virtual void onInit(){};
         void renderObjRecur(const IcCamera& cam,
                             const IcObject& obj,
@@ -649,6 +661,10 @@ namespace Ic3d {
         //-----------------
         // For PC, not mobile
         int runCmdLine(int argc, char **argv, const std::string& sResPath);
+        //-----------------
+        // misc util
+        //-----------------
+        static std::string getResPath();
     protected:
     };
      

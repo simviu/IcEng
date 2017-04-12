@@ -81,7 +81,9 @@ vec4 calcFog(TFogPara para, vec4 c_in, vec4 ecVert)
     float f0 = para.k_linear*L; // Linear
     float f1 = 1.0 - 1.0/exp(L*para.k_exp);  // Exp
     float f = f0 + f1;
-  //  f = 0.7; // dbg
+    f = clamp(f, 0.0, 1.0);
+
+ //   f = 0.7; // dbg
     vec4 c = mix(c_in, para.color, f);
     return c;
 }
@@ -133,7 +135,8 @@ vec4 calcColor(TMaterial mtl, TLight light, vec3 ecNormal, vec4 ecVert)
     TMaterial ml = light.mat;   // Light Material
     float d = distance(light.pos, ecVert.xyz);
     float li = 1.0/(1.0+ light.Kd2 * pow(d,2.0)) * spotCoef ;// Light Attenuetion
-    vec4 c = mtl.amb * ml.amb * li + df * mtl.dfs * ml.dfs* li + sf * mtl.spc * ml.spc * li + mtl.ems;
+    vec4 c = mtl.amb * ml.amb * li + df * mtl.dfs * ml.dfs* li +
+                sf * mtl.spc * ml.spc * li + mtl.ems;
     return c;
     
 }
@@ -145,11 +148,15 @@ vec4 calcColor(TMaterial mtl, TLight light, vec3 ecNormal, vec4 ecVert)
 //-------------------------
 void main()
 {
-    vec4 c = vec4(0,0,0,1);
+    //----- Material and light
+    vec4 cm = vec4(0,0,0,1);
     for(int i = 0; i < u_lightNum; ++i)
-        c += calcColor(u_material, u_lightAry[i], v_ecNormal, v_ecVert);
-    vec4 cAlpha = vec4(c.rgb, u_material.alpha);
-    c = texture2D(u_texSampler, v_texCo);
+        cm += calcColor(u_material, u_lightAry[i], v_ecNormal, v_ecVert);
+    cm = vec4(cm.rgb, u_material.alpha);
+    
+    //---- Texture color
+    vec4 c = texture2D(u_texSampler, v_texCo);
+    c = c*cm;
     c = calcFog(u_fogPara, c, v_ecVert);
-	gl_FragColor = c * cAlpha;
+	gl_FragColor = c;
 }
