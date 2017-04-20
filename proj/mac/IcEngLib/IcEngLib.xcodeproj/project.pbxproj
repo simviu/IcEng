@@ -268,6 +268,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9C16F7A31EA8BBD900244192 /* IcMath.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IcMath.h; sourceTree = "<group>"; };
 		9C33E5211E3F4CF600DEC713 /* IcText.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcText.cpp; sourceTree = "<group>"; };
 		9C3E25E81E52E8B300B1C17E /* IcEngJNI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcEngJNI.cpp; sourceTree = "<group>"; };
 		9C3E25E91E52E8B300B1C17E /* IcWinMngAndroid.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcWinMngAndroid.cpp; sourceTree = "<group>"; };
@@ -769,6 +770,7 @@
 				9CF604EF1E248125008A662C /* glm */,
 				9CF605F01E248125008A662C /* Ic3d.h */,
 				9CF605F21E248125008A662C /* IcRenderAdp.h */,
+				9C16F7A31EA8BBD900244192 /* IcMath.h */,
 			);
 			name = inc;
 			path = ../../../inc;
