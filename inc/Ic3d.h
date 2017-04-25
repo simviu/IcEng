@@ -642,6 +642,7 @@ namespace Ic3d {
 		//---- Always Override onInit()
         virtual void onInit() ;
         virtual void onRelease();
+        virtual void onCmdArgs(int argc, char * argv[]){};
         
         void addWindow(ctl::Sp<IcWindow> pWin);
         ctl::Sp<IcWinMng> getWinMng();

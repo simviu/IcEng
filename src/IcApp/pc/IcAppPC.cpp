@@ -369,6 +369,7 @@ namespace Ic3d
 			logErr("OpenGL Windows Manager on this machine init failed.");
 			return 1;
 		}
+        onCmdArgs(argc, argv);
         onInit();
         pMng->startMainLoop();
         return true;
