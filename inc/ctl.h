@@ -433,6 +433,7 @@ namespace ctl {
 			{	auto it = m_map.find(sKey);
 				if(it==m_map.end()) return false;
 				cbk.run((*it).first, (*it).second); return true; };
+        std::map<std::string, Sp<T>>& getMap(){ return m_map; };
 
     protected:
 		std::map<std::string, Sp<T>> m_map;
