@@ -149,7 +149,10 @@ namespace ctl {
     //-----------------------------
     //	UI Coordinates
     //-----------------------------
-    //---- TPos
+    // TPosT/TSizeT/TRectT
+    //-----------------------------
+    //	TPosT
+    //-----------------------------
     template<typename T>
     struct TPosT    // TODO: rename TVec2, (TVec2->IcVec2)
     {
@@ -176,7 +179,9 @@ namespace ctl {
     typedef TPosT<float> TPos;
     typedef TPosT<double> TPosHP;
     
-    //---- TSize
+    //-----------------------------
+    //	TSizeT
+    //-----------------------------
     template<typename T>
     struct TSizeT
     {
@@ -192,7 +197,9 @@ namespace ctl {
     };
     typedef TSizeT<float> TSize;
     typedef TSizeT<double> TSizeHP;
-    //---- TRect
+    //-----------------------------
+    //	TRectT
+    //-----------------------------
     template<typename T>
     struct TRectT
     {
@@ -216,6 +223,24 @@ namespace ctl {
             { return TPosT<T>((pos0.x+pos1.x)/2, (pos0.y+pos1.y)/2); };
         std::string toStr() const
             { return "("+pos0.toStr() + "),(" + pos1.toStr()+")"; }
+        //----- Map to unit pos, take pos0 as (0,0), pos1 as coordinator (1,1)
+        TPosT<T> posToUnit(const TPosT<T>& pos) const
+        {
+            auto v = pos1; v -= pos0;
+            auto dv = pos; dv -= pos0;
+            if(v.x==0) v.x = 1; if(v.y==0) v.y=1;
+            dv.x /= v.x;   dv.y /= v.y;
+            return dv;
+        };
+        TPosT<T> posFromUnit(const TPosT<T>& unitPos) const
+        {
+            auto v = pos1; v -= pos0;
+            auto dv = unitPos;
+            dv.x *= v.x;   dv.y *= v.y;
+            dv += pos0;
+            return dv;
+           
+        };
     };
     typedef TRectT<float> TRect;
     typedef TRectT<double> TRectHP;

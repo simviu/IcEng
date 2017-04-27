@@ -20,6 +20,7 @@ namespace ctl {
 	static const string K_sDelimeterIn = ", ;\n\r\t";
 	static const string K_sDelimeterOut = ",";
 
+    
 	//------------------------------------------
 	//	s2v
 	//------------------------------------------
