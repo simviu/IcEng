@@ -384,6 +384,7 @@ namespace ctl {
 			{	if(idx<0 || idx>=m_ary.size()) return false;
 				cbk.run(idx, m_ary[idx]); return true; };
 		std::vector<Sp<T>>& getAry(){ return m_ary; };
+        std::vector<Sp<T>>& getAry() const{ return m_ary; };
 
     protected:
 		std::vector<Sp<T>> m_ary;
@@ -434,6 +435,7 @@ namespace ctl {
 				if(it==m_map.end()) return false;
 				cbk.run((*it).first, (*it).second); return true; };
         std::map<std::string, Sp<T>>& getMap(){ return m_map; };
+        const std::map<std::string, Sp<T>>& getMap() const{ return m_map; };
 
     protected:
 		std::map<std::string, Sp<T>> m_map;
