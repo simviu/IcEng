@@ -155,8 +155,8 @@ namespace ctl {
 	bool IcImg::getPx(const TPos& pos, TPixel& c) const
 	{
 		TPos pos1 = pos;
-		CE_LIMIT(pos1.x, 0, m_size.w);
-		CE_LIMIT(pos1.y, 0, m_size.h);
+        if(pos.x<0 || pos.x>=m_size.w) return false;
+        if(pos.y<0 || pos.y>=m_size.h) return false;
 		size_t i = (pos1.y*m_size.w + pos1.x)*
 						sizeof(TPixel);
 		c.r = m_buf[i];

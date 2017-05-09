@@ -162,7 +162,7 @@ namespace ctl {
         T x=0, y=0;
         bool operator == (const TPosT& d)const
             { return (d.x==x)&&(d.y==y);};
-        std::string toStr() const{ return v2s(y) + "," + v2s(x); }
+        std::string toStr() const{ return v2s(x) + "," + v2s(y); }
         TPosT operator + (const TPosT& d) const
             { return TPosT(x+d.x, y+d.y); };
         TPosT operator - (const TPosT& d) const
