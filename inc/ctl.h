@@ -150,6 +150,8 @@ namespace ctl {
     //	UI Coordinates
     //-----------------------------
     // TPosT/TSizeT/TRectT
+    static const std::string K_sCoordDelimeterIn = ", ;\n\r\t";
+    static const std::string K_sCoordDelimeterOut = ",";
     //-----------------------------
     //	TPosT
     //-----------------------------
@@ -175,6 +177,13 @@ namespace ctl {
             { x*=d; y*=d; return (*this); };
         TPosT& operator * (const T& d)
             { return TPosT(x*d, y*d); };
+        bool fromStr(const std::string& s)
+        {
+            auto tkns = s2tokens(s, K_sCoordDelimeterIn);
+            if(tkns.size()<2) return false;
+            return ctl::s2v(tkns[0], x) && ctl::s2v(tkns[1], y);
+        
+        };
     };
     typedef TPosT<float> TPos;
     typedef TPosT<double> TPosHP;
@@ -193,6 +202,12 @@ namespace ctl {
             { return (d.w==w)&&(d.h==h);};
         std::string toStr() const{ return v2s<T>(w) + "," + v2s<T>(h); };
         bool operator != (const TSizeT& d)const{ return !(d==(*this)); };
+        bool fromStr(const std::string& s)
+        {
+            auto tkns = s2tokens(s, K_sCoordDelimeterIn);
+            if(tkns.size()<2) return false;
+            return ctl::s2v(tkns[0], w) && ctl::s2v(tkns[1], h);
+        };
 
     };
     typedef TSizeT<float> TSize;
@@ -221,8 +236,7 @@ namespace ctl {
             { return (r.pos0==pos0) && (r.pos1==pos1);};
         TPosT<T> getCenter()const
             { return TPosT<T>((pos0.x+pos1.x)/2, (pos0.y+pos1.y)/2); };
-        std::string toStr() const
-            { return "("+pos0.toStr() + "),(" + pos1.toStr()+")"; }
+ 
         //----- Map to unit pos, take pos0 as (0,0), pos1 as coordinator (1,1)
         TPosT<T> posToUnit(const TPosT<T>& pos) const
         {
@@ -241,9 +255,20 @@ namespace ctl {
             return dv;
            
         };
+        std::string toStr() const
+            { return "("+pos0.toStr() + "),(" + pos1.toStr()+")"; }
+        bool fromStr(const std::string& s)
+        {
+            auto tkns = s2tokens(s, K_sCoordDelimeterIn);
+            if(tkns.size()<4) return false;
+            return  ctl::s2v(tkns[0], pos0.x) && ctl::s2v(tkns[1], pos0.x) &&
+                    ctl::s2v(tkns[2], pos1.x) && ctl::s2v(tkns[3], pos1.y);
+        };
     };
     typedef TRectT<float> TRect;
     typedef TRectT<double> TRectHP;
+    
+    /*
     extern bool s2v2d(const std::string& s, TSize& sz);
     extern bool s2v2d(const std::string& s, TPos& pos);
     extern bool s2v2d(const std::string& s, TRect& r);
@@ -251,6 +276,7 @@ namespace ctl {
     extern std::string v2s2d(const TSize& sz);
     extern std::string v2s2d(const TPos& sz);
     extern std::string v2s2d(const TRect& sz);
+    */
     
     //-----------------------------
     //	BinBuf

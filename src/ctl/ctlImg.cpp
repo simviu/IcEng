@@ -264,7 +264,7 @@ namespace ctl {
 			for(size_t i=0;i<L;i++)
 				buf.setAt(i, image[i]);
 			logInfo("Load IcImg Done.(size =["+
-					v2s2d(sz)+"]");
+					sz.toStr()+"]");
 			return true;
 			
 		};
