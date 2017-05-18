@@ -36,6 +36,26 @@ namespace ctl {
 	//	Util Macro
 	//------------------------------------------
 	#define CE_LIMIT(d, dmin, dmax) ((d<dmin)?dmin:(d>dmax)?dmax:d)
+	//---------------------------------------------
+	//	IcImg::TPixel to/from str
+	//---------------------------------------------
+	std::string IcImg::TPixel::toStr() const
+	{
+		return v2s(r)+","+v2s(g)+","+v2s(b)+","+v2s(a);
+	}
+	bool IcImg::TPixel::fromStr(const string& s)
+	{
+		auto tkns = s2tokens(s);
+		if(tkns.size()<3) return false;
+		a = 255;
+		bool isOK = true;
+		isOK &=s2v(tkns[0], r);
+		isOK &=s2v(tkns[1], g);
+		isOK &=s2v(tkns[2], b);
+		if(tkns.size()>3)
+			isOK &=s2v(tkns[3],a);
+		return isOK;
+	}
 	//------------------------------------------
 	//	loadFile
 	//------------------------------------------
@@ -166,6 +186,7 @@ namespace ctl {
 		
 		return true;
 	}
+
 	//---------------------------------------------
 	//	fillColor
 	//---------------------------------------------

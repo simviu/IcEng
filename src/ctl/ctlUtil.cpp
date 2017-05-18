@@ -13,11 +13,11 @@
 #include "ctl.h"
 namespace ctl {
     using namespace std;
-
     //------------------------------------------
 	//	def
 	//------------------------------------------
 
+	
     //---- Obsolete
     /*
      static const string K_sDelimeterIn = ", ;\n\r\t";

@@ -232,6 +232,7 @@ namespace ctl {
             return TSizeT<T>(fabs(pos0.x-pos1.x),
                              fabs(pos0.y-pos1.y));
         };
+		
         bool operator == (const TRectT& r)const
             { return (r.pos0==pos0) && (r.pos1==pos1);};
         TPosT<T> getCenter()const
@@ -264,7 +265,26 @@ namespace ctl {
             return  ctl::s2v(tkns[0], pos0.x) && ctl::s2v(tkns[1], pos0.x) &&
                     ctl::s2v(tkns[2], pos1.x) && ctl::s2v(tkns[3], pos1.y);
         };
-    };
+		//---------------
+		void checkSwapVal()
+		{
+			auto& x0=pos0.x; auto& y0 = pos1.y;
+			auto& x1=pos1.x; auto& y1 = pos1.y;
+			if(x0>x1) std::swap(x0, x1);
+			if(y0>y1) std::swap(y0, y1);
+			
+		}
+		//---------------
+		bool isInside(const TPos& pos) const
+		{
+			auto x0=pos0.x; auto y0 = pos1.y;
+			auto x1=pos1.x; auto y1 = pos1.y;
+			if(x0>x1) std::swap(x0, x1);
+			if(y0>y1) std::swap(y0, y1);
+			return (pos.x >= x0 && pos.y >= y0 &&
+					pos.x <= x1 && pos.y <= y1 );
+		};
+	};
     typedef TRectT<float> TRect;
     typedef TRectT<double> TRectHP;
     
@@ -332,7 +352,10 @@ namespace ctl {
             TPixel(){};
             TPixel(TByte ri, TByte gi, TByte bi, TByte ai):
             r(ri), g(gi), b(bi), a(ai){};
-            TByte r=0,g=0,b=0,a=0; };
+            TByte r=0,g=0,b=0,a=0;
+			std::string toStr() const;
+			bool fromStr(const std::string& s);
+		};
         bool setPx(const TPos& pos, const TPixel& c);
         bool getPx(const TPos& pos, TPixel& c) const;
         bool loadFile(const std::string& sFile);
