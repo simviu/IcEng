@@ -15,6 +15,7 @@
 
 namespace ctl {
     using namespace std;
+
 	//------------------------------------------
 	//	Extension Adapter
 	//------------------------------------------
@@ -124,6 +125,23 @@ namespace ctl {
 	//------------------------------------------
 	struct ImgHelper
 	{
+		//---- Bi-Cubic interpolate
+		static IcImg::TPixel
+			interpolateColorBicubic(const IcImg::TPixel& c0,
+									const IcImg::TPixel& c1,
+									const IcImg::TPixel& c2,
+									const IcImg::TPixel& c3,
+									float t)
+		{
+			IcImg::TPixel c;
+			c.r = BiCubic::interpByte(t, c0.r, c1.r, c2.r, c3.r);
+			c.g = BiCubic::interpByte(t, c0.g, c1.g, c2.g, c3.g);
+			c.b = BiCubic::interpByte(t, c0.b, c1.b, c2.b, c3.b);
+			c.a = BiCubic::interpByte(t, c0.a, c1.a, c2.a, c3.a);
+			return c;
+			
+		}
+
 		//---- c = c0*t + (1-t)c1
 		static IcImg::TPixel
 			interpolateColor(const IcImg::TPixel& c0,
@@ -144,6 +162,42 @@ namespace ctl {
 			TByte c = (((float)c0)*(1-t)) +
 				(((float)c1)*t);
 			return c;
+		};
+		//--------------------------------
+		//----- Interpolation Bi-cubic
+		//--------------------------------
+		// Ref : https://en.wikipedia.org/wiki/Bicubic_interpolation
+		class BiCubic
+		{
+		public:
+			//--------------
+			static TByte interpByte(float t, TByte d0, TByte d1, TByte d2, TByte d3)
+			{
+				float d = interpFloat(t, (float)d0/255.0, (float)d1/255.0,
+										 (float)d2/255.0, (float)d3/255.0);
+				return d*255.0;
+			};
+			//--------------
+			static float interpFloat(float t, float d0, float d1, float d2, float d3)
+			{
+				/* The biCubic coef
+				 M =
+					{ 0,  2,  0,  0},
+					{-1,  0,  1,  0},
+					{ 2, -5,  4, -1},
+					{-1,  3, -3,  1}
+				 
+				 p(t) = (1/2)*[1 t t*t t*t*t] * M * [ d0 d1 d2 d3]'
+				 */
+				 
+				float t2 = t*t;
+				float t3 = t2*t;
+				float a0 = 0 -1*t +2*t2 -1*t3;
+				float a1 = 2 +0   -5*t2 +3*t3;
+				float a2 = 0 +1*t +4*t2 -3*t3;
+				float a3 = 0 +0   -1*t2 +1*t3;
+				return (a0*d0 + a1*d1 + a2*d2 + a3*d3)*0.5;
+			};
 		};
 	};
 	
@@ -205,8 +259,74 @@ namespace ctl {
 	//---------------------------------------------
 	//	scaleTo
 	//---------------------------------------------
-	// Bi-Linear scale
+	// Bi-Cubic scale
 	void IcImg::scaleTo(const TSize& size)
+	{
+		if(m_size.w==0 ||m_size.h==0)
+			return;
+		int w = m_size.w;
+		int h = m_size.h;
+		int wn = size.w;
+		int hn = size.h;
+		//-------------------------
+		//	scale horizontal
+		//-------------------------
+		IcImg img1(TSize(wn, h));
+		// In case of scale down, scl <1.0
+		float scl = ((float)wn)/((float)w);
+		if(scl<=0) return;
+		for(int x=0;x<wn;x++)
+		{
+			float xf = ((float)x)/scl;
+			int x0 = (int)xf;
+			int x1 = x0+1;
+			int x2 = x0+2;
+			int xm1 = x0 -1;	// x[-1]
+			float t = xf-x0;
+			for(int y=0;y<h;y++)
+			{
+				TPixel c0,c1,c2,c3;
+				getPx(TPos(xm1,y), c0);
+				getPx(TPos(x0, y), c1);
+				getPx(TPos(x1, y), c2);
+				getPx(TPos(x2, y), c3);
+				TPixel c = ImgHelper::interpolateColorBicubic(c0,c1,c2,c3,t);
+				img1.setPx(TPos(x, y), c);
+			}
+		}
+		//-------------------------
+		//	scale vertical
+		//-------------------------
+		setSize(size);
+		// In case of scale down, scl <1.0
+		scl = ((float)hn)/((float)h);
+		if(scl<=0) return;
+		for(int y=0;y<hn;y++)
+		{
+			float yf = ((float)y)/scl;
+			int y0 = (int)yf;
+			int y1 = y0+1;
+			int y2 = y0+2;
+			int ym1 = y0-1; // y[-1]
+			float t = yf-y0;
+			for(int x=0;x<wn;x++)
+			{
+				TPixel c0,c1,c2,c3;
+				img1.getPx(TPos(x,ym1), c0);
+				img1.getPx(TPos(x,y0),  c1);
+				img1.getPx(TPos(x,y1),  c2);
+				img1.getPx(TPos(x,y2),  c3);
+				TPixel c = ImgHelper::interpolateColorBicubic(c0, c1, c2, c3, t);
+				setPx(TPos(x, y), c);
+			}
+		}
+		
+	}
+	//---------------------------------------------
+	//	scaleTo
+	//---------------------------------------------
+	// Bi-Linear scale
+	void IcImg::scaleTo_bilinear(const TSize& size)
 	{
 		if(m_size.w==0 ||m_size.h==0)
 			return;

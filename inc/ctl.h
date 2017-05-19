@@ -362,6 +362,7 @@ namespace ctl {
         bool saveFile(const std::string& sFile) const;
         bool setSize(const TSize& size);
         void scaleTo(const TSize& size);
+		void scaleTo_bilinear(const TSize& size);
         TSize size()const{ return m_size; };
         BinBuf& getBuf(){ return m_buf; };
         const BinBuf& getBuf()const{ return m_buf; };
