@@ -49,11 +49,14 @@ namespace ctl {
 		if(tkns.size()<3) return false;
 		a = 255;
 		bool isOK = true;
-		isOK &=s2v(tkns[0], r);
-		isOK &=s2v(tkns[1], g);
-		isOK &=s2v(tkns[2], b);
+		unsigned int ri=0, gi=0, bi=0, ai=255;
+		isOK &=s2v(tkns[0], ri);
+		isOK &=s2v(tkns[1], gi);
+		isOK &=s2v(tkns[2], bi);
 		if(tkns.size()>3)
-			isOK &=s2v(tkns[3],a);
+			isOK &=s2v(tkns[3],ai);
+		if(isOK)
+			{ r=ri; g=gi; b=bi; a=ai; }
 		return isOK;
 	}
 	//------------------------------------------

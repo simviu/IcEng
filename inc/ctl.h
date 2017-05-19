@@ -277,7 +277,7 @@ namespace ctl {
 		//---------------
 		bool isInside(const TPos& pos) const
 		{
-			auto x0=pos0.x; auto y0 = pos1.y;
+			auto x0=pos0.x; auto y0 = pos0.y;
 			auto x1=pos1.x; auto y1 = pos1.y;
 			if(x0>x1) std::swap(x0, x1);
 			if(y0>y1) std::swap(y0, y1);
