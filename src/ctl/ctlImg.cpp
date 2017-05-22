@@ -79,8 +79,6 @@ namespace ctl {
 			return false;
 		}
 		isOK = pAdp->loadFile(*this, sFile);
-
-		
 		
 		string sR = (isOK?"Done.":"Failed.");
 		logInfo("Load IcImg "+ sR);
@@ -175,7 +173,9 @@ namespace ctl {
 			{
 				float d = interpFloat(t, (float)d0/255.0, (float)d1/255.0,
 										 (float)d2/255.0, (float)d3/255.0);
-				return d*255.0;
+				long di = d*255.0;
+				dClamp<decltype(di)>(di, 0, 255);
+				return di;
 			};
 			//--------------
 			static float interpFloat(float t, float d0, float d1, float d2, float d3)
@@ -407,8 +407,6 @@ namespace ctl {
 			auto& buf = img.getBuf();
 			for(size_t i=0;i<L;i++)
 				buf.setAt(i, image[i]);
-			logInfo("Load IcImg Done.(size =["+
-					sz.toStr()+"]");
 			return true;
 			
 		};
