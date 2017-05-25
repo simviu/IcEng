@@ -231,17 +231,29 @@ namespace ctl {
 	//------------------------------------------
 	bool IcImg::getPx(const TPos& pos, TPixel& c) const
 	{
-		TPos pos1 = pos;
-        if(pos.x<0 || pos.x>=m_size.w) return false;
-        if(pos.y<0 || pos.y>=m_size.h) return false;
-		size_t i = (pos1.y*m_size.w + pos1.x)*
-						sizeof(TPixel);
+		bool isOK = true;
+
+		const auto w = m_size.w;
+		const auto h = m_size.h;
+		int x=pos.x;
+		int y=pos.y;
+		if(x<0){ x=0; isOK=false; }
+		if(y<0){ y=0; isOK=false; }
+		if(x>=w){ x=w-1; isOK=false; }
+		if(y>=h){ y=h-1; isOK=false; }
+		
+		size_t i = (y*m_size.w + x)* sizeof(TPixel);
+		if(i>=m_buf.size())
+		{
+			c = TPixel(0,0,0,0);
+			return false;
+		}
 		c.r = m_buf[i];
 		c.g = m_buf[i+1];
 		c.b = m_buf[i+2];
 		c.a = m_buf[i+3];
 		
-		return true;
+		return isOK;
 	}
 
 	//---------------------------------------------

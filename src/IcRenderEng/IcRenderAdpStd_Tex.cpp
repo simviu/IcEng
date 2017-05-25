@@ -217,7 +217,7 @@ namespace Ic3d
     ctl::TSize CTexAdpStd::calcValidSizeSquare(const ctl::TSize& sizeOri)
     {
         const static int N0 = 6;    // Min 64
-        const static int N1 = 14;   // Max 16384
+        const static int N1 = 20;   // Max 16384
         
         TSize sz = sizeOri;
         int l = 16;
@@ -227,6 +227,12 @@ namespace Ic3d
             if((l>=sz.w)&&(l>=sz.h))
                 break;
         }
+		//---- Check with OpenGL limit
+		int maxTexW=0;
+		glGetIntegerv(GL_MAX_TEXTURE_SIZE, &maxTexW);
+		if(l>maxTexW)
+			l = maxTexW;
+	
         sz.w = sz.h = l;
         return sz;
     }
