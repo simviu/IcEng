@@ -235,8 +235,8 @@ namespace ctl {
 
 		const auto w = m_size.w;
 		const auto h = m_size.h;
-		int x=pos.x;
-		int y=pos.y;
+		long x=pos.x;
+		long y=pos.y;
 		if(x<0){ x=0; isOK=false; }
 		if(y<0){ y=0; isOK=false; }
 		if(x>=w){ x=w-1; isOK=false; }
