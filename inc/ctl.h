@@ -70,6 +70,7 @@ namespace ctl {
 	extern std::string sFilePath(const std::string& sFile);
 	extern std::string sFileBase(const std::string& sFile);
 	extern std::string sFileNoPath(const std::string& sFile);
+	extern bool isFileExist(const std::string& sFile);
 	
 	//---- Case
 	extern std::string s2lower(const std::string& s);
@@ -288,17 +289,8 @@ namespace ctl {
     typedef TRectT<float> TRect;
     typedef TRectT<double> TRectHP;
     
-    /*
-    extern bool s2v2d(const std::string& s, TSize& sz);
-    extern bool s2v2d(const std::string& s, TPos& pos);
-    extern bool s2v2d(const std::string& s, TRect& r);
-    
-    extern std::string v2s2d(const TSize& sz);
-    extern std::string v2s2d(const TPos& sz);
-    extern std::string v2s2d(const TRect& sz);
-    */
-    
-    //-----------------------------
+
+	//-----------------------------
     //	BinBuf
     //-----------------------------
     typedef unsigned char TByte;

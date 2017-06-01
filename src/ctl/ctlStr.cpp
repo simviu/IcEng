@@ -115,6 +115,12 @@ namespace ctl {
 		// found+1 until end
 		return sFile.substr(found+1);
 	}
+	bool isFileExist(const std::string& sFile)
+	{
+		ifstream f(sFile.c_str());
+		return f.good();
+	}
+
 	//------------------------------------------
 	//	case upper lower
 	//------------------------------------------

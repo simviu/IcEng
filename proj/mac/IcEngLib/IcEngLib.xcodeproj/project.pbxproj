@@ -265,6 +265,13 @@
 			remoteGlobalIDString = 9C8CC3AD1DEE8115002583F2;
 			remoteInfo = IcEngTestMac;
 		};
+		9C4E90271EE00CAE0044B6D9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9C53F6B31DCB14FB006EAF17 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9C53F6BA1DCB14FB006EAF17;
+			remoteInfo = IcEng;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -1266,6 +1273,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				9C4E90281EE00CAE0044B6D9 /* PBXTargetDependency */,
 			);
 			name = IcEngTest;
 			productName = IcEngTestApp;
@@ -1420,6 +1428,11 @@
 			isa = PBXTargetDependency;
 			target = 9C8CC3AD1DEE8115002583F2 /* IcEngTest */;
 			targetProxy = 9C108D731E03B1AC00E0E1DF /* PBXContainerItemProxy */;
+		};
+		9C4E90281EE00CAE0044B6D9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9C53F6BA1DCB14FB006EAF17 /* IcEng */;
+			targetProxy = 9C4E90271EE00CAE0044B6D9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
