@@ -64,6 +64,7 @@ namespace Ic3d {
             bool m_isWindingCCR = true;
         };
         TCfg m_cfg;
+		bool saveFileObj(const std::string& sFile) const;
         
     };
 	//-----------------------------------------------
