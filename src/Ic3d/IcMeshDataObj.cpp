@@ -19,6 +19,7 @@ namespace Ic3d{
 	//-----------------------------------------------------
 	bool IcMeshData::saveFileObj(const std::string& sFile) const
 	{
+		logInfo("Save to OBJ file ["+ sFile + "]...");
 		ofstream ofs;
 		ofs.open(sFile.c_str());
 		if(!ofs.is_open())
@@ -49,6 +50,7 @@ namespace Ic3d{
 			ofs << endl;
 		}
 		ofs.close();
+		logInfo("Done");
 		return true;
 	}
 
