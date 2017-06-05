@@ -263,7 +263,7 @@ namespace ctl {
         {
             auto tkns = s2tokens(s, K_sCoordDelimeterIn);
             if(tkns.size()<4) return false;
-            return  ctl::s2v(tkns[0], pos0.x) && ctl::s2v(tkns[1], pos0.x) &&
+            return  ctl::s2v(tkns[0], pos0.x) && ctl::s2v(tkns[1], pos0.y) &&
                     ctl::s2v(tkns[2], pos1.x) && ctl::s2v(tkns[3], pos1.y);
         };
 		//---------------
