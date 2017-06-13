@@ -64,6 +64,7 @@ namespace Ic3d {
             bool m_isWindingCCR = true;
         };
         TCfg m_cfg;
+		bool saveFileObj(const std::string& sFile) const;
         
     };
 	//-----------------------------------------------
@@ -212,6 +213,7 @@ namespace Ic3d {
         size_t		m_subMeshFaceStart=0;
         
     };
+
 	//-----------------------------------------
 	//	IcObject
 	//-----------------------------------------
@@ -641,6 +643,7 @@ namespace Ic3d {
 		//---- Always Override onInit()
         virtual void onInit() ;
         virtual void onRelease();
+        virtual void onCmdArgs(int argc, char * argv[]){};
         
         void addWindow(ctl::Sp<IcWindow> pWin);
         ctl::Sp<IcWinMng> getWinMng();

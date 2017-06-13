@@ -70,6 +70,7 @@ namespace ctl {
 	extern std::string sFilePath(const std::string& sFile);
 	extern std::string sFileBase(const std::string& sFile);
 	extern std::string sFileNoPath(const std::string& sFile);
+	extern bool isFileExist(const std::string& sFile);
 	
 	//---- Case
 	extern std::string s2lower(const std::string& s);
@@ -149,7 +150,12 @@ namespace ctl {
     //-----------------------------
     //	UI Coordinates
     //-----------------------------
-    //---- TPos
+    // TPosT/TSizeT/TRectT
+    static const std::string K_sCoordDelimeterIn = ", ;\n\r\t";
+    static const std::string K_sCoordDelimeterOut = ",";
+    //-----------------------------
+    //	TPosT
+    //-----------------------------
     template<typename T>
     struct TPosT    // TODO: rename TVec2, (TVec2->IcVec2)
     {
@@ -159,7 +165,7 @@ namespace ctl {
         T x=0, y=0;
         bool operator == (const TPosT& d)const
             { return (d.x==x)&&(d.y==y);};
-        std::string toStr() const{ return v2s(y) + "," + v2s(x); }
+        std::string toStr() const{ return v2s(x) + "," + v2s(y); }
         TPosT operator + (const TPosT& d) const
             { return TPosT(x+d.x, y+d.y); };
         TPosT operator - (const TPosT& d) const
@@ -172,11 +178,20 @@ namespace ctl {
             { x*=d; y*=d; return (*this); };
         TPosT& operator * (const T& d)
             { return TPosT(x*d, y*d); };
+        bool fromStr(const std::string& s)
+        {
+            auto tkns = s2tokens(s, K_sCoordDelimeterIn);
+            if(tkns.size()<2) return false;
+            return ctl::s2v(tkns[0], x) && ctl::s2v(tkns[1], y);
+        
+        };
     };
     typedef TPosT<float> TPos;
     typedef TPosT<double> TPosHP;
     
-    //---- TSize
+    //-----------------------------
+    //	TSizeT
+    //-----------------------------
     template<typename T>
     struct TSizeT
     {
@@ -188,11 +203,19 @@ namespace ctl {
             { return (d.w==w)&&(d.h==h);};
         std::string toStr() const{ return v2s<T>(w) + "," + v2s<T>(h); };
         bool operator != (const TSizeT& d)const{ return !(d==(*this)); };
+        bool fromStr(const std::string& s)
+        {
+            auto tkns = s2tokens(s, K_sCoordDelimeterIn);
+            if(tkns.size()<2) return false;
+            return ctl::s2v(tkns[0], w) && ctl::s2v(tkns[1], h);
+        };
 
     };
     typedef TSizeT<float> TSize;
     typedef TSizeT<double> TSizeHP;
-    //---- TRect
+    //-----------------------------
+    //	TRectT
+    //-----------------------------
     template<typename T>
     struct TRectT
     {
@@ -210,24 +233,64 @@ namespace ctl {
             return TSizeT<T>(fabs(pos0.x-pos1.x),
                              fabs(pos0.y-pos1.y));
         };
+		
         bool operator == (const TRectT& r)const
             { return (r.pos0==pos0) && (r.pos1==pos1);};
         TPosT<T> getCenter()const
             { return TPosT<T>((pos0.x+pos1.x)/2, (pos0.y+pos1.y)/2); };
+ 
+        //----- Map to unit pos, take pos0 as (0,0), pos1 as coordinator (1,1)
+        TPosT<T> posToUnit(const TPosT<T>& pos) const
+        {
+            auto v = pos1; v -= pos0;
+            auto dv = pos; dv -= pos0;
+            if(v.x==0) v.x = 1; if(v.y==0) v.y=1;
+            dv.x /= v.x;   dv.y /= v.y;
+            return dv;
+        };
+        TPosT<T> posFromUnit(const TPosT<T>& unitPos) const
+        {
+            auto v = pos1; v -= pos0;
+            auto dv = unitPos;
+            dv.x *= v.x;   dv.y *= v.y;
+            dv += pos0;
+            return dv;
+           
+        };
         std::string toStr() const
             { return "("+pos0.toStr() + "),(" + pos1.toStr()+")"; }
-    };
+        bool fromStr(const std::string& s)
+        {
+            auto tkns = s2tokens(s, K_sCoordDelimeterIn);
+            if(tkns.size()<4) return false;
+            return  ctl::s2v(tkns[0], pos0.x) && ctl::s2v(tkns[1], pos0.y) &&
+                    ctl::s2v(tkns[2], pos1.x) && ctl::s2v(tkns[3], pos1.y);
+        };
+		//---------------
+		void checkSwapVal()
+		{
+			auto& x0=pos0.x; auto& y0 = pos0.y;
+			auto& x1=pos1.x; auto& y1 = pos1.y;
+			if(x0>x1) std::swap(x0, x1);
+			if(y0>y1) std::swap(y0, y1);
+			
+		}
+		//---------------
+		bool isInside(const TPos& pos) const
+		{
+			auto x0=pos0.x; auto y0 = pos0.y;
+			auto x1=pos1.x; auto y1 = pos1.y;
+			if(x0>x1) std::swap(x0, x1);
+			if(y0>y1) std::swap(y0, y1);
+			return (pos.x >= x0 && pos.y >= y0 &&
+					pos.x <= x1 && pos.y <= y1 );
+		};
+	};
     typedef TRectT<float> TRect;
     typedef TRectT<double> TRectHP;
-    extern bool s2v2d(const std::string& s, TSize& sz);
-    extern bool s2v2d(const std::string& s, TPos& pos);
-    extern bool s2v2d(const std::string& s, TRect& r);
     
-    extern std::string v2s2d(const TSize& sz);
-    extern std::string v2s2d(const TPos& sz);
-    extern std::string v2s2d(const TRect& sz);
-    
-    //-----------------------------
+
+	//-----------------------------
     //	BinBuf
     //-----------------------------
     typedef unsigned char TByte;
@@ -281,13 +344,17 @@ namespace ctl {
             TPixel(){};
             TPixel(TByte ri, TByte gi, TByte bi, TByte ai):
             r(ri), g(gi), b(bi), a(ai){};
-            TByte r=0,g=0,b=0,a=0; };
+            TByte r=0,g=0,b=0,a=0;
+			std::string toStr() const;
+			bool fromStr(const std::string& s);
+		};
         bool setPx(const TPos& pos, const TPixel& c);
         bool getPx(const TPos& pos, TPixel& c) const;
         bool loadFile(const std::string& sFile);
         bool saveFile(const std::string& sFile) const;
         bool setSize(const TSize& size);
         void scaleTo(const TSize& size);
+		void scaleTo_bilinear(const TSize& size);
         TSize size()const{ return m_size; };
         BinBuf& getBuf(){ return m_buf; };
         const BinBuf& getBuf()const{ return m_buf; };
@@ -384,6 +451,7 @@ namespace ctl {
 			{	if(idx<0 || idx>=m_ary.size()) return false;
 				cbk.run(idx, m_ary[idx]); return true; };
 		std::vector<Sp<T>>& getAry(){ return m_ary; };
+        std::vector<Sp<T>>& getAry() const{ return m_ary; };
 
     protected:
 		std::vector<Sp<T>> m_ary;
@@ -433,6 +501,8 @@ namespace ctl {
 			{	auto it = m_map.find(sKey);
 				if(it==m_map.end()) return false;
 				cbk.run((*it).first, (*it).second); return true; };
+        std::map<std::string, Sp<T>>& getMap(){ return m_map; };
+        const std::map<std::string, Sp<T>>& getMap() const{ return m_map; };
 
     protected:
 		std::map<std::string, Sp<T>> m_map;

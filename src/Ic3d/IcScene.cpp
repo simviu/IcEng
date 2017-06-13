@@ -163,11 +163,6 @@ namespace Ic3d
         
         auto pRE= IcRenderEng::getInstance();
         pRE->setViewPort(m_cfg.m_viewRect);
-        //----------------------
-        // Check clear Screen
-        //----------------------
-        if(m_cfg.m_enClrScrn)
-            pRE->clearScreen(m_cfg.m_bkColor);
         
         //----------------------
         //---- Set fog
@@ -228,6 +223,11 @@ namespace Ic3d
         //----------------------
         if(m_pTargetTex!=nullptr)
             m_pTargetTex->startRenderOn();
+        //----------------------
+        // Check clear Screen
+        //----------------------
+        if(m_cfg.m_enClrScrn)
+            pEng->clearScreen(m_cfg.m_bkColor);
 
         //----------------------
         // Render

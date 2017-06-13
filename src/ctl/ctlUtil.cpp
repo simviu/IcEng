@@ -13,13 +13,15 @@
 #include "ctl.h"
 namespace ctl {
     using namespace std;
-
     //------------------------------------------
 	//	def
 	//------------------------------------------
-	static const string K_sDelimeterIn = ", ;\n\r\t";
-	static const string K_sDelimeterOut = ",";
 
+	
+    //---- Obsolete
+    /*
+     static const string K_sDelimeterIn = ", ;\n\r\t";
+     static const string K_sDelimeterOut = ",";
 	//------------------------------------------
 	//	s2v
 	//------------------------------------------
@@ -62,5 +64,5 @@ namespace ctl {
 	
 	
 
-
+     */
 }

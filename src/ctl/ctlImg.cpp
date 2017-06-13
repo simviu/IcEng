@@ -15,6 +15,7 @@
 
 namespace ctl {
     using namespace std;
+
 	//------------------------------------------
 	//	Extension Adapter
 	//------------------------------------------
@@ -36,6 +37,29 @@ namespace ctl {
 	//	Util Macro
 	//------------------------------------------
 	#define CE_LIMIT(d, dmin, dmax) ((d<dmin)?dmin:(d>dmax)?dmax:d)
+	//---------------------------------------------
+	//	IcImg::TPixel to/from str
+	//---------------------------------------------
+	std::string IcImg::TPixel::toStr() const
+	{
+		return v2s(r)+","+v2s(g)+","+v2s(b)+","+v2s(a);
+	}
+	bool IcImg::TPixel::fromStr(const string& s)
+	{
+		auto tkns = s2tokens(s);
+		if(tkns.size()<3) return false;
+		a = 255;
+		bool isOK = true;
+		unsigned int ri=0, gi=0, bi=0, ai=255;
+		isOK &=s2v(tkns[0], ri);
+		isOK &=s2v(tkns[1], gi);
+		isOK &=s2v(tkns[2], bi);
+		if(tkns.size()>3)
+			isOK &=s2v(tkns[3],ai);
+		if(isOK)
+			{ r=ri; g=gi; b=bi; a=ai; }
+		return isOK;
+	}
 	//------------------------------------------
 	//	loadFile
 	//------------------------------------------
@@ -55,8 +79,6 @@ namespace ctl {
 			return false;
 		}
 		isOK = pAdp->loadFile(*this, sFile);
-
-		
 		
 		string sR = (isOK?"Done.":"Failed.");
 		logInfo("Load IcImg "+ sR);
@@ -101,6 +123,23 @@ namespace ctl {
 	//------------------------------------------
 	struct ImgHelper
 	{
+		//---- Bi-Cubic interpolate
+		static IcImg::TPixel
+			interpolateColorBicubic(const IcImg::TPixel& c0,
+									const IcImg::TPixel& c1,
+									const IcImg::TPixel& c2,
+									const IcImg::TPixel& c3,
+									float t)
+		{
+			IcImg::TPixel c;
+			c.r = BiCubic::interpByte(t, c0.r, c1.r, c2.r, c3.r);
+			c.g = BiCubic::interpByte(t, c0.g, c1.g, c2.g, c3.g);
+			c.b = BiCubic::interpByte(t, c0.b, c1.b, c2.b, c3.b);
+			c.a = BiCubic::interpByte(t, c0.a, c1.a, c2.a, c3.a);
+			return c;
+			
+		}
+
 		//---- c = c0*t + (1-t)c1
 		static IcImg::TPixel
 			interpolateColor(const IcImg::TPixel& c0,
@@ -121,6 +160,44 @@ namespace ctl {
 			TByte c = (((float)c0)*(1-t)) +
 				(((float)c1)*t);
 			return c;
+		};
+		//--------------------------------
+		//----- Interpolation Bi-cubic
+		//--------------------------------
+		// Ref : https://en.wikipedia.org/wiki/Bicubic_interpolation
+		class BiCubic
+		{
+		public:
+			//--------------
+			static TByte interpByte(float t, TByte d0, TByte d1, TByte d2, TByte d3)
+			{
+				float d = interpFloat(t, (float)d0/255.0, (float)d1/255.0,
+										 (float)d2/255.0, (float)d3/255.0);
+				long di = d*255.0;
+				dClamp<decltype(di)>(di, 0, 255);
+				return di;
+			};
+			//--------------
+			static float interpFloat(float t, float d0, float d1, float d2, float d3)
+			{
+				/* The biCubic coef
+				 M =
+					{ 0,  2,  0,  0},
+					{-1,  0,  1,  0},
+					{ 2, -5,  4, -1},
+					{-1,  3, -3,  1}
+				 
+				 p(t) = (1/2)*[1 t t*t t*t*t] * M * [ d0 d1 d2 d3]'
+				 */
+				 
+				float t2 = t*t;
+				float t3 = t2*t;
+				float a0 = 0 -1*t +2*t2 -1*t3;
+				float a1 = 2 +0   -5*t2 +3*t3;
+				float a2 = 0 +1*t +4*t2 -3*t3;
+				float a3 = 0 +0   -1*t2 +1*t3;
+				return (a0*d0 + a1*d1 + a2*d2 + a3*d3)*0.5;
+			};
 		};
 	};
 	
@@ -154,18 +231,31 @@ namespace ctl {
 	//------------------------------------------
 	bool IcImg::getPx(const TPos& pos, TPixel& c) const
 	{
-		TPos pos1 = pos;
-		CE_LIMIT(pos1.x, 0, m_size.w);
-		CE_LIMIT(pos1.y, 0, m_size.h);
-		size_t i = (pos1.y*m_size.w + pos1.x)*
-						sizeof(TPixel);
+		bool isOK = true;
+
+		const auto w = m_size.w;
+		const auto h = m_size.h;
+		long x=pos.x;
+		long y=pos.y;
+		if(x<0){ x=0; isOK=false; }
+		if(y<0){ y=0; isOK=false; }
+		if(x>=w){ x=w-1; isOK=false; }
+		if(y>=h){ y=h-1; isOK=false; }
+		
+		size_t i = (y*m_size.w + x)* sizeof(TPixel);
+		if(i>=m_buf.size())
+		{
+			c = TPixel(0,0,0,0);
+			return false;
+		}
 		c.r = m_buf[i];
 		c.g = m_buf[i+1];
 		c.b = m_buf[i+2];
 		c.a = m_buf[i+3];
 		
-		return true;
+		return isOK;
 	}
+
 	//---------------------------------------------
 	//	fillColor
 	//---------------------------------------------
@@ -181,8 +271,74 @@ namespace ctl {
 	//---------------------------------------------
 	//	scaleTo
 	//---------------------------------------------
-	// Bi-Linear scale
+	// Bi-Cubic scale
 	void IcImg::scaleTo(const TSize& size)
+	{
+		if(m_size.w==0 ||m_size.h==0)
+			return;
+		int w = m_size.w;
+		int h = m_size.h;
+		int wn = size.w;
+		int hn = size.h;
+		//-------------------------
+		//	scale horizontal
+		//-------------------------
+		IcImg img1(TSize(wn, h));
+		// In case of scale down, scl <1.0
+		float scl = ((float)wn)/((float)w);
+		if(scl<=0) return;
+		for(int x=0;x<wn;x++)
+		{
+			float xf = ((float)x)/scl;
+			int x0 = (int)xf;
+			int x1 = x0+1;
+			int x2 = x0+2;
+			int xm1 = x0 -1;	// x[-1]
+			float t = xf-x0;
+			for(int y=0;y<h;y++)
+			{
+				TPixel c0,c1,c2,c3;
+				getPx(TPos(xm1,y), c0);
+				getPx(TPos(x0, y), c1);
+				getPx(TPos(x1, y), c2);
+				getPx(TPos(x2, y), c3);
+				TPixel c = ImgHelper::interpolateColorBicubic(c0,c1,c2,c3,t);
+				img1.setPx(TPos(x, y), c);
+			}
+		}
+		//-------------------------
+		//	scale vertical
+		//-------------------------
+		setSize(size);
+		// In case of scale down, scl <1.0
+		scl = ((float)hn)/((float)h);
+		if(scl<=0) return;
+		for(int y=0;y<hn;y++)
+		{
+			float yf = ((float)y)/scl;
+			int y0 = (int)yf;
+			int y1 = y0+1;
+			int y2 = y0+2;
+			int ym1 = y0-1; // y[-1]
+			float t = yf-y0;
+			for(int x=0;x<wn;x++)
+			{
+				TPixel c0,c1,c2,c3;
+				img1.getPx(TPos(x,ym1), c0);
+				img1.getPx(TPos(x,y0),  c1);
+				img1.getPx(TPos(x,y1),  c2);
+				img1.getPx(TPos(x,y2),  c3);
+				TPixel c = ImgHelper::interpolateColorBicubic(c0, c1, c2, c3, t);
+				setPx(TPos(x, y), c);
+			}
+		}
+		
+	}
+	//---------------------------------------------
+	//	scaleTo
+	//---------------------------------------------
+	// Bi-Linear scale
+	void IcImg::scaleTo_bilinear(const TSize& size)
 	{
 		if(m_size.w==0 ||m_size.h==0)
 			return;
@@ -263,8 +419,6 @@ namespace ctl {
 			auto& buf = img.getBuf();
 			for(size_t i=0;i<L;i++)
 				buf.setAt(i, image[i]);
-			logInfo("Load IcImg Done.(size =["+
-					v2s2d(sz)+"]");
 			return true;
 			
 		};

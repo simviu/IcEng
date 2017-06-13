@@ -35,6 +35,7 @@
 		9C5A2F241E53043500655840 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C5A2F221E53042C00655840 /* main.cpp */; };
 		9C8CC3E31DEE81ED002583F2 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CAE4F1F1DCB201B003F7B38 /* OpenGL.framework */; };
 		9C8CC3ED1DEE862D002583F2 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C8CC3EC1DEE862D002583F2 /* GLUT.framework */; };
+		9CA0CE261EE11F3500FEE185 /* IcMeshDataObj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CA0CE251EE11F3500FEE185 /* IcMeshDataObj.cpp */; };
 		9CAE4F201DCB201B003F7B38 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CAE4F1F1DCB201B003F7B38 /* OpenGL.framework */; };
 		9CD3A43A1E77E845000C7CD2 /* IcSceneVR.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CD3A4391E77E845000C7CD2 /* IcSceneVR.cpp */; };
 		9CD3A43B1E77E845000C7CD2 /* IcSceneVR.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9CD3A4391E77E845000C7CD2 /* IcSceneVR.cpp */; };
@@ -265,9 +266,17 @@
 			remoteGlobalIDString = 9C8CC3AD1DEE8115002583F2;
 			remoteInfo = IcEngTestMac;
 		};
+		9C4E90271EE00CAE0044B6D9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9C53F6B31DCB14FB006EAF17 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9C53F6BA1DCB14FB006EAF17;
+			remoteInfo = IcEng;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9C16F7A31EA8BBD900244192 /* IcMath.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IcMath.h; sourceTree = "<group>"; };
 		9C33E5211E3F4CF600DEC713 /* IcText.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcText.cpp; sourceTree = "<group>"; };
 		9C3E25E81E52E8B300B1C17E /* IcEngJNI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcEngJNI.cpp; sourceTree = "<group>"; };
 		9C3E25E91E52E8B300B1C17E /* IcWinMngAndroid.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcWinMngAndroid.cpp; sourceTree = "<group>"; };
@@ -282,6 +291,7 @@
 		9C5A2F221E53042C00655840 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		9C8CC3AE1DEE8115002583F2 /* IcEngTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = IcEngTest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C8CC3EC1DEE862D002583F2 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
+		9CA0CE251EE11F3500FEE185 /* IcMeshDataObj.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IcMeshDataObj.cpp; sourceTree = "<group>"; };
 		9CACD59A1E822F6300AF02C6 /* IcShaderFrag.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = IcShaderFrag.vsh; sourceTree = "<group>"; };
 		9CACD59B1E822F6300AF02C6 /* IcShaderVert.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = IcShaderVert.vsh; sourceTree = "<group>"; };
 		9CAE4F1F1DCB201B003F7B38 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
@@ -726,6 +736,7 @@
 				9CF604701E24804B008A662C /* IcMaterial.cpp */,
 				9CF604711E24804B008A662C /* IcMesh.cpp */,
 				9CF604721E24804B008A662C /* IcMeshDataCreate.cpp */,
+				9CA0CE251EE11F3500FEE185 /* IcMeshDataObj.cpp */,
 				9CF604731E24804B008A662C /* IcMeshDataSubMsh.cpp */,
 				9CF604741E24804B008A662C /* IcModel.cpp */,
 				9CF604751E24804B008A662C /* IcModelLoaderObj.cpp */,
@@ -769,6 +780,7 @@
 				9CF604EF1E248125008A662C /* glm */,
 				9CF605F01E248125008A662C /* Ic3d.h */,
 				9CF605F21E248125008A662C /* IcRenderAdp.h */,
+				9C16F7A31EA8BBD900244192 /* IcMath.h */,
 			);
 			name = inc;
 			path = ../../../inc;
@@ -1264,6 +1276,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				9C4E90281EE00CAE0044B6D9 /* PBXTargetDependency */,
 			);
 			name = IcEngTest;
 			productName = IcEngTestApp;
@@ -1349,6 +1362,7 @@
 				9CF6049B1E24804C008A662C /* ctlStr.cpp in Sources */,
 				9CF604C31E24804C008A662C /* IcRenderAdpStd_Mesh.cpp in Sources */,
 				9CF604A71E24804C008A662C /* IcCamera.cpp in Sources */,
+				9CA0CE261EE11F3500FEE185 /* IcMeshDataObj.cpp in Sources */,
 				9CF604AD1E24804C008A662C /* IcMesh.cpp in Sources */,
 				9CF604A31E24804C008A662C /* lodepng.cpp in Sources */,
 				9CF6049F1E24804C008A662C /* ctlTest_img.cpp in Sources */,
@@ -1418,6 +1432,11 @@
 			isa = PBXTargetDependency;
 			target = 9C8CC3AD1DEE8115002583F2 /* IcEngTest */;
 			targetProxy = 9C108D731E03B1AC00E0E1DF /* PBXContainerItemProxy */;
+		};
+		9C4E90281EE00CAE0044B6D9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9C53F6BA1DCB14FB006EAF17 /* IcEng */;
+			targetProxy = 9C4E90271EE00CAE0044B6D9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

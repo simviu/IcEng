@@ -59,7 +59,7 @@ namespace ctl {
 		if(lvl<m_curLogLvl) return;
 		LogHelper hlpr;
 		string sLvl = hlpr.getLvlName(lvl);
-        logMsgBase("ctl:"+sLvl + ":"+ sMsg +"\n");
+        logMsgBase("["+sLvl + "]:"+ sMsg +"\n");
 	}
     void LogHandler::logMsgBase(const std::string& sMsg)
     {
