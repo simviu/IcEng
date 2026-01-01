@@ -37,7 +37,7 @@ endif(NOT OPENGL_FOUND)
 # IcEngDemo
 #########################################################
 
-set(ICENGDEMO "${CMAKE_CURRENT_SOURCE_DIR}/../../../../IcEng/src/demo")
+set(ICENGDEMO "${CMAKE_CURRENT_SOURCE_DIR}/../../../../IcEng/src/demo/IcEngDemo")
 set(ICENGLIB   "${CMAKE_CURRENT_SOURCE_DIR}/../../../../IcEng")
 set(ICENGBUILD "${CMAKE_CURRENT_SOURCE_DIR}/../../../../IcEng/IcEngBuild")
 set(ICENGBUILD_LIB 	"${ICENGBUILD}/linux/lib/${CMAKE_SYSTEM_PROCESSOR}/${CMAKE_BUILD_TYPE}")
@@ -52,7 +52,7 @@ include_directories(
 	)
 
 add_executable(IcEngDemo
-	${ICENGDEMO}/pc/main.cpp		
+	${ICENGDEMO}/main.cpp		
 	${ICENGDEMO}/DemoApp.cpp		
 	${ICENGDEMO}/DemoBasic.cpp
 	${ICENGDEMO}/DemoLights.cpp
@@ -60,6 +60,8 @@ add_executable(IcEngDemo
 	${ICENGDEMO}/DemoRenderToTex.cpp
 	${ICENGDEMO}/DemoNestedTrans.cpp
 	${ICENGDEMO}/DemoScene.cpp
+	${ICENGDEMO}/DemoFog.cpp
+	${ICENGDEMO}/DemoTexture.cpp
 	)
 
 

@@ -52,7 +52,7 @@ include_directories(
 	)
 
 add_executable(IcVRDemo
-	${ICENGDEMO}/VRDemo/pc/main.cpp		
+	${ICENGDEMO}/VRDemo/main.cpp		
 	${ICENGDEMO}/VRDemo/VRDemoApp.cpp		
 	)
 
