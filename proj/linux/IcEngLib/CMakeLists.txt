@@ -94,8 +94,9 @@ add_executable(IcEngTest
 		${ICENGLIB}/src/test/main.cpp
 		)
 
-target_link_libraries(IcEng ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} ${GLEW_LIBRARIES})
-target_link_libraries(IcEngTest IcEng ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} ${GLEW_LIBRARIES})
+find_library(GLUT_LIB glut PATHS /usr/lib/x86_64-linux-gnu)
+target_link_libraries(IcEng ${OPENGL_LIBRARIES} ${GLUT_LIB} ${GLEW_LIBRARIES} X11 Xxf86vm Xrandr pthread)
+target_link_libraries(IcEngTest IcEng ${OPENGL_LIBRARIES} ${GLUT_LIB} ${GLEW_LIBRARIES} X11 Xxf86vm Xrandr pthread)
 
 add_custom_command(TARGET IcEngTest PRE_BUILD
                    COMMAND ${CMAKE_COMMAND} -E make_directory 
