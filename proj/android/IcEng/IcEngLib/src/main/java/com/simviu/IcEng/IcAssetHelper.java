@@ -40,8 +40,9 @@ public class IcAssetHelper {
         String[] files = null;
         try {
             files = assetManager.list(sPath);
+            Log.i("IcAssetHelper", "Copying assets from: " + sPath + ", files: " + java.util.Arrays.toString(files));
         } catch (IOException e) {
-            Log.e("tag", "Failed to get asset file list.", e);
+            Log.e("IcAssetHelper", "Failed to get asset file list.", e);
         }
         if (files == null) return;
         for (String filename : files) {

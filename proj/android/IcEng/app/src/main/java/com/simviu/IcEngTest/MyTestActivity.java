@@ -15,6 +15,10 @@ public class MyTestActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_test);
+        
+        //---- Init IcApp with JNI
+        IcEngJNI.initIcApp(this);
+        
         m_IcEngView = (IcEngView)findViewById(R.id.id_ic_eng_view);
         m_IcEngView.initWithContext(this);
     }

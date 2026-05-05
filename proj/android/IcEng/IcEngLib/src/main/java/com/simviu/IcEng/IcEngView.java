@@ -193,9 +193,10 @@ public class IcEngView extends GLSurfaceView implements GLSurfaceView.Renderer,
                              new ConfigChooser(8, 8, 8, 8, depth, stencil) :
                              new ConfigChooser(5, 6, 5, 0, depth, stencil) );
 
-        /* Set the renderer responsible for frame rendering */
-     //   setRenderer(new Renderer());
-        setRenderer(this);
+         /* Set the renderer responsible for frame rendering */
+      //   setRenderer(new Renderer());
+         setRenderer(this);
+         setRenderMode(GLSurfaceView.RENDERMODE_CONTINUOUSLY);
     }
 
     private static class ContextFactory implements GLSurfaceView.EGLContextFactory {
