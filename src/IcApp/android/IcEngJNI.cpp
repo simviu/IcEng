@@ -123,13 +123,8 @@ extern "C" JNIEXPORT void JNICALL Java_com_simviu_IcEng_IcEngJNI_setScreenSize(J
 //------------------------------------------
 extern "C" JNIEXPORT void JNICALL Java_com_simviu_IcEng_IcEngJNI_drawUpdate(JNIEnv * env, jobject obj, jfloat deltaT)
 {
-    LOGI("drawUpdate(dt=%f)", deltaT);
     auto pApp = IcApp::getInstance();
-    if(pApp== nullptr) {
-        LOGI("drawUpdate: IcApp instance is null");
-        return;
-    }
-    LOGI("drawUpdate: calling getWinMng()->drawUpdate()");
+    if(pApp== nullptr) return;
     pApp->getWinMng()->drawUpdate(deltaT);
 }
 
