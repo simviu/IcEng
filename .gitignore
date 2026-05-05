@@ -10,3 +10,6 @@ proj/windows/winDepLib/
 proj/windows/IcVRDemo/.vs/
 proj/windows/IcVRDemo/IcVRDemo.VC.db
 proj/windows/IcVRDemo/IcVRDemo/IcVRDemo.vcxproj.filters
+.cxx/
+jniLibs/
+

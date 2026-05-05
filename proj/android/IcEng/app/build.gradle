@@ -1,15 +1,16 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.0"
+    namespace 'com.simviu.IcEngTest'
+    compileSdk 33
+
     defaultConfig {
         applicationId "com.simviu.IcEng"
-        minSdkVersion 19
-        targetSdkVersion 25
+        minSdk 21
+        targetSdk 33
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         externalNativeBuild {
             cmake {
                 cppFlags ""
@@ -19,7 +20,7 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
     externalNativeBuild {
@@ -27,26 +28,15 @@ android {
             path "CMakeLists.txt"
         }
     }
-    task copyIcShader(type: Copy) {
-        println("Run task : copyIcShader() ")
-        println("projectDir=[$projectDir]")
-        from "$projectDir/../../../../IcData"
-        into "$projectDir/src/main/assets/IcData/"
-    }
-
-    preBuild.dependsOn(copyIcShader)
 }
 
 dependencies {
-    compile project(':IcEngNative')
-    compile project(':IcEngLib')
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile project(':exportlib')
+    implementation project(':IcEngNative')
+    implementation project(':IcEngLib')
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(':exportlib')
 
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    compile 'com.android.support:appcompat-v7:25.0.1'
-    compile 'com.android.support:design:25.0.1'
-    testCompile 'junit:junit:4.12'
+    androidTestImplementation('androidx.test.espresso:espresso-core:3.5.1')
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    testImplementation 'junit:junit:4.13.2'
 }
